@@ -1,0 +1,314 @@
+/* Reset básico: elimino márgenes y padding por defecto de todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box es importante porque hace que el padding y border se incluyan 
+       en el ancho/alto total del elemento, en lugar de sumarse. Esto evita problemas de 
+       desbordamiento cuando uso padding */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    /* position: fixed hace que el header se quede fijo en la pantalla aunque haga scroll.
+       top: 0 y left: 0 lo posicionan en la esquina superior izquierda */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* rgba permite usar transparencia. El último valor (0.85) es la opacidad (85% visible) */
+    background-color: rgba(255, 255, 255, 0.5);
+    /* backdrop-filter crea el efecto "glassmorphism" (vidrio esmerilado) que desenfoca 
+       el contenido que hay detrás del header. Es una propiedad moderna de CSS */
+    backdrop-filter: blur(10px);
+    /* -webkit-backdrop-filter es el prefijo para navegadores basados en WebKit (Chrome, Safari)
+       para asegurar compatibilidad mientras la propiedad se estandariza */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* z-index controla el orden de apilamiento. Un valor alto (1000) asegura que el header
+       esté por encima de otros elementos cuando se superponen */
+    z-index: 1000;
+}
+
+nav {
+    /* display: flex activa el modelo de caja flexible (Flexbox). Esto me permite organizar
+       los elementos hijos (icono, título, foto) de forma horizontal y controlar su 
+       distribución fácilmente */
+    display: flex;
+    /* justify-content: space-between distribuye el espacio entre los elementos, poniendo
+       el primero a la izquierda y el último a la derecha */
+    justify-content: space-between;
+    /* align-items: center centra verticalmente los elementos dentro del contenedor flex */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* position: relative es necesario aquí porque el menú desplegable usa position: absolute
+       y se posicionará relativo a este contenedor */
+    position: relative;
+}
+
+nav i {
+    font-size: 1.8rem;
+    color: #48bb78;
+    margin-right: 0.5rem;
+}
+
+nav h3 {
+    color: #38b2ac;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: inline;
+    text-align: left;
+}
+
+#fotoPerfil {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 50%;
+    /* object-fit: cover hace que la imagen cubra todo el espacio manteniendo su proporción,
+       recortando si es necesario. */
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #f6ad55;
+    display: block;
+    background-color: #f0f0f0;
+    visibility: visible;
+    opacity: 1;
+}
+
+#menuDesplegable {
+    /* position: absolute posiciona el menú relativo al contenedor padre (nav) que tiene
+       position: relative. Esto me permite colocarlo exactamente donde quiero */
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    /* display: none oculta el menú por defecto. JavaScript lo cambiará a "block" cuando
+       se haga clic en la foto de perfil */
+    display: none;
+    z-index: 1000;
+}
+
+#menuDesplegable a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+#menuDesplegable a:hover {
+    background-color: #f0fff4;
+}
+
+#menuDesplegable i {
+    margin-right: 0.5rem;
+    color: #4fd1c7;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    /* padding-top: 6rem es necesario porque el header tiene position: fixed y se sale
+       del flujo normal del documento. Este padding evita que el contenido quede oculto
+       debajo del header */
+    padding-top: 6rem;
+}
+
+main h1 {
+    text-align: left;
+    color: #38a169;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+main > p {
+    text-align: left;
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+#contenedorTarjetas {
+    /* display: grid activa CSS Grid, que es un sistema de layout bidimensional muy potente.
+       Me permite crear filas y columnas de forma fácil */
+    display: grid;
+    /* grid-template-columns: repeat(4, 1fr) crea 4 columnas del mismo tamaño.
+       "1fr" significa "1 fracción" del espacio disponible, así que cada columna
+       ocupa 1/4 del ancho. repeat() es una función que repite el patrón */
+    grid-template-columns: repeat(4, 1fr);
+    /* gap es la separación entre las celdas del grid (equivalente a margin entre tarjetas) */
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.tarjetaJuego {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* display: flex con flex-direction: column organiza los elementos hijos (icono, título,
+       descripción, enlace) en columna vertical */
+    display: flex;
+    flex-direction: column;
+    /* transition permite animar cambios en transform y box-shadow cuando hago hover.
+       Esto crea el efecto suave de elevación */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjetaJuego:nth-child(1):hover {
+    /* transform: translateY(-4px) mueve el elemento 4px hacia arriba, creando el efecto
+       de "elevación" cuando paso el ratón */
+    transform: translateY(-13px);
+    box-shadow: 0 4px 16px rgba(72, 187, 120, 0.35);
+}
+
+.tarjetaJuego:nth-child(2):hover {
+    transform: translateY(-13px);
+    box-shadow: 0 4px 16px rgba(56, 178, 172, 0.35);
+}
+
+.tarjetaJuego:nth-child(3):hover {
+    transform: translateY(-13px);
+    box-shadow: 0 4px 16px rgba(79, 209, 199, 0.35);
+}
+
+.tarjetaJuego:nth-child(4):hover {
+    transform: translateY(-13px);
+    box-shadow: 0 4px 16px rgba(246, 173, 85, 0.35);
+}
+
+.tarjetaJuego i {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.tarjetaJuego:nth-child(1) i {
+    color: #48bb78;
+}
+
+.tarjetaJuego:nth-child(2) i {
+    color: #38b2ac;
+}
+
+.tarjetaJuego:nth-child(3) i {
+    color: #4fd1c7;
+}
+
+.tarjetaJuego:nth-child(4) i {
+    color: #f6ad55;
+}
+
+.tituloTarjeta {
+    color: #38a169;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.descripcionTarjeta {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    /* flex-grow: 1 hace que este elemento ocupe todo el espacio disponible restante
+       en el contenedor flex. Esto empuja el enlace hacia abajo y mantiene las tarjetas
+       con la misma altura */
+    flex-grow: 1;
+}
+
+.tarjetaJuego a {
+    color: #5a8a6b;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.tarjetaJuego:nth-child(1) a {
+    color: #48bb78;
+}
+
+.tarjetaJuego:nth-child(2) a {
+    color: #38b2ac;
+}
+
+.tarjetaJuego:nth-child(3) a {
+    color: #4fd1c7;
+}
+
+.tarjetaJuego:nth-child(4) a {
+    color: #f6ad55;
+}
+
+.tarjetaJuego:nth-child(1) a:hover {
+    color: #38a169;
+}
+
+.tarjetaJuego:nth-child(2) a:hover {
+    color: #319795;
+}
+
+.tarjetaJuego:nth-child(3) a:hover {
+    color: #2dd4bf;
+}
+
+.tarjetaJuego:nth-child(4) a:hover {
+    color: #ed8936;
+}
+
+/* ::after es un pseudo-elemento que me permite insertar contenido después del elemento
+   sin modificar el HTML. Aquí añado una flecha (→) después de cada enlace */
+.tarjetaJuego a::after {
+    /* content es obligatorio en pseudo-elementos. Aquí inserto el texto de la flecha */
+    content: " →";
+    margin-left: 0.25rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+    margin-top: 4rem;
+}
+
+/* @media queries son "consultas de medios" que me permiten aplicar estilos diferentes
+   según el tamaño de la pantalla. Esto es esencial para diseño responsive */
+@media (max-width: 1024px) {
+    /* En tablets, cambio de 4 columnas a 2 columnas para que las tarjetas se vean mejor */
+    #contenedorTarjetas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    /* En móviles, pongo una sola columna para que las tarjetas se apilen verticalmente */
+    #contenedorTarjetas {
+        grid-template-columns: 1fr;
+    }
+
+    main h1 {
+        font-size: 2rem;
+    }
+
+    /* flex-wrap: wrap permite que los elementos del nav se envuelvan a una nueva línea
+       si no caben, en lugar de desbordarse */
+    nav {
+        flex-wrap: wrap;
+    }
+}
