@@ -12,47 +12,42 @@
             <nav>
                 <i class="fas fa-leaf"></i>
                 <h3>ReciQuiz</h3>
-                <img src="../src/imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
+                <img src="./imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
                 <div id="menuDesplegable">
-                    <a href="#amigos"><i class="fas fa-users"></i> Mis Amigos</a>
-                    <a href="#estadisticas"><i class="fas fa-chart-bar"></i> Mis Estadísticas</a>
                     <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                 </div>
             </nav>
         </header>
 
         <main>
-            <h1>¡Bienvenido, Usuario!</h1>
-            <p>Elige un desafío a continuación para empezar a aprender y a divertirte</p>
-            
-            <div id="contenedorTarjetas">
-                <div class="tarjetaJuego">
-                    <i class="fas fa-puzzle-piece"></i>
-                    <h2 class="tituloTarjeta">Palabra del dia</h2>
-                    <p class="descripcionTarjeta">Adivina la eco-palabra del dia</p>
-                    <a href="juegoPalabra.html">Comenzar desafío</a>
-                </div>
+            <div id="navegador">
+                <a href="gestionarPalabras.html">GESTIONAR PALABRAS</a>
+                <a href="gestionarFrases.html">GESTIONAR FRASES</a>
+                <a href="gestionarNoticias.html">GESTIONAR NOTICIAS</a>
+                <a href="gestionarConsejos.html">GESTIONAR CONSEJOS</a>
+                <a href="gestionarUsuarios.html">GESTIONAR USUARIOS</a>
+            </div>
+            <div id="contenedorModificarFrase">
+                <h1>Añadir/Editar Frase del Dia</h1>
+                <form action="" method="get">
+                    <label for="frase">Frase</label>
+                    <input type="text" name="frase" id="frase" placeholder="Ej: La Tierra no es una herencia de nuestros padres, sino un prestamo de nuestros _____.">
+                    <p>Usa '___' para el lugar donde ira la palabra que falta</p>
 
-                <div class="tarjetaJuego">
-                    <i class="fas fa-quote-left"></i>
-                    <h2 class="tituloTarjeta">Frase del dia</h2>
-                    <p class="descripcionTarjeta">Completa la cita inspiradora</p>
-                    <a href="juegoFrase.html">Comenzar desafío</a>
-                </div>
+                    <label for="palabra">Palabra que falta</label>
+                    <input type="text" name="" id="palabra" placeholder="Ej: hijos">
 
-                <div class="tarjetaJuego">
-                    <i class="fas fa-globe"></i>
-                    <h2 class="tituloTarjeta">Eco-Noticia</h2>
-                    <p class="descripcionTarjeta">Aprende sobre la noticia eco-ambiental del dia</p>
-                    <a href="noticia.html">Comenzar desafío</a>
-                </div>
+                    <label for="autor">Autor</label>
+                    <input type="text" name="autor" id="autor" placeholder="Ej: Provervio nativo americano">
 
-                <div class="tarjetaJuego">
-                    <i class="fas fa-recycle"></i>
-                    <h2 class="tituloTarjeta">¿Como puedo contribuir?</h2>
-                    <p class="descripcionTarjeta">Obten tu eco-consejo diario</p>
-                    <a href="contribucion.html">Comenzar desafío</a>
-                </div>
+                    <label for="fecha">Fecha programada</label>
+                    <input type="date" name="fecha" id="fecha">
+
+                    <input type="submit" value="Guardar Frase">
+                </form>
+            </div>
+            <div id="ultimasDiezFrases">
+                Aqui mostraremos con JS, las 10 ultimas frases que se han introducido
             </div>
         </main>
 
@@ -60,7 +55,6 @@
             <p>&copy; 2025-2026 ReciQuiz. Todos los derechos reservados.</p>
         </footer>
 
-        <script src="../src/javaScript/menuDashboardUsuario.js"></script>
+        <script src="./javaScript/menuDashboardUsuario.js"></script>
     </body>
 </html>
-

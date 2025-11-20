@@ -173,9 +173,6 @@ main {
     color: #6b7280;
     margin-top: -0.8rem;
 }
-#contenedorModificarFrase input[type="date"]{
-    width: 15%;
-}
 
 /* BOTÓN */
 #contenedorModificarFrase input[type="submit"] {
@@ -201,7 +198,7 @@ main {
 }
 #contenedorModificarFrase input[type="date"],
 #contenedorModificarFrase input[type="submit"]{
-    width: 15%;
+    max-width: 160px;
 }
 
 /* ================================
