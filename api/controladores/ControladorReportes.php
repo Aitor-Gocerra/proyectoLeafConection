@@ -1,1 +1,0 @@
-<!-- Actividad, estadisticas, logs -->
