@@ -8,6 +8,8 @@
     box-sizing: border-box;
 }
 
+/*ESTILOS BASE: TABLET (768px-1023px)*/
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: #ffffff;
@@ -22,7 +24,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    /* rgba permite usar transparencia. El último valor (0.85) es la opacidad (85% visible) */
+    /* rgba permite usar transparencia. El último valor (0.5) es la opacidad (50% visible) */
     background-color: rgba(255, 255, 255, 0.5);
     /* backdrop-filter crea el efecto "glassmorphism" (vidrio esmerilado) que desenfoca 
        el contenido que hay detrás del header. Es una propiedad moderna de CSS */
@@ -30,7 +32,7 @@ header {
     /* -webkit-backdrop-filter es el prefijo para navegadores basados en WebKit (Chrome, Safari)
        para asegurar compatibilidad mientras la propiedad se estandariza */
     -webkit-backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     /* z-index controla el orden de apilamiento. Un valor alto (1000) asegura que el header
        esté por encima de otros elementos cuando se superponen */
@@ -47,7 +49,7 @@ nav {
     justify-content: space-between;
     /* align-items: center centra verticalmente los elementos dentro del contenedor flex */
     align-items: center;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     /* position: relative es necesario aquí porque el menú desplegable usa position: absolute
        y se posicionará relativo a este contenedor */
@@ -55,24 +57,24 @@ nav {
 }
 
 nav i {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #48bb78;
     margin-right: 0.5rem;
 }
 
 nav h3 {
     color: #38b2ac;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
     display: inline;
     text-align: left;
 }
 
 #fotoPerfil {
-    width: 45px;
-    height: 45px;
-    min-width: 45px;
-    min-height: 45px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
     border-radius: 50%;
     /* object-fit: cover hace que la imagen cubra todo el espacio manteniendo su proporción,
        recortando si es necesario. */
@@ -89,13 +91,13 @@ nav h3 {
     /* position: absolute posiciona el menú relativo al contenedor padre (nav) que tiene
        position: relative. Esto me permite colocarlo exactamente donde quiero */
     position: absolute;
-    top: 60px;
+    top: 55px;
     right: 0;
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 0.5rem 0;
-    min-width: 200px;
+    min-width: 180px;
     /* display: none oculta el menú por defecto. JavaScript lo cambiará a "block" cuando
        se haga clic en la foto de perfil */
     display: none;
@@ -104,7 +106,7 @@ nav h3 {
 
 #menuDesplegable a {
     display: block;
-    padding: 0.75rem 1.5rem;
+    padding: 0.7rem 1.3rem;
     color: #333;
     text-decoration: none;
     transition: background-color 0.2s;
@@ -120,47 +122,47 @@ nav h3 {
 }
 
 main {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 0 2rem;
-    /* padding-top: 6rem es necesario porque el header tiene position: fixed y se sale
+    padding: 0 1.5rem;
+    /* padding-top: 5rem es necesario porque el header tiene position: fixed y se sale
        del flujo normal del documento. Este padding evita que el contenido quede oculto
        debajo del header */
-    padding-top: 6rem;
+    padding-top: 5rem;
 }
 
 main h1 {
     text-align: left;
     color: #38a169;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 main > p {
     text-align: left;
     color: #6b7280;
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
 }
 
 #contenedorTarjetas {
     /* display: grid activa CSS Grid, que es un sistema de layout bidimensional muy potente.
        Me permite crear filas y columnas de forma fácil */
     display: grid;
-    /* grid-template-columns: repeat(4, 1fr) crea 4 columnas del mismo tamaño.
-       "1fr" significa "1 fracción" del espacio disponible, así que cada columna
-       ocupa 1/4 del ancho. repeat() es una función que repite el patrón */
-    grid-template-columns: repeat(4, 1fr);
+    /* En tablet (base): 2 columnas. grid-template-columns: repeat(2, 1fr) crea 2 columnas 
+       del mismo tamaño. "1fr" significa "1 fracción" del espacio disponible, así que cada 
+       columna ocupa 1/2 del ancho. repeat() es una función que repite el patrón */
+    grid-template-columns: repeat(2, 1fr);
     /* gap es la separación entre las celdas del grid (equivalente a margin entre tarjetas) */
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 1.3rem;
+    margin-top: 1.5rem;
 }
 
 .tarjetaJuego {
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.8rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     /* display: flex con flex-direction: column organiza los elementos hijos (icono, título,
        descripción, enlace) en columna vertical */
@@ -172,30 +174,30 @@ main > p {
 }
 
 .tarjetaJuego:nth-child(1):hover {
-    /* transform: translateY(-4px) mueve el elemento 4px hacia arriba, creando el efecto
+    /* transform: translateY(-10px) mueve el elemento 10px hacia arriba, creando el efecto
        de "elevación" cuando paso el ratón */
-    transform: translateY(-13px);
+    transform: translateY(-10px);
     box-shadow: 0 4px 16px rgba(72, 187, 120, 0.35);
 }
 
 .tarjetaJuego:nth-child(2):hover {
-    transform: translateY(-13px);
+    transform: translateY(-10px);
     box-shadow: 0 4px 16px rgba(56, 178, 172, 0.35);
 }
 
 .tarjetaJuego:nth-child(3):hover {
-    transform: translateY(-13px);
+    transform: translateY(-10px);
     box-shadow: 0 4px 16px rgba(79, 209, 199, 0.35);
 }
 
 .tarjetaJuego:nth-child(4):hover {
-    transform: translateY(-13px);
+    transform: translateY(-10px);
     box-shadow: 0 4px 16px rgba(246, 173, 85, 0.35);
 }
 
 .tarjetaJuego i {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .tarjetaJuego:nth-child(1) i {
@@ -216,16 +218,16 @@ main > p {
 
 .tituloTarjeta {
     color: #38a169;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .descripcionTarjeta {
     color: #6b7280;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     /* flex-grow: 1 hace que este elemento ocupe todo el espacio disponible restante
        en el contenedor flex. Esto empuja el enlace hacia abajo y mantiene las tarjetas
        con la misma altura */
@@ -236,7 +238,7 @@ main > p {
     color: #5a8a6b;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: color 0.2s;
 }
 
@@ -272,9 +274,9 @@ main > p {
     color: #ed8936;
 }
 
-/* ::after es un pseudo-elemento que me permite insertar contenido después del elemento
-   sin modificar el HTML. Aquí añado una flecha (→) después de cada enlace */
 .tarjetaJuego a::after {
+    /* ::after es un pseudo-elemento que me permite insertar contenido después del elemento
+       sin modificar el HTML. Aquí añado una flecha (→) después de cada enlace */
     /* content es obligatorio en pseudo-elementos. Aquí inserto el texto de la flecha */
     content: " →";
     margin-left: 0.25rem;
@@ -284,74 +286,74 @@ footer {
     text-align: center;
     padding: 2rem;
     color: #6b7280;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
 
 /* ESTILOS FRASE DEL DIA */
 
 #cajaPalabra {
-    width: 900px;
-    max-width: 500px;       
-    margin: 10rem auto 1rem auto ;
+    width: 90%;
+    max-width: 450px;       
+    margin: 8rem auto 1rem auto;
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 1.8rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .tituloPalabra {
     color: #38a169;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .descripcionPalabra {
     color: #6b7280;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .temporizador {
     display: block;
-    width: fit-content; /*Ocupa lo necesario */
+    width: fit-content; /* Ocupa lo necesario */
     font-family: 'Digital-7', monospace;
-    font-size: 1rem;
+    font-size: 0.95rem;
     text-align: center;
-    margin: 1rem auto 3rem auto;
+    margin: 1rem auto 1rem auto;
     padding: 0.5rem 0.5rem;      
-    box-shadow: 1px 2px 3px rgb(0, 0, 0, 0.2);
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
     background-color: #dbdbdb;
 }
 
-.pista{
+.pista {
     color: #548f60;
-    background-color: #e6f7e8;
-    padding: 1rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.9rem 0.9rem;
+    font-size: 0.85rem;
     border-left: 3px solid rgb(0, 114, 47);
+    border-right: 3px solid rgb(0, 114, 47);
     border-radius: 3px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.8rem;
     font-style: italic;
 }
 
 .contenedorAcierto {
     display: flex;
-    gap: 0.5rem;
+    gap: 1.2rem;
 }
 
 .introducirPalabra {
     width: 65%;  
     padding: 0.6rem 1rem;
     font-size: 0.7rem;
-    border:none;
+    border: none;
     background-color: #e8f1e9;
 }
 
-/*El focus lo que hace es cambiar*/
 .introducirPalabra:focus {
+    /* El focus lo que hace es cambiar el estilo cuando el input está seleccionado */
     outline: none; /* quita el borde azul por defecto */
     box-shadow: none; /* quita sombras si las hubiera */
 }
@@ -366,28 +368,396 @@ footer {
     border-radius: 3px;
 }
 
-/* @media queries son "consultas de medios" que me permiten aplicar estilos diferentes
-   según el tamaño de la pantalla. Esto es esencial para diseño responsive */
-@media (max-width: 1024px) {
-    /* En tablets, cambio de 4 columnas a 2 columnas para que las tarjetas se vean mejor */
-    #contenedorTarjetas {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+/*MÓVIL ESTÁNDAR (480px-767px)*/
 
-@media (max-width: 768px) {
-    /* En móviles, pongo una sola columna para que las tarjetas se apilen verticalmente */
-    #contenedorTarjetas {
-        grid-template-columns: 1fr;
+@media (max-width: 767px) {
+    header {
+        padding: 0.8rem 1rem;
+    }
+
+    nav {
+        max-width: 100%;
+    }
+
+    nav i {
+        font-size: 1.4rem;
+    }
+
+    nav h3 {
+        font-size: 1.1rem;
+    }
+
+    #fotoPerfil {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        min-height: 35px;
+    }
+
+    #menuDesplegable {
+        top: 50px;
+        min-width: 160px;
+    }
+
+    main {
+        padding: 0 1rem;
+        padding-top: 4.5rem;
     }
 
     main h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
-    /* flex-wrap: wrap permite que los elementos del nav se envuelvan a una nueva línea
-       si no caben, en lugar de desbordarse */
+    main > p {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+
+    #contenedorTarjetas {
+        /* En móvil estándar: 1 columna (todas las tarjetas apiladas verticalmente) */
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .tarjetaJuego {
+        padding: 1.5rem;
+    }
+
+    .tarjetaJuego i {
+        font-size: 2.3rem;
+    }
+
+    .tituloTarjeta {
+        font-size: 1.15rem;
+    }
+
+    #cajaPalabra {
+        margin: 6rem auto 1rem auto;
+        padding: 1.5rem;
+    }
+
+    .tituloPalabra {
+        font-size: 1.3rem;
+    }
+}
+
+/*MÓVIL PEQUEÑO (320px-479px)*/
+
+@media (max-width: 479px) {
+    header {
+        padding: 0.7rem 0.8rem;
+    }
+
+    nav i {
+        font-size: 1.2rem;
+        margin-right: 0.3rem;
+    }
+
+    nav h3 {
+        font-size: 1rem;
+    }
+
+    #fotoPerfil {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+    }
+
+    #menuDesplegable {
+        top: 45px;
+        min-width: 150px;
+    }
+
+    #menuDesplegable a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 0 0.8rem;
+        padding-top: 4rem;
+    }
+
+    main h1 {
+        font-size: 1.5rem;
+    }
+
+    main > p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #contenedorTarjetas {
+        gap: 1rem;
+    }
+
+    .tarjetaJuego {
+        padding: 1.3rem;
+    }
+
+    .tarjetaJuego i {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .tituloTarjeta {
+        font-size: 1.1rem;
+    }
+
+    .descripcionTarjeta {
+        font-size: 0.85rem;
+    }
+
+    .tarjetaJuego a {
+        font-size: 0.9rem;
+    }
+
+    #cajaPalabra {
+        width: 95%;
+        margin: 5rem auto 1rem auto;
+        padding: 1.2rem;
+    }
+
+    .tituloPalabra {
+        font-size: 1.2rem;
+    }
+
+    .descripcionPalabra {
+        font-size: 0.8rem;
+    }
+
+    .temporizador {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.4rem;
+    }
+
+    .pista {
+        padding: 0.7rem 0.7rem;
+        font-size: 0.8rem;
+    }
+}
+
+/*LAPTOP (1024px-1439px)*/
+
+@media (min-width: 1024px) {
+    header {
+        padding: 1rem 2rem;
+    }
+
     nav {
-        flex-wrap: wrap;
+        max-width: 1100px;
+    }
+
+    nav i {
+        font-size: 1.7rem;
+    }
+
+    nav h3 {
+        font-size: 1.4rem;
+    }
+
+    #fotoPerfil {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        min-height: 42px;
+    }
+
+    #menuDesplegable {
+        top: 58px;
+        min-width: 190px;
+    }
+
+    #menuDesplegable a {
+        padding: 0.75rem 1.4rem;
+    }
+
+    main {
+        max-width: 1100px;
+        padding: 0 2rem;
+        padding-top: 5.5rem;
+    }
+
+    main h1 {
+        font-size: 2.3rem;
+    }
+
+    main > p {
+        font-size: 1.05rem;
+        margin-bottom: 2.8rem;
+    }
+
+    #contenedorTarjetas {
+        /* En laptop: 3 columnas (punto intermedio antes de pantallas grandes) */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.4rem;
+    }
+
+    .tarjetaJuego {
+        padding: 1.9rem;
+    }
+
+    .tarjetaJuego:nth-child(1):hover,
+    .tarjetaJuego:nth-child(2):hover,
+    .tarjetaJuego:nth-child(3):hover,
+    .tarjetaJuego:nth-child(4):hover {
+        transform: translateY(-12px);
+    }
+
+    .tarjetaJuego i {
+        font-size: 2.8rem;
+        margin-bottom: 1.3rem;
+    }
+
+    .tituloTarjeta {
+        font-size: 1.25rem;
+    }
+
+    .descripcionTarjeta {
+        font-size: 0.92rem;
+    }
+
+    #cajaPalabra {
+        max-width: 500px;
+        margin: 9rem auto 1rem auto;
+        padding: 1.9rem;
+    }
+
+    .tituloPalabra {
+        font-size: 1.6rem;
+    }
+
+    .descripcionPalabra {
+        font-size: 0.88rem;
+    }
+
+    .temporizador {
+        font-size: 0.98rem;
+    }
+
+    .pista {
+        font-size: 0.88rem;
+        padding: 0.95rem 0.95rem;
+    }
+}
+
+/*ESCRITORIO (1440px en adelante)*/
+
+@media (min-width: 1440px) {
+    header {
+        padding: 1.2rem 2.5rem;
+    }
+
+    nav {
+        max-width: 1200px;
+    }
+
+    nav i {
+        font-size: 1.8rem;
+    }
+
+    nav h3 {
+        font-size: 1.5rem;
+    }
+
+    #fotoPerfil {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        min-height: 45px;
+    }
+
+    #menuDesplegable {
+        top: 60px;
+        min-width: 200px;
+    }
+
+    #menuDesplegable a {
+        padding: 0.75rem 1.5rem;
+    }
+
+    main {
+        max-width: 1200px;
+        padding: 0 2rem;
+        padding-top: 6rem;
+    }
+
+    main h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    main > p {
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
+    }
+
+    #contenedorTarjetas {
+        /* En escritorio: 4 columnas (diseño completo para aprovechar pantallas grandes) */
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .tarjetaJuego {
+        padding: 2rem;
+    }
+
+    .tarjetaJuego:nth-child(1):hover,
+    .tarjetaJuego:nth-child(2):hover,
+    .tarjetaJuego:nth-child(3):hover,
+    .tarjetaJuego:nth-child(4):hover {
+        transform: translateY(-13px);
+    }
+
+    .tarjetaJuego i {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tituloTarjeta {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .descripcionTarjeta {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tarjetaJuego a {
+        font-size: 1rem;
+    }
+
+    footer {
+        margin-top: 4rem;
+    }
+
+    #cajaPalabra {
+        max-width: 900px;
+        margin: 10rem auto 1rem auto;
+        padding: 2rem;
+    }
+
+    .tituloPalabra {
+        font-size: 1.7rem;
+        margin-bottom: 1rem;
+    }
+
+    .descripcionPalabra {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .temporizador {
+        font-size: 1rem;
+        margin: 1rem auto 3rem auto;
+    }
+
+    .pista {
+        font-size: 0.9rem;
+        padding: 1rem 1rem;
+        margin-bottom: 2rem;
     }
 }
