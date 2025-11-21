@@ -287,6 +287,85 @@ footer {
     margin-top: 4rem;
 }
 
+/* ESTILOS FRASE DEL DIA */
+
+#cajaPalabra {
+    width: 900px;
+    max-width: 500px;       
+    margin: 10rem auto 1rem auto ;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tituloPalabra {
+    color: #38a169;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.descripcionPalabra {
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.temporizador {
+    display: block;
+    width: fit-content; /*Ocupa lo necesario */
+    font-family: 'Digital-7', monospace;
+    font-size: 1rem;
+    text-align: center;
+    margin: 1rem auto 3rem auto;
+    padding: 0.5rem 0.5rem;      
+    box-shadow: 1px 2px 3px rgb(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: #dbdbdb;
+}
+
+.pista{
+    color: #548f60;
+    background-color: #e6f7e8;
+    padding: 1rem 1rem;
+    font-size: 0.9rem;
+    border-left: 3px solid rgb(0, 114, 47);
+    border-radius: 3px;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.contenedorAcierto {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.introducirPalabra {
+    width: 65%;  
+    padding: 0.6rem 1rem;
+    font-size: 0.7rem;
+    border:none;
+    background-color: #e8f1e9;
+}
+
+/*El focus lo que hace es cambiar*/
+.introducirPalabra:focus {
+    outline: none; /* quita el borde azul por defecto */
+    box-shadow: none; /* quita sombras si las hubiera */
+}
+
+.enviarPalabra {
+    width: 30%;
+    padding: 0.6rem 0.6rem;
+    font-size: 0.7rem;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 3px;
+}
+
 /* @media queries son "consultas de medios" que me permiten aplicar estilos diferentes
    según el tamaño de la pantalla. Esto es esencial para diseño responsive */
 @media (max-width: 1024px) {
