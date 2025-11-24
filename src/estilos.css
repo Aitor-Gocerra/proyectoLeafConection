@@ -1,3 +1,25 @@
+:root {
+    /* Colores */
+    --color-primario: #38a169;
+    --color-secundario: #48bb78;
+    --color-acento-a: #38b2ac;
+    --color-acento-b: #f6ad55;
+    --color-texto-oscuro: #333;
+    --color-texto-gris: #6b7280;
+    --color-fondo: #ffffff;
+    
+    /* Espaciado */
+    --espaciado-xs: 0.5rem;
+    --espaciado-s: 1rem;
+    --espaciado-m: 1.5rem;
+    --espaciado-l: 2.5rem;
+
+    /* Diseño */
+    --borde-radius: 12px;
+    --box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --transicion-base: 0.2s;
+}
+
 /* Reset básico: elimino márgenes y padding por defecto de todos los elementos */
 * {
     margin: 0;
@@ -12,8 +34,8 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: #ffffff;
-    color: #333;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-oscuro);
     line-height: 1.6;
 }
 
