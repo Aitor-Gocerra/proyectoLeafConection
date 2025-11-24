@@ -178,24 +178,21 @@ footer {
     margin-bottom: 0;
 }
 
-/* Tablets (768px – 991.98px) */
-@media (max-width: 1024px) and (min-width: 768px) { 
-    
-    #cajaPalabra {
-        width: 75%;
-        padding: 1.2rem;
-        border-radius: 8px;
-    }
 
+/* Tablets (horizontal/vertical hasta 1024px) */
+@media (max-width: 1024px) {
+    #cajaPalabra {
+        width: 55%;
+        margin: 10rem auto 1rem auto;
+        padding: 1.8rem;
+    }
 }
 
-/* Portátiles (992px – 1199.98px) */
-@media (max-width: 1199.98px) and (min-width: 992px) { 
-    
+/* Portátiles medianos (1024px a 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
     #cajaPalabra {
-        width: 70%;
-        padding: 1.3rem;
-        border-radius: 8px;
+        width: 40%;
+        margin: 11rem auto 1rem auto;
+        padding: 2rem;
     }
-
 }
