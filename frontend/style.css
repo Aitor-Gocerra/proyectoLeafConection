@@ -64,8 +64,7 @@ nav h3 {
 }
 
 #cajaPalabra {
-    width: 900px;
-    max-width: 500px;       
+    width: 30%;      
     margin: 12rem auto 1rem auto ;
     background-color: #ffffff;
     border-radius: 12px;
@@ -179,11 +178,23 @@ footer {
     margin-bottom: 0;
 }
 
-
-@media (max-width: 500px) {
+/* Tablets (768px – 991.98px) */
+@media (max-width: 1024px) and (min-width: 768px) { 
+    
     #cajaPalabra {
-        width: 85%;        
-        padding: 1rem;
+        width: 75%;
+        padding: 1.2rem;
+        border-radius: 8px;
+    }
+
+}
+
+/* Portátiles (992px – 1199.98px) */
+@media (max-width: 1199.98px) and (min-width: 992px) { 
+    
+    #cajaPalabra {
+        width: 70%;
+        padding: 1.3rem;
         border-radius: 8px;
     }
 
