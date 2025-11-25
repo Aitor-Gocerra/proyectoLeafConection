@@ -35,9 +35,39 @@
                 </div>
             </div>
             <div id="amigosSolicitudes">
-                <button type="submit" class="botonAmigos activo">Mis Amigos</button>
-                <button type="submit" class="botonSolicitudes">Solicitudes Pendientes</button>
+                <button type="submit" class="botonActivo" id="todosAmigos">Mis Amigos</button>
+                <button type="submit" class="botonNoActivo" id="solicitudesAmigos">Solicitudes Pendientes</button>
+            </div>
+            <div id="misAmigos">
+                <h2>Lista de Amigos</h2>
+                <div id="contenedorAmigo">
+                    <img src="../imagenes/lolilla.png" class="fotoAmigo">
+                    <p class="nombreAmigo">Elena García</p>
+                    <button type="submit" class="estadoAmigoOnline">Online</button>
+                    <div class="simboloAmigo">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                </div>
+                <div id="contenedorAmigo">
+                    <img src="../imagenes/lolilla.png" class="fotoAmigo">
+                    <p class="nombreAmigo">Elena García</p>
+                    <button type="submit" class="estadoAmigoOffline">Offline</button>
+                    <div class="simboloAmigo">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="misSolicitudes">
+                <h2>Solicitudes de Amistad</h2>
+                <div id="contenedorSolicitudes">
+                    <img src="../imagenes/lolilla.png" class="fotoAmigo">
+                    <p class="nombreAmigo">Elena García</p>
+                    <button type="submit" class="aceptarSolicitud">Aceptar <i class="fa-solid fa-user-check"></i></button></i>
+                    <button type="submit" class="rechazarSolicitud">Rechazar <i class="fa-solid fa-user-xmark"></i></button>
+                </div>
             </div>
         </main>
+        <script src="../../javascript/amigosSolicitudes.js"></script>
+        <script src="../../javascript/menuDesplegable.js"></script>
     </body>
 </html>
