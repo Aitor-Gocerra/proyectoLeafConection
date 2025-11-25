@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel noticia</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <main id="noticia_panel" class="contenedor">
+        <h2 class="titulo">Añadir noticia del día</h2>
+        <form action="" method="post" id="noticia_formulario">
+            <label for="">Nombre</label>
+            <input type="text" name="" id="" placeholder="Ej: Greta Thunberg">
+
+            <label for="">Contenido</label>
+            <textarea name="contenido" id="contenido" rows="5"></textarea>
+
+            <label for="">URL de la imagen</label>
+            <input type="url" name="url" id="url">
+
+            <label for="">Fecha programada</label>
+            <input type="date" name="fecha" id="fecha">
+
+            <label for="">Cuestionario</label>
+
+            <div class="cuestionario_pregunta">
+                <label for="">Pregunta</label>
+                <input type="text" name="" id="">
+
+                <label for="">Opciones (separadas por '/')</label>
+                <input type="text" name="opciones" id="opciones">
+
+                <label for="">Respuesta correcta</label>
+                <input type="number" name="respuesta_correcta" id="">
+            </div>
+
+            <input type="submit" value="Guardar noticia">
+            
+        </form>
+        <button id="añadirPregunta"><i class="fa-regular fa-square-plus"></i> Añadir Pregunta</button>
+    </main>
+
+    <script>
+        let btnAñadirPregunta = document.getElementById("añadirPregunta");
+        let plantilla = document.querySelector(".cuestionario_pregunta");
+        let noticiaFormulario = document.getElementById("noticia_formulario");
+
+        btnAñadirPregunta.addEventListener("click", function(e) {
+            e.preventDefault();
+            
+            let nuevaPregunta = document.createElement("div");
+            nuevaPregunta.classList.add("cuestionario_pregunta");
+            nuevaPregunta.innerHTML = plantilla.innerHTML;
+
+            noticiaFormulario.appendChild(nuevaPregunta);
+        });
+    </script>
+</body>
+</html>
