@@ -1,4 +1,11 @@
-/* Reset básico: elimino márgenes y padding por defecto de todos los elementos */
+:root{
+    --color-principal: #44bb78;
+    --color-secundario: #f6ad55;
+    --color-terciario: #6b7280;
+    --fuente: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,11 +13,13 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: var(--fuente);
     background-color: #ffffff;
     color: #333;
     line-height: 1.6;
 }
+
+/* ------------------- HEADER ------------------- */
 
 header {
     position: fixed;
@@ -20,14 +29,14 @@ header {
     background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;          /* antes 16px 32px */
+    box-shadow: 0 2px 8px var(--color-principal);
     z-index: 1000;
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto auto 1fr;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -35,114 +44,115 @@ nav {
 }
 
 nav i {
-    font-size: 1.8rem;
-    color: #48bb78;
-    margin-right: 0.5rem;
+    font-size: 1.8rem;           /* antes 28.8px */
+    color: var(--color-principal);
+    margin-right: 0.5rem;        /* antes 8px */
+    justify-self: start;
 }
 
 nav h3 {
-    color: #38a169;
-    font-size: 1.5rem;
+    color: var(--color-principal);
+    font-size: 1.5rem;           /* antes 24px */
     font-weight: 600;
-    display: inline;
-    text-align: left;
+    justify-self: center;
 }
 
 #fotoPerfil {
-    width: 45px;
-    height: 45px;
-    min-width: 45px;
-    min-height: 45px;
+    width: 2.8rem;  
+    height: 2.8rem;             /* equivalentes a 45px */
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    border: 2px solid #f6ad55;
-    display: block;
+    border: 2px solid var(--color-secundario);
     background-color: #f0f0f0;
-    visibility: visible;
-    opacity: 1;
+    justify-self: end;
 }
 
+/* ------------------- CAJA PALABRA ------------------- */
+
 #cajaPalabra {
-    width: 30%;      
-    margin: 12rem auto 1rem auto ;
+    width: 30%;
+    margin: 12rem auto 1rem auto;   /* como el CSS 1 */
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    padding: 2rem;                  /* antes 32px */
+    box-shadow: 0 2px 8px var(--color-principal);
 }
 
 .tituloPalabra {
-    color: #38a169;
-    font-size: 1.7rem;
+    color: var(--color-principal);
+    font-size: 1.7rem;               /* como el CSS 1 */
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
 .descripcionPalabra {
-    color: #6b7280;
+    color: var(--color-terciario);
     font-size: 0.9rem;
-    line-height: 1.6;
     margin-bottom: 1.5rem;
 }
 
 .temporizador {
     display: block;
-    width: fit-content; /*Ocupa lo necesario */
+    width: fit-content;
     font-family: 'Digital-7', monospace;
     font-size: 1rem;
     text-align: center;
     margin: 1rem auto 3rem auto;
-    padding: 0.5rem 0.5rem;      
+    padding: 0.5rem 0.5rem;
     box-shadow: 1px 2px 3px rgb(0, 0, 0, 0.2);
     border-radius: 6px;
     background-color: #dbdbdb;
 }
 
+/* ------------------- PISTA ------------------- */
+
 .pista{
     color: #548f60;
     background-color: #e6f7e8;
-    padding: 1rem 1rem;
+    padding: 1rem;
     font-size: 0.9rem;
-    border-left: 3px solid rgb(0, 114, 47);
+    border-left: 3px solid var(--color-principal);
     border-radius: 3px;
     margin-bottom: 2rem;
     font-style: italic;
 }
 
+/* ------------------- INPUT + BOTÓN ------------------- */
+
 .contenedorAcierto {
-    display: flex;
+    display: flex;     /* mantenemos más fiel al original */
     gap: 0.5rem;
 }
 
 .introducirPalabra {
-    width: 65%;  
+    width: 65%;
     padding: 0.6rem 1rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     border:none;
     background-color: #e8f1e9;
 }
 
-/*El focus lo que hace es cambiar*/
 .introducirPalabra:focus {
-    outline: none; /* quita el borde azul por defecto */
-    box-shadow: none; /* quita sombras si las hubiera */
+    outline: none;
+    box-shadow: none;
 }
 
 .enviarPalabra {
     width: 30%;
-    padding: 0.6rem 0.6rem;
-    font-size: 0.7rem;
+    padding: 0.6rem;
+    font-size: 0.8rem;
     color: white;
-    background-color: #4CAF50;
+    background-color: var(--color-principal);
     border: none;
     border-radius: 3px;
 }
 
+/* ------------------- MENÚ DESPLEGABLE ------------------- */
 
 #menuDesplegable {
     position: absolute;
-    top: 60px;
+    top: 3.5rem;
     right: 0;
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -167,16 +177,18 @@ nav h3 {
 
 #menuDesplegable i {
     margin-right: 0.5rem;
-    color: #4fd1c7;
+    color: var(--color-principal);
 }
+
+/* ------------------- FOOTER ------------------- */
 
 footer {
     text-align: center;
     padding: 2rem;
     color: #6b7280;
     margin-top: 4rem;
-    margin-bottom: 0;
 }
+
 
 
 /* Tablets (horizontal/vertical hasta 1024px) */
@@ -188,11 +200,19 @@ footer {
     }
 }
 
-/* Portátiles medianos (1024px a 1440px) */
+/* Portatiles medianos (1024px a 1440px) */
 @media (min-width: 1025px) and (max-width: 1440px) {
     #cajaPalabra {
         width: 40%;
         margin: 11rem auto 1rem auto;
         padding: 2rem;
+    }
+}
+
+@media (max-width: 700px) {
+    #cajaPalabra {
+        width: 95%;
+        margin: 10rem auto 1rem auto;
+        padding: 1.8rem;
     }
 }

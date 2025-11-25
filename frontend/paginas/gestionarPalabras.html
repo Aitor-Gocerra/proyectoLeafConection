@@ -5,13 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard - ReciQuiz</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="stylesheet" href="../estilo.css">
+        <link rel="stylesheet" href="../juntos.css">
     </head>
     <body>
         <header>
             <nav>
+                <a href="pagina_anterior.html" class="botonVolver"><i class="fas fa-arrow-left"></i></a>
                 <i class="fas fa-leaf"></i>
-                <h3>ReciQuiz</h3>
+                <h3>LeafConnect</h3>
                 <img src="../imagenes/icono.png" alt="Foto de perfil" id="fotoPerfil">
                 <div id="menuDesplegable">
                     <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
@@ -27,7 +28,7 @@
                 <a href="gestionarConsejos.html">GESTIONAR CONSEJOS</a>
                 <a href="gestionarUsuarios.html">GESTIONAR USUARIOS</a>
             </div>
-            <div id="contenedorModificarFrase">
+            <div id="contenedorModificarPalabra">
                 <h1>Añadir/Editar Palabra del Dia</h1>
                 <form action="" method="get">
                     <label for="palabra">Palabra</label>
@@ -42,9 +43,6 @@
 
                     <input type="submit" value="Guardar Palabra">
                 </form>
-            </div>
-            <div id="ultimasDiezPalabras">
-                Aqui mostraremos con JS, las 10 ultimas palabras que se han introducido
             </div>
         </main>
 

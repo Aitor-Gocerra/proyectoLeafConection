@@ -1,0 +1,333 @@
+/* Variables comunes de colores y tipografía*/
+:root{
+    --color-principal: #44bb78;
+    --color-secundario: #f6ad55;
+    --color-terciario: #6b7280;
+    --fuente: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Reset básico del css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header para el nav es fijo */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Es un difuminado para que cuando hagamos scroll se vea lo de atrás difuminado*/
+    padding: 1rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr auto auto 1fr;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+nav i {
+    font-size: 1.8rem;
+    color: var(--color-principal);
+    margin-right: 0.5rem;
+    justify-self: start;
+}
+
+nav h3 {
+    color: var(--color-principal);
+    font-size: 1.5rem;
+    font-weight: 600;
+    justify-self: center;
+}
+
+#fotoPerfil {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid var(--color-secundario);
+    background-color: #f0f0f0;
+    justify-self: end;
+}
+
+/* Menú desplegable de estadísticas, amigos y cerrar sesión*/
+#menuDesplegable {
+    position: absolute; /*Absolute y display none que se cambia con js*/
+    top: 3.5rem;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+}
+
+#menuDesplegable a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    color: #333;
+    transition: 0.2s;
+}
+
+#menuDesplegable a:hover {
+    background-color: #f0fff4;
+}
+
+#menuDesplegable i {
+    margin-right: 0.5rem;
+    color: var(--color-principal);
+}
+
+/* Main, la parte principal que contiene la caja de la palabra */
+main {
+    max-width: 1200px;
+    margin: 10rem auto 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Caja que contiene el juego de la palabra */
+#cajaPalabra {
+    width: 30%;
+    margin: 12rem auto 1rem auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px var(--color-principal);
+}
+
+.tituloPalabra {
+    color: var(--color-principal);
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.descripcionPalabra {
+    color: var(--color-terciario);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.temporizador {
+    display: block;
+    width: fit-content;
+    font-family: 'Digital-7', monospace;
+    font-size: 1rem;
+    text-align: center;
+    margin: 1rem auto 3rem auto;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 1px 2px 3px rgb(0,0,0,0.2);
+    border-radius: 6px;
+    background-color: #dbdbdb;
+}
+
+.pista {
+    color: #548f60;
+    background-color: #e6f7e8;
+    padding: 1rem;
+    font-size: 0.9rem;
+    border-left: 3px solid var(--color-principal);
+    border-radius: 3px;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+/* El input para enviar la palabra y comprobar si es correcta*/
+.contenedorAcierto {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.introducirPalabra {
+    width: 65%;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    border: none;
+    background-color: #e8f1e9;
+}
+
+.introducirPalabra:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.enviarPalabra {
+    width: 30%;
+    padding: 0.6rem;
+    font-size: 0.8rem;
+    color: white;
+    background-color: var(--color-principal);
+    border: none;
+    border-radius: 3px;
+}
+
+/* Cambiamos de html y ahora estamos con editar y modificar la palabra del dia */
+
+/* Navegador para cambiar la gestión de cada modo de juego*/
+#navegador {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1.6rem;
+    margin-bottom: 2rem;
+}
+
+#navegador a {
+    background-color: #e6fffa;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #2c7a7b;
+    font-weight: 600;
+    transition: 0.2s;
+    border: 1px solid #b2f5ea;
+}
+
+#navegador a:hover {
+    background-color: #b2f5ea;
+}
+
+
+#contenedorModificarPalabra {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+}
+
+#contenedorModificarPalabra h1 {
+    font-size: 2rem;
+    color: #38a169;
+    margin-bottom: 1rem;
+}
+
+#contenedorModificarPalabra form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+#contenedorModificarPalabra label {
+    font-weight: 600;
+    color: #2f855a;
+}
+
+#contenedorModificarPalabra input[type="text"],
+#contenedorModificarPalabra input[type="date"] {
+    padding: 0.8rem 1rem;
+    border: 2px solid #c6f6d5;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+#contenedorModificarPalabra input:focus {
+    border-color: #48bb78;
+    box-shadow: 0 0 6px rgba(72,187,120,0.4);
+}
+
+#contenedorModificarPalabra p {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: -0.8rem;
+}
+
+#contenedorModificarPalabra input[type="submit"] {
+    margin-top: 1rem;
+    background-color: #48bb78;
+    color: white;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#contenedorModificarPalabra input[type="submit"]:hover {
+    background-color: #38a169;
+    transform: translateY(-3px);
+}
+
+#contenedorModificarPalabra input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+#contenedorModificarPalabra input[type="date"],
+#contenedorModificarPalabra input[type="submit"] {
+    max-width: 160px;
+}
+
+/* Pie de página para el copyright */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+    margin-top: 3rem;
+}
+
+/* Medidas adaptativas para diferentes pantallas */
+@media (max-width: 1024px) {
+    #cajaPalabra {
+        width: 55%;
+        margin: 10rem auto 1rem auto;
+        padding: 1.8rem;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+    #cajaPalabra {
+        width: 40%;
+        margin: 11rem auto 1rem auto;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+    }
+
+    #contenedorModificarFrase {
+        padding: 1.5rem;
+    }
+
+    #navegador {
+        gap: 0.6rem;
+    }
+
+    #contenedorModificarFrase h1 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 700px) {
+    #cajaPalabra {
+        width: 95%;
+        margin: 10rem auto 1rem auto;
+        padding: 1.8rem;
+    }
+}
