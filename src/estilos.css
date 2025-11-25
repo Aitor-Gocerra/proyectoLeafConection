@@ -38,7 +38,7 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 818px;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -259,11 +259,41 @@ main > p {
     margin-left: 4px;
 }
 
+#enlaceVolver {
+    /* --- POSICIONAMIENTO FIJO --- */
+    position: fixed; /* Lo fija al viewport */
+    bottom: 24px;    /* 24px de distancia desde el borde inferior de la ventana */
+    left: 24px;      /* 24px de distancia desde el borde izquierdo de la ventana */
+    z-index: 999;    /* Asegura que esté encima de todo (pero debajo del header 1000) */
+    
+    /* Estilos visuales */
+    display: block; /* Debe ser block o inline-block para respetar el width/height (aunque no los usemos) */
+    background-color: #ffffff; /* Fondo para que destaque sobre el contenido */
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Fuente y color */
+    color: var(--color-texto-gris); 
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+#enlaceVolver:hover {
+    color: var(--color-primario);
+    background-color: #f0fff4; /* Un ligero cambio de fondo al pasar el ratón */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#enlaceVolver i {
+    margin-right: 8px;
+}
+
 footer {
     text-align: center;
     padding: 32px;
     color: #6b7280;
-    margin-top: 48px;
 }
 
 /* ESTILOS FRASE DEL DIA */
@@ -402,7 +432,6 @@ footer {
 
 @media (max-width: 767px) {
     header {
-        width: 767px;
         padding: 12.8px 16px;
     }
 
@@ -431,7 +460,6 @@ footer {
     }
 
     main {
-        width: 767px;
         padding: 0 16px;
         padding-top: 72px;
     }
@@ -471,13 +499,19 @@ footer {
     .tituloPalabra {
         font-size: 20.8px;
     }
+
+    #enlaceVolver {
+        bottom: 16px; /* Menos margen inferior */
+        left: 16px;   /* Menos margen izquierdo */
+        padding: 10px 12px;
+        font-size: 15.2px;
+    }
 }
 
 /*MÓVIL PEQUEÑO (320px-479px)*/
 
 @media (max-width: 479px) {
     header {
-        width: 379px;
         padding: 11.2px 12.8px;
     }
 
@@ -508,7 +542,6 @@ footer {
     }
 
     main {
-        width: 379px;
         padding: 0 12.8px;
         padding-top: 64px;
     }
@@ -570,13 +603,19 @@ footer {
         padding: 11.2px 11.2px;
         font-size: 12.8px;
     }
+
+    #enlaceVolver {
+        bottom: 12px; 
+        left: 12px;
+        padding: 8px 10px;
+        font-size: 14.4px;
+    }
 }
 
 /*LAPTOP (1024px-1439px)*/
 
 @media (min-width: 1024px) {
     header {
-        width: 1024px;
         padding: 16px 32px;
     }
 
@@ -680,7 +719,6 @@ footer {
 
 @media (min-width: 1440px) {
     header {
-        width: 1440px;
         padding: 19.2px 40px;
     }
 
