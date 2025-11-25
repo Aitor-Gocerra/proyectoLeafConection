@@ -131,6 +131,7 @@ main h1 {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 12.8px;
+    margin-top: 130px;
 }
 
 main > p {
@@ -381,6 +382,7 @@ footer {
 /* ESTILO ESTADISTICAS */
 #tituloEstadisticas {
     margin-top: 90px;
+    font-family: var(--fuente-principal);
 }
 #tablaEstadisticas {
     display: grid;
@@ -389,7 +391,7 @@ footer {
 }
 
 .tarjetaEstadisticas {
-    background: #b9ffba;
+    background: #d7ffd8;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
@@ -401,17 +403,19 @@ footer {
         display: inline;
         float: right;
         margin-top: 5px;
-        width: 20px;   /* ajusta según necesites */
-        height: 20px;  /* ajusta según necesites */
+        font-size: 40px;
+        color:#4CAF50;
     }
     
     p{
         width: 160px;
         float: left;
+        font-family: var(--fuente-principal);
     }
 
     h3{
         clear: left;
+        font-family: var(--fuente-principal);
     }
 }
 
