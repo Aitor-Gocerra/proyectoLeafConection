@@ -22,13 +22,12 @@ header {
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
+    max-width: 78.90583903208837%;
     margin: 0 auto;
     position: relative;
-}
+    left: 5%;
+    top: 1vh;
+    }
 
 nav i {
     font-size: 1.8rem;
@@ -90,28 +89,31 @@ nav h3 {
     margin-right: 0.5rem;
     color: #4fd1c7;
 }
-main {
+
+/* main {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 100px;
-}
-#texto{
+} */
+main {
+    width: 100%;
+    position: relative;
+    padding-top: 100px; /* equivalente al padding-top original */
     text-align: center;
-}
-
+    }
 
 form {
-    margin: 4% ;
+    padding: 20px 40px 0 40px ;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     background-color: #ffffff;
     border-radius: 12px;
     width: 350px;
     display: flex;
     flex-direction: column;
-    gap: 10px; 
-
+    gap: 10px;
+    padding: 0 10px 0 10px;
 }
 
 form h1,p{
@@ -141,8 +143,19 @@ form input:not([type="submit"]){
     border-radius: 5px;
     cursor: pointer;
 }
+#bInvitado{
+    width: 50%;
+    margin-left: 80px ;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
 
-#boton:hover {
+#boton, #bInvitado:hover {
     background-color: #45A049;
 }
 
@@ -153,6 +166,4 @@ footer {
     margin-top: 4rem;
     margin-bottom: 0;
 }
-
-
 

@@ -4,8 +4,9 @@
         box-sizing: border-box;
 
     }
-    body{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         background-color: #ffffff;
         color: #333;
         line-height: 1.6;
@@ -17,24 +18,25 @@
         background-color: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        padding: 1.315097317201473%; /* 20px *100/1520,8=1.315097317201473% */
+        padding: 1.315097317201473%;
+        /* 20px *100/1520,8=1.315097317201473% */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         z-index: 1000;
     }
 
     nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 78.90583903208837%; /* 1200px *100/1520,80= 78,90583903208837%*/
+        max-width: 78.90583903208837%;
         margin: 0 auto;
         position: relative;
+        left: 5%;
+        top: 1vh;
     }
 
     nav i {
         font-size: 1.8rem;
         color: #48bb78;
         margin-right: 0.5rem;
+        
     }
 
     nav h3 {
@@ -42,13 +44,14 @@
         font-size: 1.5rem;
         font-weight: 600;
         display: inline;
-        text-align: left;
+        margin-left: 400px;
     }
+
     #fotoPerfil {
-        width: 2.958968963703314%;   /* 45*100/1520.80= 2,958968963703314%  */
-        height: 2.958968963703314%;   /* 45*100/1520.80= 2,958968963703314%*/
-        min-width: 2.958968963703314%;    /* 45*100/1520.80=2,958968963703314% */
-        min-height: 2.958968963703314%;   /* 45*100/1520.80=2,958968963703314% */
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        min-height: 45px;
         border-radius: 50%;
         object-fit: cover;
         cursor: pointer;
@@ -57,7 +60,11 @@
         background-color: #f0f0f0;
         visibility: visible;
         opacity: 1;
+        position: absolute;
+        bottom: 0;
+        left: 960px;
     }
+
     #menuDesplegable {
         /* position: absolute posiciona el menú relativo al contenedor padre (nav) que tiene
         position: relative. Esto me permite colocarlo exactamente donde quiero */
@@ -91,38 +98,49 @@
         margin-right: 0.5rem;
         color: #4fd1c7;
     }
-    #bomb{
+
+    #bomb {
         margin-left: 50%;
         color: green;
         margin-bottom: 10px;
+        
     }
 
 
-    main {
+    /* main {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 6.575486586007365%; /* 100*100/1520.8= 6,575486586007365% */
+        padding-top: 6.575486586007365%;
+        /* 100*100/1520.8= 6,575486586007365% */
+    
+    main {
+    width: 100%;
+    position: relative;
+    padding-top: 100px; /* equivalente al padding-top original */
+    text-align: center;
     }
 
     #cajaConsejo {
         text-align: justify;
-        width: 900px; 
-        max-width: 500px;       
+        width: 900px;
+        max-width: 500px;
         margin: 6rem auto 2rem auto;
         background-color: #ffffff;
         border-radius: 12px;
         padding: 2rem;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
-    #tituloConsejo{
+
+    #tituloConsejo {
         text-align: center;
         margin-bottom: 20px;
 
 
     }
-    #fraseConsejo{
+
+    #fraseConsejo {
         color: #548f60;
         background-color: #e6f7e8;
         padding: 1rem 1rem;
@@ -136,20 +154,8 @@
     footer {
         text-align: center;
         color: #6b7280;
-        margin-top: 12rem;
-        
+        margin-top: 10rem;
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
