@@ -16,11 +16,6 @@
 
     /* Fuentes */ 
     --fuente-principal: 'Roboto', sans-serif;
-
-    /* Diseño */
-    --borde-radius: 12px;
-    --box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --transicion-base: 0.2s;
 }
 
 /* Reset básico */
@@ -352,6 +347,56 @@ footer {
     vertical-align: top;
     margin-left: 10px;
 }
+
+/* ESTILO ESTADISTICAS */
+
+#tablaEstadisticas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+    gap: 10px; /* separación entre columnas */
+}
+
+.tarjetaEstadisticas {
+    background: #b9ffba;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+}
+
+.tarjetaEstadisticas {
+
+    i{
+        display: inline;
+        float: right;
+        margin-top: 5px;
+    }
+    
+    p{
+        width: 160px;
+        float: left;
+    }
+
+    h3{
+        clear: left;
+    }
+}
+
+#graficoEstadisticas {
+    background-color: #b9ffef;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+}
+
+#graficoEstadisticas {
+    img {
+        display: block;
+        margin: auto;
+        padding: 10px;
+    }
+}
+
 
 /*MÓVIL ESTÁNDAR (480px-767px)*/
 
