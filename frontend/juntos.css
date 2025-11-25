@@ -123,7 +123,7 @@ main {
     margin-bottom: 1rem;
 }
 
-.descripcionPalabra {
+.descripcion {
     color: var(--color-terciario);
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
@@ -155,12 +155,13 @@ main {
 
 /* El input para enviar la palabra y comprobar si es correcta*/
 .contenedorAcierto {
-    display: flex;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
     gap: 0.5rem;
 }
 
 .introducirPalabra {
-    width: 65%;
+    width: 100%;
     padding: 0.6rem 1rem;
     font-size: 0.8rem;
     border: none;
@@ -173,7 +174,7 @@ main {
 }
 
 .enviarPalabra {
-    width: 30%;
+    width: 100%;
     padding: 0.6rem;
     font-size: 0.8rem;
     color: white;
@@ -279,6 +280,88 @@ main {
 #contenedorModificarPalabra input[type="date"],
 #contenedorModificarPalabra input[type="submit"] {
     max-width: 160px;
+}
+
+/* Gestión de amigos*/
+
+#tituloAmigos{
+    font-family: var(--fuente);
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+#anadirAmigo{
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);;
+    padding: 1.7rem 1rem;
+    width: 85%;
+    margin-bottom: 2rem;
+}
+
+#anadirAmigo {
+   
+    h2{
+        font-family: var(--fuente);
+        font-size: 1.4rem;
+    }
+}
+
+.contenedorBuscarAmigo{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 0.5rem;
+}
+
+.introducirAmigo{
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+    border: none;
+    background-color: #e8f1e9;
+}
+
+.introducirAmigo:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.enviarAmigo {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.8rem;
+    color: white;
+    background-color: var(--color-principal);
+    border: none;
+    border-radius: 3px;
+}
+
+#amigosSolicitudes{
+    width: 85%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    border-radius: 4px;
+    border: 4px solid #e7e7e7;
+    background-color: #e7e7e7;
+}
+
+.botonAmigos,
+.botonSolicitud {
+    flex: 1;
+    padding: 0.7rem 0;
+    border: none;
+    background: #e8f0ff;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .2s;
+}
+
+/* Botón activo */
+.activo {
+    background: white;
+    border: 1px solid #dde6f5;
+    box-shadow: 0 0 4px rgba(0,0,0,0.08);
 }
 
 /* Pie de página para el copyright */
