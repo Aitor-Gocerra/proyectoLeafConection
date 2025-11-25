@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+nav i {
+    font-size: 1.8rem;
+    color: #48bb78;
+    margin-right: 0.5rem;
+}
+
+nav h3 {
+    color: #38a169;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: inline;
+    text-align: left;
+}
+#fotoPerfil {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #f6ad55;
+    display: block;
+    background-color: #f0f0f0;
+    visibility: visible;
+    opacity: 1;
+}
+#menuDesplegable {
+    /* position: absolute posiciona el menú relativo al contenedor padre (nav) que tiene
+       position: relative. Esto me permite colocarlo exactamente donde quiero */
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    /* display: none oculta el menú por defecto. JavaScript lo cambiará a "block" cuando
+       se haga clic en la foto de perfil */
+    display: none;
+    z-index: 1000;
+}
+
+#menuDesplegable a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+#menuDesplegable a:hover {
+    background-color: #f0fff4;
+}
+
+#menuDesplegable i {
+    margin-right: 0.5rem;
+    color: #4fd1c7;
+}
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+}
+#texto{
+    text-align: center;
+}
+
+
+form {
+    margin: 4% ;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+
+}
+
+form h1,p{
+    
+    text-align: center;
+}
+form label {
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+form input:not([type="submit"]){
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 10px 0 10px;
+}
+
+#boton {
+    width: 50%;
+    margin: 15px 80px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#boton:hover {
+    background-color: #45A049;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+    margin-top: 4rem;
+    margin-bottom: 0;
+}
+
+
+
