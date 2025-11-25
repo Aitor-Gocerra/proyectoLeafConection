@@ -1,6 +1,6 @@
-# ReciQuiz
+# LeafConection
 
-**ReciQuiz** es un juego educativo de palabras, frases y contribuciones de usuarios, desarrollado con **PHP** (backend) y **JavaScript** (frontend).  
+**LeafConection** es un juego educativo de palabras, frases y contribuciones de usuarios, desarrollado con **PHP** (backend) y **JavaScript** (frontend).  
 El proyecto incluye un **panel de administración** para moderar contenido, usuarios y gestionar el juego.
 
 ## Estructura del proyecto
