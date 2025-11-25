@@ -80,7 +80,7 @@ nav {
 
 nav i {
     font-size: 1.6rem;
-    color: #48bb78;
+    color: var(--color-secundario);
     margin-right: 0.5rem;
 }
 
