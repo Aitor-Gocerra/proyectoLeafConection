@@ -8,11 +8,11 @@
     --color-texto-gris: #6b7280;
     --color-fondo: #ffffff;
     
-    /* Espaciado */
-    --espaciado-xs: 8px;
-    --espaciado-s: 16px;
-    --espaciado-m: 24px;
-    --espaciado-l: 40px;
+    /* Espaciado (Convertido a REM - Base: 16px) */
+    --espaciado-xs: 0.5rem;    /* 8px */
+    --espaciado-s: 1rem;       /* 16px */
+    --espaciado-m: 1.5rem;     /* 24px */
+    --espaciado-l: 2.5rem;     /* 40px */
 
     /* Fuentes */ 
     --fuente-principal: 'Roboto', sans-serif;
@@ -32,6 +32,7 @@ body {
     background-color: var(--color-fondo);
     color: var(--color-texto-oscuro);
     line-height: 1.6;
+    font-size: 1rem; /* Base 16px */
 }
 
 header {
@@ -40,31 +41,31 @@ header {
     left: 0;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: var(--espaciado-s) var(--espaciado-m);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(0.625rem); /* 10px */
+    -webkit-backdrop-filter: blur(0.625rem); /* 10px */
+    padding: var(--espaciado-s) var(--espaciado-m); /* 16px, 24px */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05); /* 2px, 4px */
     z-index: 1000;
 }
 
 nav {
-    max-width: 900px;
+    max-width: 100%; /* 900px / 900px = 100% */
     margin: 0 auto;
     position: relative;
     text-align: left;
 }
 
 nav i {
-    font-size: 25.6px;
+    font-size: 1.6em; /* 25.6px (relativo a font-size de nav o body) */
     color: var(--color-secundario);
-    margin-right: 8px;
+    margin-right: 0.5rem; /* 8px */
     display: inline-block;
     vertical-align: middle;
 }
 
 nav h3 {
     color: var(--color-acento-a);
-    font-size: 20.8px;
+    font-size: 1.3em; /* 20.8px */
     font-weight: 600;
     display: inline-block;
     vertical-align: middle;
@@ -78,7 +79,7 @@ nav h3 {
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    border: 2px solid var(--color-acento-b);
+    border: 0.125rem solid var(--color-acento-b); /* 2px */
     display: block;
     background-color: var(--color-fondo);
     visibility: visible;
@@ -90,20 +91,20 @@ nav h3 {
 
 #menuDesplegable {
     position: absolute;
-    top: 55px;
+    top: 3.4375rem; /* 55px */
     right: 0;
     background-color: var(--color-fondo);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: var(--espaciado-xs);
-    padding: var(--espaciado-xs) 0;
-    min-width: 180px;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1); /* 4px, 6px */
+    border-radius: var(--espaciado-xs); /* 8px */
+    padding: var(--espaciado-xs) 0; /* 8px */
+    min-width: 11.25rem; /* 180px */
     display: none;
     z-index: 1000;
 }
 
 #menuDesplegable a {
     display: block;
-    padding: 11.2px 20.8px;
+    padding: 0.7rem 1.3rem; /* 11.2px, 20.8px */
     color: var(--color-texto-oscuro);
     text-decoration: none;
     transition: background-color 0.2s;
@@ -114,115 +115,114 @@ nav h3 {
 }
 
 #menuDesplegable i {
-    margin-right: 8px;
+    margin-right: 0.5rem; /* 8px */
     color: #4fd1c7;
 }
 
 main {
-    max-width: 900px;
+    max-width: 100%; /* 900px / 900px = 100% */
     margin: 0 auto;
-    padding: 0 24px;
-    padding-top: 50px;
+    padding: 0 var(--espaciado-m); /* 24px */
+    padding-top: 3.125rem; /* 50px */
 }
 
 main h1 {
     text-align: left;
     color: var(--color-primario);
-    font-size: 32px;
+    font-size: 2rem; /* 32px */
     font-weight: 700;
-    margin-bottom: 12.8px;
-    margin-top: 130px;
+    margin-bottom: 0.8rem; /* 12.8px */
+    margin-top: 2.125rem; 
 }
 
 main > p {
     text-align: left;
     color: #6b7280;
-    font-size: 16px;
-    margin-bottom: 40px;
+    font-size: 1rem; /* 16px */
+    margin-bottom: var(--espaciado-l); /* 40px */
 }
 
 #contenedorTarjetas {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20.8px;
-    margin-top: var(--espaciado-m);
+    gap: 1.3rem; /* 20.8px */
+    margin-top: var(--espaciado-m); /* 24px */
 }
 
 .tarjetaJuego {
     background-color: #ffffff;
-    border-radius: 12px;
-    padding: 28.8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem; /* 12px */
+    padding: 1.8rem; /* 28.8px */
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1); /* 2px, 8px */
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
 }
 
+.tarjetaJuego:hover {
+    transform: translateY(-0.625rem); /* -10px */
+    /* Usamos rem para los box-shadow también */
+}
+
 .tarjetaJuego:nth-child(1):hover {
-    transform: translateY(-10px);
-    box-shadow: 0 4px 16px rgba(72, 187, 120, 0.35);
+    box-shadow: 0 0.25rem 1rem rgba(72, 187, 120, 0.35); /* 4px, 16px */
 }
 
 .tarjetaJuego:nth-child(2):hover {
-    transform: translateY(-10px);
-    box-shadow: 0 4px 16px rgba(56, 178, 172, 0.35);
+    box-shadow: 0 0.25rem 1rem rgba(56, 178, 172, 0.35);
 }
 
 .tarjetaJuego:nth-child(3):hover {
-    transform: translateY(-10px);
-    box-shadow: 0 4px 16px rgba(79, 209, 199, 0.35);
+    box-shadow: 0 0.25rem 1rem rgba(79, 209, 199, 0.35);
 }
 
 .tarjetaJuego:nth-child(4):hover {
-    transform: translateY(-10px);
-    box-shadow: 0 4px 16px rgba(246, 173, 85, 0.35);
+    box-shadow: 0 0.25rem 1rem rgba(246, 173, 85, 0.35);
 }
 
 .tarjetaJuego i {
-    font-size: 40px;
-    margin-bottom: 19.2px;
+    font-size: 2.5rem; /* 40px */
+    margin-bottom: 1.2rem; /* 19.2px */
     display: block;
 }
-
+/* Colores de iconos (reinsertados del original) */
 .tarjetaJuego:nth-child(1) i {
     color: var(--color-secundario);
 }
-
 .tarjetaJuego:nth-child(2) i {
     color: #38b2ac;
 }
-
 .tarjetaJuego:nth-child(3) i {
     color: #4fd1c7;
 }
-
 .tarjetaJuego:nth-child(4) i {
     color: var(--color-acento-b);
 }
 
+
 .tituloTarjeta {
     color: #38a169;
-    font-size: 19.2px;
+    font-size: 1.2em; /* 19.2px */
     font-weight: 600;
-    margin-bottom: 12.8px;
+    margin-bottom: 0.8rem; /* 12.8px */
 }
 
 .descripcionTarjeta {
     color: #6b7280;
-    font-size: 14.4px;
+    font-size: 0.9em; /* 14.4px */
     line-height: 1.6;
-    margin-bottom: 19.2px;
-    min-height: 60px;
+    margin-bottom: 1.2rem; /* 19.2px */
+    min-height: 3.75rem; /* 60px */
 }
 
 .tarjetaJuego a {
     color: #5a8a6b;
     text-decoration: none;
     font-weight: 500;
-    font-size: 15.2px;
+    font-size: 0.95rem; /* 15.2px */
     transition: color 0.2s;
     display: inline-block;
 }
-
+/* Colores de enlaces (reinsertados del original) */
 .tarjetaJuego:nth-child(1) a {
     color: var(--color-secundario);
 }
@@ -257,104 +257,107 @@ main > p {
 
 .tarjetaJuego a::after {
     content: " →";
-    margin-left: 4px;
+    margin-left: 0.25rem; /* 4px */
 }
 
 #enlaceVolver {
     /* --- POSICIONAMIENTO FIJO --- */
-    position: fixed; /* Lo fija al viewport */
-    bottom: 24px;    /* 24px de distancia desde el borde inferior de la ventana */
-    left: 24px;      /* 24px de distancia desde el borde izquierdo de la ventana */
-    z-index: 999;    /* Asegura que esté encima de todo (pero debajo del header 1000) */
+    position: fixed;
+    bottom: var(--espaciado-m);    /* 24px */
+    left: var(--espaciado-m);      /* 24px */
+    z-index: 999;
     
     /* Estilos visuales */
-    display: block; /* Debe ser block o inline-block para respetar el width/height (aunque no los usemos) */
-    background-color: #ffffff; /* Fondo para que destaque sobre el contenido */
-    padding: 12px 16px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: block;
+    background-color: #ffffff;
+    padding: 0.75rem 1rem; /* 12px, 16px */
+    border-radius: 0.5rem; /* 8px */
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1); /* 4px, 6px */
     
     /* Fuente y color */
     color: var(--color-texto-gris); 
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1rem; /* 16px */
     transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 #enlaceVolver:hover {
     color: var(--color-primario);
-    background-color: #f0fff4; /* Un ligero cambio de fondo al pasar el ratón */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    background-color: #f0fff4;
+    box-shadow: 0 0.375rem 0.5rem rgba(0, 0, 0, 0.15); /* 6px, 8px */
 }
 
 #enlaceVolver i {
-    margin-right: 8px;
+    margin-right: 0.5rem; /* 8px */
 }
 
 footer {
     text-align: center;
-    padding: 32px;
+    padding: 2rem; /* 32px */
     color: #6b7280;
 }
 
 /* ESTILOS FRASE DEL DIA */
 
 #cajaFrase {
-    width: 691px;
-    max-width: 450px;       
-    margin: 128px auto 16px auto;
+    /* Basado en 900px de main, 691px es 76.77% y 450px es 50% */
+    width: 76.77%; 
+    max-width: 50%;       
+    margin: 8rem auto 1rem auto; /* 128px, 16px */
     background-color: #ffffff;
-    border-radius: 12px;
-    padding: 28.8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 0.75rem; /* 12px */
+    padding: 1.8rem; /* 28.8px */
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3); /* 2px, 8px */
 }
 
 .tituloFrase {
     color: #38a169;
-    font-size: 24px;
+    font-size: 1.5rem; /* 24px */
     font-weight: 600;
-    margin-bottom: 12.8px;
+    margin-bottom: 0.8rem; /* 12.8px */
 }
 
 .descripcionFrase {
     color: #6b7280;
-    font-size: 13.6px;
+    font-size: 0.85rem; /* 13.6px */
     line-height: 1.6;
-    margin-bottom: 16px;
+    margin-bottom: 1rem; /* 16px */
 }
 
 .temporizador {
     display: block;
     width: fit-content;
     font-family: 'Digital-7', monospace;
-    font-size: 15.2px;
+    font-size: 0.95rem; /* 15.2px */
     text-align: center;
-    margin: 16px auto 16px auto;
-    padding: 8px 8px;      
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
+    margin: 1rem auto 1rem auto; /* 16px */
+    padding: 0.5rem 0.5rem; /* 8px */      
+    box-shadow: 0.0625rem 0.125rem 0.1875rem rgba(0, 0, 0, 0.2); /* 1px, 2px, 3px */
+    border-radius: 0.375rem; /* 6px */
     background-color: #dbdbdb;
 }
 
 .pista {
     color: #548f60;
-    padding: 14.4px 14.4px;
-    font-size: 13.6px;
-    border-left: 3px solid rgb(0, 114, 47);
-    border-right: 3px solid rgb(0, 114, 47);
-    border-radius: 3px;
-    margin-bottom: 28.8px;
+    padding: 0.9rem 0.9rem; /* 14.4px */
+    font-size: 0.85rem; /* 13.6px */
+    border-left: 0.1875rem solid rgb(0, 114, 47); /* 3px */
+    border-right: 0.1875rem solid rgb(0, 114, 47); /* 3px */
+    border-radius: 0.1875rem; /* 3px */
+    margin-bottom: 1.8rem; /* 28.8px */
     font-style: italic;
 }
 
 .contenedorAcierto {
-    width: 450px;
+    /* width: 450px del contenedorAcierto dentro de #cajaFrase (max 450px) */
+    width: 100%; 
 }
 
 .introducirFrase {
-    width: 292px;  
-    padding: 9.6px 16px;
-    font-size: 11.2px;
+    /* 292px / 450px = 64.88% (Relativo al contenedorAcierto de 450px) */
+    width: 64.88%;  
+    padding: 0.6rem 1rem; /* 9.6px, 16px */
+    font-size: 0.7rem; /* 11.2px */
     border: none;
     background-color: #e8f1e9;
     display: inline-block;
@@ -367,475 +370,539 @@ footer {
 }
 
 .enviarFrase {
-    width: 90px;
-    padding: 9.6px 9.6px;
-    font-size: 11.2px;
+    /* 90px / 450px = 20% (Relativo al contenedorAcierto de 450px) */
+    width: 20%; 
+    padding: 0.6rem 0.6rem; /* 9.6px */
+    font-size: 0.7rem; /* 11.2px */
     color: white;
     background-color: #4CAF50;
     border: none;
-    border-radius: 3px;
+    border-radius: 0.1875rem; /* 3px */
     display: inline-block;
     vertical-align: top;
-    margin-left: 10px;
+    margin-left: 0.625rem; /* 10px */
 }
 
 /* ESTILO ESTADISTICAS */
 #tituloEstadisticas {
-    margin-top: 90px;
+    margin-top: 5.625rem; /* 90px */
     font-family: var(--fuente-principal);
 }
+
 #tablaEstadisticas {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
-    gap: 10px; /* separación entre columnas */
-}
-
-.tarjetaEstadisticas {
-    background: #d7ffd8;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: flex-start; /* Agrupa a la izquierda, como solicitaste */
+    gap: 0.625rem; /* 10px */
 }
 
 .tarjetaEstadisticas {
 
-    i{
-        display: inline;
-        float: right;
-        margin-top: 5px;
-        font-size: 40px;
-        color:#4CAF50;
-    }
+    /* flex-basis: Define el ancho ideal (240px) antes de que se ajusten. 
+       Esto es lo que fuerza el salto de línea cuando el contenedor no puede 
+       darle a 4 elementos al menos este espacio. */
+    flex-basis: 15rem; /* 240px */
     
-    p{
-        width: 160px;
-        float: left;
-        font-family: var(--fuente-principal);
-    }
+    /* flex-grow: Permite que las tarjetas crezcan para ocupar el espacio 
+       disponible en la fila (ej. si solo caben 3, se reparten 100% / 3). */
+    flex-grow: 1; 
 
-    h3{
-        clear: left;
-        font-family: var(--fuente-principal);
-    }
+    /* max-width: Evita que la tarjeta se haga excesivamente ancha si solo hay 1 o 2 
+       en una fila grande. Lo limitamos al 25% para simular las 4 columnas. */
+    max-width: calc(25% - 0.46875rem); /* Fórmula para dejar espacio al gap */
+    
+    /* Estilos visuales existentes */
+    background: #e6fffa;
+    padding: 1.25rem; /* 20px */
+    border-radius: 0.5rem; /* 8px */
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3);
 }
+
+.tarjetaEstadisticas i {
+    display: inline;
+    float: right;
+    margin-top: 0.3125rem; /* 5px */
+    font-size: 2.5rem; /* 40px */
+    color:#468ff7;
+}
+
+.tarjetaEstadisticas p {
+    float: left;
+    font-family: var(--fuente-principal);
+}
+
+.tarjetaEstadisticas h3 {
+    clear: left;
+    font-family: var(--fuente-principal);
+}
+
 
 #graficoEstadisticas {
-    background-color: #b9ffef;
-    margin-top: 20px;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3)
+    background-color: #e6fffa;
+    margin-top: 1.25rem; /* 20px */
+    border-radius: 0.625rem; /* 10px */
+    padding: 0.625rem; /* 10px */
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3) /* 2px, 8px */
 }
 
-#graficoEstadisticas {
-    img {
-        display: block;
-        margin: auto;
-        padding: 10px;
-    }
+#graficoEstadisticas h2 {
+    /* Asegurar que los títulos no causen desbordamiento */
+    word-wrap: break-word; 
 }
 
+#graficoEstadisticas img {
+    display: block;
+    margin: auto;
+    padding: 0.625rem; /* 10px */
+    /* Asegurar que la imagen nunca exceda el ancho del contenedor */
+    max-width: 100%; 
+    height: auto;
+}
 
 /*MÓVIL ESTÁNDAR (480px-767px)*/
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) { /* 767px */
+    /* Base de cálculo para % en este bloque: 767px (max-width) */
+    
     header {
-        padding: 12.8px 16px;
+        padding: 0.8rem 1rem; /* 12.8px, 16px */
     }
 
     nav {
-        max-width: 767px;
+        max-width: 100%; /* 767px / 767px = 100% */
     }
 
     nav i {
-        font-size: 22.4px;
+        font-size: 1.4em; /* 22.4px */
     }
 
     nav h3 {
-        font-size: 17.6px;
+        font-size: 1.1em; /* 17.6px */
     }
 
     #fotoPerfil {
-        width: 35px;
-        height: 35px;
-        min-width: 35px;
-        min-height: 35px;
+        width: 2.1875rem; /* 35px */
+        height: 2.1875rem; /* 35px */
+        min-width: 2.1875rem; /* 35px */
+        min-height: 2.1875rem; /* 35px */
     }
 
     #menuDesplegable {
-        top: 50px;
-        min-width: 160px;
+        top: 3.125rem; /* 50px */
+        min-width: 10rem; /* 160px */
     }
 
     main {
-        padding: 0 16px;
-        padding-top: 72px;
+        padding: 0 1rem; /* 16px */
+        padding-top: 4.5rem; /* 72px */
     }
 
     main h1 {
-        font-size: 28.8px;
+        font-size: 1.8rem; /* 28.8px */
+        margin-top: 1rem;
     }
 
     main > p {
-        font-size: 15.2px;
-        margin-bottom: 32px;
+        font-size: 0.95rem; /* 15.2px */
+        margin-bottom: 2rem; /* 32px */
     }
 
     #contenedorTarjetas {
         grid-template-columns: 1fr;
-        gap: 19.2px;
+        gap: 1.2rem; /* 19.2px */
     }
 
     .tarjetaJuego {
-        padding: 24px;
+        padding: 1.5rem; /* 24px */
     }
 
     .tarjetaJuego i {
-        font-size: 36.8px;
+        font-size: 2.3rem; /* 36.8px */
     }
 
     .tituloTarjeta {
-        font-size: 18.4px;
+        font-size: 1.15em; /* 18.4px */
     }
 
-    #cajaPalabra {
-        width: 729px;
-        margin: 96px auto 16px auto;
-        padding: 24px;
+    #cajaFrase {
+        /* width 729px / 767px = 95.04% */
+        width: 95.04%;
+        max-width: none; /* Permitir que ocupe casi todo el ancho */
+        margin: 6rem auto 1rem auto; /* 96px, 16px */
+        padding: 1.5rem; /* 24px */
     }
 
-    .tituloPalabra {
-        font-size: 20.8px;
+    .tituloFrase {
+        font-size: 1.3rem; /* 20.8px */
     }
 
+    .contenedorAcierto {
+        width: 100%;
+    }
+    
+    .introducirFrase {
+        /* Convertido para el nuevo ancho de #cajaFrase.
+           Si se mantiene la proporción de 292px/450px = 64.88%, se mantiene la fluidez */
+        width: 64.88%;  
+    }
+    .enviarFrase {
+        width: 20%; /* Mantiene 20% de su contenedor */
+    }
+    
     #enlaceVolver {
-        bottom: 16px; /* Menos margen inferior */
-        left: 16px;   /* Menos margen izquierdo */
-        padding: 10px 12px;
-        font-size: 15.2px;
+        bottom: 1rem; /* 16px */
+        left: 1rem;   /* 16px */
+        padding: 0.625rem 0.75rem; /* 10px, 12px */
+        font-size: 0.95rem; /* 15.2px */
     }
+
+    .tarjetaEstadisticas {
+        /* Permite 2 columnas en una fila con espacio. (100% / 2) - gap */
+        max-width: calc(50% - 0.3125rem); /* 0.3125rem = mitad del gap (10px) */
+    }
+
+    #tituloEstadisticas {
+        margin-top: 1rem;
+    }
+
 }
 
 /*MÓVIL PEQUEÑO (320px-479px)*/
 
-@media (max-width: 479px) {
+@media (max-width: 29.9375rem) { /* 479px */
+    /* Base de cálculo para % en este bloque: 479px (max-width) */
+
     header {
-        padding: 11.2px 12.8px;
+        padding: 0.7rem 0.8rem; /* 11.2px, 12.8px */
+        
     }
 
     nav i {
-        font-size: 19.2px;
-        margin-right: 4.8px;
+        font-size: 1.2em; /* 19.2px */
+        margin-right: 0.3rem; /* 4.8px */
     }
 
     nav h3 {
-        font-size: 16px;
+        font-size: 1em; /* 16px */
     }
 
     #fotoPerfil {
-        width: 32px;
-        height: 32px;
-        min-width: 32px;
-        min-height: 32px;
+        width: 2rem; /* 32px */
+        height: 2rem; /* 32px */
+        min-width: 2rem; /* 32px */
+        min-height: 2rem; /* 32px */
     }
 
     #menuDesplegable {
-        top: 45px;
-        min-width: 150px;
+        top: 2.8125rem; /* 45px */
+        min-width: 9.375rem; /* 150px */
     }
 
     #menuDesplegable a {
-        padding: 9.6px 16px;
-        font-size: 14.4px;
+        padding: 0.6rem 1rem; /* 9.6px, 16px */
+        font-size: 0.9rem; /* 14.4px */
     }
 
     main {
-        padding: 0 12.8px;
-        padding-top: 54px;
+        padding: 0 0.8rem; /* 12.8px */
+        padding-top: 3.375rem; /* 54px */
     }
 
     main h1 {
-        font-size: 24px;
+        font-size: 1.5rem; /* 24px */
+        margin-top: 0.3rem;
     }
 
     main > p {
-        font-size: 14.4px;
-        margin-bottom: 24px;
+        font-size: 0.9rem; /* 14.4px */
+        margin-bottom: 1.5rem; /* 24px */
     }
 
     #contenedorTarjetas {
-        gap: 16px;
+        gap: 1rem; /* 16px */
     }
 
     .tarjetaJuego {
-        padding: 20.8px;
+        padding: 1.3rem; /* 20.8px */
     }
 
     .tarjetaJuego i {
-        font-size: 32px;
-        margin-bottom: 16px;
+        font-size: 2em; /* 32px */
+        margin-bottom: 1rem; /* 16px */
     }
 
     .tituloTarjeta {
-        font-size: 17.6px;
+        font-size: 1.1em; /* 17.6px */
     }
 
     .descripcionTarjeta {
-        font-size: 13.6px;
+        font-size: 0.85em; /* 13.6px */
+        min-height: 3.75rem; /* 60px - Se mantiene el mismo min-height en rem */
     }
 
-    .tarjetaJuego a {
-        font-size: 14.4px;
+    #cajaFrase {
+        /* width 455px / 479px = 94.98% */
+        width: 94.98%;
+        margin: 5rem auto 1rem auto; /* 80px, 16px */
+        padding: 1.2rem; /* 19.2px */
     }
 
-    #cajaPalabra {
-        width: 455px;
-        margin: 80px auto 16px auto;
-        padding: 19.2px;
+    .tituloFrase {
+        font-size: 1.2rem; /* 19.2px */
     }
 
-    .tituloPalabra {
-        font-size: 19.2px;
-    }
-
-    .descripcionPalabra {
-        font-size: 12.8px;
+    .descripcionFrase {
+        font-size: 0.8rem; /* 12.8px */
     }
 
     .temporizador {
-        font-size: 13.6px;
-        padding: 6.4px 6.4px;
+        font-size: 0.85rem; /* 13.6px */
+        padding: 0.4rem 0.4rem; /* 6.4px */
     }
 
     .pista {
-        padding: 11.2px 11.2px;
-        font-size: 12.8px;
+        padding: 0.7rem 0.7rem; /* 11.2px */
+        font-size: 0.8rem; /* 12.8px */
     }
 
     #enlaceVolver {
-        bottom: 12px; 
-        left: 12px;
-        padding: 8px 10px;
-        font-size: 14.4px;
+        bottom: 0.75rem; /* 12px */
+        left: 0.75rem; /* 12px */
+        padding: 0.5rem 0.625rem; /* 8px, 10px */
+        font-size: 0.9rem; /* 14.4px */
     }
+
+    .tarjetaEstadisticas {
+        max-width: 100%;
+    }
+
 }
 
 /*LAPTOP (1024px-1439px)*/
 
-@media (min-width: 1024px) {
+@media (min-width: 64rem) { /* 1024px */
+    /* Base de cálculo para % en este bloque: 1100px (max-width) */
+    
     header {
-        padding: 16px 32px;
+        padding: 1rem 2rem; /* 16px, 32px */
     }
 
     nav {
-        max-width: 1100px;
+        max-width: 81.81%; /* 900px / 1100px */
     }
 
     nav i {
-        font-size: 27.2px;
+        font-size: 1.7em; /* 27.2px */
     }
 
     nav h3 {
-        font-size: 22.4px;
+        font-size: 1.4em; /* 22.4px */
     }
 
     #fotoPerfil {
-        width: 42px;
-        height: 42px;
-        min-width: 42px;
-        min-height: 42px;
+        width: 2.625rem; /* 42px */
+        height: 2.625rem; /* 42px */
+        min-width: 2.625rem; /* 42px */
+        min-height: 2.625rem; /* 42px */
     }
 
     #menuDesplegable {
-        top: 58px;
-        min-width: 190px;
+        top: 3.625rem; /* 58px */
+        min-width: 11.875rem; /* 190px */
     }
 
     #menuDesplegable a {
-        padding: 12px 22.4px;
+        padding: 0.75rem 1.4rem; /* 12px, 22.4px */
     }
 
     main {
-        max-width: 1100px;
-        padding: 0 32px;
+        max-width: 100%; /* 1100px / 1100px = 100% */
+        padding: 0 2rem; /* 32px */
     }
 
     main h1 {
-        font-size: 36.8px;
+        font-size: 2.3rem; /* 36.8px */
+        margin-top: 5rem;
     }
 
     main > p {
-        font-size: 16.8px;
-        margin-bottom: 44.8px;
+        font-size: 1.05rem; /* 16.8px */
+        margin-bottom: 2.8rem; /* 44.8px */
     }
 
     #contenedorTarjetas {
         grid-template-columns: repeat(3, 1fr);
-        gap: 22.4px;
+        gap: 1.4rem; /* 22.4px */
     }
 
     .tarjetaJuego {
-        padding: 30.4px;
+        padding: 1.9rem; /* 30.4px */
     }
 
     .tarjetaJuego:nth-child(1):hover,
     .tarjetaJuego:nth-child(2):hover,
     .tarjetaJuego:nth-child(3):hover,
     .tarjetaJuego:nth-child(4):hover {
-        transform: translateY(-12px);
+        transform: translateY(-0.75rem); /* -12px */
     }
 
     .tarjetaJuego i {
-        font-size: 44.8px;
-        margin-bottom: 20.8px;
+        font-size: 2.8rem; /* 44.8px */
+        margin-bottom: 1.3rem; /* 20.8px */
     }
 
     .tituloTarjeta {
-        font-size: 20px;
+        font-size: 1.25em; /* 20px */
     }
 
     .descripcionTarjeta {
-        font-size: 14.72px;
+        font-size: 0.92em; /* 14.72px */
     }
 
-    #cajaPalabra {
-        max-width: 500px;
-        margin: 144px auto 16px auto;
-        padding: 30.4px;
+    #cajaFrase {
+        /* max-width 500px / 1100px = 45.45% */
+        max-width: 45.45%;
+        width: 45.45%;
+        margin: 9rem auto 1rem auto; /* 144px, 16px */
+        padding: 1.9rem; /* 30.4px */
     }
 
-    .tituloPalabra {
-        font-size: 25.6px;
+    .tituloFrase {
+        font-size: 1.6rem; /* 25.6px */
     }
 
-    .descripcionPalabra {
-        font-size: 14.08px;
+    .descripcionFrase {
+        font-size: 0.88rem; /* 14.08px */
     }
 
     .temporizador {
-        font-size: 15.68px;
+        font-size: 0.98rem; /* 15.68px */
     }
 
     .pista {
-        font-size: 14.08px;
-        padding: 15.2px 15.2px;
+        font-size: 0.88rem; /* 14.08px */
+        padding: 0.95rem 0.95rem; /* 15.2px */
     }
 }
 
 /*ESCRITORIO (1440px en adelante)*/
 
-@media (min-width: 1440px) {
+@media (min-width: 90rem) { /* 1440px */
+    /* Base de cálculo para % en este bloque: 1200px (max-width) */
+    
     header {
-        padding: 19.2px 40px;
+        padding: 1.2rem 2.5rem; /* 19.2px, 40px */
     }
 
     nav {
-        max-width: 1200px;
+        max-width: 75%; /* 900px / 1200px */
     }
 
     nav i {
-        font-size: 28.8px;
+        font-size: 1.8em; /* 28.8px */
     }
 
     nav h3 {
-        font-size: 24px;
+        font-size: 1.5em; /* 24px */
     }
 
     #fotoPerfil {
-        width: 45px;
-        height: 45px;
-        min-width: 45px;
-        min-height: 45px;
+        width: 2.8125rem; /* 45px */
+        height: 2.8125rem; /* 45px */
+        min-width: 2.8125rem; /* 45px */
+        min-height: 2.8125rem; /* 45px */
     }
 
     #menuDesplegable {
-        top: 60px;
-        min-width: 200px;
+        top: 3.75rem; /* 60px */
+        min-width: 12.5rem; /* 200px */
     }
 
     #menuDesplegable a {
-        padding: 12px 24px;
+        padding: 0.75rem 1.5rem; /* 12px, 24px */
     }
 
     main {
-        max-width: 1200px;
-        padding: 0 32px;
+        max-width: 100%; /* 1200px / 1200px = 100% */
+        padding: 0 2rem; /* 32px */
     }
 
     main h1 {
-        font-size: 40px;
-        margin-bottom: 16px;
+        font-size: 2.5rem; /* 40px */
+        margin-bottom: 1rem; /* 16px */
     }
 
     main > p {
-        font-size: 17.6px;
-        margin-bottom: 48px;
+        font-size: 1.1rem; /* 17.6px */
+        margin-bottom: 3rem; /* 48px */
     }
 
     #contenedorTarjetas {
         grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-        margin-top: 32px;
+        gap: 1.5rem; /* 24px */
+        margin-top: 2rem; /* 32px */
     }
 
     .tarjetaJuego {
-        padding: 32px;
+        padding: 2rem; /* 32px */
     }
 
     .tarjetaJuego:nth-child(1):hover,
     .tarjetaJuego:nth-child(2):hover,
     .tarjetaJuego:nth-child(3):hover,
     .tarjetaJuego:nth-child(4):hover {
-        transform: translateY(-13px);
+        transform: translateY(-0.8125rem); /* -13px */
     }
 
     .tarjetaJuego i {
-        font-size: 48px;
-        margin-bottom: 24px;
+        font-size: 3rem; /* 48px */
+        margin-bottom: 1.5rem; /* 24px */
     }
 
     .tituloTarjeta {
-        font-size: 20.8px;
-        margin-bottom: 16px;
+        font-size: 1.3em; /* 20.8px */
+        margin-bottom: 1rem; /* 16px */
     }
 
     .descripcionTarjeta {
-        font-size: 15.2px;
-        margin-bottom: 24px;
+        font-size: 0.95em; /* 15.2px */
+        margin-bottom: 1.5rem; /* 24px */
     }
 
     .tarjetaJuego a {
-        font-size: 16px;
+        font-size: 1rem; /* 16px */
     }
 
     footer {
-        margin-top: 64px;
+        margin-top: 4rem; /* 64px */
     }
 
-    #cajaPalabra {
-        max-width: 900px;
-        margin: 160px auto 16px auto;
-        padding: 32px;
+    #cajaFrase {
+        /* max-width 900px / 1200px = 75% */
+        max-width: 75%;
+        width: 75%;
+        margin: 10rem auto 1rem auto; /* 160px, 16px */
+        padding: 2rem; /* 32px */
     }
 
-    .tituloPalabra {
-        font-size: 27.2px;
-        margin-bottom: 16px;
+    .tituloFrase {
+        font-size: 1.7rem; /* 27.2px */
+        margin-bottom: 1rem; /* 16px */
     }
 
-    .descripcionPalabra {
-        font-size: 14.4px;
-        margin-bottom: 24px;
+    .descripcionFrase {
+        font-size: 0.9rem; /* 14.4px */
+        margin-bottom: 1.5rem; /* 24px */
     }
 
     .temporizador {
-        font-size: 16px;
-        margin: 16px auto 48px auto;
+        font-size: 1rem; /* 16px */
+        margin: 1rem auto 3rem auto; /* 16px, 48px */
     }
 
     .pista {
-        font-size: 14.4px;
-        padding: 16px 16px;
-        margin-bottom: 32px;
+        font-size: 0.9rem; /* 14.4px */
+        padding: 1rem 1rem; /* 16px */
+        margin-bottom: 2rem; /* 32px */
     }
 }
