@@ -85,40 +85,6 @@ nav h3 {
     opacity: 1;
 }
 
-#menuDesplegable {
-    /* position: absolute posiciona el menú relativo al contenedor padre (nav) que tiene
-       position: relative. Esto me permite colocarlo exactamente donde quiero */
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 0.5rem 0;
-    min-width: 200px;
-    /* display: none oculta el menú por defecto. JavaScript lo cambiará a "block" cuando
-       se haga clic en la foto de perfil */
-    display: none;
-    z-index: 1000;
-}
-
-#menuDesplegable a {
-    display: block;
-    padding: 0.75rem 1.5rem;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.2s;
-}
-
-#menuDesplegable a:hover {
-    background-color: #f0fff4;
-}
-
-#menuDesplegable i {
-    margin-right: 0.5rem;
-    color: #4fd1c7;
-}
-
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -144,263 +110,200 @@ main > p {
     margin-bottom: 3rem;
 }
 
-#contenedorTarjetas {
-    /* display: grid activa CSS Grid, que es un sistema de layout bidimensional muy potente.
-       Me permite crear filas y columnas de forma fácil */
-    display: grid;
-    /* grid-template-columns: repeat(4, 1fr) crea 4 columnas del mismo tamaño.
-       "1fr" significa "1 fracción" del espacio disponible, así que cada columna
-       ocupa 1/4 del ancho. repeat() es una función que repite el patrón */
-    grid-template-columns: repeat(4, 1fr);
-    /* gap es la separación entre las celdas del grid (equivalente a margin entre tarjetas) */
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
 
-.tarjetaJuego {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    /* display: flex con flex-direction: column organiza los elementos hijos (icono, título,
-       descripción, enlace) en columna vertical */
-    display: flex;
-    flex-direction: column;
-    /* transition permite animar cambios en transform y box-shadow cuando hago hover.
-       Esto crea el efecto suave de elevación */
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.tarjetaJuego:nth-child(1):hover {
-    /* transform: translateY(-4px) mueve el elemento 4px hacia arriba, creando el efecto
-       de "elevación" cuando paso el ratón */
-    transform: translateY(-13px);
-    box-shadow: 0 4px 16px rgba(72, 187, 120, 0.35);
-}
-
-.tarjetaJuego:nth-child(2):hover {
-    transform: translateY(-13px);
-    box-shadow: 0 4px 16px rgba(56, 178, 172, 0.35);
-}
-
-.tarjetaJuego:nth-child(3):hover {
-    transform: translateY(-13px);
-    box-shadow: 0 4px 16px rgba(79, 209, 199, 0.35);
-}
-
-.tarjetaJuego:nth-child(4):hover {
-    transform: translateY(-13px);
-    box-shadow: 0 4px 16px rgba(246, 173, 85, 0.35);
-}
-
-.tarjetaJuego i {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-}
-
-.tarjetaJuego:nth-child(1) i {
-    color: #48bb78;
-}
-
-.tarjetaJuego:nth-child(2) i {
-    color: #38b2ac;
-}
-
-.tarjetaJuego:nth-child(3) i {
-    color: #4fd1c7;
-}
-
-.tarjetaJuego:nth-child(4) i {
-    color: #f6ad55;
-}
-
-.tituloTarjeta {
-    color: #38a169;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.descripcionTarjeta {
-    color: #6b7280;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    /* flex-grow: 1 hace que este elemento ocupe todo el espacio disponible restante
-       en el contenedor flex. Esto empuja el enlace hacia abajo y mantiene las tarjetas
-       con la misma altura */
-    flex-grow: 1;
-}
-
-.tarjetaJuego a {
-    color: #5a8a6b;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: color 0.2s;
-}
-
-.tarjetaJuego:nth-child(1) a {
-    color: #48bb78;
-}
-
-.tarjetaJuego:nth-child(2) a {
-    color: #38b2ac;
-}
-
-.tarjetaJuego:nth-child(3) a {
-    color: #4fd1c7;
-}
-
-.tarjetaJuego:nth-child(4) a {
-    color: #f6ad55;
-}
-
-.tarjetaJuego:nth-child(1) a:hover {
-    color: #38a169;
-}
-
-.tarjetaJuego:nth-child(2) a:hover {
-    color: #319795;
-}
-
-.tarjetaJuego:nth-child(3) a:hover {
-    color: #2dd4bf;
-}
-
-.tarjetaJuego:nth-child(4) a:hover {
-    color: #ed8936;
-}
-
-/* ::after es un pseudo-elemento que me permite insertar contenido después del elemento
-   sin modificar el HTML. Aquí añado una flecha (→) después de cada enlace */
-.tarjetaJuego a::after {
-    /* content es obligatorio en pseudo-elementos. Aquí inserto el texto de la flecha */
-    content: " →";
-    margin-left: 0.25rem;
-}
-
-footer {
-    text-align: center;
-    padding: 2rem;
-    color: #6b7280;
-    margin-top: 4rem;
-}
-
-/* @media queries son "consultas de medios" que me permiten aplicar estilos diferentes
-   según el tamaño de la pantalla. Esto es esencial para diseño responsive */
-@media (max-width: 1024px) {
-    /* En tablets, cambio de 4 columnas a 2 columnas para que las tarjetas se vean mejor */
-    #contenedorTarjetas {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    /* En móviles, pongo una sola columna para que las tarjetas se apilen verticalmente */
-    #contenedorTarjetas {
-        grid-template-columns: 1fr;
-    }
-
-    main h1 {
-        font-size: 2rem;
-    }
-
-    /* flex-wrap: wrap permite que los elementos del nav se envuelvan a una nueva línea
-       si no caben, en lugar de desbordarse */
-    nav {
-        flex-wrap: wrap;
-    }
-}
 
 /***************************************************/
 
-#noticia_contenedor section, #noticia_panel{
-    margin: 2rem 0rem;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 4px 4px 10px rgb(212, 212, 212);
-    border-radius: 1rem;
+:root{
+    --verde-principal: #48bb78;
+    --verde-secundario: #38a169;
+    --turquesa-principal: #38b2ac;
+    --turquesa-secundario: #4fd1c7;
+    --amarillo-suave: #f6ad55;
 }
 
-#noticia_seccion_principal{
-    display: flex;
-    font-family: inherit;
-}
-
-#noticia_imagen{
-    width: 40%;
-    padding: 0.75rem;
-    display: flex;
-    box-sizing: border-box;
-}
-
-#noticia_imagen img{
-    width: 90%;
-    border-radius: 50%;
-    margin: auto;
-}
-
-#noticia_contenido{
-    width: 60%;
-    padding: 0% 1rem;
-    box-sizing: border-box;
-}
-
-#noticia_contenido h2{
-    color: #1e73ce;
-}
-
-.contenedor {
+.contenedor_noticia, .contenedor_usuarios {
     width: 100%;
     margin: auto;
 }
 
-#noticia_seccion_pregunta{
-    padding: 0.75rem 1.75rem;
-    padding-bottom: 3.5rem;
-    position: relative;
-}
+#noticia_contenedor{
+    section{
+        margin: 2rem 0rem;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 4px 4px 10px rgba(160, 160, 160, 0.705);
+        border-radius: 1rem;
+    }
 
-.noticia_pregunta ul{
-    list-style: none;
-    padding-left: 0.75rem;
-}
+    #noticia_seccion_principal{
+        display: flex;
+        font-family: inherit;
 
-.noticia_pregunta ul li input[type=radio]{
-    appearance: none; /* Quita los estilos por defecto. */
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    border: 1px solid #1e73ce;
-}
+        #noticia_imagen{
+            width: 100%;
+            padding: 0.75rem;
+            display: flex;
+            box-sizing: border-box;
+            & > img{
+                width: 90%;
+                border-radius: 50%;
+                margin: auto;
+            }
+        }
 
-.noticia_pregunta ul li input[type="radio"]:checked {
-    background-color: #1e73ce;
-}
+        #noticia_contenido{
+            width: 100%;
+            padding: 0% 1rem;
+            box-sizing: border-box;
+            line-height: 1.2;
+            
+            #noticia_titulo{
+                color: var(--verde-secundario);
+            }
+        }
+    }
+    
+    #noticia_seccion_pregunta{
+        padding: 0.75rem 1.75rem;
+        padding-bottom: 3.5rem;
+        position: relative;
 
-.noticia_pregunta .fa-circle-check{
-    color: green;
-}
+        .noticia_pregunta {
+            ul{
+                list-style: none;
+                padding-left: 0.75rem;
+            }
+            
+            ul li input[type=radio]{
+                appearance: none; /* Quita los estilos por defecto. */
+                width: 0.75rem;
+                height: 0.75rem;
+                border-radius: 50%;
+                border: 1px solid #1e73ce;
+            }
 
-.noticia_pregunta .fa-circle-xmark{
-    color: red;
-}
+            ul li input[type="radio"]:checked {
+                background-color: #1e73ce;
+            }
 
-#noticia_seccion_pregunta input[type=submit], #noticia_panel input[type=submit]{
-    position: absolute;
-    right: 10%;
-    border: 0;
-    bottom: 2%;
-    border-radius: .5rem;
-    background-color: #1e73ce;
-    color: white;
-    padding: 0.5rem;
+            .fa-circle-check{
+                color: green;
+            }
+
+            .fa-circle-xmark{
+                color: red;
+            }
+        }
+
+        input[type=submit], #noticia_panel input[type=submit]{
+            position: absolute;
+            right: 10%;
+            border: 0;
+            bottom: 2%;
+            border-radius: .5rem;
+            background-color: #1e73ce;
+            color: white;
+            padding: 0.5rem;
+        }
+    }
 }
 
 /* para móvil (sm) */
 @media (min-width: 576px) {
-    .contenedor {
+    .contenedor_noticia, .contenedor_usuarios {
         max-width: 540px;
+    }
+}
+
+
+/* para ipad (lg) */
+@media (min-width: 992px) {
+    .contenedor_noticia, .contenedor_usuarios {
+        max-width: 660px;
+    }
+}
+
+@media (max-width: 992px) {
+    #noticia_seccion_principal {
+        flex-direction: column; /* Ordenar los elementos verticalmente. */
+    
+        #noticia_contenido {
+            order: 1;
+        }
+
+        #noticia_imagen {
+            order: 2;
+        }
+    }
+}
+
+#noticia_panel{
+    padding: 1rem;
+    box-sizing: border-box;
+    position: relative;
+    padding-bottom: 2.5rem;
+    margin: 2rem auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 4px 4px 10px rgba(101, 101, 101, 0.511);
+    border-radius: 1rem;
+    
+    form{
+        margin: auto;
+        label{
+            display: block;
+        }
+
+        input:not([type=submit]), textarea, button{
+            border-radius: .2rem;
+            background-color: #1e73ce09;
+            border: 1px solid var(--verde-secundario);
+            margin: .5rem 0rem;
+            padding: .25rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:not([type=submit]):not([type=date]), textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border: 1px solid rgba(30, 115, 206, 0.56);
+            outline: none; /* Quita el borde amarillo por defecto. */
+        }
+
+        input[type=submit]{
+            position: absolute;
+            right: 1rem;
+            bottom: .5rem;
+            padding: .5rem;
+            background-color: var(--turquesa-secundario);
+            color: white;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        .cuestionario_pregunta {
+            border: 1px solid var(--verde-principal);
+            border-radius: .2rem;
+            padding: .5rem;
+            margin: .5rem 0rem;
+            box-sizing: border-box;
+        
+        }
+    }   
+
+    button{
+        display: block;
+        padding: .5rem;
+        background-color: var(--turquesa-secundario);
+        border: 0;
+        border-radius: 10px;
+        color: white;
+        i{
+            margin-right: .5rem
+        }
     }
 }
 
@@ -409,88 +312,64 @@ footer {
         margin: 0rem;
         box-shadow: none;
         border-radius: 0;
+        display: block;
     }
 }
 
-/* para tablet (md) */
-@media (min-width: 768px) {
-    .contenedor {
-        max-width: 720px;
-    }
-}
-
-/* para ipad (lg) */
-@media (min-width: 992px) {
-    .contenedor {
-        max-width: 860px;
-    }
-}
-
-@media (max-width: 992px) {
-    #noticia_seccion_principal {
-        flex-direction: column; /* Ordenar los elementos verticalmente. */
-    }
-
-    #noticia_contenido { /* Al contenido de la noticia (título y texto) está primero. */
-        order: 1;
-        width: 100%;
-    }
-
-    #noticia_imagen { /* La imágen se mostrará abajo del contenido de la noticia. */
-        order: 2;
-        width: 100%;
-    }
-}
-
-/* para portátil (xl) */
-@media (min-width: 1200px) {
-    .contenedor {
-        max-width: 1040px;
-    }
-}
-
-#noticia_panel{
-    margin: auto;
+#usuarios_panel{
     padding: 1rem;
-    box-sizing: border-box;
-    position: relative;
-    padding-bottom: 2.5rem;
+    margin: 2rem auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 4px 4px 10px rgba(101, 101, 101, 0.511);
+    border-radius: 1rem;
 
-    
-    label{
-        display: block;
-    }
+    .usuarios_seccion{    
+        border: 1px solid var(--verde-principal);
+        border-radius: 10px;
+        margin: 1rem 0rem;
+        padding: 1rem;
 
-    input:not([type=submit]), textarea, button{
-        border: 1px solid #1e73ce33;
-        border-radius: .2rem;
-        background-color: #1e73ce09;
-        margin: .5rem 0rem;
-    }
+        form{
+            margin: auto;
+            position: relative;
+            padding-bottom: 2.5rem;
 
-    input:not([type=submit]):not([type=date]), textarea {
-        width: 100%;
-        box-sizing: border-box;
-    }
+            label{
+                display: block;
+            }
 
-    input:focus {
-        border: 1px solid rgba(30, 115, 206, 0.56);
-        outline: none; /* Quita el borde amarillo por defecto. */
-    }
+            input:not([type=submit]){
+                border: 1px solid var(--verde-secundario);
+                border-radius: .2rem;
+                background-color: #1e73ce09;
+                margin: .5rem 0rem;
+                padding: .25rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
 
-    button{
-        display: block;
-        padding: .5rem;
-        i{
-            margin-right: .5rem
-        }
-    }
+            input:focus {
+                border: 1px solid rgba(30, 115, 206, 0.56);
+                outline: none; /* Quita el borde amarillo por defecto. */
+            }
 
-    .cuestionario_pregunta {
-        border: 1px solid #1e73ce33;
-        border-radius: .2rem;
-        padding: .5rem;
-        margin: .5rem 0rem;
-        box-sizing: border-box;
+            input[type=submit]{
+                position: absolute;
+                right: 1rem;
+                bottom: .5rem;
+                padding: .5rem;
+                background-color: var(--turquesa-secundario);
+                color: white;
+                border: 0;
+                border-radius: 10px;
+            }
+
+            ul{
+                list-style: none;
+                li{
+                    display: inline;
+                }
+            }
+        }  
     }
 }
