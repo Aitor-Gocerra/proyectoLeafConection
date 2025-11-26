@@ -43,50 +43,49 @@ header {
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(0.625rem); /* 10px */
     -webkit-backdrop-filter: blur(0.625rem); /* 10px */
-    padding: var(--espaciado-s) var(--espaciado-m); /* 16px, 24px */
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05); /* 2px, 4px */
     z-index: 1000;
 }
-
 nav {
-    max-width: 100%; /* 900px / 900px = 100% */
+    max-width: 100%;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto; /* IZQ: logo + nombre | DER: foto + menú */
+    align-items: center;
+    padding: 0.5rem;
     position: relative;
-    text-align: left;
 }
-
-nav i {
-    font-size: 1.6em; /* 25.6px (relativo a font-size de nav o body) */
-    color: var(--color-secundario);
-    margin-right: 0.5rem; /* 8px */
-    display: inline-block;
-    vertical-align: middle;
-}
-
-nav h3 {
+.info-empresa h3 {
     color: var(--color-acento-a);
-    font-size: 1.3em; /* 20.8px */
+    font-size: 1.3em;
     font-weight: 600;
-    display: inline-block;
-    vertical-align: middle;
+}
+
+/* --- Columna 1: Logo + nombre --- */
+.info-empresa {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-empresa .logo {
+    width: 2.8rem;
+    height: 2.8rem;
+}
+
+/* --- Columna 2: Foto perfil + menú --- */
+.perfil {
+    position: relative;
 }
 
 #fotoPerfil {
     width: var(--espaciado-l);
     height: var(--espaciado-l);
-    min-width: var(--espaciado-l);
-    min-height: var(--espaciado-l);
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    border: 0.125rem solid var(--color-acento-b); /* 2px */
-    display: block;
+    border: 0.125rem solid var(--color-acento-b);
     background-color: var(--color-fondo);
-    visibility: visible;
-    opacity: 1;
-    position: absolute;
-    right: 0;
-    top: 0;
 }
 
 #menuDesplegable {
@@ -185,17 +184,21 @@ main > p {
 }
 /* Colores de iconos (reinsertados del original) */
 .tarjetaJuego {
-    &:nth-child(1) i, a {
-        color: var(--color-secundario);
+    &:nth-child(1) {
+        a, i { color: var(--color-secundario); }
     }
-    &:nth-child(2) i {
-        color: #38b2ac;
+
+    &:nth-child(2) {
+        a { color: var(--color-acento-a); }
+        i { color: #38b2ac; }
     }
-    &:nth-child(3) i {
-        color: #4fd1c7;
+
+    &:nth-child(3) {
+        a, i { color: #4fd1c7; }
     }
-    &:nth-child(4) i {
-        color: var(--color-acento-b);
+
+    &:nth-child(4) {
+        a, i { color: var(--color-acento-b); }
     }
 }
 
@@ -222,49 +225,21 @@ main > p {
     transition: color 0.2s;
     display: inline-block;
 }
-/* Colores de enlaces (reinsertados del original) */
 
 .tarjetaJuego {
-    &:nth-child(1) a {
-        color: var(--color-secundario);
+    &:nth-child(1) a:hover {
+        color: var(--color-primario);
     }
-    &:nth-child(2) a {
-        color: var(--color-acento-a);
+    &:nth-child(2) a:hover {
+        color: #319795;
     }
-    &:nth-child(3) a {
-        color: #4fd1c7;
+    &:nth-child(3) a:hover {
+        color: #2dd4bf;
     }
-}
-.tarjetaJuego:nth-child(1) a {
-    color: var(--color-secundario);
-}
+    &:nth-child(4) a:hover {
+        color: #ed8936;
+    }
 
-.tarjetaJuego:nth-child(2) a {
-    color: var(--color-acento-a);
-}
-
-.tarjetaJuego:nth-child(3) a {
-    color: #4fd1c7;
-}
-
-.tarjetaJuego:nth-child(4) a {
-    color: var(--color-acento-b);
-}
-
-.tarjetaJuego:nth-child(1) a:hover {
-    color: var(--color-primario);
-}
-
-.tarjetaJuego:nth-child(2) a:hover {
-    color: #319795;
-}
-
-.tarjetaJuego:nth-child(3) a:hover {
-    color: #2dd4bf;
-}
-
-.tarjetaJuego:nth-child(4) a:hover {
-    color: #ed8936;
 }
 
 .tarjetaJuego a::after {
@@ -475,10 +450,6 @@ footer {
 
 @media (max-width: 47.9375rem) { /* 767px */
     /* Base de cálculo para % en este bloque: 767px (max-width) */
-    
-    header {
-        padding: 0.8rem 1rem; /* 12.8px, 16px */
-    }
 
     nav {
         max-width: 100%; /* 767px / 767px = 100% */
@@ -583,11 +554,6 @@ footer {
 
 @media (max-width: 29.9375rem) { /* 479px */
     /* Base de cálculo para % en este bloque: 479px (max-width) */
-
-    header {
-        padding: 0.7rem 0.8rem; /* 11.2px, 12.8px */
-        
-    }
 
     nav i {
         font-size: 1.2em; /* 19.2px */
@@ -694,10 +660,6 @@ footer {
 
 @media (min-width: 64rem) { /* 1024px */
     /* Base de cálculo para % en este bloque: 1100px (max-width) */
-    
-    header {
-        padding: 1rem 2rem; /* 16px, 32px */
-    }
 
     nav {
         max-width: 81.81%; /* 900px / 1100px */
@@ -801,10 +763,6 @@ footer {
 
 @media (min-width: 90rem) { /* 1440px */
     /* Base de cálculo para % en este bloque: 1200px (max-width) */
-    
-    header {
-        padding: 1.2rem 2.5rem; /* 19.2px, 40px */
-    }
 
     nav {
         max-width: 75%; /* 900px / 1200px */
