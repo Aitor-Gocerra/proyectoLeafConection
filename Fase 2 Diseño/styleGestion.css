@@ -36,7 +36,6 @@ nav{
 }
 nav i {
     font-size: 1.8rem;
-    color: var(--color-principal);
     margin-right: 0.5rem;
     justify-self: start;
 }
@@ -85,13 +84,12 @@ nav h3 {
 }
 
 #menuDesplegable i {
-    margin-right: 0.5rem;
     color: #44bb78;
 }
 
 main {
     max-width: 1200px;
-    margin: 10rem auto 2rem auto;
+    margin: 8rem auto 2rem auto;
     padding: 0 1rem;
 }
 
@@ -99,7 +97,7 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 1.6rem;
-    margin-bottom: 2rem;
+    margin-top: 5rem;
 }
 
 #navegador a {
@@ -130,6 +128,45 @@ form select{
     width: 80px;
 }
 
+form textarea, select, input{
+    border-radius: 5px;
+    background-color: #e6f7e8;
+}
+
+#fecha{
+    width: 100px;
+}
+
+#textoArea{
+   line-height: 30px;
+   width: 350px;
+
+}
+
+#contenedor{
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 1160px;
+    padding-bottom: 80px;
+    gap: 10px;
+    padding: 30px 60px;
+    margin: 40px 5px;
+}
+
+#botonSubmit{
+    width: 120px;
+    margin: 15px 0px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#botonSubmit:hover{
+    background-color: #45A049;
+}
 
 footer {
     text-align: center;
