@@ -123,7 +123,6 @@ main {
     /* padding-top: 6rem es necesario porque el header tiene position: fixed y se sale
        del flujo normal del documento. Este padding evita que el contenido quede oculto
        debajo del header */
-    padding-top: 6rem;
 }
 
 main h1 {
@@ -145,6 +144,8 @@ main > p {
 
 /***************************************************/
 
+/*Paleta de colores de guía de estilo*/
+
 :root{
     --verde-principal: #48bb78;
     --verde-secundario: #38a169;
@@ -154,8 +155,7 @@ main > p {
 }
 
 .contenedor_noticia, .contenedor_usuarios {
-    width: 100%;
-    margin: auto;
+    width: 100%; /* En movil */
 }
 
 #noticia_contenedor{
@@ -167,14 +167,13 @@ main > p {
     }
 
     #noticia_seccion_principal{
-        display: flex;
+        display: flex; /* Para poder ordenarlos en el media query*/
         font-family: inherit;
 
         #noticia_imagen{
             width: 100%;
             padding: 0.75rem;
             display: flex;
-            box-sizing: border-box;
             & > img{
                 width: 90%;
                 border-radius: 50%;
@@ -185,7 +184,6 @@ main > p {
         #noticia_contenido{
             width: 100%;
             padding: 0% 1rem;
-            box-sizing: border-box;
             line-height: 1.2;
             
             #noticia_titulo{
@@ -239,18 +237,17 @@ main > p {
     }
 }
 
-/* para móvil (sm) */
+/* para móvil */
 @media (min-width: 576px) {
     .contenedor_noticia, .contenedor_usuarios {
         max-width: 540px;
     }
 }
 
-
-/* para ipad (lg) */
+/* para ipad*/
 @media (min-width: 992px) {
     .contenedor_noticia, .contenedor_usuarios {
-        max-width: 660px;
+        max-width: 760px;
     }
 }
 
