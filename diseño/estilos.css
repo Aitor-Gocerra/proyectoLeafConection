@@ -163,20 +163,19 @@ main > p {
     /* Usamos rem para los box-shadow también */
 }
 
-.tarjetaJuego:nth-child(1):hover {
-    box-shadow: 0 0.25rem 1rem rgba(72, 187, 120, 0.35); /* 4px, 16px */
-}
-
-.tarjetaJuego:nth-child(2):hover {
-    box-shadow: 0 0.25rem 1rem rgba(56, 178, 172, 0.35);
-}
-
-.tarjetaJuego:nth-child(3):hover {
-    box-shadow: 0 0.25rem 1rem rgba(79, 209, 199, 0.35);
-}
-
-.tarjetaJuego:nth-child(4):hover {
-    box-shadow: 0 0.25rem 1rem rgba(246, 173, 85, 0.35);
+.tarjetaJuego {
+    &:nth-child(1):hover {
+        box-shadow: 0 0.25rem 1rem rgba(72, 187, 120, 0.35); /* 4px, 16px */
+    }
+    &:nth-child(2):hover {
+        box-shadow: 0 0.25rem 1rem rgba(56, 178, 172, 0.35);
+    }
+    &:nth-child(3):hover {
+        box-shadow: 0 0.25rem 1rem rgba(79, 209, 199, 0.35);
+    }
+    &:nth-child(4):hover {
+        box-shadow: 0 0.25rem 1rem rgba(246, 173, 85, 0.35);
+    }
 }
 
 .tarjetaJuego i {
@@ -185,19 +184,20 @@ main > p {
     display: block;
 }
 /* Colores de iconos (reinsertados del original) */
-.tarjetaJuego:nth-child(1) i {
-    color: var(--color-secundario);
+.tarjetaJuego {
+    &:nth-child(1) i, a {
+        color: var(--color-secundario);
+    }
+    &:nth-child(2) i {
+        color: #38b2ac;
+    }
+    &:nth-child(3) i {
+        color: #4fd1c7;
+    }
+    &:nth-child(4) i {
+        color: var(--color-acento-b);
+    }
 }
-.tarjetaJuego:nth-child(2) i {
-    color: #38b2ac;
-}
-.tarjetaJuego:nth-child(3) i {
-    color: #4fd1c7;
-}
-.tarjetaJuego:nth-child(4) i {
-    color: var(--color-acento-b);
-}
-
 
 .tituloTarjeta {
     color: #38a169;
@@ -223,6 +223,18 @@ main > p {
     display: inline-block;
 }
 /* Colores de enlaces (reinsertados del original) */
+
+.tarjetaJuego {
+    &:nth-child(1) a {
+        color: var(--color-secundario);
+    }
+    &:nth-child(2) a {
+        color: var(--color-acento-a);
+    }
+    &:nth-child(3) a {
+        color: #4fd1c7;
+    }
+}
 .tarjetaJuego:nth-child(1) a {
     color: var(--color-secundario);
 }
