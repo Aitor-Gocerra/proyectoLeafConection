@@ -36,8 +36,9 @@ nav{
 }
 nav i {
     font-size: 1.8rem;
-    margin-right: 0.5rem;
+    margin-right: 1.5rem;
     justify-self: start;
+    color:#48bb78;
 }
 
 nav h3 {
@@ -49,14 +50,21 @@ nav h3 {
 }
 
 #fotoPerfil {
-    width: 2.8rem;
-    height: 2.8rem;
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    border: 2px solid;
+    border: 2px solid #f6ad55;
+    display: block;
     background-color: #f0f0f0;
-    justify-self: end;
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+    bottom: 0;
+    left: 1140px;
 }
 #menuDesplegable {
     position: absolute; /*Absolute y display none que se cambia con js*/
@@ -140,6 +148,7 @@ form textarea, select, input{
 #textoArea{
    line-height: 30px;
    width: 350px;
+   border: none;
 
 }
 

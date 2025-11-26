@@ -114,24 +114,31 @@ nav h3 {
 }
 
 
-/* main {
+ main {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         padding-top: 6.575486586007365%;
         /* 100*100/1520.8= 6,575486586007365% */
-
-main {
+ }
+/* main {
     width: 100%;
     position: relative;
     padding-top: 100px;
     /* equivalente al padding-top original */
-    text-align: center;
+
+ */
+#contenedor {
+    display: flex; /* ¡Usa Flexbox! */
+    justify-content: center; /* Centra las cajas horizontalmente */
+    align-items: flex-start; /* Las alinea arriba (por si tienen alturas distintas) */
+    flex-wrap: wrap; /* Permite que se pongan una encima de otra en pantallas pequeñas */
+    gap: 2rem; /* Añade un espacio de 2rem entre las cajas */
 }
 
+
 #cajaConsejo {
-    text-align: justify;
     width: 900px;
     max-width: 500px;
     margin: 6rem auto 2rem auto;
@@ -141,7 +148,7 @@ main {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-#tituloConsejo {
+#tituloConsejo{
     text-align: center;
     margin-bottom: 20px;
 
@@ -156,7 +163,10 @@ main {
     border-radius: 3px;
     margin-bottom: 2rem;
     font-style: italic;
+    text-align: justify;
 }
+
+
 
 /* Formulario registro, index */
 
@@ -170,7 +180,7 @@ form {
     display: grid;
     grid-column: auto;
     gap: 10px;
-    padding: 0 10px 0 10px;
+    padding: 20px 10px 20px 10px;
 
 }
 #textH1{
@@ -192,6 +202,7 @@ form input:not([type="submit"]) {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: 0 10px 0 10px;
+    background-color: #dbdbdb;
 }
 
 #boton {
@@ -209,8 +220,8 @@ form input:not([type="submit"]) {
     width: 50%;
     margin-left: 80px;
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #dbdbdb;
+    color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -229,10 +240,17 @@ form input:not([type="submit"]) {
 
 } */
 footer {
+    width: 100%;
     text-align: center;
     padding: 2rem;
     color: #6b7280;
     margin-top: 3rem;
+    position: fixed;
+    bottom: 0;
+    
+}
+footer p{
+    text-align: centerx;
 }
 
 
