@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard - ReciQuiz</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./estilosAdmin.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <i class="fas fa-leaf"></i>
+                <h3>LeafConection</h3>
+                <img src="./imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
+                <div id="menuDesplegable">
+                    <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div id="navegador">
+                <a href="gestionarPalabras.html">GESTIONAR PALABRAS</a>
+                <a href="gestionarFrases.html">GESTIONAR FRASES</a>
+                <a href="gestionarNoticias.html">GESTIONAR NOTICIAS</a>
+                <a href="gestionarConsejos.html">GESTIONAR CONSEJOS</a>
+                <a href="gestionarUsuarios.html">GESTIONAR USUARIOS</a>
+            </div>
+            <div id="contenedorModificarFrase">
+                <h1>Añadir/Editar Frase del Dia</h1>
+                <form action="" method="get">
+                    <label for="frase">Frase</label>
+                    <input type="text" name="frase" id="frase" placeholder="Ej: La Tierra no es una herencia de nuestros padres, sino un prestamo de nuestros _____.">
+                    <p>Usa '___' para el lugar donde ira la palabra que falta</p>
+
+                    <label for="palabra">Palabra que falta</label>
+                    <input type="text" name="" id="palabra" placeholder="Ej: hijos">
+
+                    <label for="autor">Autor</label>
+                    <input type="text" name="autor" id="autor" placeholder="Ej: Provervio nativo americano">
+
+                    <label for="fecha">Fecha programada</label>
+                    <input type="date" name="fecha" id="fecha">
+
+                    <input type="submit" value="Guardar Frase">
+                </form>
+            </div>
+            <div id="ultimasDiezFrases">
+                Aqui mostraremos con JS, las 10 ultimas frases que se han introducido
+            </div>
+        </main>
+
+        <a href="index.html" id="enlaceVolver">
+            <i class="fas fa-arrow-left"></i> Salir
+        </a>
+
+        <footer>
+            <p>&copy; 2025-2026 LeafConection. Todos los derechos reservados.</p>
+        </footer>
+
+        <script src="./javaScript/menuDashboardUsuario.js"></script>
+    </body>
+</html>
