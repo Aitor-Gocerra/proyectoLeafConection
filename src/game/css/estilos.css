@@ -1,0 +1,943 @@
+/****************************** VARIABLES DE GUÍA DE ESTILOS ******************************/
+
+:root {
+    /* Colores */
+    --color-primario: #38a169;
+    --color-secundario: #48bb78;
+    --color-acento-a: #38b2ac;
+    --color-acento-b: #f6ad55;
+    --color-texto-oscuro: #333;
+    --color-texto-gris: #6b7280;
+    --color-fondo: #ffffff;
+    
+    /* Espaciado */
+    --espaciado-xs: 0.5rem;
+    --espaciado-s: 1rem;
+    --espaciado-m: 1.5rem;
+    --espaciado-l: 2.5rem;
+
+    /* Diseño */
+    --borde-radius: 12px;
+    --box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --transicion-base: 0.2s;
+
+    /* Fuente */
+    --fuente: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+
+body {
+    font-family: var(--fuente);
+    background-color: var(--color-fondo);
+    color: var(--color-texto-oscuro);
+    line-height: 1.6;
+}
+
+/****************************** HEADER                      ******************************/
+
+header {
+    /* position: fixed hace que el header se quede fijo en la pantalla aunque haga scroll.
+       top: 0 y left: 0 lo posicionan en la esquina superior izquierda */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* rgba permite usar transparencia. El último valor (0.5) es la opacidad (50% visible) */
+    background-color: rgba(255, 255, 255, 0.5);
+    /* backdrop-filter crea el efecto "glassmorphism" (vidrio esmerilado) que desenfoca 
+       el contenido que hay detrás del header. Es una propiedad moderna de CSS */
+    backdrop-filter: blur(10px);
+    /* -webkit-backdrop-filter es el prefijo para navegadores basados en WebKit (Chrome, Safari)
+       para asegurar compatibilidad mientras la propiedad se estandariza */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* z-index controla el orden de apilamiento. Un valor alto (1000) asegura que el header
+       esté por encima de otros elementos cuando se superponen */
+    z-index: 1000;
+}
+
+nav {
+    /* display: flex activa el modelo de caja flexible (Flexbox). Esto me permite organizar
+        los elementos hijos (icono, título, foto) de forma horizontal y controlar su 
+       distribución fácilmente */
+    display: flex;
+    /* justify-content: space-between distribuye el espacio entre los elementos, poniendo
+       el primero a la izquierda y el último a la derecha */
+    justify-content: space-between;
+    /* align-items: center centra verticalmente los elementos dentro del contenedor flex */
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    /* position: relative es necesario aquí porque el menú desplegable usa position: absolute
+       y se posicionará relativo a este contenedor */
+    position: relative;
+
+    i {
+        font-size: 1.6rem;
+        color: var(--color-secundario);
+        margin-right: 0.5rem;
+    }
+
+    h3 {
+        color: var(--color-acento-a);
+        font-size: 1.3rem;
+        font-weight: 600;
+        display: inline;
+        text-align: left;
+    }
+    
+    #fotoPerfil {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        border-radius: 50%;
+        /* object-fit: cover hace que la imagen cubra todo el espacio manteniendo su proporción,
+        recortando si es necesario. */
+        object-fit: cover;
+        cursor: pointer;
+        border: 2px solid var(--color-acento-b);
+        display: block;
+        background-color: #f0f0f0;
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+#menuDesplegable {
+    /* position: absolute posiciona el menú relativo al contenedor padre (nav) que tiene
+       position: relative. Esto me permite colocarlo exactamente donde quiero */
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background-color: var(--color-fondo);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 180px;
+    /* display: none oculta el menú por defecto. JavaScript lo cambiará a "block" cuando
+       se haga clic en la foto de perfil */
+    display: none;
+    z-index: 1000;
+
+    a {
+        display: block;
+        padding: 0.7rem 1.3rem;
+        color: var(--color-texto-oscuro);
+        text-decoration: none;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: #f0fff4;
+        }
+    }
+    i {
+        margin-right: 0.5rem;
+        color: var(--color-acento-a);
+    }
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    /* padding-top: 5rem es necesario porque el header tiene position: fixed y se sale
+        del flujo normal del documento. Este padding evita que el contenido quede oculto
+        debajo del header */
+    padding-top: 5rem;
+
+    h1 {
+        text-align: left;
+        color: var(--color-primario);
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+    }
+
+    & > p {
+        text-align: left;
+        color: var(--color-texto-gris);
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+
+
+/****************************** FOOTER                      ******************************/
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--color-texto-gris);
+    margin-top: 3rem;
+}
+
+
+
+
+/****************************** PÁGINA -> INICIO            ******************************/
+
+#contenedorTarjetas {
+    /* display: grid activa CSS Grid, que es un sistema de layout bidimensional muy potente.
+       Me permite crear filas y columnas de forma fácil */
+    display: grid;
+    /* En tablet (base): 2 columnas. grid-template-columns: repeat(2, 1fr) crea 2 columnas 
+        del mismo tamaño. "1fr" significa "1 fracción" del espacio disponible, así que cada 
+       columna ocupa 1/2 del ancho. repeat() es una función que repite el patrón */
+    grid-template-columns: repeat(2, 1fr);
+    /* gap es la separación entre las celdas del grid (equivalente a margin entre tarjetas) */
+    gap: 1.3rem;
+    margin-top: 1.5rem;
+
+    .tarjetaJuego {
+        background-color: var(--color-fondo);
+        border-radius: 12px;
+        padding: 1.8rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        /* display: flex con flex-direction: column organiza los elementos hijos (icono, título,
+        descripción, enlace) en columna vertical */
+        display: flex;
+        flex-direction: column;
+        /* transition permite animar cambios en transform y box-shadow cuando hago hover.
+        Esto crea el efecto suave de elevación */
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        i {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        a {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+                
+        .tituloTarjeta {
+            color: var(--color-primario);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .descripcionTarjeta {
+            color: var(--color-texto-gris);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            /* flex-grow: 1 hace que este elemento ocupe todo el espacio disponible restante
+            en el contenedor flex. Esto empuja el enlace hacia abajo y mantiene las tarjetas
+            con la misma altura */
+            flex-grow: 1;
+        }
+
+        a::after {
+            /* ::after es un pseudo-elemento que me permite insertar contenido después del elemento
+               sin modificar el HTML. Aquí añado una flecha (→) después de cada enlace */
+            /* content es obligatorio en pseudo-elementos. Aquí inserto el texto de la flecha */
+            content: " →";
+            margin-left: 0.25rem;
+        }
+
+        /* estilos por posición (nth-child) anidados dentro de .tarjetaJuego */
+        &:nth-child(1) {
+            i { color: var(--color-secundario); }
+            a { color: var(--color-secundario); }
+            a:hover { color: var(--color-primario); }
+
+            &:hover {
+                /* transform: translateY(-10px) mueve el elemento 10px hacia arriba, creando el efecto
+                   de "elevación" cuando paso el ratón */
+                transform: translateY(-10px);
+                box-shadow: 0 4px 16px rgba(72, 187, 120, 0.35);
+            }
+        }
+
+        &:nth-child(2) {
+            i { color: var(--color-acento-a); }
+            a { color: var(--color-acento-a); }
+            a:hover { color: #319795; }
+
+            &:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 4px 16px rgba(56, 178, 172, 0.35);
+            }
+        }
+
+        &:nth-child(3) {
+            i { color: var(--color-acento-a); }
+            a { color: var(--color-acento-a); }
+            a:hover { color: #2dd4bf; }
+
+            &:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 4px 16px rgba(79, 209, 199, 0.35);
+            }
+        }
+
+        &:nth-child(4) {
+            i { color: var(--color-acento-b); }
+            a { color: var(--color-acento-b); }
+            a:hover { color: #ed8936; }
+
+            &:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 4px 16px rgba(246, 173, 85, 0.35);
+            }
+        }
+    }
+}
+
+/*MÓVIL ESTÁNDAR (480px-767px)*/
+
+@media (max-width: 767px) {
+    header {
+        padding: 0.8rem 1rem;
+    }
+
+    nav {
+        max-width: 100%;
+    }
+
+    nav i {
+        font-size: 1.4rem;
+    }
+
+    nav h3 {
+        font-size: 1.1rem;
+    }
+
+    #fotoPerfil {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        min-height: 35px;
+    }
+
+    #menuDesplegable {
+        top: 50px;
+        min-width: 160px;
+    }
+
+    main {
+        padding: 0 1rem;
+        padding-top: 4.5rem;
+    }
+
+    main h1 {
+        font-size: 1.8rem;
+    }
+
+    main > p {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+
+    #contenedorTarjetas {
+        /* En móvil estándar: 1 columna (todas las tarjetas apiladas verticalmente) */
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .tarjetaJuego {
+        padding: 1.5rem;
+    }
+
+    .tarjetaJuego i {
+        font-size: 2.3rem;
+    }
+
+    .tituloTarjeta {
+        font-size: 1.15rem;
+    }
+
+    #cajaPalabra {
+        margin: 6rem auto 1rem auto;
+        padding: 1.5rem;
+    }
+
+    .tituloPalabra {
+        font-size: 1.3rem;
+    }
+}
+
+/*MÓVIL PEQUEÑO (320px-479px)*/
+
+@media (max-width: 479px) {
+    header {
+        padding: 0.7rem 0.8rem;
+    }
+
+    nav i {
+        font-size: 1.2rem;
+        margin-right: 0.3rem;
+    }
+
+    nav h3 {
+        font-size: 1rem;
+    }
+
+    #fotoPerfil {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+    }
+
+    #menuDesplegable {
+        top: 45px;
+        min-width: 150px;
+    }
+
+    #menuDesplegable a {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 0 0.8rem;
+        padding-top: 4rem;
+    }
+
+    main h1 {
+        font-size: 1.5rem;
+    }
+
+    main > p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #contenedorTarjetas {
+        gap: 1rem;
+    }
+
+    .tarjetaJuego {
+        padding: 1.3rem;
+    }
+
+    .tarjetaJuego i {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .tituloTarjeta {
+        font-size: 1.1rem;
+    }
+
+    .descripcionTarjeta {
+        font-size: 0.85rem;
+    }
+
+    .tarjetaJuego a {
+        font-size: 0.9rem;
+    }
+
+    #cajaPalabra {
+        width: 95%;
+        margin: 5rem auto 1rem auto;
+        padding: 1.2rem;
+    }
+
+    .tituloPalabra {
+        font-size: 1.2rem;
+    }
+
+    .descripcionPalabra {
+        font-size: 0.8rem;
+    }
+
+    .temporizador {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.4rem;
+    }
+
+    .pista {
+        padding: 0.7rem 0.7rem;
+        font-size: 0.8rem;
+    }
+}
+
+/*LAPTOP (1024px-1439px)*/
+
+@media (min-width: 1024px) {
+    header {
+        padding: 1rem 2rem;
+    }
+
+    nav {
+        max-width: 1100px;
+    }
+
+    nav i {
+        font-size: 1.7rem;
+    }
+
+    nav h3 {
+        font-size: 1.4rem;
+    }
+
+    #fotoPerfil {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        min-height: 42px;
+    }
+
+    #menuDesplegable {
+        top: 58px;
+        min-width: 190px;
+    }
+
+    #menuDesplegable a {
+        padding: 0.75rem 1.4rem;
+    }
+
+    main {
+        max-width: 1100px;
+        padding: 0 2rem;
+        padding-top: 5.5rem;
+    }
+
+    main h1 {
+        font-size: 2.3rem;
+    }
+
+    main > p {
+        font-size: 1.05rem;
+        margin-bottom: 2.8rem;
+    }
+
+    #contenedorTarjetas {
+        /* En laptop: 3 columnas (punto intermedio antes de pantallas grandes) */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.4rem;
+    }
+
+    .tarjetaJuego {
+        padding: 1.9rem;
+    }
+
+    .tarjetaJuego:nth-child(1):hover,
+    .tarjetaJuego:nth-child(2):hover,
+    .tarjetaJuego:nth-child(3):hover,
+    .tarjetaJuego:nth-child(4):hover {
+        transform: translateY(-12px);
+    }
+
+    .tarjetaJuego i {
+        font-size: 2.8rem;
+        margin-bottom: 1.3rem;
+    }
+
+    .tituloTarjeta {
+        font-size: 1.25rem;
+    }
+
+    .descripcionTarjeta {
+        font-size: 0.92rem;
+    }
+
+    #cajaPalabra {
+        max-width: 500px;
+        margin: 9rem auto 1rem auto;
+        padding: 1.9rem;
+    }
+
+    .tituloPalabra {
+        font-size: 1.6rem;
+    }
+
+    .descripcionPalabra {
+        font-size: 0.88rem;
+    }
+
+    .temporizador {
+        font-size: 0.98rem;
+    }
+
+    .pista {
+        font-size: 0.88rem;
+        padding: 0.95rem 0.95rem;
+    }
+}
+
+/*ESCRITORIO (1440px en adelante)*/
+
+@media (min-width: 1440px) {
+    header {
+        padding: 1.2rem 2.5rem;
+    }
+
+    nav {
+        max-width: 1200px;
+    }
+
+    nav i {
+        font-size: 1.8rem;
+    }
+
+    nav h3 {
+        font-size: 1.5rem;
+    }
+
+    #fotoPerfil {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        min-height: 45px;
+    }
+
+    #menuDesplegable {
+        top: 60px;
+        min-width: 200px;
+    }
+
+    #menuDesplegable a {
+        padding: 0.75rem 1.5rem;
+    }
+
+    main {
+        max-width: 1200px;
+        padding: 0 2rem;
+        padding-top: 6rem;
+    }
+
+    main h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    main > p {
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
+    }
+
+    #contenedorTarjetas {
+        /* En escritorio: 4 columnas (diseño completo para aprovechar pantallas grandes) */
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .tarjetaJuego {
+        padding: 2rem;
+    }
+
+    .tarjetaJuego:nth-child(1):hover,
+    .tarjetaJuego:nth-child(2):hover,
+    .tarjetaJuego:nth-child(3):hover,
+    .tarjetaJuego:nth-child(4):hover {
+        transform: translateY(-13px);
+    }
+
+    .tarjetaJuego i {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tituloTarjeta {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .descripcionTarjeta {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tarjetaJuego a {
+        font-size: 1rem;
+    }
+
+    footer {
+        margin-top: 4rem;
+    }
+
+    #cajaPalabra {
+        max-width: 900px;
+        margin: 10rem auto 1rem auto;
+        padding: 2rem;
+    }
+
+    .tituloPalabra {
+        font-size: 1.7rem;
+        margin-bottom: 1rem;
+    }
+
+    .descripcionPalabra {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .temporizador {
+        font-size: 1rem;
+        margin: 1rem auto 3rem auto;
+    }
+
+    .pista {
+        font-size: 0.9rem;
+        padding: 1rem 1rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/****************************** PÁGINA -> PALABRA DEL DÍA   ******************************/
+
+#cajaPalabra {
+    width: 30%;
+    margin: 2rem auto 1rem auto;
+    background-color: var(--color-fondo);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px var(--color-primario);
+
+    .tituloPalabra {
+        color: var(--color-secundario);
+        font-size: 1.7rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    .temporizador {
+        display: block;
+        width: fit-content;
+        font-family: 'Digital-7', monospace;
+        font-size: 1rem;
+        text-align: center;
+        margin: 1rem auto 3rem auto;
+        padding: 0.5rem 0.5rem;
+        box-shadow: 1px 2px 3px rgb(0,0,0,0.2);
+        border-radius: 6px;
+        background-color: #dbdbdb;
+    }
+
+    .pista {
+        color: var(--color-primario);
+        background-color: #e6f7e8;
+        padding: 1rem;
+        font-size: 0.9rem;
+        border-left: 3px solid var(--color-secundario);
+        border-radius: 3px;
+        margin-bottom: 2rem;
+        font-style: italic;
+    }
+
+    /* El input para enviar la palabra y comprobar si es correcta*/
+    .contenedorAcierto {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .introducirPalabra {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        border: none;
+        background-color: #e6f7e8;
+    }
+
+    .introducirPalabra:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .enviarPalabra {
+        width: 100%;
+        padding: 0.6rem;
+        font-size: 0.8rem;
+        color: var(--color-fondo);
+        background-color: var(--color-secundario);
+        border: none;
+        border-radius: 3px;
+    }
+}
+
+/* Medidas adaptativas para diferentes pantallas */
+@media (max-width: 1024px) {
+    #cajaPalabra {
+        width: 55%;
+        margin: 10rem auto 1rem auto;
+        padding: 1.8rem;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+    #cajaPalabra {
+        width: 40%;
+        margin: 11rem auto 1rem auto;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+    }
+
+    #contenedorModificarFrase {
+        padding: 1.5rem;
+    }
+
+    #navegador {
+        gap: 0.6rem;
+    }
+
+    #contenedorModificarFrase h1 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 700px) {
+    #cajaPalabra {
+        width: 95%;
+        margin: 10rem auto 1rem auto;
+        padding: 1.8rem;
+    }
+}
+
+/****************************** PÁGINA -> NOTICIA DEL DÍA   ******************************/
+
+
+.contenedor_noticia {
+    width: 100%; /* En movil */
+}
+
+#noticia_contenedor{
+    section{
+        margin: 2rem 0rem;
+        background-color: var(--color-fondo);
+        box-shadow: 4px 4px 10px rgba(160, 160, 160, 0.705);
+        border-radius: 1rem;
+    }
+
+    #noticia_seccion_principal{
+        display: flex; /* Para poder ordenarlos en el media query*/
+        font-family: inherit;
+        padding: 0% 1rem;
+        
+
+        #noticia_imagen{
+            width: 100%;
+            padding: 0.75rem;
+            display: flex;
+            & > img{
+                width: 90%;
+                border-radius: 50%;
+                margin: auto;
+            }
+        }
+
+        #noticia_contenido{
+            width: 100%;
+            line-height: 1.2;
+            text-align: justify;
+            
+            #noticia_titulo{
+                color: var(--color-primario);
+            }
+        }
+    }
+    
+    #noticia_seccion_pregunta{
+        padding: 0.75rem 1.75rem;
+        padding-bottom: 3.5rem;
+        position: relative;
+
+        .noticia_pregunta {
+            ul{
+                list-style: none;
+                padding-left: 0.75rem;
+            }
+            
+            ul li input[type=radio]{
+                appearance: none; /* Quita los estilos por defecto. */
+                width: 0.75rem;
+                height: 0.75rem;
+                border-radius: 50%;
+                border: 1px solid var(--color-primario);
+            }
+
+            ul li input[type="radio"]:checked {
+                background-color: var(--color-primario);
+            }
+
+            .fa-circle-check{
+                color: green;
+            }
+
+            .fa-circle-xmark{
+                color: red;
+            }
+        }
+
+        input[type=submit]{
+            position: absolute;
+            right: 10%;
+            border: 0;
+            bottom: 2%;
+            border-radius: .5rem;
+            background-color: var(--color-primario);
+            color: white;
+            padding: 0.5rem;
+        }
+    }
+}
+
+/* para móvil */
+@media (min-width: 576px) {
+    .contenedor_noticia {
+        max-width: 540px;
+    }
+}
+
+/* para ipad*/
+@media (min-width: 992px) {
+    .contenedor_noticia {
+        max-width: 760px;
+    }
+}
+
+@media (max-width: 992px) {
+    #noticia_seccion_principal {
+        flex-direction: column; /* Ordenar los elementos verticalmente. */
+    
+        #noticia_contenido {
+            order: 1;
+        }
+
+        #noticia_imagen {
+            order: 2;
+        }
+    }
+}
+
+
+@media (max-width: 576px) {
+    #noticia_contenedor section {
+        margin: 0rem;
+        box-shadow: none;
+        border-radius: 0;
+        display: block;
+    }
+}
+
+
+
+
+
+
+
+
+/****************************** PÁGINA -> CONSEJO DEL DÍA   ******************************/
+
+
+
+
+
+
+/****************************** PÁGINA -> FRASE DEL DÍA     ******************************/
