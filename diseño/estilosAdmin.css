@@ -39,65 +39,72 @@ header {
     left: 0;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 0.8rem 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(0.625rem); /* 10px */
+    -webkit-backdrop-filter: blur(0.625rem); /* 10px */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05); /* 2px, 4px */
     z-index: 1000;
 }
-
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     max-width: 100%;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto; /* IZQ: logo + nombre | DER: foto + menú */
+    align-items: center;
+    padding: 0.5rem;
+    position: relative;
+}
+.info-empresa h3 {
+    color: var(--color-acento-a);
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+/* --- Columna 1: Logo + nombre --- */
+.info-empresa {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-empresa .logo {
+    width: 2.8rem;
+    height: 2.8rem;
+}
+
+/* --- Columna 2: Foto perfil + menú --- */
+.perfil {
     position: relative;
 }
 
-nav i {
-    font-size: 1.6rem;
-    color: #48bb78;
-    margin-right: 0.4rem;
-}
-
-nav h3 {
-    color: #38b2ac;
-    font-size: 1.3rem;
-    font-weight: 600;
-    display: inline;
-}
-
 #fotoPerfil {
-    width: 40px;
-    height: 40px;
+    width: var(--espaciado-l);
+    height: var(--espaciado-l);
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    border: 2px solid #f6ad55;
+    border: 0.125rem solid var(--color-acento-b);
+    background-color: var(--color-fondo);
 }
 
-/* MENÚ DESPLEGABLE */
 #menuDesplegable {
     position: absolute;
-    top: 55px;
+    top: 3.4375rem; /* 55px */
     right: 0;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 0.5rem 0;
-    min-width: 180px;
+    background-color: var(--color-fondo);
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1); /* 4px, 6px */
+    border-radius: var(--espaciado-xs); /* 8px */
+    padding: var(--espaciado-xs) 0; /* 8px */
+    min-width: 11.25rem; /* 180px */
     display: none;
     z-index: 1000;
 }
 
 #menuDesplegable a {
     display: block;
-    padding: 0.7rem 1.2rem;
+    padding: 0.7rem 1.3rem; /* 11.2px, 20.8px */
+    color: var(--color-texto-oscuro);
     text-decoration: none;
-    color: #333;
-    font-size: 0.95rem;
-    transition: 0.2s;
+    transition: background-color 0.2s;
 }
 
 #menuDesplegable a:hover {
@@ -105,10 +112,9 @@ nav h3 {
 }
 
 #menuDesplegable i {
-    margin-right: 0.5rem;
+    margin-right: 0.5rem; /* 8px */
     color: #4fd1c7;
 }
-
 /* MAIN */
 main {
     max-width: 100%;
@@ -141,6 +147,69 @@ main {
 
 #navegador a:hover {
     background-color: #b2f5ea;
+}
+
+/* ESTILOS DEL BUSCADOR */
+#buscadorFrases {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #e6fffa; /* Color de fondo similar al navegador de enlaces */
+    border-radius: 12px;
+    border: 1px solid #b2f5ea;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+#buscadorFrases h2 {
+    font-size: 1.2rem;
+    color: #2c7a7b; /* Color de texto similar al navegador */
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #b2f5ea;
+    padding-bottom: 0.5rem;
+}
+
+#buscadorFrases form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#inputBuscar {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid #b2f5ea;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+#inputBuscar:focus {
+    border-color: #38b2ac; /* Color de acento A */
+    box-shadow: 0 0 6px rgba(56, 178, 172, 0.4);
+    outline: none;
+}
+
+#buscadorFrases button[type="submit"] {
+    background-color: #38b2ac; /* Color de acento A */
+    color: white;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+#buscadorFrases button[type="submit"]:hover {
+    background-color: #319795;
+    transform: translateY(-1px);
+}
+
+#buscadorFrases button i {
+    color: white;
+    margin: 0;
+    font-size: 1rem;
 }
 
 /* FORMULARIO */
@@ -313,6 +382,32 @@ footer {
         font-size: 0.75rem;
         flex: 1 1 calc(50% - 0.5rem);
         text-align: center;
+    }
+
+    #buscadorFrases {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    #buscadorFrases h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    #buscadorFrases form {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    #inputBuscar {
+        padding: 0.65rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    #buscadorFrases button[type="submit"] {
+        padding: 0.65rem;
+        font-size: 0.9rem;
+        justify-content: center;
     }
 
     #contenedorModificarFrase {
