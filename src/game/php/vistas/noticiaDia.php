@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <?php
-        require_once './parciales/head.php';
+        require_once 'parciales/head.php';
         encabezado("Noticia del día - LeafConnect");
     ?>
 </head>
 <body>
     <header>
         <?php
-            require_once './parciales/nav.php';
+            require_once 'parciales/nav.php';
         ?>
     </header>
     <main id="noticia_contenedor" class="contenedor_noticia">
@@ -67,7 +67,7 @@
     </main>
     <footer>
         <?php
-            require_once './parciales/footer.php';
+            require_once 'parciales/footer.php';
         ?>
     </footer>
 </body>

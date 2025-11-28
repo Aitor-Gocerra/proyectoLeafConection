@@ -25,7 +25,6 @@
     --fuente: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-
 body {
     font-family: var(--fuente);
     background-color: var(--color-fondo);
@@ -687,6 +686,7 @@ footer {
 }
 
 /****************************** PÁGINA -> PALABRA DEL DÍA   ******************************/
+/****************************** PÁGINA -> FRASE DEL DÍA     ******************************/
 
 #cajaPalabra {
     width: 30%;
@@ -930,14 +930,41 @@ footer {
 
 
 
-
-
-
 /****************************** PÁGINA -> CONSEJO DEL DÍA   ******************************/
 
 
+#cajaConsejo {
+    width: 900px;
+    max-width: 500px;
+    margin: 6rem auto 2rem auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 
+    #bomb {
+        margin-left: 50%;
+        color: green;
+        margin-bottom: 10px;
+    
+    }
 
+    #tituloConsejo{
+        text-align: center;
+        margin-bottom: 20px;
+    
+    }
+    
+    #fraseConsejo {
+        color: #548f60;
+        background-color: #e6f7e8;
+        padding: 1rem 1rem;
+        font-size: 0.9rem;
+        border-left: 3px solid rgb(0, 114, 47);
+        border-radius: 3px;
+        margin-bottom: 2rem;
+        font-style: italic;
+        text-align: justify;
+    }
+}
 
-
-/****************************** PÁGINA -> FRASE DEL DÍA     ******************************/

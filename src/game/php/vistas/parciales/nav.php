@@ -1,7 +1,7 @@
 <?php 
     echo '
         <nav>
-            <i class="fas fa-leaf"></i>
+            <a href="index.php"><i class="fas fa-leaf"></i></a>
             <h3>LeafConection</h3>
             <img src="./imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
             <div id="menuDesplegable">

@@ -2,23 +2,16 @@
 <html lang="en">
 <head>
     <?php
-        require_once './parciales/head.php';
+        require_once 'parciales/head.php';
         encabezado("Consejo del día - LeafConnect");
     ?>
 </head>
 
 <body>
     <header>
-        <nav>
-            <i class="fas fa-leaf" id="bombIcon"></i>
-            <h3>LeafConnect</h3>
-            <img src="doraemon.png" alt="Foto de perfil" id="fotoPerfil">
-            <div id="menuDesplegable">
-                <a href="#amigos"><i class="fas fa-users"></i> Mis Amigos</a>
-                <a href="#estadisticas"><i class="fas fa-chart-bar"></i> Mis Estadísticas</a>
-                <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
-            </div>
-        </nav>
+        <?php
+            require_once 'parciales/nav.php';
+        ?>
     </header>
 
     <main>
@@ -29,16 +22,16 @@
             <p id="fraseConsejo">Separa correctamente tus residuos (orgánico, papel, plástico…).
             Si no separas bien, parte de los residuos reciclables se pierden, lo que implica que más
             basura va a vertederos o al tratamiento común, generando más emisiones</p>
-
         </div>
 
     </main>
 
-        
-
     <footer>
-        <p> &copy; 2025-2026 LeafConnect. Todos los derechos reservados.</p>
+        <?php
+            require_once 'parciales/footer.php';
+        ?>
     </footer>
+
     <script src="menuDesplegable.js"></script>
 </body>
 

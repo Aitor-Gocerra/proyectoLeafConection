@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <?php
-        require_once './parciales/head.php';
+        require_once 'parciales/head.php';
         encabezado("Palabra del día - LeafConnect");
     ?>
     <body>
         <header>
             <?php
-                require_once './parciales/nav.php';
+                require_once 'parciales/nav.php';
             ?>
         </header>
         <main>
@@ -26,9 +26,9 @@
         </main>
         
         <footer>
-            <p>&copy; 2025-2026 ReciQuiz. Todos los derechos reservados.</p>
+            <?php
+                require_once 'parciales/footer.php';
+            ?>
         </footer>
-
-        <script src="../../javascript/menuDesplegable.js"></script>
     </body>
 </html>
