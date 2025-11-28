@@ -1,0 +1,43 @@
+/leafconnect_app
+├── /app                  <-- Código principal de la aplicación
+│   ├── /Config           <-- Configuración global (conexión DB, constantes)
+│   │   └── database.php
+│   │   └── config.php
+│   
+│   ├── /Controllers      <-- Lógica que maneja peticiones (la 'C' del MVC)
+│   │   ├── BaseController.php  <-- Controlador base con métodos comunes
+│   │   ├── UsuarioController.php  <-- Maneja login, registro, perfil (Tabla Usuario)
+│   │   ├── AmigosController.php   <-- Maneja solicitudes/lista de amigos (Tabla Amigos)
+│   │   ├── JuegoController.php    <-- Maneja inicio/fin de partidas (Tabla Partida)
+│   │   └── ContenidoController.php <-- Maneja Palabras, Frases, Consejos
+│   
+│   ├── /Models           <-- Acceso a la base de datos (la 'M' del MVC)
+│   │   ├── BaseModel.php       <-- Modelo base para métodos CRUD genéricos
+│   │   ├── Usuario.php         <-- CRUD para la tabla 'Usuario'
+│   │   ├── Amigo.php           <-- CRUD para la tabla 'Amigos'
+│   │   ├── Partida.php         <-- CRUD para la tabla 'Partida'
+│   │   ├── Palabra.php         <-- CRUD para la tabla 'Palabras', 'PistasPalabras', 'PalabraDia'
+│   │   ├── Noticia.php         <-- CRUD para la tabla 'Noticias', 'Preguntas', 'Opciones', 'NoticiaDia'
+│   │   └── Administrador.php   <-- CRUD para la tabla 'Administrador'
+│   
+│   └── /Views            <-- Interfaz de usuario (la 'V' del MVC)
+│       ├── /layout       <-- Plantillas/layouts (header, footer, nav)
+│       │   └── main.php
+│       ├── /usuario      <-- Vistas relacionadas con el usuario
+│       │   ├── login.php
+│       │   └── perfil.php
+│       ├── /amigos       <-- Vistas de la red social
+│       │   └── lista_amigos.php
+│       ├── /juego        <-- Vistas de las partidas
+│       │   ├── inicio_partida.php
+│       │   └── resultado.php
+│       └── /admin        <-- Vistas del panel de administración
+│           └── dashboard.php
+│
+├── /public               <-- Punto de entrada público (donde reside el index.php)
+│   ├── /css
+│   ├── /js
+│   ├── /images
+│   └── index.php         <-- Único punto de entrada (front controller)
+│
+└── .htaccess             <-- Reglas de reescritura para enrutamiento limpio
