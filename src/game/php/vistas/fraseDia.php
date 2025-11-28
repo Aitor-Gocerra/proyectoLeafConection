@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <?php
             require_once 'parciales/head.php';
@@ -27,6 +27,10 @@
             </div>
         </main>
         
+        <a href="./vistas/inicio.php" id="enlaceVolver">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+
         <footer>
             <?php
                 require_once 'parciales/footer.php';

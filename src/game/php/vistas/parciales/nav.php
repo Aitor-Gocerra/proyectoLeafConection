@@ -1,15 +1,22 @@
 <?php 
     echo '
         <nav>
-            <a href="index.php"><i class="fas fa-leaf"></i></a>
-            <h3>LeafConection</h3>
-            <img src="./imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
-            <div id="menuDesplegable">
-                <a href="#amigos"><i class="fas fa-users"></i> Mis Amigos</a>
-                <a href="#estadisticas"><i class="fas fa-chart-bar"></i> Mis Estadísticas</a>
-                <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            <div class="infoJuego">
+                <img src="./imagenes/logo.jpg" alt="logo Juego" class="logo">
+                <h3>LeafConection</h3>
             </div>
-        </nav>';
+
+            <div class="perfil">
+                <img src="./imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
+
+                <div id="menuDesplegable">
+                    <a href="#amigos"><i class="fas fa-users"></i> Mis Amigos</a>
+                    <a href="./vistas/estadisticas.php"><i class="fas fa-chart-bar"></i> Mis Estadísticas</a>
+                    <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                </div>
+            </div>
+          </nav>
+        ';
 
     echo "
         <script>
