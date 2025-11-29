@@ -1,31 +1,39 @@
-<?php 
+<?php
 
-    class CPaginas {
+    class CPaginas{
 
         public $vista;
 
-        public function __construct() {
+        public function __construct(){
             $this->vista = '';
         }
 
-        public function inicio() {
+        public function inicio(){
             $this->vista = 'inicio';
         }
 
-        public function palabraDia() {
+        public function palabraDia(){
             $this->vista = 'palabraDia';
         }
 
-        public function fraseDia() {
+        public function fraseDia(){
             $this->vista = 'fraseDia';
         }
 
-        public function noticiaDia() {
+        public function noticiaDia(){
             $this->vista = 'noticiaDia';
         }
 
-        public function consejoDia() {
+        public function consejoDia(){
             $this->vista = 'consejoDia';
+        }
+
+        public function estadisticas(){
+            $this->vista = 'estadisticas';
+        }
+
+        public function amigos(){
+            $this->vista = 'gestionAmigos';
         }
     }
 

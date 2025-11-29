@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ESTADISTICAS</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="stylesheet" href="estilos.css">
+        <?php
+        require_once 'parciales/head.php';
+        encabezado("ESTADISTICAS");
+        ?>
     </head>
+
     <body>
         <header>
             <?php
-                require_once 'parciales/nav.php';
+            require_once 'parciales/nav.php';
             ?>
         </header>
         <main>
@@ -44,7 +45,7 @@
             </div>
         </main>
 
-        <a href="inicio.php" id="enlaceVolver">
+        <a href="index.php" id="enlaceVolver">
             <i class="fas fa-arrow-left"></i> Volver
         </a>
 
@@ -53,5 +54,7 @@
         </footer>
 
         <script src="./javaScript/menuDashboardUsuario.js"></script>
-    </body>
+        
+    </body>
+
 </html>
