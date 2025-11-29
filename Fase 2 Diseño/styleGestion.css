@@ -1,3 +1,21 @@
+:root{
+    /* Colores principales */
+    --verdePrincipal: #48bb78;
+    --verdeSecundario: #38a169;
+    --turquesa1: #38b2ac;
+    --turquesa2: #4fd1c7;
+    --amarillo: #f6ad55;
+
+    /* Colores de apoyo */
+
+    --textoPrincipal: #333333;
+    --textoSecundario:  #6b7280;
+    --fondo1: #ffffff; 
+    --fondo2: #e6f7e8;
+    --fondo3:  #dbdbdb;
+
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +24,8 @@
 
 body {
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: #ffffff;
-    color: #333;
+    background-color: var(--fondo1);
+    color: var(--textoPrincipal);
     line-height: 1.6;
 }
 
@@ -16,11 +34,11 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--fondo1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 1rem 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px var(--textoSecundario);
     z-index: 1000;
 
 }
@@ -38,11 +56,11 @@ nav i {
     font-size: 1.8rem;
     margin-right: 1.5rem;
     justify-self: start;
-    color:#48bb78;
+    color: var(--verdePrincipal);
 }
 
 nav h3 {
-    color: #44bb78;;
+    color: var(--verdePrincipal);
     font-size: 1.5rem;
     font-weight: 600;
     justify-self: center;
@@ -57,20 +75,20 @@ nav h3 {
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    border: 2px solid #f6ad55;
+    border: 2px solid var(--amarillo);
     display: block;
-    background-color: #f0f0f0;
+    background-color: var(--fondo1);
     visibility: visible;
     opacity: 1;
     position: absolute;
     bottom: 0;
     left: 1140px;
 }
-#menuDesplegable {
+#fotoPerfilMenu {
     position: absolute; /*Absolute y display none que se cambia con js*/
     top: 3.5rem;
     right: 0;
-    background-color: #ffffff;
+    background-color: var(--fondo1);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 0.5rem 0;
@@ -79,20 +97,20 @@ nav h3 {
     z-index: 1000;
 }
 
-#menuDesplegable a {
+#fotoPerfilMenu a {
     display: block;
     padding: 0.75rem 1.5rem;
     text-decoration: none;
-    color: #333;
-    transition: 0.2s;
+    color: var(--textoPrincipal);
+    
 }
 
-#menuDesplegable a:hover {
-    background-color: #f0fff4;
+#fotoPerfilMenu a:hover {
+    background-color: var(--fondo2);
 }
 
-#menuDesplegable i {
-    color: #44bb78;
+#fotoPerfilMenu i {
+    color: var(--verdeSecundario);
 }
 
 main {
@@ -104,19 +122,19 @@ main {
 #navegador {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 1.6rem;
-    margin-top: 5rem;
+    gap: 1rem;
+    
 }
 
 #navegador a {
-    background-color: #e6fffa;
+    background-color: var(--fondo2);
     padding: 0.7rem 1.2rem;
     border-radius: 8px;
     text-decoration: none;
-    color: #2c7a7b;
+    color: var(--turquesa1);
     font-weight: 600;
     transition: 0.2s;
-    border: 1px solid #b2f5ea;
+    border: 1px solid var(--turquesa2);
 }
 
 #navegador a:hover {
@@ -130,10 +148,10 @@ form {
 }
 form label{
     font-weight: 600;
-    color: #2f855a;
+    color: var(--verdePrincipal);
 }
 form select{
-    width: 80px;
+    width: 150px;
 }
 
 form textarea, select, input{
@@ -147,14 +165,14 @@ form textarea, select, input{
 
 #textoArea{
    line-height: 30px;
-   width: 350px;
+   width: 850px;
    border: none;
 
 }
 
 #contenedor{
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    background-color: #ffffff;
+    box-shadow: 0 2px 8px var(--textoPrincipal);
+    background-color: var(--fondo1);
     border-radius: 12px;
     width: 1160px;
     padding-bottom: 80px;
@@ -163,24 +181,46 @@ form textarea, select, input{
     margin: 40px 5px;
 }
 
-#botonSubmit{
+#contBotones{
+    display: flex;
+    gap: 1rem;
+    justify-content: start;
+    
+}
+
+#botonGuardar{
     width: 120px;
     margin: 15px 0px;
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--verdePrincipal);
+    color: var(--fondo1);
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
-#botonSubmit:hover{
-    background-color: #45A049;
+#botonGuardar:hover{
+    background-color: var(--verdeSecundario);
+}
+
+#botonCancelar{
+    width: 120px;
+    margin: 15px 0px;
+    padding: 10px;
+    background-color: var(--textoPrincipal);
+    color: var(--fondo3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+#botonCancelar:hover{
+    background-color: var(--textoSecundario);
 }
 
 footer {
     text-align: center;
     padding: 2rem;
-    color: #6b7280;
+    color: var(--textoSecundario);
     margin-top: 3rem;
 }
 

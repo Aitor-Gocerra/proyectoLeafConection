@@ -15,7 +15,7 @@
             <i class="fas fa-leaf"></i>
             <h3>LeafConnect</h3>
             <img src="doraemon.png" alt="Foto de perfil" id="fotoPerfil">
-            <div id="menuDesplegable">
+            <div id="fotoPerfilMenu">
                 <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
             </div>
         </nav>
@@ -35,17 +35,22 @@
             <h1>Editar/Eliminar consejos del día</h1>
             <form action="">
                 <label for="">Consejo del día</label>
-                <textarea name="" id="textoArea"></textarea>
+                <textarea name="" id="textoArea" placeholder="Introduce un nuevo consejo"></textarea>
 
                 <label for="">Temática</label>
                 <select name="">
-                    <option value=""></option>
+                    <option value="">Elige un tema</option>
                     <option value="Salud mental">Salud mental</option>
                     <option value="Sostenibilidad">Desarrollo sostenible</option>
                 </select>
                 <label for="">Fecha:</label>
                 <input type="date" placeholder="dd/mm/yy" id="fecha">
-                <input id="botonSubmit" type="submit" value="Guardar consejo">
+                <div id="contBotones">
+                    <input id="botonGuardar" type="submit" value="Guardar consejo">
+                    <input id="botonCancelar" type="submit" value="Cancelar">
+                </div>
+                
+                
             </form>
 
         </div>

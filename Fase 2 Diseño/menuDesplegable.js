@@ -1,5 +1,5 @@
 const fotoPerfil = document.getElementById('fotoPerfil');
-const menuDesplegable = document.getElementById('menuDesplegable');
+const menuDesplegable = document.getElementById('fotoPerfilMenu');
 
 fotoPerfil.addEventListener('click', function(){
     if(menuDesplegable.style.display === 'block'){
