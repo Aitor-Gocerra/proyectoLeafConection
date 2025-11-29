@@ -24,7 +24,7 @@
     box-sizing: border-box;
 
 }
-
+/* Para todos los html del usuario */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: var(--fondo1);
@@ -86,18 +86,13 @@ nav h3 {
 }
 
 #fotoPerfilMenu {
-    /* position: absolute posiciona el menú relativo al contenedor padre (nav) que tiene
-        position: relative. Esto me permite colocarlo exactamente donde quiero */
     position: absolute;
     top: 60px;
-    right: 0;
     background-color: var(--fondo1);
     box-shadow: 0 4px 6px var(--textoPrincipal);
     border-radius: 8px;
     padding: 0.5rem 0;
     min-width: 200px;
-    /* display: none oculta el menú por defecto. JavaScript lo cambiará a "block" cuando
-        se haga clic en la foto de perfil */
     display: none;
     z-index: 1000;
 }
@@ -119,7 +114,7 @@ nav h3 {
 }
 
 /* _______________________________
-        Vista Consejo dia
+        Vista Consejo del dia
     */
 
 #bomb {
@@ -131,21 +126,13 @@ nav h3 {
 
 
  main {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 6.575486586007365%;
-        /* 100*100/1520.8= 6,575486586007365% */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6.575486586007365%;
+    /* 100*100/1520.8= 6,575486586007365% */
  }
-
-#contenedor {
-    display: flex; /* ¡Usa Flexbox! */
-    justify-content: center; /* Centra las cajas horizontalmente */
-    align-items: flex-start; /* Las alinea arriba (por si tienen alturas distintas) */
-    flex-wrap: wrap; /* Permite que se pongan una encima de otra en pantallas pequeñas */
-    gap: 2rem; /* Añade un espacio de 2rem entre las cajas */
-}
 
 
 #cajaConsejo {
@@ -178,7 +165,7 @@ nav h3 {
 
 
 
-/* Formulario registro, index */
+/* Vista registro e index */
 
 div h1{
     text-align: center;
@@ -250,22 +237,6 @@ form input:not([type="submit"]) {
 #bInvitado:hover {
     background-color: var(--fondo1);
 }
-
-/*  footer {
-    text-align: center;
-    color: #6b7280;
-    margin-top: 5rem;
-
-}  */
-/* footer {
-    text-align: center;
-    padding: 2rem;
-    color: #6b7280;
-    margin-top: 3rem;
-    position: fixed;
-    bottom: 0;
-    
-} */
  footer p{
     text-align: center;
 } 
@@ -277,3 +248,52 @@ footer {
     margin-top: 3rem;
 }
 
+/* Para tablets  */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    header {
+        padding: 20px;
+    }
+
+    nav {
+        left: 20px;
+        top: 5px;
+    }
+
+    nav h3 {
+        margin-left: 150px;
+        font-size: 22px; /* equivalente aprox. a 1.4rem */
+    }
+
+    #fotoPerfil {
+        left: auto;
+        right: 30px;
+        width: 40px;
+        height: 40px;
+    }
+
+    #fotoPerfilMenu {
+        top: 55px;
+        min-width: 180px;
+    }
+
+    #cajaConsejo {
+        width: 800px;
+        max-width: none;
+        margin-top: 130px;   /* equivalente a 8rem aprox */
+        padding: 24px;       /* 1.5rem en px */
+    }
+
+    form {
+        width: 600px;
+        margin: 32px auto;
+        padding: 32px;
+    }
+
+    #boton,
+    #bInvitado {
+        width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

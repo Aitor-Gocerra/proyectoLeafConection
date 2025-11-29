@@ -1,246 +1,299 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* 
+    Estilo tablet (768px - 1024px)
+*/
+:root{
+    /* Colores principales */
+    --verdePrincipal: #48bb78;
+    --verdeSecundario: #38a169;
+    --turquesa1: #38b2ac;
+    --turquesa2: #4fd1c7;
+    --amarillo: #f6ad55;
+
+    /* Colores de apoyo */
+
+    --textoPrincipal: #333333;
+    --textoSecundario:  #6b7280;
+    --fondo1: #ffffff; 
+    --fondo2: #e6f7e8;
+    --fondo3:  #dbdbdb;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+/* Para todos los html del usuario */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background-color: #ffffff;
-  color: #333;
-  line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--fondo1);
+    color: var(--textoPrincipal);
+    line-height: 1.6;
 }
 
 header {
-  position: fixed;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  /* 1.315097317201473% (calculado como 20px / 1520.8px) */
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  z-index: 1000;
+    position: fixed;
+
+    width: 100%;
+    background-color: var(--fondo1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1.315097317201473%;
+    /* 20px *100/1520,8=1.315097317201473% */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
 }
 
 nav {
-  /* Original: 78.90583903208837% (calculado como 1200px / 1520.8px) */
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  left: 5%; /* Nota: Este 'left: 5%' sigue siendo relativo. 5% de 1520.8px serían 76.04px */
-  /* Original: 1vh (asumiendo 900px de alto = 9px) */
-  top: 9px;
+    max-width: 78.90583903208837%;
+    margin: 0 auto;
+    position: relative;
+    left: 5%;
+    top: 1vh;
 }
 
 nav i {
-  /* Original: 1.8rem (1rem = 16px) */
-  font-size: 29px;
-  color: #48bb78;
-  /* Original: 0.5rem (1rem = 16px) */
-  margin-right: 8px;
+    font-size: 1.8rem;
+    color: var(--verdeSecundario);
+    margin-right: 0.5rem;
+
 }
 
 nav h3 {
-  color: #38a169;
-  /* Original: 1.5rem (asumiendo 1rem = 16px) */
-  font-size: 24px;
-  font-weight: 600;
-  display: inline;
-  margin-left: 400px;
+    color: var(--verdeSecundario);
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: inline;
+    margin-left: 400px;
 }
 
 #fotoPerfil {
-  width: 45px;
-  height: 45px;
-  min-width: 45px;
-  min-height: 45px;
-  border-radius: 50%;
-  object-fit: cover;
-  cursor: pointer;
-  border: 2px solid #f6ad55;
-  display: block;
-  background-color: #f0f0f0;
-  visibility: visible;
-  opacity: 1;
-  position: absolute;
-  bottom: 0;
-  left: 960px;
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid var(--amarillo);
+    display: block;
+    background-color: var(--fondo1);
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+    bottom: 0;
+    left: 960px;
 }
 
-#menuDesplegable {
-  position: absolute;
-  top: 60px;
-  right: 0;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  /* Original: 0.5rem 0 (asumiendo 1rem = 16px) */
-  padding: 8px 0;
-  min-width: 200px;
-  display: none;
-  z-index: 1000;
+#fotoPerfilMenu {
+    position: absolute;
+    top: 60px;
+    background-color: var(--fondo1);
+    box-shadow: 0 4px 6px var(--textoPrincipal);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
 }
 
-#menuDesplegable a {
-  display: block;
-  /* Original: 0.75rem 1.5rem (asumiendo 1rem = 16px) */
-  padding: 12px 24px;
-  color: #333;
-  text-decoration: none;
-  transition: background-color 0.2s;
+#fotoPerfilMenu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--textoPrincipal);
+    text-decoration: none;
 }
 
-#menuDesplegable a:hover {
-  background-color: #f0fff4;
+#fotoPerfilMenu a:hover {
+    background-color: var(--fondo2);
 }
 
-#menuDesplegable i {
-  /* Original: 0.5rem (asumiendo 1rem = 16px) */
-  margin-right: 8px;
-  color: #4fd1c7;
+#fotoPerfilMenu i {
+    margin-right: 0.5rem;
+    color: var(--turquesa1);
 }
 
 /* _______________________________
-        Vista Consejo dia
+        Vista Consejo del dia
     */
 
 #bomb {
-  margin-left: 50%;
-  color: green;
-  margin-bottom: 10px;
+    margin-left: 50%;
+    color: var(--verdeSecundario);
+    margin-bottom: 10px;
+
 }
 
-main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Original: 6.575486586007365% (calculado como 100px / 1520.8px) */
-  padding-top: 100px;
-}
 
-#contenedor {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  /* Original: 2rem (asumiendo 1rem = 16px) */
-  gap: 32px;
-}
+ main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6.575486586007365%;
+    /* 100*100/1520.8= 6,575486586007365% */
+ }
+
 
 #cajaConsejo {
-  width: 900px;
-  max-width: 500px;
-  /* Original: 6rem auto 2rem auto (asumiendo 1rem = 16px) */
-  margin: 96px auto 32px auto;
-  background-color: #ffffff;
-  border-radius: 12px;
-  /* Original: 2rem (asumiendo 1rem = 16px) */
-  padding: 32px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    width: 900px;
+    max-width: 500px;
+    margin: 6rem auto 2rem auto;
+    background-color: var(--fondo1);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px var(--textoPrincipal);
 }
 
-#tituloConsejo {
-  text-align: center;
-  margin-bottom: 20px;
+#tituloConsejo{
+    text-align: center;
+    margin-bottom: 20px;
+
 }
 
 #fraseConsejo {
-  color: #548f60;
-  background-color: #e6f7e8;
-  /* Original: 1rem 1rem (asumiendo 1rem = 16px) */
-  padding: 16px 16px;
-  /* Original: 0.9rem (asumiendo 1rem = 16px) */
-  font-size: 14.4px; /* O redondear a 14px */
-  border-left: 3px solid rgb(0, 114, 47);
-  border-radius: 3px;
-  /* Original: 2rem (asumiendo 1rem = 16px) */
-  margin-bottom: 32px;
-  font-style: italic;
-  text-align: justify;
+    color: var(--verdeSecundario);
+    background-color: var(--fondo2);
+    padding: 1rem 1rem;
+    font-size: 0.9rem;
+    border-left: 3px solid var(--verdeSecundario);
+    border-radius: 3px;
+    margin-bottom: 2rem;
+    font-style: italic;
+    text-align: justify;
 }
 
-/* Formulario registro, index */
+
+
+/* Vista registro e index */
+
+div h1{
+    text-align: center;
+}
 
 form {
-  text-align: left;
-  margin: 20px 570px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: 350px;
-  display: grid;
-  grid-column: auto;
-  gap: 10px;
-  padding: 20px 10px 20px 10px;
-}
+    text-align: left;
+    margin: 20px 570px;
+    box-shadow: 0 2px 8px var(--textoPrincipal);
+    background-color: var(--fondo1);
+    border-radius: 12px;
+    width: 350px;
+    display: grid;
+    grid-column: auto;
+    gap: 10px;
+    padding: 20px 10px 20px 10px;
 
-#textH1 {
-  /* Original: 1.5rem (asumiendo 1rem = 16px) */
-  font-size: 24px;
 }
-
-form h1,
-p {
-  text-align: center;
+#textH1{
+    font-size: 1.5rem;
+}
+form h1, p{
+    text-align: center;
+    
 }
 
 form label {
-  font-weight: bold;
-  margin-top: 10px;
-  padding: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
 }
 
 form input:not([type="submit"]) {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin: 0 10px 0 10px;
-  background-color: #dbdbdb;
+    padding: 10px;
+    border: 1px solid var(--textoSecundario);
+    border-radius: 5px;
+    margin: 0 10px 0 10px;
+    background-color: #dbdbdb;
 }
 
 #boton {
-  width: 50%;
-  margin: 15px 80px;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    width: 50%;
+    margin: 15px 80px;
+    padding: 10px;
+    background-color: var(--verdeSecundario);
+    color: var(--fondo1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
+#boton:hover{
+    background-color: var(--verdePrincipal);
 
+
+}
 #bInvitado {
-  width: 50%;
-  margin-left: 80px;
-  padding: 10px;
-  background-color: #dbdbdb;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
+    width: 50%;
+    margin-left: 80px;
+    padding: 10px;
+    color: black;
+    background-color: var(--fondo3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
 }
 
-#boton,
+
 #bInvitado:hover {
-  background-color: #45A049;
+    background-color: var(--fondo1);
 }
-
-footer p {
-  text-align: center;
-}
+ footer p{
+    text-align: center;
+} 
 
 footer {
-  text-align: center;
-  /* 2rem ( 1rem = 16px) */
-  padding: 32px;
-  color: #6b7280;
-  /* 3rem ( 1rem = 16px) */
-  margin-top: 48px;
+    text-align: center;
+    padding: 2rem;
+    color: var(--textoSecundario);
+    margin-top: 3rem;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
 
+    header {
+        padding: 20px;
+    }
 
+    nav {
+        left: 20px;
+        top: 5px;
+    }
 
+    nav h3 {
+        margin-left: 150px;
+        font-size: 22px; /* equivalente aprox. a 1.4rem */
+    }
+
+    #fotoPerfil {
+        left: auto;
+        right: 30px;
+        width: 40px;
+        height: 40px;
+    }
+
+    #fotoPerfilMenu {
+        top: 55px;
+        min-width: 180px;
+    }
+
+    #cajaConsejo {
+        width: 800px;
+        max-width: none;
+        margin-top: 130px;   /* equivalente a 8rem aprox */
+        padding: 24px;       /* 1.5rem en px */
+    }
+
+    form {
+        width: 600px;
+        margin: 32px auto;
+        padding: 32px;
+    }
+
+    #boton,
+    #bInvitado {
+        width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

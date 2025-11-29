@@ -224,7 +224,73 @@ footer {
     margin-top: 3rem;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
 
+    /* Ajuste general de main para tablets */
+    main {
+        min-height: auto; /* deja que crezca según el contenido */
+        margin: 7rem auto 2rem auto; /* suficiente espacio para header */
+        padding: 0 1rem;
+    }
+
+    /* footer más abajo gracias al contenido scrollable */
+    footer {
+        margin-top: 2rem;
+    }
+
+    /* Foto perfil y nav */
+    #fotoPerfil {
+        position: static;
+        margin-left: auto;
+        display: block;
+    }
+
+    #fotoPerfilMenu {
+        top: 4rem;
+        right: 10px;
+    }
+
+    /* Menú navegador en 3 columnas */
+    #navegador {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.7rem;
+    }
+
+    #navegador a {
+        text-align: center;
+        padding: 0.6rem 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    /* Contenedor y formulario */
+    #contenedor {
+        width: 100%;
+        padding: 25px 30px;
+        margin: 30px auto;
+    }
+
+    #textoArea {
+        width: 100%;
+    }
+
+    form select {
+        width: 180px;
+    }
+
+    #fecha {
+        width: 150px;
+    }
+
+    #contBotones {
+        flex-wrap: wrap;
+    }
+
+    #botonGuardar,
+    #botonCancelar {
+        width: 150px;
+        padding: 12px;
+    }
+}
 
 
 
