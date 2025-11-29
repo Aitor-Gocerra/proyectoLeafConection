@@ -10,8 +10,6 @@
                 <img src="./imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
 
                 <div id="menuDesplegable">
-                    <a href="#amigos"><i class="fas fa-users"></i> Mis Amigos</a>
-                    <a href="./vistas/php/estadisticas.php"><i class="fas fa-chart-bar"></i> Mis Estadísticas</a>
                     <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                 </div>
             </div>

@@ -9,22 +9,9 @@
     </head>
     <body>
         <header>
-            <nav>
-                <div class="infoJuego">
-                    <img src="./imagenes/logo.png" alt="logo Empresa" class="logo">
-                    <h3>LeafConection</h3>
-                </div>
-
-                <div class="perfil">
-                    <img src="./imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
-
-                    <div id="menuDesplegable">
-                        <a href="#amigos"><i class="fas fa-users"></i> Mis Amigos</a>
-                        <a href="#estadisticas"><i class="fas fa-chart-bar"></i> Mis Estadísticas</a>
-                        <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
-                    </div>
-                </div>
-            </nav>
+            <?php
+                require_once 'parciales/nav.php';
+            ?>
         </header>
         <main>
             <h2 id="tituloEstadisticas">TUS ESTADISTICAS</h2>
