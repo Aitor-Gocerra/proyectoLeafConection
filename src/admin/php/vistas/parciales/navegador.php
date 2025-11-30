@@ -1,5 +1,4 @@
 <?php
-
 echo'
     <div id="navegador">
         <a href="index.php?c=PaginasAdmin&m=gestionarPalabras">GESTIONAR PALABRAS</a>

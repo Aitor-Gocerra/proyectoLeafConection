@@ -20,6 +20,7 @@
 
             <?php
                 require_once 'parciales/buscador.php';
+                titulo("Noticia");
             ?>
 
             <div id="contenedorAdmin">

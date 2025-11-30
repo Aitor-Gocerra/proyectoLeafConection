@@ -22,6 +22,7 @@
 
         <?php
             require_once 'parciales/buscador.php';
+            titulo("Consejo");
         ?>
         <div id="contenedorAdmin">
             <h1>Editar/Eliminar consejos del día</h1>

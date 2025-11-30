@@ -19,6 +19,7 @@
 
             <?php
                 require_once 'parciales/buscador.php';
+                titulo("Palabra");
             ?>
 
 

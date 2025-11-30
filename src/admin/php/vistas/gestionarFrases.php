@@ -20,6 +20,7 @@
 
             <?php
                 require_once 'parciales/buscador.php';
+                titulo("Frase");
             ?>
             <div id="contenedorAdmin">
                 <h1>Añadir/Editar Frase del Dia</h1>
