@@ -50,7 +50,9 @@
         </a>
 
         <footer>
-            <p>&copy; 2025-2026 LeafConection. Todos los derechos reservados.</p>
+            <?php
+                require_once 'parciales/footer.php';
+            ?>
         </footer>
 
         <script src="./javaScript/menuDashboardUsuario.js"></script>

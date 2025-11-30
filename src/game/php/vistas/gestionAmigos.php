@@ -63,6 +63,11 @@
             </div>
         </div>
     </main>
+        <footer>
+            <?php
+                require_once 'parciales/footer.php';
+            ?>
+        </footer>
     <script src="javaScript/amigosSolicitudes.js"></script>
 </body>
 

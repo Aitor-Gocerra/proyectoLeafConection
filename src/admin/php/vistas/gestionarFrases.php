@@ -14,13 +14,9 @@
         </header>
 
         <main>
-            <div id="navegador">
-                <a href="gestionarPalabras.html">GESTIONAR PALABRAS</a>
-                <a href="gestionarFrases.html">GESTIONAR FRASES</a>
-                <a href="gestionarNoticias.html">GESTIONAR NOTICIAS</a>
-                <a href="gestionarConsejos.html">GESTIONAR CONSEJOS</a>
-                <a href="gestionarUsuarios.html">GESTIONAR USUARIOS</a>
-            </div>
+            <?php
+                require_once 'parciales/navegador.php';
+            ?>
             <search id="buscadorFrases">
                 <h2>Buscar Frase a Modificar</h2>
                 <form action="#" method="get">

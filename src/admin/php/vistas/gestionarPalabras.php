@@ -11,16 +11,11 @@
             <?php
                 require_once 'parciales/nav.php';
             ?>
-        </header>
-
+        </header>           
         <main>
-            <div id="navegador">
-                <a href="gestionarPalabras.php">GESTIONAR PALABRAS</a>
-                <a href="gestionarFrases.php">GESTIONAR FRASES</a>
-                <a href="gestionarNoticias.php">GESTIONAR NOTICIAS</a>
-                <a href="gestionarConsejos.php">GESTIONAR CONSEJOS</a>
-                <a href="gestionarUsuarios.php">GESTIONAR USUARIOS</a>
-            </div>
+            <?php
+                require_once 'parciales/navegador.php';
+            ?>
             <search id="buscadorFrases">
                 <h2>Buscar Frase a Modificar</h2>
                 <form action="#" method="get">

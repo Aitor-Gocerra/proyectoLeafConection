@@ -27,7 +27,7 @@ body {
     background-color: var(--fondo1);
     color: var(--textoPrincipal);
     line-height: 1.6;
-}
+} 
 
 header{
     position: fixed;
