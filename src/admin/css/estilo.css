@@ -1,0 +1,77 @@
+/****************************** VARIABLES DE GUÍA DE ESTILOS ******************************/
+
+:root {
+    /* Colores */
+    --color-primario: #38a169;
+    --color-secundario: #48bb78;
+    --color-acento-a: #38b2ac;
+    --color-acento-b: #f6ad55;
+    --color-texto-oscuro: #333;
+    --color-texto-gris: #6b7280;
+    --color-fondo: #ffffff;
+
+    /* Espaciado */
+    --espaciado-xs: 0.5rem;
+    --espaciado-s: 1rem;
+    --espaciado-m: 1.5rem;
+    --espaciado-l: 2.5rem;
+
+    /* Diseño */
+    --borde-radius: 12px;
+    --box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --transicion-base: 0.2s;
+
+    /* Fuente */
+    --fuente: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: var(--color-fondo);
+    color: var(--color-texto-oscuro);
+    line-height: 1.6;
+}
+
+/****************************** HEADER                      ******************************/
+
+header {
+    /* position: fixed hace que el header se quede fijo en la pantalla aunque haga scroll.
+       top: 0 y left: 0 lo posicionan en la esquina superior izquierda */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* rgba permite usar transparencia. El último valor (0.5) es la opacidad (50% visible) */
+    background-color: rgba(255, 255, 255, 0.5);
+    /* backdrop-filter crea el efecto "glassmorphism" (vidrio esmerilado) que desenfoca 
+       el contenido que hay detrás del header. Es una propiedad moderna de CSS */
+    backdrop-filter: blur(10px);
+    /* -webkit-backdrop-filter es el prefijo para navegadores basados en WebKit (Chrome, Safari)
+       para asegurar compatibilidad mientras la propiedad se estandariza */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* z-index controla el orden de apilamiento. Un valor alto (1000) asegura que el header
+       esté por encima de otros elementos cuando se superponen */
+    z-index: 1000;
+    line-height: 0;
+}
+
+nav {
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    position: relative;
+}
+
+.infoJuego h3 {
+    color: var(--color-acento-a);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+}
+

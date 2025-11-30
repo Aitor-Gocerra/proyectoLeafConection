@@ -27,5 +27,5 @@
             $this->vista = 'gestionarUsuarios';
         }
     }
-
+ 
 ?>
