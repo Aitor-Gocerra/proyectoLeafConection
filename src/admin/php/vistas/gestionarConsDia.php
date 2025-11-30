@@ -47,15 +47,11 @@
         </div>
 
     </main>
-
     <footer>
         <?php
             require_once 'parciales/footer.php';
         ?>
     </footer>
-
-    <script src="menuDesplegable.js"></script>
-
 </body>
 
 </html>

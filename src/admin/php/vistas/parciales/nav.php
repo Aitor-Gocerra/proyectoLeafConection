@@ -10,8 +10,6 @@ echo '
                 <img src="./imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
 
                 <div id="menuDesplegable">
-                    <a href="index.php?c=Paginas&m=gestionAmigos"><i class="fas fa-users"></i> Mis Amigos</a>
-                    <a href="index.php?c=Paginas&m=estadisticas"><i class="fas fa-chart-bar"></i> Mis Estadísticas</a>
                     <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                 </div>
             </div>

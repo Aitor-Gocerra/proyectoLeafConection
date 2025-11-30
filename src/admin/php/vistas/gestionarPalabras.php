@@ -39,7 +39,6 @@
                 </form>
             </div>
         </main>
-        
         <footer>
             <?php
                 require_once 'parciales/footer.php';

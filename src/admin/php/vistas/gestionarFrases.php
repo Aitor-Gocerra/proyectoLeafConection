@@ -44,17 +44,10 @@
                 Aqui mostraremos con JS, las 10 ultimas frases que se han introducido
             </div>
         </main>
-
-        <a href="index.html" id="enlaceVolver">
-            <i class="fas fa-arrow-left"></i> Salir
-        </a>
-
         <footer>
             <?php
                 require_once 'parciales/footer.php';
             ?>
         </footer>
-        
-        <script src="./javaScript/menuDashboardUsuario.js"></script>
     </body>
 </html>
