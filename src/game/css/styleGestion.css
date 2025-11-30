@@ -1,0 +1,296 @@
+:root{
+    /* Colores principales */
+    --verdePrincipal: #48bb78;
+    --verdeSecundario: #38a169;
+    --turquesa1: #38b2ac;
+    --turquesa2: #4fd1c7;
+    --amarillo: #f6ad55;
+
+    /* Colores de apoyo */
+
+    --textoPrincipal: #333333;
+    --textoSecundario:  #6b7280;
+    --fondo1: #ffffff; 
+    --fondo2: #e6f7e8;
+    --fondo3:  #dbdbdb;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--fondo1);
+    color: var(--textoPrincipal);
+    line-height: 1.6;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--fondo1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem 1rem;
+    box-shadow: 0 2px 4px var(--textoSecundario);
+    z-index: 1000;
+
+}
+
+nav{
+    display: grid;
+    grid-template-columns: 1fr auto auto 1fr;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+
+}
+nav i {
+    font-size: 1.8rem;
+    margin-right: 1.5rem;
+    justify-self: start;
+    color: var(--verdePrincipal);
+}
+
+nav h3 {
+    color: var(--verdePrincipal);
+    font-size: 1.5rem;
+    font-weight: 600;
+    justify-self: center;
+
+}
+
+#fotoPerfil {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid var(--amarillo);
+    display: block;
+    background-color: var(--fondo1);
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+    bottom: 0;
+    left: 1140px;
+}
+#fotoPerfilMenu {
+    position: absolute; /*Absolute y display none que se cambia con js*/
+    top: 3.5rem;
+    right: 0;
+    background-color: var(--fondo1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+}
+
+#fotoPerfilMenu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    color: var(--textoPrincipal);
+    
+}
+
+#fotoPerfilMenu a:hover {
+    background-color: var(--fondo2);
+}
+
+#fotoPerfilMenu i {
+    color: var(--verdeSecundario);
+}
+
+main {
+    max-width: 1200px;
+    margin: 8rem auto 2rem auto;
+    padding: 0 1rem;
+}
+
+#navegador {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    
+}
+
+#navegador a {
+    background-color: var(--fondo2);
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--turquesa1);
+    font-weight: 600;
+    transition: 0.2s;
+    border: 1px solid var(--turquesa2);
+}
+
+#navegador a:hover {
+    background-color: #b2f5ea;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+form label{
+    font-weight: 600;
+    color: var(--verdePrincipal);
+}
+form select{
+    width: 150px;
+}
+
+form textarea, select, input{
+    border-radius: 5px;
+    background-color: #e6f7e8;
+}
+
+#fecha{
+    width: 100px;
+}
+
+#textoArea{
+   line-height: 30px;
+   width: 850px;
+   border: none;
+
+}
+
+#contenedor{
+    box-shadow: 0 2px 8px var(--textoPrincipal);
+    background-color: var(--fondo1);
+    border-radius: 12px;
+    width: 1160px;
+    padding-bottom: 80px;
+    gap: 10px;
+    padding: 30px 60px;
+    margin: 40px 5px;
+}
+
+#contBotones{
+    display: flex;
+    gap: 1rem;
+    justify-content: start;
+    
+}
+
+#botonGuardar{
+    width: 120px;
+    margin: 15px 0px;
+    padding: 10px;
+    background-color: var(--verdePrincipal);
+    color: var(--fondo1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#botonGuardar:hover{
+    background-color: var(--verdeSecundario);
+}
+
+#botonCancelar{
+    width: 120px;
+    margin: 15px 0px;
+    padding: 10px;
+    background-color: var(--textoPrincipal);
+    color: var(--fondo3);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+#botonCancelar:hover{
+    background-color: var(--textoSecundario);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--textoSecundario);
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Ajuste general de main para tablets */
+    main {
+        min-height: auto; /* deja que crezca según el contenido */
+        margin: 7rem auto 2rem auto; /* suficiente espacio para header */
+        padding: 0 1rem;
+    }
+
+    /* footer más abajo gracias al contenido scrollable */
+    footer {
+        margin-top: 2rem;
+    }
+
+    /* Foto perfil y nav */
+    #fotoPerfil {
+        position: static;
+        margin-left: auto;
+        display: block;
+    }
+
+    #fotoPerfilMenu {
+        top: 4rem;
+        right: 10px;
+    }
+
+    /* Menú navegador en 3 columnas */
+    #navegador {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.7rem;
+    }
+
+    #navegador a {
+        text-align: center;
+        padding: 0.6rem 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    /* Contenedor y formulario */
+    #contenedor {
+        width: 100%;
+        padding: 25px 30px;
+        margin: 30px auto;
+    }
+
+    #textoArea {
+        width: 100%;
+    }
+
+    form select {
+        width: 180px;
+    }
+
+    #fecha {
+        width: 150px;
+    }
+
+    #contBotones {
+        flex-wrap: wrap;
+    }
+
+    #botonGuardar,
+    #botonCancelar {
+        width: 150px;
+        padding: 12px;
+    }
+}
+
+
+
