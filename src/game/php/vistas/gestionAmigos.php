@@ -12,7 +12,7 @@
     <header>
         <nav>
             <?php
-            require_once 'parciales/nav.php';
+                require_once 'parciales/nav.php';
             ?>
         </nav>
     </header>
@@ -36,17 +36,15 @@
         <div id="misAmigos">
             <h2>Lista de Amigos</h2>
             <div id="contenedorAmigo">
-                <img src="../imagenes/lolilla.png" class="fotoAmigo">
-                <p class="nombreAmigo">Elena García</p>
-                <button type="submit" class="estadoAmigoOnline">Online</button>
+                <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
+                <p class="nombreAmigo">Aitor Gomez</p>
                 <div class="simboloAmigo">
                     <i class="fa-solid fa-user-plus"></i>
                 </div>
             </div>
             <div id="contenedorAmigo">
-                <img src="../imagenes/lolilla.png" class="fotoAmigo">
-                <p class="nombreAmigo">Elena García</p>
-                <button type="submit" class="estadoAmigoOffline">Offline</button>
+                <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
+                <p class="nombreAmigo">Aitor Gomez</p>
                 <div class="simboloAmigo">
                     <i class="fa-solid fa-user-plus"></i>
                 </div>
@@ -55,8 +53,8 @@
         <div id="misSolicitudes">
             <h2>Solicitudes de Amistad</h2>
             <div id="contenedorSolicitudes">
-                <img src="../imagenes/lolilla.png" class="fotoAmigo">
-                <p class="nombreAmigo">Elena García</p>
+                <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
+                <p class="nombreAmigo">Aitor Gomez</p>
                 <button type="submit" class="aceptarSolicitud">Aceptar <i
                         class="fa-solid fa-user-check"></i></button></i>
                 <button type="submit" class="rechazarSolicitud">Rechazar <i class="fa-solid fa-user-xmark"></i></button>
