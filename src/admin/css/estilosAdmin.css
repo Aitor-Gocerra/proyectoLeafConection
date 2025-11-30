@@ -27,7 +27,7 @@
     padding: 0;
     box-sizing: border-box;
 }
- 
+
 body {
     font-family: var(--fuente-principal);
     background-color: #ffffff;
@@ -320,6 +320,7 @@ main {
     font-size: 0.95rem;
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
 }
+
 /* ESTILOS GESTIONAR PALABRAS (Importados de estilo.css) */
 #contenedorModificarPalabra {
     width: 100%;
@@ -778,3 +779,383 @@ footer {
     }
 }
 
+.contenedor_noticia,
+.contenedor_usuarios {
+    width: 100%;
+    /* En movil */
+}
+
+#noticia_contenedor {
+    section {
+        margin: 2rem 0rem;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 4px 4px 10px rgba(160, 160, 160, 0.705);
+        border-radius: 1rem;
+    }
+
+    #noticia_seccion_principal {
+        display: flex;
+        /* Para poder ordenarlos en el media query*/
+        font-family: inherit;
+
+        #noticia_imagen {
+            width: 100%;
+            padding: 0.75rem;
+            display: flex;
+
+            &>img {
+                width: 90%;
+                border-radius: 50%;
+                margin: auto;
+            }
+        }
+
+        #noticia_contenido {
+            width: 100%;
+            padding: 0% 1rem;
+            line-height: 1.2;
+
+            #noticia_titulo {
+                color: var(--color-secundario);
+            }
+        }
+    }
+
+    #noticia_seccion_pregunta {
+        padding: 0.75rem 1.75rem;
+        padding-bottom: 3.5rem;
+        position: relative;
+
+        .noticia_pregunta {
+            ul {
+                list-style: none;
+                padding-left: 0.75rem;
+            }
+
+            ul li input[type=radio] {
+                appearance: none;
+                /* Quita los estilos por defecto. */
+                width: 0.75rem;
+                height: 0.75rem;
+                border-radius: 50%;
+                border: 1px solid #1e73ce;
+            }
+
+            ul li input[type="radio"]:checked {
+                background-color: #1e73ce;
+            }
+
+            .fa-circle-check {
+                color: green;
+            }
+
+            .fa-circle-xmark {
+                color: red;
+            }
+        }
+
+        input[type=submit],
+        #noticia_panel input[type=submit] {
+            position: absolute;
+            right: 10%;
+            border: 0;
+            bottom: 2%;
+            border-radius: .5rem;
+            background-color: #1e73ce;
+            color: white;
+            padding: 0.5rem;
+        }
+    }
+}
+
+/* para móvil */
+@media (min-width: 576px) {
+
+    .contenedor_noticia,
+    .contenedor_usuarios {
+        max-width: 540px;
+    }
+}
+
+/* para ipad*/
+@media (min-width: 992px) {
+
+    .contenedor_noticia,
+    .contenedor_usuarios {
+        max-width: 760px;
+    }
+}
+
+@media (max-width: 992px) {
+    #noticia_seccion_principal {
+        flex-direction: column;
+        /* Ordenar los elementos verticalmente. */
+
+        #noticia_contenido {
+            order: 1;
+        }
+
+        #noticia_imagen {
+            order: 2;
+        }
+    }
+}
+
+#noticia_panel {
+    padding: 1rem;
+    box-sizing: border-box;
+    position: relative;
+    padding-bottom: 2.5rem;
+    margin: 2rem auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 4px 4px 10px rgba(101, 101, 101, 0.511);
+    border-radius: 1rem;
+
+    .noticias_titulo {
+        color: var(--color-primario);
+        font-size: 1.7rem;
+        /* como el CSS 1 */
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    form {
+        margin: auto;
+
+        label {
+            display: block;
+        }
+
+        input:not([type=submit]),
+        textarea,
+        button {
+            border-radius: .2rem;
+            background-color: #1e73ce09;
+            border: 1px solid var(--color-secundario);
+            margin: .5rem 0rem;
+            padding: .25rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:not([type=submit]):not([type=date]),
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border: 1px solid rgba(30, 115, 206, 0.56);
+            outline: none;
+            /* Quita el borde amarillo por defecto. */
+        }
+
+        input[type=submit] {
+            position: absolute;
+            right: 1rem;
+            bottom: .5rem;
+            padding: .5rem;
+            background-color: var(--color-secundario);
+            color: white;
+            border: 0;
+            border-radius: 10px;
+        }
+
+        .cuestionario_pregunta {
+            border: 1px solid var(--color-primario);
+            border-radius: .2rem;
+            padding: .5rem;
+            margin: .5rem 0rem;
+            box-sizing: border-box;
+
+        }
+    }
+
+    button {
+        display: block;
+        padding: .5rem;
+        background-color: var(--color-secundario);
+        border: 0;
+        border-radius: 10px;
+        color: white;
+
+        i {
+            margin-right: .5rem
+        }
+    }
+}
+
+@media (max-width: 576px) {
+
+    #noticia_contenedor section,
+    #noticia_panel {
+        margin: 0rem;
+        box-shadow: none;
+        border-radius: 0;
+        display: block;
+    }
+}
+
+#usuarios_panel {
+    padding: 1rem;
+    margin: 2rem auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 4px 4px 10px rgba(101, 101, 101, 0.511);
+    border-radius: 1rem;
+
+    .usuarios_titulo {
+        color: var(--color-primario);
+        font-size: 1.7rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .usuarios_seccion {
+        border: 1px solid var(--color-primario);
+        border-radius: 10px;
+        margin: 1rem 0rem;
+        padding: 1rem;
+
+        form {
+            margin: auto;
+            position: relative;
+            padding-bottom: 2.5rem;
+
+            label {
+                display: block;
+            }
+
+            input:not([type=submit]) {
+                border: 1px solid var(--color-secundario);
+                border-radius: .2rem;
+                background-color: #1e73ce09;
+                margin: .5rem 0rem;
+                padding: .25rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            input:focus {
+                border: 1px solid rgba(30, 115, 206, 0.56);
+                outline: none;
+                /* Quita el borde amarillo por defecto. */
+            }
+
+            input[type=submit] {
+                position: absolute;
+                right: 1rem;
+                bottom: .5rem;
+                padding: .5rem;
+                background-color: var(--color-secundario);
+                color: white;
+                border: 0;
+                border-radius: 10px;
+            }
+
+            ul {
+                list-style: none;
+
+                li {
+                    display: flex;
+
+                    input[type="radio"] {
+                        appearance: none;
+                        /* Quita los estilos por defecto. */
+                        width: 0.75rem;
+                        height: 0.75rem;
+                        margin-right: .25rem;
+                        border-radius: 50%;
+                        border: 1px solid var(--color-secundario);
+                    }
+
+                    input[type="radio"]:checked {
+                        background-color: var(--color-secundario);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Estilos específicos para formularios de consejos que no estén cubiertos */
+
+#contenedor {
+    box-shadow: 0 2px 8px var(--color-texto-oscuro);
+    background-color: var(--color-fondo);
+    border-radius: 12px;
+    width: 1160px;
+    padding-bottom: 80px;
+    gap: 10px;
+    padding: 30px 60px;
+    margin: 40px 5px;
+}
+
+#contBotones {
+    display: flex;
+    gap: 1rem;
+    justify-content: start;
+
+}
+
+#botonGuardar {
+    width: 120px;
+    margin: 15px 0px;
+    padding: 10px;
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#botonGuardar:hover {
+    background-color: var(--color-secundario);
+}
+
+#botonCancelar {
+    width: 120px;
+    margin: 15px 0px;
+    padding: 10px;
+    background-color: var(--color-texto-oscuro);
+    color: #dbdbdb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+#botonCancelar:hover {
+    background-color: var(--color-texto-gris);
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Contenedor y formulario */
+    #contenedor {
+        width: 100%;
+        padding: 25px 30px;
+        margin: 30px auto;
+    }
+
+    #textoArea {
+        width: 100%;
+    }
+
+    form select {
+        width: 180px;
+    }
+
+    #fecha {
+        width: 150px;
+    }
+
+    #contBotones {
+        flex-wrap: wrap;
+    }
+
+    #botonGuardar,
+    #botonCancelar {
+        width: 150px;
+        padding: 12px;
+    }
+}
