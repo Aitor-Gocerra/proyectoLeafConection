@@ -578,7 +578,7 @@ footer {
 /* ESCRITORIO (1440px en adelante) */
 @media (min-width: 1440px) {
     header {
-        padding: 1.2rem 2.5rem;
+        padding: 0.5rem 2rem;
         width: 100%;
     }
 
