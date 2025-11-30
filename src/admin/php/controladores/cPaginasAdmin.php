@@ -19,8 +19,8 @@
             $this->vista = 'gestionarNoticias';
         }
 
-        public function gestionarConsejos(){
-            $this->vista = 'gestionarConsejos';
+        public function gestionarConsDia(){
+            $this->vista = 'gestionarConsDia';
         }
 
         public function gestionarUsuarios(){

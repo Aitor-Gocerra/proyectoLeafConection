@@ -282,7 +282,8 @@ main {
 
     input[type="text"],
     input[type="date"],
-    input[type="url"] {
+    input[type="url"],
+    select {
         padding: 0.75rem 1rem;
         border: 2px solid #c6f6d5;
         border-radius: 8px;
@@ -290,7 +291,7 @@ main {
         transition: 0.2s;
     }
 
-    input:focus, textarea:focus{
+    input:focus, textarea:focus, select:focus{
         border-color: #48bb78;
         box-shadow: 0 0 6px rgba(72, 187, 120, 0.4);
         outline: none;
@@ -343,6 +344,7 @@ main {
     }
 }
 
+/****************************  GESTIÓN NOTICIA **************/
 .cuestionarioPregunta {
     border: 2px solid #38a169; /* un verde más visible */
     border-radius: 12px;
@@ -403,7 +405,7 @@ main {
     }
 }
 
-
+/************************************ GESTIÓN CONSEJO ***************/
 
 
 
