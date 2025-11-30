@@ -21,6 +21,15 @@
                 <a href="gestionarConsejos.php">GESTIONAR CONSEJOS</a>
                 <a href="gestionarUsuarios.php">GESTIONAR USUARIOS</a>
             </div>
+            <search id="buscadorFrases">
+                <h2>Buscar Frase a Modificar</h2>
+                <form action="#" method="get">
+                    <input type="search" id="inputBuscar" name="query" placeholder="Introduce una palabra clave o parte de la frase..." aria-label="Buscar frase a modificar">
+                    <button type="submit">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </form>
+            </search>
             <div id="contenedorModificarPalabra">
                 <h1>Añadir/Editar Palabra del Dia</h1>
                 <form action="" method="get">

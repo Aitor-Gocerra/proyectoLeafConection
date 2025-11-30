@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión Consejo Dia</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styleGestion.css">
+    <?php
+            require_once 'parciales/head.php';
+            encabezado("Gestion de Consejos del Día - LeafConnect");
+    ?>
 </head>
 
 <body>
     <header>
-        <nav>
-            <i class="fas fa-leaf"></i>
-            <h3>LeafConnect</h3>
-            <img src="doraemon.png" alt="Foto de perfil" id="fotoPerfil">
-            <div id="fotoPerfilMenu">
-                <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
-            </div>
-        </nav>
-
+        <?php
+            require_once 'parciales/nav.php';
+        ?>
     </header>
 
     <main>
         <div id="navegador">
-            <a href="">GESTIONAR PALABRAS</a>
-            <a href="">GESTIONAR FRASES</a>
-            <a href="">GESTIONAR NOTICIAS</a>
-            <a href="">GESTIONAR CONSEJOS</a>
-            <a href="">GESTIONAR USUARIOS</a>
-
+            <a href="gestionarPalabras.php">GESTIONAR PALABRAS</a>
+            <a href="gestionarFrases.php">GESTIONAR FRASES</a>
+            <a href="gestionarNoticias.php">GESTIONAR NOTICIAS</a>
+            <a href="gestionConsDia.php">GESTIONAR CONSEJOS</a>
+            <a href="gestionarUsuarios.php">GESTIONAR USUARIOS</a>
         </div>
+        <search id="buscadorFrases">
+            <h2>Buscar Frase a Modificar</h2>
+            <form action="#" method="get">
+                <input type="search" id="inputBuscar" name="query" placeholder="Introduce una palabra clave o parte de la frase..." aria-label="Buscar frase a modificar">
+                <button type="submit">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+            </form>
+        </search>
         <div id="contenedor">
             <h1>Editar/Eliminar consejos del día</h1>
             <form action="">
@@ -57,7 +58,9 @@
     </main>
 
     <footer>
-        <p>&copy; 2025-2026 LeafConnect. Todos los derechos reservados. </p>
+        <?php
+            require_once 'parciales/footer.php';
+        ?>
     </footer>
 
     <script src="menuDesplegable.js"></script>

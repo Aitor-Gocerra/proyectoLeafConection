@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <?php
-        require_once 'parciales/head.php';
-        encabezado("Palabra del día - LeafConnect");
-    ?>
+    <head>
+        <?php
+            require_once 'parciales/head.php';
+            encabezado("Palabra del día - LeafConnect");
+        ?>
+    </head>
     <body>
         <header>
             <?php

@@ -8,6 +8,13 @@
             $this->vista = '';
         }
 
+        public function login(){
+            $this->vista = 'login';
+        }
+
+        public function registro(){
+            $this->vista = 'registro';
+        }   
         public function inicio(){
             $this->vista = 'inicio';
         }
