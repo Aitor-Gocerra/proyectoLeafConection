@@ -126,7 +126,7 @@ nav h3 {
 }
 
 
- main {
+main {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -143,7 +143,7 @@ nav h3 {
     background-color: var(--fondo1);
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 2px 8px var(--textoPrincipal);
+    box-shadow: 0 2px 8px var(--verdePrincipal);
 }
 
 #tituloConsejo{
