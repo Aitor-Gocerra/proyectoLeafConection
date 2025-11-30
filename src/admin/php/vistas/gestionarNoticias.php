@@ -13,38 +13,45 @@
             ?>
         </header>
 
-         <main id="noticia_panel" class="contenedor_noticia">
-        <div class="noticia_titulo">
-                <h1>Gestión de noticias</h1>
-        </div>
-        <form action="" method="post" id="noticia_formulario">
-            <label for="">Nombre</label>
-            <input type="text" name="" id="" placeholder="Ej: Greta Thunberg">
+        <main>
+            <?php
+                require_once 'parciales/navegador.php';
+            ?>
 
-            <label for="">Contenido</label>
-            <textarea name="contenido" id="contenido" rows="5"></textarea>
+            <?php
+                require_once 'parciales/buscador.php';
+            ?>
 
-            <label for="">URL de la imagen</label>
-            <input type="url" name="url" id="url">
+        <div id="contenedorModificarPalabraFrase">
+            <h1>Gestión de noticias</h1>
+            <form action="" method="post" id="noticia_formulario">
+                <label for="">Nombre</label>
+                <input type="text" name="" id="" placeholder="Ej: Greta Thunberg">
 
-            <label for="">Fecha programada</label>
-            <input type="date" name="fecha" id="fecha">
+                <label for="">Contenido</label>
+                <textarea name="contenido" id="contenido" rows="5"></textarea>
 
-            <label for="">Cuestionario</label>
+                <label for="">URL de la imagen</label>
+                <input type="text" name="url" id="url">
 
-            <div class="cuestionario_pregunta">
-                <label for="">Pregunta</label>
-                <input type="text" name="" id="">
+                <label for="">Fecha programada</label>
+                <input type="date" name="fecha" id="fecha">
 
-                <label for="">Opciones (separadas por '/')</label>
-                <input type="text" name="opciones" id="opciones">
+                <label for="">Cuestionario</label>
 
-                <label for="">Respuesta correcta</label>
-                <input type="number" name="respuesta_correcta" id="">
-            </div>
+                <div class="cuestionario_pregunta">
+                    <label for="">Pregunta</label>
+                    <input type="text" name="" id="">
 
-            <input type="submit" value="Guardar noticia">
-            
+                    <label for="">Opciones (separadas por '/')</label>
+                    <input type="text" name="opciones" id="opciones">
+
+                    <label for="">Respuesta correcta</label>
+                    <input type="number" name="respuesta_correcta" id="">
+                </div>
+
+                <input type="submit" value="Guardar noticia">
+          </div>
         </form>
         <button id="añadirPregunta"><i class="fa-regular fa-square-plus"></i> Añadir Pregunta</button>
     </main>

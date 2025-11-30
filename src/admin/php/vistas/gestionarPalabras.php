@@ -16,16 +16,13 @@
             <?php
                 require_once 'parciales/navegador.php';
             ?>
-            <search id="buscadorFrases">
-                <h2>Buscar Frase a Modificar</h2>
-                <form action="#" method="get">
-                    <input type="search" id="inputBuscar" name="query" placeholder="Introduce una palabra clave o parte de la frase..." aria-label="Buscar frase a modificar">
-                    <button type="submit">
-                        <i class="fas fa-search"></i> Buscar
-                    </button>
-                </form>
-            </search>
-            <div id="contenedorModificarPalabra">
+
+            <?php
+                require_once 'parciales/buscador.php';
+            ?>
+
+
+            <div id="contenedorModificarPalabraFrase">
                 <h1>Añadir/Editar Palabra del Dia</h1>
                 <form action="" method="get">
                     <label for="palabra">Palabra</label>
@@ -43,9 +40,11 @@
             </div>
         </main>
         
-
         <footer>
-            <p>&copy; 2025-2026 ReciQuiz. Todos los derechos reservados.</p>
+            <?php
+                require_once 'parciales/footer.php';
+            ?>
         </footer>
+
     </body>
 </html>
