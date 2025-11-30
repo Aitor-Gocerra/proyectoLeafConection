@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <nav>
+        <nav class="navegacion-autenticacion">
             <div class="infoJuego">
                 <img src="./imagenes/logo.jpg" alt="logo Juego" class="logo">
                 <h3>LeafConnect</h3>
@@ -42,9 +42,13 @@
 
     </main>
 
+    <a href="index.php" id="enlaceVolver">
+        <i class="fas fa-arrow-left"></i> Volver
+    </a>
+
     <footer>
         <?php
-        require_once 'parciales/footer.php';
+            require_once 'parciales/footer.php';
         ?>
     </footer>
 
