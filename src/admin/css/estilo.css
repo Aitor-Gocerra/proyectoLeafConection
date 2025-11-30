@@ -188,7 +188,7 @@ main {
     }
 
     /* ESTILOS DEL BUSCADOR */
-    #buscadorFrases {
+    #buscadorFrasesPalabra {
         margin-bottom: 2rem;
         padding: 1.5rem;
         background-color: #e6fffa;
@@ -198,7 +198,7 @@ main {
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
-    #buscadorFrases h2 {
+    #buscadorFrasesPalabra h2 {
         font-size: 1.2rem;
         color: #2c7a7b;
         /* Color de texto similar al navegador */
@@ -207,7 +207,7 @@ main {
         padding-bottom: 0.5rem;
     }
 
-    #buscadorFrases form {
+    #buscadorFrasesPalabra form {
         display: flex;
         gap: 0.5rem;
     }
@@ -228,7 +228,7 @@ main {
         outline: none;
     }
 
-    #buscadorFrases button[type="submit"] {
+    #buscadorFrasesPalabra button[type="submit"] {
         background-color: #38b2ac;
         /* Color de acento A */
         color: white;
@@ -243,19 +243,19 @@ main {
         gap: 0.4rem;
     }
 
-    #buscadorFrases button[type="submit"]:hover {
+    #buscadorFrasesPalabra button[type="submit"]:hover {
         background-color: #319795;
         transform: translateY(-1px);
     }
 
-    #buscadorFrases button i {
+    #buscadorFrasesPalabra button i {
         color: white;
         margin: 0;
         font-size: 1rem;
     }
 }
 
-#contenedorModificarPalabra {
+#contenedorModificarPalabraFrase {
     width: 100%;
     background-color: #ffffff;
     padding: 1.5rem;
@@ -289,7 +289,7 @@ main {
         transition: 0.2s;
     }
 
-    input:focus {
+    input:focus, textarea:focus{
         border-color: #48bb78;
         box-shadow: 0 0 6px rgba(72, 187, 120, 0.4);
         outline: none;
@@ -328,7 +328,48 @@ main {
     input[type="submit"] {
         max-width: 160px;
     }
+
+    textarea, button{
+            background-color: #1e73ce09;
+            margin: .5rem 0rem;
+            width: 100%;
+            box-sizing: border-box;
+             padding: 0.75rem 1rem;
+            border: 2px solid #c6f6d5;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+
+
 }
+
+.cuestionario_pregunta {
+    border: 1px solid var(--verde-principal);
+    border-radius: .2rem;
+    padding: .5rem;
+    margin: .5rem 0rem;
+    box-sizing: border-box;
+        
+}  
+
+    button{
+        display: block;
+        padding: .5rem;
+        background-color: var(--verde-secundario);
+        border: 0;
+        border-radius: 10px;
+        color: white;
+        i{
+            margin-right: .5rem
+        }
+    }
+
+
+
+
+
 
 
 /****************************** ENLACE VOLVER                      ******************************/
