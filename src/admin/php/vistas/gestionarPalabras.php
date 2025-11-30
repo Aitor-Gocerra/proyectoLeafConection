@@ -22,7 +22,7 @@
             ?>
 
 
-            <div id="contenedorModificarPalabraFrase">
+            <div id="contenedorAdmin">
                 <h1>Añadir/Editar Palabra del Dia</h1>
                 <form action="" method="get">
                     <label for="palabra">Palabra</label>

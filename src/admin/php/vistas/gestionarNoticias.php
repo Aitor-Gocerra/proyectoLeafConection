@@ -22,7 +22,7 @@
                 require_once 'parciales/buscador.php';
             ?>
 
-        <div id="contenedorModificarPalabraFrase">
+        <div id="contenedorAdmin">
             <h1>Gestión de noticias</h1>
             <form action="" method="post" id="noticia_formulario">
                 <label for="">Nombre</label>
@@ -39,7 +39,7 @@
 
                 <label for="">Cuestionario</label>
 
-                <div class="cuestionario_pregunta">
+                <div class="cuestionarioPregunta">
                     <label for="">Pregunta</label>
                     <input type="text" name="" id="">
 

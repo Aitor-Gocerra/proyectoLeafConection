@@ -21,7 +21,7 @@
             <?php
                 require_once 'parciales/buscador.php';
             ?>
-            <div id="contenedorModificarPalabraFrase">
+            <div id="contenedorAdmin">
                 <h1>Añadir/Editar Frase del Dia</h1>
                 <form action="" method="get">
                     <label for="frase">Frase</label>
