@@ -10,11 +10,9 @@
 
 <body>
     <header>
-        <nav>
-            <?php
-                require_once 'parciales/nav.php';
-            ?>
-        </nav>
+        <?php
+            require_once 'parciales/nav.php';
+        ?>
     </header>
     <main>
         <div id="tituloAmigos">
@@ -61,11 +59,11 @@
             </div>
         </div>
     </main>
-        <footer>
-            <?php
-                require_once 'parciales/footer.php';
-            ?>
-        </footer>
+    <footer>
+        <?php
+        require_once 'parciales/footer.php';
+        ?>
+    </footer>
     <script src="javaScript/amigosSolicitudes.js"></script>
 </body>
 

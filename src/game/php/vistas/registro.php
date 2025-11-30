@@ -3,8 +3,8 @@
 
 <head>
     <?php
-    require_once 'parciales/head.php';
-    encabezado("Registro - LeafConnect");
+        require_once 'parciales/head.php';
+        encabezado("Registro - LeafConnect");
     ?>
 </head>
 
