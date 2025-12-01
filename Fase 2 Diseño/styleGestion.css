@@ -33,11 +33,11 @@ header{
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 1520.8px;
     background-color: var(--fondo1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 1rem 1rem;
+    padding: 16px 16px;
     box-shadow: 0 2px 4px var(--textoSecundario);
     z-index: 1000;
 
@@ -226,31 +226,43 @@ footer {
 
 @media (min-width: 768px) and (max-width: 1024px) {
 
-    /* Ajuste general de main para tablets */
-    main {
-        min-height: auto; /* deja que crezca según el contenido */
-        margin: 7rem auto 2rem auto; /* suficiente espacio para header */
-        padding: 0 1rem;
+    header {
+        padding: 0.8rem 1rem;
     }
 
-    /* footer más abajo gracias al contenido scrollable */
-    footer {
-        margin-top: 2rem;
+    nav {
+        grid-template-columns: auto 1fr auto;
+        gap: 10px;
     }
 
-    /* Foto perfil y nav */
+    /* Acomodar logo y texto */
+    nav i {
+        font-size: 1.6rem;
+        margin-right: 0.5rem;
+    }
+
+    nav h3 {
+        font-size: 1.3rem;
+        justify-self: center;
+    }
+
+    /* FOTO PERFIL: quitar posición absoluta que rompe el diseño */
     #fotoPerfil {
         position: static;
         margin-left: auto;
-        display: block;
     }
 
     #fotoPerfilMenu {
-        top: 4rem;
         right: 10px;
+        top: 4rem;
     }
 
-    /* Menú navegador en 3 columnas */
+    main {
+        margin: 7rem auto 2rem auto;
+        padding: 0 1rem;
+    }
+
+    /* Menú navegador: pasar a 2 filas si se necesita */
     #navegador {
         grid-template-columns: repeat(3, 1fr);
         gap: 0.7rem;
@@ -262,13 +274,14 @@ footer {
         font-size: 0.95rem;
     }
 
-    /* Contenedor y formulario */
+    /* Contenedor principal más estrecho */
     #contenedor {
         width: 100%;
         padding: 25px 30px;
         margin: 30px auto;
     }
 
+    /* Textarea adaptar a ancho del contenedor */
     #textoArea {
         width: 100%;
     }
@@ -285,7 +298,8 @@ footer {
         flex-wrap: wrap;
     }
 
-    #botonGuardar,
+    /* Botones más cómodos */
+    #botonGuardar, 
     #botonCancelar {
         width: 150px;
         padding: 12px;

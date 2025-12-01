@@ -21,7 +21,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 
 }
 /* Para todos los html del usuario */
@@ -36,11 +35,11 @@ header {
     position: fixed;
     width: 100%;
     background-color: var(--fondo1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); /* 10/16= 0.625 */
+    -webkit-backdrop-filter: blur(10px); /* 10/16= 0.625 */
     padding: 1.315097317201473%;
     /* 20px *100/1520,8=1.315097317201473% */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 0 0.125 0.25  */
     z-index: 1000;
 }
 
@@ -64,7 +63,7 @@ nav h3 {
     font-size: 1.5rem;
     font-weight: 600;
     display: inline;
-    margin-left: 400px;
+    margin-left: 400px; /* (1200/400) */
 }
 
 #fotoPerfil {
@@ -87,7 +86,7 @@ nav h3 {
 
 #fotoPerfilMenu {
     position: absolute;
-    top: 60px;
+    top: 60px; /*  */
     background-color: var(--fondo1);
     box-shadow: 0 4px 6px var(--textoPrincipal);
     border-radius: 8px;
@@ -102,6 +101,7 @@ nav h3 {
     padding: 0.75rem 1.5rem;
     color: var(--textoPrincipal);
     text-decoration: none;
+    
 }
 
 #fotoPerfilMenu a:hover {
@@ -248,9 +248,10 @@ footer {
     margin-top: 3rem;
 }
 
-/* Para tablets  */
+/* Para tablets min-width: 768px  */
 @media (min-width: 768px) and (max-width: 1024px) {
 
+    /* HEADER */
     header {
         padding: 20px;
     }
@@ -262,7 +263,7 @@ footer {
 
     nav h3 {
         margin-left: 150px;
-        font-size: 22px; /* equivalente aprox. a 1.4rem */
+        font-size: 22px;
     }
 
     #fotoPerfil {
@@ -275,25 +276,50 @@ footer {
     #fotoPerfilMenu {
         top: 55px;
         min-width: 180px;
+        width: 200px;
+        margin-left: 325px;
     }
 
+
+    /* MAIN GENERAL */
+    main {
+        padding-top: 120px;   /* evita que el header tape contenido */
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+        min-height: auto;      /* deja crecer el scroll */
+    }
+
+    /* CAJA CONSEJO */
     #cajaConsejo {
         width: 800px;
-        max-width: none;
-        margin-top: 130px;   /* equivalente a 8rem aprox */
-        padding: 24px;       /* 1.5rem en px */
+        max-width: 90%;
+        margin-top: 130px;
+        padding: 24px;
     }
 
+    /* FORMULARIOS (registro / login / editar...) */
     form {
         width: 600px;
+        max-width: 90%;
         margin: 32px auto;
         padding: 32px;
     }
 
+    /* BOTONES */
     #boton,
     #bInvitado {
         width: 360px;
         margin-left: auto;
         margin-right: auto;
     }
+
+    /* FOOTER MÁS ABAJO */
+    footer {
+        margin-top: 60px;
+        padding: 30px;
+    }
 }
+
+
+

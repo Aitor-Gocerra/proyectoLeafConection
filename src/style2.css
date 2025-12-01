@@ -251,6 +251,7 @@ footer {
 
 @media (min-width: 768px) and (max-width: 1024px) {
 
+    /* HEADER */
     header {
         padding: 20px;
     }
@@ -262,7 +263,7 @@ footer {
 
     nav h3 {
         margin-left: 150px;
-        font-size: 22px; /* equivalente aprox. a 1.4rem */
+        font-size: 22px;
     }
 
     #fotoPerfil {
@@ -277,23 +278,41 @@ footer {
         min-width: 180px;
     }
 
-    #cajaConsejo {
-        width: 800px;
-        max-width: none;
-        margin-top: 130px;   /* equivalente a 8rem aprox */
-        padding: 24px;       /* 1.5rem en px */
+    /* MAIN GENERAL */
+    main {
+        padding-top: 120px;   /* evita que el header tape contenido */
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+        min-height: auto;      /* deja crecer el scroll */
     }
 
+    /* CAJA CONSEJO */
+    #cajaConsejo {
+        width: 800px;
+        max-width: 90%;
+        margin-top: 130px;
+        padding: 24px;
+    }
+
+    /* FORMULARIOS (registro / login / editar...) */
     form {
         width: 600px;
+        max-width: 90%;
         margin: 32px auto;
         padding: 32px;
     }
 
+    /* BOTONES */
     #boton,
     #bInvitado {
         width: 360px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    /* FOOTER MÁS ABAJO */
+    footer {
+        padding-top: 20px;
     }
 }
