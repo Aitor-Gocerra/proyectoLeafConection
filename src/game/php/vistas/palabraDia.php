@@ -26,9 +26,9 @@
                     </div>
             </div>
         </main>
-        <a href="./vistas/inicio.php" id="enlaceVolver">
-            <i class="fas fa-arrow-left"></i> Volver
-        </a>
+        <?php
+            require_once 'parciales/botonVolver.php';
+        ?>
         <footer>
             <?php
                 require_once 'parciales/footer.php';

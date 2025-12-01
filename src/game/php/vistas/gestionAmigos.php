@@ -59,6 +59,9 @@
             </div>
         </div>
     </main>
+        <?php
+            require_once 'parciales/botonVolver.php';
+        ?>
     <footer>
         <?php
         require_once 'parciales/footer.php';
