@@ -237,7 +237,7 @@ form input:not([type="submit"]) {
 #bInvitado:hover {
     background-color: var(--fondo1);
 }
- footer p{
+footer p{
     text-align: center;
 } 
 
