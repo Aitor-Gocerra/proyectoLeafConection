@@ -1,22 +1,21 @@
 <?php
 
     require_once __DIR__ . '/../Modelos/Frase.php';
-    
+
     class ConFrase {
 
         private $fraseMod; // Instancia del modelo de Frase
         public $mensaje;    // Para almacenar mensajes de éxito/error al usuario
-        public $frasesList; // Para almacenar la lista de frases a mostrar en una vista
+        public $frasesList; // Para almacenar la lista de frases 
+        public $vista;
         
-        // Inyección de la conexión a la base de datos (PDO)
-        public function __construct(PDO $db) {
+        public function __construct() {
             // Inicializa la instancia del modelo, pasándole la conexión $db
-            $this->fraseMod = new Frase($db);
+            $this->fraseMod = new Frase();
         }
 
         
         public function listarFrases() {
-
             $this->frasesList = $this->fraseMod->listarFrases();
         }
 
