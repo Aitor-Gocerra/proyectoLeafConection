@@ -26,7 +26,7 @@
         ?>
         <div id="contenedorAdmin">
             <h1>Editar/Eliminar consejos del día</h1>
-            <form action="">
+            <form action="" >
                 <label for="">Consejo del día</label>
                 <textarea name="" id="textoArea" placeholder="Introduce un nuevo consejo"></textarea>
 
