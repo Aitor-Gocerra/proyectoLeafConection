@@ -665,8 +665,9 @@ footer {
 /*MÓVIL ESTÁNDAR (480px-767px)*/
 
 @media (max-width: 767px) {
+    
     header {
-        padding: 0.8rem 1rem;
+        padding: 0.8rem 1rem; /* Reduce el padding del header para ahorrar espacio vertical */
     }
 
     nav {
@@ -681,7 +682,7 @@ footer {
         font-size: 1.1rem;
     }
 
-    #fotoPerfil {
+    #fotoPerfil { /* Usa tanto width/height como min-width/min-height para prevenir que la imagen se colapse si hay restricciones de espacio */
         width: 35px;
         height: 35px;
         min-width: 35px;
@@ -690,7 +691,7 @@ footer {
 
     #menuDesplegable {
         top: 50px;
-        min-width: 160px;
+        min-width: 160px; /* Establece un ancho mínimo para evitar que quede demasiado estrecho */
     }
 
     main {
