@@ -34,15 +34,15 @@
 
                 <div class="tarjetaJuego">
                     <i class="fas fa-globe"></i>
-                    <h2 class="tituloTarjeta">Eco-Noticia</h2>
+                    <h2 class="tituloTarjeta">Noticia del día</h2>
                     <p class="descripcionTarjeta">Aprende sobre la noticia eco-ambiental del dia</p>
                     <a href="index.php?c=Paginas&m=noticiaDia">Comenzar desafío</a>
                 </div>
 
                 <div class="tarjetaJuego">
                     <i class="fas fa-recycle"></i>
-                    <h2 class="tituloTarjeta">¿Como puedo contribuir?</h2>
-                    <p class="descripcionTarjeta">Obten tu eco-consejo diario</p>
+                    <h2 class="tituloTarjeta">Consejo del día</h2>
+                    <p class="descripcionTarjeta">Lee el consejo diario sobre la salud mental y ambiental</p>
                     <a href="index.php?c=Paginas&m=consejoDia">Comenzar desafío</a>
                 </div>
             </div>
