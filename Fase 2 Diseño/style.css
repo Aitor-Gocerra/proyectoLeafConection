@@ -86,7 +86,7 @@ nav h3 {
 
 #fotoPerfilMenu {
     position: absolute;
-    top: 60px; /*  */
+    top: 60px; 
     background-color: var(--fondo1);
     box-shadow: 0 4px 6px var(--textoPrincipal);
     border-radius: 8px;
