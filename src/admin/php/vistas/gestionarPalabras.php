@@ -77,10 +77,10 @@
                             <?php
                             foreach ($resultadosBusqueda as $palabra) {
                                 echo "<tr>";
-                                echo "<td>" . htmlspecialchars($palabra['idPalabra']) . "</td>";
-                                echo "<td>" . htmlspecialchars($palabra['palabra']) . "</td>";
-                                echo "<td>" . htmlspecialchars($palabra['palabraCorrecta']) . "</td>";
-                                echo "<td>" . htmlspecialchars($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
+                                echo "<td>" . $palabra['idPalabra'] . "</td>";
+                                echo "<td>" . $palabra['palabra'] . "</td>";
+                                echo "<td>" . $palabra['palabraCorrecta'] . "</td>";
+                                echo "<td>" . $palabra['fechaProgramada'] ?? 'No programada' . "</td>";
                                 echo "<td>";
                                 echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
                                 echo "</td>";
@@ -95,7 +95,8 @@
                     <p>No se encontraron palabras con el término: <?php echo htmlspecialchars($_GET['buscar']); ?></p>
                 </div>
             <?php } ?>
-
+            
+            <br>
             <div id="ultimasDiezPalabras">
                 <h2>Últimas 10 Palabras</h2>
                 <?php if (isset($palabras) && !empty($palabras)) { ?>
@@ -116,7 +117,7 @@
                                 echo "<td>" . $palabra['idPalabra'] . "</td>";
                                 echo "<td>" . $palabra['palabra'] . "</td>";
                                 echo "<td>" . $palabra['palabraCorrecta'] . "</td>";
-                                echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
+                                echo "<td>" . $palabra['fechaProgramada'] ?? 'No programada' . "</td>";
                                 echo "<td>";
                                 echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
                                 echo "</td>";
@@ -138,7 +139,7 @@
         ?>
     </footer>
 
-    <script src="../../javascript/anadirPregunta.js"></script>
+    <script src="../../javascript/añadirPregunta.js"></script>
     <script>
         // Script para el buscador de palabras
         document.getElementById('formBuscar').addEventListener('submit', function(e) {

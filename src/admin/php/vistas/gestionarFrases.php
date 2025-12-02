@@ -101,6 +101,7 @@
             </div>
         <?php } ?>
 
+        <br>
         <div id="ultimasDiezFrases">
             <h2>Últimas 10 Frases</h2>
             <?php if (isset($frases) && !empty($frases)) { ?>

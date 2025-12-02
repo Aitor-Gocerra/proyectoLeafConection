@@ -12,7 +12,7 @@ class Palabra extends Conexion
         try {
             // 1. Insertar la frase
             $sqlPalabra = "
-                    INSERT INTO Palabras (palabra, palabraCorrecta) 
+                    INSERT INTO palabras (palabra, palabraCorrecta) 
                     VALUES (:palabra, :palabraCorrecta);
                 ";
 
@@ -26,7 +26,7 @@ class Palabra extends Conexion
             if ($idPalabra) {
                 // 2. Insertar la pista relacionada
                 $sqlPista = "
-                        INSERT INTO PistasPalabra (idPalabra, pista) 
+                        INSERT INTO pistaspalabras (idPalabra, pista) 
                         VALUES (:idPalabra, :pista);
                     ";
 
@@ -50,7 +50,7 @@ class Palabra extends Conexion
     {
         $sql = "
                 SELECT * 
-                FROM Palabras 
+                FROM palabras 
                 ORDER BY fechaProgramada DESC
                 LIMIT 10;
             ";
@@ -62,19 +62,19 @@ class Palabra extends Conexion
         return !empty($resultado) ? $resultado : null;
     }
 
-    public function buscarPalabras($query)
+    public function buscarPalabras($buscar)
     {
         $sql = "
                 SELECT * 
-                FROM Palabras 
-                WHERE palabra LIKE :query 
-                   OR palabraCorrecta LIKE :query
+                FROM palabras 
+                WHERE palabra LIKE :buscar 
+                   OR palabraCorrecta LIKE :buscar
                 ORDER BY fechaProgramada DESC;
             ";
         
         $stmt = $this->conexion->prepare($sql);
-        $searchTerm = '%' . $query . '%';
-        $stmt->bindParam(':query', $searchTerm);
+        $searchTerm = '%' . $buscar . '%';
+        $stmt->bindParam(':buscar', $searchTerm);
         $stmt->execute();
 
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -85,7 +85,7 @@ class Palabra extends Conexion
     public function actualizarPalabra($idPalabra, $palabra, $palabraCorrecta)
     {
         $sql = "
-                UPDATE Palabras 
+                UPDATE palabras 
                 SET palabra = :palabra, palabraCorrecta = :correcta 
                 WHERE idFrase = :id
             ";
@@ -97,7 +97,7 @@ class Palabra extends Conexion
         return $stmt->execute();
     }
 
-    public function anadirPista($idPalabra, $pista)
+    /* public function anadirPista($idPalabra, $pista)
     {
         $sql = "
                 INSERT INTO PistasFrase (idPalabra, pista) 
@@ -109,7 +109,7 @@ class Palabra extends Conexion
         $stmt->bindParam(':pista', $pista);
 
         return $stmt->execute();
-    }
+    } */
 
     public function eliminarPalabra($idPalabra)
     {

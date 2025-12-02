@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../modelos/Palabra.php';
+require_once __DIR__ . '/../modelos/mPalabra.php';
 
 class CPalabra
 {
@@ -19,7 +19,7 @@ class CPalabra
 
     public function listarPalabras()
     {
-        $this->palabrasList = $this->palabraMod->listarpalabras();
+        $this->palabrasList = $this->palabraMod->listarPalabras();
     }
 
     public function gestionarPalabras()
