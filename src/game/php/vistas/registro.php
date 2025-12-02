@@ -26,6 +26,9 @@
         <form action="POST" class="formulario-autenticacion" action="./controlador/recogerDatos.js">
 
             <h1>Comenzar</h1>
+            <label for="usuario">Nombre de Usuario</label>
+            <input type="text" placeholder="Introduce usuario" id="input-usuario">
+
             <label for="correo">Correo electrónico</label>
             <input type="text" placeholder="Introduce correo" id="input-correo">
 
