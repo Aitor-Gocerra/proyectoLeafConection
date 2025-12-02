@@ -14,18 +14,18 @@
         </header>
         <main id="noticia_contenedor" class="contenedor_noticia">
             <section id="noticia_seccion_principal">
+
                 <div id="noticia_titulo">
                     <h1>
                         Nacidos en 2020 sufrirán el triple de extremos climáticos
                     </h1>
                 </div>
-            
+
                 <div id="noticia_imagen">
                     <div id="imagen"></div>
                 </div>
 
                 <div id="noticia_contenido">
-                    
                     <p class="noticia_parrafo">
                         Los fenómenos climáticos extremos dejarán de ser excepcionales. Según el informe, los 
                         niños de Aragón (97%), Cataluña (96%) y La Rioja (94%) serán los más expuestos a sufrir, 
@@ -35,8 +35,7 @@
                         
                         El documento aporta una poderosa visualización: hasta 111 millones de niños nacidos en 
                         2020 podrían sufrir olas de calor extremas a lo largo de su vida si la temperatura global 
-                        alcanza los 3,5°C. Pero limitar el calentamiento a 1,5°C evitaría esta exposición para 
-                        38 millones de ellos.<br></br>
+                        alcanza los 3,5°C.<br></br>
                     </p>
                 </div>
             </section>
