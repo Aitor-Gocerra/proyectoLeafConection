@@ -30,7 +30,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} 
+}
 
 body {
     font-family: var(--fuente);
@@ -170,10 +170,10 @@ main {
     }
 
     #navegador {
-    display: flex;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
     }
 
     #navegador a {
@@ -262,6 +262,7 @@ main {
         font-size: 1rem;
     }
 }
+
 /******************************* CONTENEDOR DE ADMINISTRADOR USUARIO, PALABRA, FRASE, NOTICIA Y CONSEJO*****************/
 #contenedorAdmin {
     width: 100%;
@@ -379,12 +380,14 @@ main {
 
 /****************************  GESTIÓN NOTICIA **************/
 .cuestionarioPregunta {
-    border: 2px solid var(--color-primario); /* un verde más visible */
+    border: 2px solid var(--color-primario);
+    /* un verde más visible */
     border-radius: 12px;
     padding: 1rem;
     margin: 0.75rem 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    background-color: var(--color-fondo); /* suave tono verde para diferenciar */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: var(--color-fondo);
+    /* suave tono verde para diferenciar */
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -401,21 +404,22 @@ main {
         padding: 0.6rem 0.8rem;
     }
 
-    button{
-    display: block;
-    padding: .5rem;
-    background-color: var(--color-secundario);
-    border: 0;
-    border-radius: 10px;
-    color: white;
-    i{
-        margin-right: .5rem
+    button {
+        display: block;
+        padding: .5rem;
+        background-color: var(--color-secundario);
+        border: 0;
+        border-radius: 10px;
+        color: white;
+
+        i {
+            margin-right: .5rem
+        }
     }
-}
 
 }
 
-#añadirPregunta {
+#btnAnadirPregunta {
     margin-top: 0.8rem;
     background-color: var(--color-secundario);
     color: var(--color-fondo);
@@ -427,17 +431,76 @@ main {
     cursor: pointer;
     transition: 0.2s;
     max-width: 160px;
-
-    hover {
-    background-color: var(--color-primario);
-    transform: translateY(-2px);
-    }
-
-    active {
-    transform: translateY(0);
-    }
 }
 
+#btnAnadirPregunta:hover {
+    background-color: var(--color-primario);
+    transform: translateY(-2px);
+}
+
+#btnAnadirPregunta:active {
+    transform: translateY(0);
+}
+
+/**************************** ÚLTIMAS 10 PALABRAS/FRASES ****************************/
+
+#ultimasDiezPalabras, #ultimasDiezFrases {
+    width: 90%;
+    max-width: 1100px;
+    margin: 2rem auto;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+#ultimasDiezPalabras h2, #ultimasDiezFrases h2 {
+    font-size: 1.4rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-azul-1);
+    padding-bottom: 0.5rem;
+}
+
+#ultimasDiezPalabras table, #ultimasDiezFrases table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+#ultimasDiezPalabras th, #ultimasDiezFrases th {
+    background-color: #e6fffa;
+    color: #2c7a7b;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    border-radius: 6px 6px 0 0;
+}
+
+#ultimasDiezPalabras td, #ultimasDiezFrases td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: var(--color-texto-gris);
+}
+
+#ultimasDiezPalabras tr:last-child td, #ultimasDiezFrases tr:last-child td {
+    border-bottom: none;
+}
+
+#ultimasDiezPalabras tr:hover, #ultimasDiezFrases tr:hover {
+    background-color: #f7fafc;
+}
+
+#ultimasDiezPalabras a, #ultimasDiezFrases a {
+    color: #e53e3e;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+#ultimasDiezPalabras a:hover, #ultimasDiezFrases a:hover {
+    text-decoration: underline;
+}
 
 /****************************** FOOTER                      ******************************/
 
@@ -479,7 +542,7 @@ footer {
         font-size: 1.8rem;
     }
 
-    main > p {
+    main>p {
         font-size: 0.95rem;
         margin-bottom: 2rem;
     }
@@ -518,7 +581,7 @@ footer {
         font-size: 1.5rem;
     }
 
-    main > p {
+    main>p {
         font-size: 0.9rem;
         margin-bottom: 1.5rem;
     }
@@ -563,7 +626,7 @@ footer {
         font-size: 2.3rem;
     }
 
-    main > p {
+    main>p {
         font-size: 1.05rem;
         margin-bottom: 2.8rem;
     }
@@ -607,7 +670,7 @@ footer {
         font-size: 2.3rem;
     }
 
-    main > p {
+    main>p {
         font-size: 1.05rem;
         margin-bottom: 2.8rem;
     }
@@ -618,5 +681,3 @@ footer {
         padding: 2rem;
     }
 }
-
-

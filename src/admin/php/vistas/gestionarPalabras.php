@@ -11,17 +11,17 @@
 <body>
     <header>
         <?php
-            require_once 'parciales/nav.php';
+        require_once 'parciales/nav.php';
         ?>
     </header>
     <main>
         <?php
-            require_once 'parciales/navegador.php';
+        require_once 'parciales/navegador.php';
         ?>
 
         <?php
-            require_once 'parciales/buscador.php';
-            titulo("Palabra");
+        require_once 'parciales/buscador.php';
+        titulo("Palabra");
         ?>
 
 
@@ -39,7 +39,7 @@
                 <label for="fecha">Fecha programada</label>
                 <input type="date" name="fecha" id="fecha">
 
-                <button type="button" id="añadirPregunta">
+                <button type="button" id="btnAnadirPregunta">
                     <i class="fa-regular fa-square-plus"></i> Añadir Pregunta
                 </button>
 
@@ -90,59 +90,60 @@
                         </tbody>
                     </table>
                 </div>
-            <?php } elseif (isset($_GET['query'])) { ?>
+            <?php } elseif (isset($_GET['buscar'])) { ?>
                 <div class="mensaje">
                     <p>No se encontraron palabras con el término: <?php echo htmlspecialchars($_GET['buscar']); ?></p>
                 </div>
             <?php } ?>
-            
-            <br>
-            <div id="ultimasDiezPalabras">
-                <h2>Últimas 10 Palabras</h2>
-                <?php if (isset($palabras) && !empty($palabras)) { ?>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Palabra</th>
-                                <th>Definición</th>
-                                <th>Fecha Programada</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($palabras as $palabra) {
-                                echo "<tr>";
-                                echo "<td>" . $palabra['idPalabra'] . "</td>";
-                                echo "<td>" . $palabra['palabra'] . "</td>";
-                                echo "<td>" . $palabra['definicion'] . "</td>";
-                                echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
-                                echo "<td>";
-                                echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
-                                echo "</td>";
-                                echo "</tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                <?php } else { ?>
-                    <p>No hay palabras guardadas aún.</p>
-                <?php } ?>
-            </div>
 
-        </div>
+            
     </main>
+    <br>
+    <div id="ultimasDiezPalabras">
+        <h2>Últimas 10 Palabras</h2>
+        <?php if (isset($palabras) && !empty($palabras)) { ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Palabra</th>
+                        <th>Definición</th>
+                        <th>Fecha Programada</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($palabras as $palabra) {
+                        echo "<tr>";
+                        echo "<td>" . $palabra['idPalabra'] . "</td>";
+                        echo "<td>" . $palabra['palabra'] . "</td>";
+                        echo "<td>" . $palabra['definicion'] . "</td>";
+                        echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
+                        echo "<td>";
+                        echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        <?php } else { ?>
+            <p>No hay palabras guardadas aún.</p>
+        <?php } ?>
+    </div>
+
     <footer>
         <?php
         require_once 'parciales/footer.php';
         ?>
     </footer>
 
-    <script src="../../javascript/añadirPregunta.js"></script>
+    <script src="javascript/anadirPregunta.js"></script>
+
     <script>
         // Script para el buscador de palabras
-        document.getElementById('formBuscar').addEventListener('submit', function(e) {
+        document.getElementById('formBuscar').addEventListener('submit', function (e) {
             e.preventDefault();
             const buscar = document.getElementById('inputBuscar').value;
             if (buscar.trim() !== '') {

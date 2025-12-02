@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../modelos/Frase.php';
+require_once __DIR__ . '/../modelos/mFrase.php';
 
 class CFrase
 {

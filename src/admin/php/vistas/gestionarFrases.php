@@ -17,12 +17,12 @@
 
     <main>
         <?php
-            require_once 'parciales/navegador.php';
+        require_once 'parciales/navegador.php';
         ?>
 
         <?php
-            require_once 'parciales/buscador.php';
-            titulo("Frase");
+        require_once 'parciales/buscador.php';
+        titulo("Frase");
         ?>
         <div id="contenedorAdmin">
             <h1>Añadir/Editar Frase del Dia</h1>
@@ -41,7 +41,7 @@
                 <label for="fecha">Fecha programada</label>
                 <input type="date" name="fecha" id="fecha">
 
-                <button type="button" id="añadirPregunta">
+                <button type="button" id="btnAnadirPregunta">
                     <i class="fa-regular fa-square-plus"></i> Añadir Pregunta
                 </button>
 
@@ -49,11 +49,11 @@
                     <div class="cuestionarioPregunta">
                         <label>Pista</label>
                         <input type="text" name="pista[]" placeholder="Pista...">
-                    </div>
-                </div>
+        </div>
+        </div>
 
-                <input type="submit" value="Guardar Frase">
-            </form>
+        <input type="submit" value="Guardar Frase">
+        </form>
 
 
         </div>
@@ -95,7 +95,7 @@
                     </tbody>
                 </table>
             </div>
-        <?php } elseif (isset($_GET['query'])) { ?>
+        <?php } elseif (isset($_GET['buscar'])) { ?>
             <div class="mensaje">
                 <p>No se encontraron frases con el término: <?php echo $_GET['buscar']; ?></p>
             </div>
@@ -142,10 +142,10 @@
         ?>
     </footer>
 
-    <script src="../../javascript/anadirPregunta.js"></script>
+    <script src="javascript/anadirPregunta.js"></script>
     <script>
         // Script para el buscador de frases
-        document.getElementById('formBuscar').addEventListener('submit', function(e) {
+        document.getElementById('formBuscar').addEventListener('submit', function (e) {
             e.preventDefault();
             const buscar = document.getElementById('inputBuscar').value;
             if (buscar.trim() !== '') {
