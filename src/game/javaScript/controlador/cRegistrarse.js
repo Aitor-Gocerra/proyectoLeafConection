@@ -26,7 +26,6 @@ export class cRegistrarse {
         /*let formData = new FormData(); 
         formData.append('correo', email); 
         formData.append('contrasenia', password); 
-
         this.modelo.mRegistrarse(formData);*/
     }
      
@@ -37,7 +36,6 @@ export class cRegistrarse {
 
     validarNombreUsuario(nombreUsuario) {
         const usuarioRegex = /^[a-zA-Z0-9_-]+$/;
-        ''
         return usuarioRegex.test(nombreUsuario);
     }
 }
