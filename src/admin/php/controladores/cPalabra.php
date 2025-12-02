@@ -79,9 +79,30 @@ class CPalabra
             $this->mensaje = "Error al guardar la palabra. Revise logs de base de datos.";
         }
 
-        $this->gestionarPalabras();
+        return $this->gestionarPalabras();
     }
 
+    public function actualizarPalabra() {
+
+        if (empty($_POST['idPalabra']) || empty($_POST['palabra']) || empty($_POST['palabraCorrecta'])) {
+            $this->mensaje = "Error: rellena todos los campos.";
+            return $this->gestionarPalabras();
+        }
+
+        $id              = $_POST['idPalabra'];
+        $palabra         = trim($_POST['palabra']);
+        $palabraCorrecta = trim($_POST['palabraCorrecta']);
+
+        $ok = $this->palabraMod->actualizarPalabra($id, $palabra, $palabraCorrecta);
+
+        if ($ok) {
+            $this->mensaje = "Palabra actualizada correctamente.";
+        } else {
+            $this->mensaje = "Error al actualizar la palabra.";
+        }
+
+        return $this->gestionarPalabras();
+    }
     /* public function anadirPistaAdicional() {
         $idPalabra = $_POST['idPalabra'] ?? null;
         $nuevaPista = $_POST['nuevaPista'] ?? '';
@@ -119,7 +140,7 @@ class CPalabra
             $this->mensaje = "Error al eliminar la palabra.";
         }
 
-        $this->gestionarPalabras();
+        return $this->gestionarPalabras();
     }
 }
 ?>

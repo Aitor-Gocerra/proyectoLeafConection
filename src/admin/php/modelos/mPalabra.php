@@ -36,7 +36,7 @@ class Palabra extends Conexion
                 $stmtPista->execute();
 
                 $this->conexion->commit();
-                return (int) $idPalabra;
+                return $idPalabra;
             }
 
         } catch (PDOException $e) {
@@ -57,9 +57,7 @@ class Palabra extends Conexion
         $stmt = $this->conexion->prepare($sql);
         $stmt->execute();
 
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return !empty($resultado) ? $resultado : null;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function buscarPalabras($buscar)
@@ -90,8 +88,8 @@ class Palabra extends Conexion
                 WHERE idFrase = :id
             ";
         $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':palabra', $frase);
-        $stmt->bindParam(':correcta', $palabraFaltante);
+        $stmt->bindParam(':palabra', $palabra);
+        $stmt->bindParam(':correcta', $palabraCorrecta);
         $stmt->bindParam(':id', $idPalabra, PDO::PARAM_INT);
 
         return $stmt->execute();

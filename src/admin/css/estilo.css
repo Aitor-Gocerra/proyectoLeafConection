@@ -535,7 +535,7 @@ footer {
 /* LAPTOP (1024px-1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
     header {
-        padding: 1rem 2rem;
+        padding: 0.5rem 1rem;
     }
 
     nav {
