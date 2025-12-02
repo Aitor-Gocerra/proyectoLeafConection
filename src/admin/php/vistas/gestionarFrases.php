@@ -58,15 +58,15 @@
 
         </div>
 
-        <?php if (isset($mensaje) && !empty($mensaje)): ?>
+        <?php if (isset($mensaje) && !empty($mensaje)) { ?>
             <div class="mensaje">
-                <p><?= $mensaje ?></p>
+                <p><?php echo $mensaje; ?></p>
             </div>
-        <?php endif; ?>
+        <?php } ?>
 
         <div id="ultimasDiezFrases">
             <h2>Últimas 10 Frases</h2>
-            <?php if (isset($frases) && !empty($frases)): ?>
+            <?php if (isset($frases) && !empty($frases)) { ?>
                 <table>
                     <thead>
                         <tr>
@@ -78,23 +78,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($frases as $frase): ?>
-                            <tr>
-                                <td><?= $frase['idFrase'] ?></td>
-                                <td><?= $frase['frase'] ?></td>
-                                <td><?= $frase['palabraFaltante'] ?></td>
-                                <td><?= $frase['fechaProgramada'] ?? 'No programada' ?></td>
-                                <td>
-                                    <a href="index.php?c=Frase&m=eliminarFrase&idFrase=<?= $frase['idFrase'] ?>"
-                                        onclick="return confirm('¿Eliminar esta frase?')">Eliminar</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                        <?php
+                        foreach ($frases as $frase) {
+                            echo "<tr>";
+                            echo "<td>" . $frase['idFrase'] . "</td>";
+                            echo "<td>" . $frase['frase'] . "</td>";
+                            echo "<td>" . $frase['palabraFaltante'] . "</td>";
+                            echo "<td>" . ($frase['fechaProgramada'] ?? 'No programada') . "</td>";
+                            echo "<td>";
+                            echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\">Eliminar</a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
-            <?php else: ?>
+            <?php } else { ?>
                 <p>No hay frases guardadas aún.</p>
-            <?php endif; ?>
+            <?php } ?>
         </div>
     </main>
     <footer>

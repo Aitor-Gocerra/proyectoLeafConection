@@ -53,15 +53,15 @@
                 <input type="submit" value="Guardar Palabra">
             </form>
 
-            <?php if (isset($mensaje) && !empty($mensaje)): ?>
+            <?php if (isset($mensaje) && !empty($mensaje)) { ?>
                 <div class="mensaje">
-                    <p><?= $mensaje ?></p>
+                    <p><?php echo $mensaje; ?></p>
                 </div>
-            <?php endif; ?>
+            <?php } ?>
 
             <div id="ultimasDiezPalabras">
                 <h2>Últimas 10 Palabras</h2>
-                <?php if (isset($palabras) && !empty($palabras)): ?>
+                <?php if (isset($palabras) && !empty($palabras)) { ?>
                     <table>
                         <thead>
                             <tr>
@@ -73,23 +73,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($palabras as $palabra): ?>
-                                <tr>
-                                    <td><?= $palabra['idPalabra'] ?></td>
-                                    <td><?= $palabra['palabra'] ?></td>
-                                    <td><?= $palabra['palabraCorrecta'] ?></td>
-                                    <td><?= $palabra['fechaProgramada'] ?? 'No programada' ?></td>
-                                    <td>
-                                        <a href="index.php?c=Palabra&m=eliminarPalabra&idPalabra=<?= $palabra['idPalabra'] ?>"
-                                            onclick="return confirm('¿Eliminar esta palabra?')">Eliminar</a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
+                            <?php
+                            foreach ($palabras as $palabra) {
+                                echo "<tr>";
+                                echo "<td>" . $palabra['idPalabra'] . "</td>";
+                                echo "<td>" . $palabra['palabra'] . "</td>";
+                                echo "<td>" . $palabra['palabraCorrecta'] . "</td>";
+                                echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
+                                echo "<td>";
+                                echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
-                <?php else: ?>
+                <?php } else { ?>
                     <p>No hay palabras guardadas aún.</p>
-                <?php endif; ?>
+                <?php } ?>
             </div>
 
         </div>
