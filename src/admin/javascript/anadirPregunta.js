@@ -5,6 +5,13 @@ let contenedor = document.getElementById("cuestionarioContainer");
 btnAñadirPregunta.addEventListener("click", function(e) {
     e.preventDefault();
 
+    let totalPreguntas = contenedor.querySelectorAll(".cuestionarioPregunta").length;
+
+    if (totalPreguntas >= 3) {
+        alert("Solo puedes añadir un máximo de 3 preguntas.");
+        btnAñadirPregunta.disabled = true; // desactiva el botón
+        return;
+    }
     // Clonar la plantilla
     let nuevaPregunta = document.createElement("div");
     nuevaPregunta.classList.add("cuestionarioPregunta");

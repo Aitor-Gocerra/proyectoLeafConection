@@ -49,7 +49,8 @@
             $sql = "
                 SELECT * 
                 FROM Frases 
-                ORDER BY fechaProgramada DESC;
+                ORDER BY fechaProgramada DESC
+                LIMIT 10;
             ";
             $stmt = $this->conexion->prepare($sql);
             $stmt->execute();

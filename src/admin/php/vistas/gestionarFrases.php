@@ -38,8 +38,21 @@
                     <label for="fecha">Fecha programada</label>
                     <input type="date" name="fecha" id="fecha">
 
+                    <button type="button" id="añadirPregunta">
+                        <i class="fa-regular fa-square-plus"></i> Añadir Pregunta
+                    </button>
+
+                    <div id="cuestionarioContainer">
+                        <div class="cuestionarioPregunta">
+                            <label>Pista</label>
+                            <input type="text" name="pista[]" placeholder="Pista...">
+                        </div>
+                    </div>
+
                     <input type="submit" value="Guardar Frase">
                 </form>
+
+                
             </div>
             <div id="ultimasDiezFrases">
                 Aqui mostraremos con JS, las 10 ultimas frases que se han introducido
@@ -50,5 +63,7 @@
                 require_once 'parciales/footer.php';
             ?>
         </footer>
+
+        <script src="./javascript/anadirPregunta.js"></script>
     </body>
 </html>

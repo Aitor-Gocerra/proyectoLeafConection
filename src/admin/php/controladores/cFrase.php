@@ -1,17 +1,17 @@
 <?php
 
-    require_once __DIR__ . '/../Modelos/Frase.php';
+    require_once __DIR__ . '/../modelos/Frase.php';
 
     class ConFrase {
 
-        private $fraseMod; // Instancia del modelo de Frase
-        public $mensaje;    // Para almacenar mensajes de éxito/error al usuario
-        public $frasesList; // Para almacenar la lista de frases 
+        private $fraseMod;
+        public $mensaje;  
+        public $frasesList;
         public $vista;
         
         public function __construct() {
-            // Inicializa la instancia del modelo, pasándole la conexión $db
             $this->fraseMod = new Frase();
+            $this->vista = '';
         }
 
         
@@ -20,6 +20,8 @@
         }
 
         public function guardarNuevaFrase() {
+
+            $this->vista = 'gestionarFrases';
             
             // 1. Recoger y sanitizar datos del formulario
             $frase = $_POST['frase'] ?? '';
