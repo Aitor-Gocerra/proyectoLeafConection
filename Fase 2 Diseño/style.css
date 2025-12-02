@@ -63,7 +63,7 @@ nav h3 {
     font-size: 1.5rem;
     font-weight: 600;
     display: inline;
-    margin-left: 400px; /* (1200/400) */
+    margin-left: 400px;
 }
 
 #fotoPerfil {
@@ -283,11 +283,11 @@ footer {
 
     /* MAIN GENERAL */
     main {
-        padding-top: 120px;   /* evita que el header tape contenido */
+        padding-top: 120px;   
         padding-left: 20px;
         padding-right: 20px;
         width: 100%;
-        min-height: auto;      /* deja crecer el scroll */
+        min-height: auto;      
     }
 
     /* CAJA CONSEJO */
