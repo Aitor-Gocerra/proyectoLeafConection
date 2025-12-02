@@ -79,7 +79,7 @@
                                 echo "<tr>";
                                 echo "<td>" . $palabra['idPalabra'] . "</td>";
                                 echo "<td>" . $palabra['palabra'] . "</td>";
-                                echo "<td>" . $palabra['palabraCorrecta'] . "</td>";
+                                echo "<td>" . $palabra['definicion'] . "</td>";
                                 echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
                                 echo "<td>";
                                 echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
@@ -105,7 +105,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Palabra</th>
-                                <th>Palabra Correcta</th>
+                                <th>Definición</th>
                                 <th>Fecha Programada</th>
                                 <th>Acciones</th>
                             </tr>
@@ -116,7 +116,7 @@
                                 echo "<tr>";
                                 echo "<td>" . $palabra['idPalabra'] . "</td>";
                                 echo "<td>" . $palabra['palabra'] . "</td>";
-                                echo "<td>" . $palabra['palabraCorrecta'] . "</td>";
+                                echo "<td>" . $palabra['definicion'] . "</td>";
                                 echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
                                 echo "<td>";
                                 echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";

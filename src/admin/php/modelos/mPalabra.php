@@ -12,13 +12,13 @@ class Palabra extends Conexion
         try {
             // 1. Insertar la frase
             $sqlPalabra = "
-                    INSERT INTO palabras (palabra, palabraCorrecta) 
-                    VALUES (:palabra, :palabraCorrecta);
+                    INSERT INTO palabras (palabra, definicion) 
+                    VALUES (:palabra, :definicion);
                 ";
 
             $stmtPalabra = $this->conexion->prepare($sqlPalabra);
             $stmtPalabra->bindParam(':palabra', $frase);
-            $stmtPalabra->bindParam(':palabraCorrecta', $palabraCorrecta);
+            $stmtPalabra->bindParam(':definicion', $palabraCorrecta);
             $stmtPalabra->execute();
 
             $idPalabra = $this->conexion->lastInsertId();
@@ -41,6 +41,7 @@ class Palabra extends Conexion
 
         } catch (PDOException $e) {
             $this->conexion->rollBack();
+            echo "Error en la transacción: " . $e->getMessage();
             return false;
         }
         return false;
@@ -66,7 +67,7 @@ class Palabra extends Conexion
                 SELECT * 
                 FROM palabras 
                 WHERE palabra LIKE :buscar 
-                   OR palabraCorrecta LIKE :buscar
+                   OR definicion LIKE :buscar
                 ORDER BY fechaProgramada DESC;
             ";
         
@@ -84,8 +85,8 @@ class Palabra extends Conexion
     {
         $sql = "
                 UPDATE palabras 
-                SET palabra = :palabra, palabraCorrecta = :correcta 
-                WHERE idFrase = :id
+                SET palabra = :palabra, definicion = :correcta 
+                WHERE idPalabra = :id
             ";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':palabra', $palabra);
