@@ -14,14 +14,18 @@
         </header>
         <main id="noticia_contenedor" class="contenedor_noticia">
             <section id="noticia_seccion_principal">
+                <div id="noticia_titulo">
+                    <h1>
+                        Nacidos en 2020 sufrirán el triple de extremos climáticos
+                    </h1>
+                </div>
+            
                 <div id="noticia_imagen">
-                    <img src="https://image.ondacero.es/clipping/cmsimages02/2025/06/05/9C80A238-0A5F-4FC8-B6A0-B86C56A5D664/infancia-espanola-frente-clima-nacidos-2020-sufriran-tres-veces-mas-extremos-climaticos-que-sus-abuelos_96.jpg?crop=5184,2916,x0,y273&width=1200&height=675&optimize=low&format=webply" alt="cambioClimatico">
+                    <div id="imagen"></div>
                 </div>
 
                 <div id="noticia_contenido">
-                    <h1 id="noticia_titulo">
-                        Nacidos en 2020 sufrirán el triple de extremos climáticos
-                    </h1>
+                    
                     <p class="noticia_parrafo">
                         Los fenómenos climáticos extremos dejarán de ser excepcionales. Según el informe, los 
                         niños de Aragón (97%), Cataluña (96%) y La Rioja (94%) serán los más expuestos a sufrir, 
