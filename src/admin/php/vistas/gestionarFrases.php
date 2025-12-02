@@ -24,7 +24,7 @@
             ?>
             <div id="contenedorAdmin">
                 <h1>Añadir/Editar Frase del Dia</h1>
-                <form action="" method="get">
+                <form action="./index.php?c=GestionarConsejos&m=añadir" method="post">
                     <label for="frase">Frase</label>
                     <input type="text" name="frase" id="frase" placeholder="Ej: La Tierra no es una herencia de nuestros padres, sino un prestamo de nuestros _____.">
                     <p>Usa '___' para el lugar donde ira la palabra que falta</p>

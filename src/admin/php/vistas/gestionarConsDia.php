@@ -3,8 +3,8 @@
 
 <head>
     <?php
-            require_once 'parciales/head.php';
-            encabezado("Gestion de Consejos del Día - LeafConnect");
+        require_once 'parciales/head.php';
+        encabezado("Gestion de Consejos del Día - LeafConnect");
     ?>
 </head>
 
@@ -17,8 +17,8 @@
 
     <main>
         <?php
-             require_once 'parciales/navegador.php';
-         ?>
+            require_once 'parciales/navegador.php';
+        ?>
 
         <?php
             require_once 'parciales/buscador.php';
@@ -26,15 +26,17 @@
         ?>
         <div id="contenedorAdmin">
             <h1>Editar/Eliminar consejos del día</h1>
-            <form action="">
+            <form action="./index.php?c=GestionarConsejos&m=añadir" method="post">
                 <label for="">Consejo del día</label>
                 <textarea name="" id="textoArea" placeholder="Introduce un nuevo consejo"></textarea>
 
-                <label for="">Temática</label>
-                <select name="">
-                    <option value="">Elige un tema</option>
-                    <option value="Salud mental">Salud mental</option>
-                    <option value="Sostenibilidad">Desarrollo sostenible</option>
+                <label for="tematica">Temática</label>
+                <select name="tematica" id="tematica">
+                    <?php 
+                        foreach($tematicas as $tematica){
+                            echo '<option value="'. $tematica['idTematica'] .'">'. $tematica['tematica'] .' </option>';
+                        }
+                    ?>
                 </select>
                 <label for="">Fecha:</label>
                 <input type="date" placeholder="dd/mm/yy" id="fecha">
