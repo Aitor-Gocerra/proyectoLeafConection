@@ -62,6 +62,25 @@ class Frase extends Conexion
 
         return !empty($resultado) ? $resultado : null;
     }
+    public function buscarFrases($query)
+    {
+        $sql = "
+                SELECT * 
+                FROM Frases 
+                WHERE frase LIKE :query 
+                   OR palabraFaltante LIKE :query
+                ORDER BY fechaProgramada DESC;
+            ";
+        
+        $stmt = $this->conexion->prepare($sql);
+        $searchTerm = '%' . $query . '%';
+        $stmt->bindParam(':query', $searchTerm);
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return !empty($resultado) ? $resultado : null;
+    }
 
     public function actualizarFrase($idFrase, $frase, $palabraFaltante)
     {

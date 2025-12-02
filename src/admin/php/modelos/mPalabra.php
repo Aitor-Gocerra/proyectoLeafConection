@@ -62,7 +62,27 @@ class Palabra extends Conexion
         return !empty($resultado) ? $resultado : null;
     }
 
-    public function actualizarFrase($idPalabra, $palabra, $palabraCorrecta)
+    public function buscarPalabras($query)
+    {
+        $sql = "
+                SELECT * 
+                FROM Palabras 
+                WHERE palabra LIKE :query 
+                   OR palabraCorrecta LIKE :query
+                ORDER BY fechaProgramada DESC;
+            ";
+        
+        $stmt = $this->conexion->prepare($sql);
+        $searchTerm = '%' . $query . '%';
+        $stmt->bindParam(':query', $searchTerm);
+        $stmt->execute();
+
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return !empty($resultado) ? $resultado : null;
+    }
+
+    public function actualizarPalabra($idPalabra, $palabra, $palabraCorrecta)
     {
         $sql = "
                 UPDATE Palabras 

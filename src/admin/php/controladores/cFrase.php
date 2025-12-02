@@ -29,6 +29,31 @@ class CFrase
         return ['frases' => $this->frasesList, 'mensaje' => $this->mensaje];
     }
 
+    public function buscarFrases()
+    {
+        $this->vista = 'gestionarFrases';
+        
+        $buscar = $_GET['buscar'] ?? '';
+        
+        if (empty($buscar)) {
+            $this->mensaje = "Por favor, introduce un término de búsqueda.";
+            $this->listarFrases();
+            return ['frases' => $this->frasesList, 'mensaje' => $this->mensaje];
+        }
+
+        // Buscar frases
+        $resultados = $this->fraseMod->buscarFrases($buscar);
+        
+        // También cargar las últimas 10 frases
+        $this->listarFrases();
+        
+        return [
+            'frases' => $this->frasesList,
+            'resultadosBusqueda' => $resultados,
+            'mensaje' => $this->mensaje
+        ];
+    }
+
     public function guardarNuevaFrase()
     {
         // 1. Recoger y sanitizar datos del formulario

@@ -17,12 +17,12 @@
 
     <main>
         <?php
-        require_once 'parciales/navegador.php';
+            require_once 'parciales/navegador.php';
         ?>
 
         <?php
-        require_once 'parciales/buscador.php';
-        titulo("Frase");
+            require_once 'parciales/buscador.php';
+            titulo("Frase");
         ?>
         <div id="contenedorAdmin">
             <h1>Añadir/Editar Frase del Dia</h1>
@@ -61,6 +61,43 @@
         <?php if (isset($mensaje) && !empty($mensaje)) { ?>
             <div class="mensaje">
                 <p><?php echo $mensaje; ?></p>
+            </div>
+        <?php } ?>
+
+        <!-- Resultados de búsqueda -->
+        <?php if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) { ?>
+            <div id="resultadosBusqueda">
+                <h2>Resultados de la Búsqueda</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Frase</th>
+                            <th>Palabra Faltante</th>
+                            <th>Fecha Programada</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($resultadosBusqueda as $frase) {
+                            echo "<tr>";
+                            echo "<td>" . $frase['idFrase'] . "</td>";
+                            echo "<td>" . $frase['frase'] . "</td>";
+                            echo "<td>" . $frase['palabraFaltante'] . "</td>";
+                            echo "<td>" . $frase['fechaProgramada'] ?? 'No programada' . "</td>";
+                            echo "<td>";
+                            echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\">Eliminar</a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } elseif (isset($_GET['query'])) { ?>
+            <div class="mensaje">
+                <p>No se encontraron frases con el término: <?php echo $_GET['buscar']; ?></p>
             </div>
         <?php } ?>
 
@@ -105,6 +142,16 @@
     </footer>
 
     <script src="../../javascript/anadirPregunta.js"></script>
+    <script>
+        // Script para el buscador de frases
+        document.getElementById('formBuscar').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const buscar = document.getElementById('inputBuscar').value;
+            if (buscar.trim() !== '') {
+                window.location.href = 'index.php?c=Frase&m=buscarFrases&buscar=' + buscar;
+            }
+        });
+    </script>
 </body>
 
 </html>

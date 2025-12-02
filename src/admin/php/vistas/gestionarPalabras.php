@@ -11,17 +11,17 @@
 <body>
     <header>
         <?php
-        require_once 'parciales/nav.php';
+            require_once 'parciales/nav.php';
         ?>
     </header>
     <main>
         <?php
-        require_once 'parciales/navegador.php';
+            require_once 'parciales/navegador.php';
         ?>
 
         <?php
-        require_once 'parciales/buscador.php';
-        titulo("Palabra");
+            require_once 'parciales/buscador.php';
+            titulo("Palabra");
         ?>
 
 
@@ -56,6 +56,43 @@
             <?php if (isset($mensaje) && !empty($mensaje)) { ?>
                 <div class="mensaje">
                     <p><?php echo $mensaje; ?></p>
+                </div>
+            <?php } ?>
+
+            <!-- Resultados de búsqueda -->
+            <?php if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) { ?>
+                <div id="resultadosBusqueda">
+                    <h2>Resultados de la Búsqueda</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Palabra</th>
+                                <th>Definición</th>
+                                <th>Fecha Programada</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($resultadosBusqueda as $palabra) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($palabra['idPalabra']) . "</td>";
+                                echo "<td>" . htmlspecialchars($palabra['palabra']) . "</td>";
+                                echo "<td>" . htmlspecialchars($palabra['palabraCorrecta']) . "</td>";
+                                echo "<td>" . htmlspecialchars($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
+                                echo "<td>";
+                                echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php } elseif (isset($_GET['query'])) { ?>
+                <div class="mensaje">
+                    <p>No se encontraron palabras con el término: <?php echo htmlspecialchars($_GET['buscar']); ?></p>
                 </div>
             <?php } ?>
 
@@ -102,6 +139,22 @@
     </footer>
 
     <script src="../../javascript/anadirPregunta.js"></script>
+    <script>
+        // Script para el buscador de palabras
+        document.getElementById('formBuscar').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const buscar = document.getElementById('inputBuscar').value;
+            if (buscar.trim() !== '') {
+                window.location.href = 'index.php?c=Palabra&m=buscarPalabras&buscar=' + buscar;
+            }
+        });
+
+        /* El formulario NO se envía automáticamente, sino que usa JavaScript para construir la URL
+        El JavaScript captura el evento submit del formulario
+        Coge el valor del input de búsqueda
+        Construye manualmente la URL: index.php?c=Frase&m=buscarFrases&buscar=loQueBuscas
+        Redirige a esa URL con window.location.href */
+    </script>
 </body>
 
 </html>

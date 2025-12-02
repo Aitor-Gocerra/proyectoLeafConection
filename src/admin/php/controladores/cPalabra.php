@@ -29,6 +29,30 @@ class CPalabra
         return ['palabras' => $this->palabrasList, 'mensaje' => $this->mensaje];
     }
 
+    public function buscarPalabras()
+    {
+        $this->vista = 'gestionarPalabras';
+        
+        $buscar = $_GET['buscar'] ?? '';
+        
+        if (empty($buscar)) {
+            $this->mensaje = "Por favor, introduce un término de búsqueda.";
+            $this->listarPalabras();
+            return ['palabras' => $this->palabrasList, 'mensaje' => $this->mensaje];
+        }
+
+        // Buscar palabras
+        $resultados = $this->palabraMod->buscarPalabras($buscar);
+        
+        // También cargar las últimas 10 palabras
+        $this->listarPalabras();
+        
+        return [
+            'palabras' => $this->palabrasList,
+            'resultadosBusqueda' => $resultados,
+            'mensaje' => $this->mensaje
+        ];
+    }
     public function guardarNuevaPalabra()
     {
         // 1. Recoger y sanitizar datos del formulario
