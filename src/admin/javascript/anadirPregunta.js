@@ -8,7 +8,7 @@ btnAñadirPregunta.addEventListener("click", function(e) {
     let totalPreguntas = contenedor.querySelectorAll(".cuestionarioPregunta").length;
 
     if (totalPreguntas >= 3) {
-        alert("Solo puedes añadir un máximo de 3 preguntas.");
+        alert("Solo puedes añadir un máximo de 3 pistas.");
         btnAñadirPregunta.disabled = true; // desactiva el botón
         return;
     }
