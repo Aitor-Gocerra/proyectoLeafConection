@@ -48,7 +48,7 @@
         require_once 'parciales/footer.php';
         ?>
     </footer>
-    <script type="module" src="/javascript/vista/iniciarsesion.js"></script>
+    <script type="module" src="javascript/vista/iniciarsesion.js"></script>
 </body>
 
 </html>

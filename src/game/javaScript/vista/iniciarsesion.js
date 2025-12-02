@@ -1,5 +1,5 @@
-import { cIniciarSesion } from '../controlador/cIniciarSesion.js';
-const controlador = new cIniciarSesion();
+/*import { cIniciarSesion } from '../controlador/cIniciarSesion.js';
+const controlador = new cIniciarSesion();*/
 
 //Es la funcion que permite mostrar un mensaje de error en caso de que la contraseña o correo este vacia
 function mostrarError(mensaje) {

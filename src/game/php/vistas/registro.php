@@ -26,16 +26,20 @@
         <form action="POST" class="formulario-autenticacion" action="./controlador/recogerDatos.js">
 
             <h1>Comenzar</h1>
-            <label>Correo electrónico</label>
-            <input type="text" placeholder="Introduce correo" id="correo">
+            <label for="correo">Correo electrónico</label>
+            <input type="text" placeholder="Introduce correo" id="input-correo">
 
-            <label for="">Contraseña</label>
-            <input type="password" placeholder="Introduce tu contraseña" id="contrasenia">
+            <label for="contrasenia">Contraseña</label>
+            <input type="password" placeholder="Introduce tu contraseña" id="input-contrasenia">
 
-            <label for="">Confirmar contraseña</label>
-            <input type="password" placeholder="Confirme contraseña" id="contrasenia2">
+            <label for="contrasenia2">Confirmar contraseña</label>
+            <input type="password" placeholder="Confirme contraseña" id="input-contrasenia2">
 
-            <input type="submit" class="boton-autenticacion-primario" value="Crear cuenta">
+            <div class="error-msg" id="pass-error-msg" style="color: red; font-size: 0.9em;"></div>
+
+            <div id="mensaje-error" style="color: red; margin: 10px 0;"></div>
+
+            <a href="#" id="btn-crearcuenta" class="boton-autenticacion-primario">Crear Cuenta</a> 
 
             <p>¿Ya tienes cuenta? <a href="index.php?c=Paginas&m=login">Inicia sesión</a></p>
         </form>
@@ -53,5 +57,7 @@
     </footer>
 
 </body>
+
+<script type="module" src="javascript/vista/registrarse.js"></script>
 
 </html>
