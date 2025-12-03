@@ -25,7 +25,7 @@
         titulo("Frase");
         ?>
         <div id="contenedorAdmin">
-            <h1>Añadir/Editar Frase del Dia</h1>
+            <h1>Añadir Frase del Dia</h1>
             <form action="index.php?c=Frase&m=guardarNuevaFrase" method="post">
                 <label for="frase">Frase</label>
                 <input type="text" name="frase" id="frase"
@@ -34,7 +34,7 @@
 
                 <label for="palabraFaltante">Palabra que falta</label>
                 <input type="text" name="palabraFaltante" id="palabraFaltante" placeholder="Ej: hijos">
-                
+
                 <label for="fecha">Fecha programada</label>
                 <input type="date" name="fecha" id="fecha">
 
@@ -82,8 +82,10 @@
                             echo "<td>" . $frase['idFrase'] . "</td>";
                             echo "<td>" . $frase['frase'] . "</td>";
                             echo "<td>" . $frase['palabraFaltante'] . "</td>";
-                            echo "<td>" . $frase['fechaProgramada'] ?? 'No programada' . "</td>";
+                            echo "<td>" . ($frase['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
+                            echo "<a href='index.php?c=Frase&m=editarFrase&idFrase=" . $frase['idFrase'] . "'>Editar</a>";
+                            echo "<br>";
                             echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\">Eliminar</a>";
                             echo "</td>";
                             echo "</tr>";
@@ -121,7 +123,9 @@
                             echo "<td>" . $frase['palabraFaltante'] . "</td>";
                             echo "<td>" . ($frase['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
-                            echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\">Eliminar</a>";
+                            echo "<a href='index.php?c=Frase&m=editarFrase&idFrase=" . $frase['idFrase'] . " onclick=\"return confirm('¿Editar esta frase?')\" style='color:orange'>Editar</a>";
+                            echo "<br>";
+                            echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\" style='color:red'>Eliminar</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -132,6 +136,11 @@
                 <p>No hay frases guardadas aún.</p>
             <?php } ?>
         </div>
+
+        <?php
+        require_once 'parciales/modalEditarFrase.php';
+        ?>
+
     </main>
     <footer>
         <?php
@@ -164,6 +173,30 @@
         if (errorMessage) {
             alert('Error: ' + errorMessage);
             window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+        }
+    </script>
+
+    <script>
+        // Obtener elementos
+        const modal = document.getElementById("modalEditar");
+        const span = document.getElementsByClassName("cerrar-modal")[0];
+
+        // Si el modal existe (porque PHP lo renderizó), configurar el cierre
+        if (modal && span) {
+            // Cuando el usuario hace clic en (x), cierra el modal y limpia la URL
+            span.onclick = function () {
+                modal.style.display = "none";
+                // Limpiar la URL para quitar los parámetros de edición
+                window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+            }
+
+            // Cuando el usuario hace clic fuera del modal, también se cierra
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+                }
+            }
         }
     </script>
 </body>
