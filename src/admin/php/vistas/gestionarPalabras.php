@@ -96,114 +96,112 @@
                     <p><?php echo $mensaje; ?></p>
                 </div>
             <?php } ?>
-
-
     </main>
-    <br>
-    <div id="ultimasDiezPalabras">
-        <h2>Últimas 10 Palabras</h2>
-        <?php if (isset($palabras) && !empty($palabras)) { ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Palabra</th>
-                        <th>Definición</th>
-                        <th>Fecha Programada</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($palabras as $palabra) {
-                        echo "<tr>";
-                        echo "<td>" . $palabra['idPalabra'] . "</td>";
-                        echo "<td>" . $palabra['palabra'] . "</td>";
-                        echo "<td>" . $palabra['definicion'] . "</td>";
-                        echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
-                        echo "<td>";
-                        echo "<a href='index.php?c=Palabra&m=editarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Editar esta palabra?')\" style='color:orange'>Editar</a>";
-                        echo "<br>";
-                        echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        <?php } else { ?>
-            <p>No hay palabras guardadas aún.</p>
-        <?php } ?>
-    </div>
+        <br>
+        <div id="ultimasDiezPalabras">
+            <h2>Últimas 10 Palabras</h2>
+            <?php if (isset($palabras) && !empty($palabras)) { ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Palabra</th>
+                            <th>Definición</th>
+                            <th>Fecha Programada</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($palabras as $palabra) {
+                            echo "<tr>";
+                            echo "<td>" . $palabra['idPalabra'] . "</td>";
+                            echo "<td>" . $palabra['palabra'] . "</td>";
+                            echo "<td>" . $palabra['definicion'] . "</td>";
+                            echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
+                            echo "<td>";
+                            echo "<a href='index.php?c=Palabra&m=editarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Editar esta palabra?')\" style='color:orange'>Editar</a>";
+                            echo "<br>";
+                            echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <p>No hay palabras guardadas aún.</p>
+            <?php } ?>
+        </div>
 
-    <?php
-    require_once 'parciales/modalEditarPalabra.php';
-    ?>
-
-    <footer>
         <?php
-        require_once 'parciales/footer.php';
+        require_once 'parciales/modalEditarPalabra.php';
         ?>
-    </footer>
 
-    <script src="javascript/anadirPregunta.js"></script>
+        <footer>
+            <?php
+            require_once 'parciales/footer.php';
+            ?>
+        </footer>
 
-    <script>
-        // Script para el buscador de palabras
-        document.getElementById('formBuscar').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const buscar = document.getElementById('inputBuscar').value;
-            if (buscar.trim() !== '') {
-                window.location.href = 'index.php?c=Palabra&m=buscarPalabras&buscar=' + buscar;
-            }
-        });
+        <script src="javascript/anadirPregunta.js"></script>
 
-        // Mostrar alert si hay mensaje de éxito o error
-        const urlParams = new URLSearchParams(window.location.search);
-        const successMessage = urlParams.get('success');
-        const errorMessage = urlParams.get('error');
+        <script>
+            // Script para el buscador de palabras
+            document.getElementById('formBuscar').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const buscar = document.getElementById('inputBuscar').value;
+                if (buscar.trim() !== '') {
+                    window.location.href = 'index.php?c=Palabra&m=buscarPalabras&buscar=' + buscar;
+                }
+            });
 
-        if (successMessage) {
-            alert(successMessage);
-            // Limpiar el parámetro de la URL sin recargar la página
-            window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
-        }
+            // Mostrar alert si hay mensaje de éxito o error
+            const urlParams = new URLSearchParams(window.location.search);
+            const successMessage = urlParams.get('success');
+            const errorMessage = urlParams.get('error');
 
-        if (errorMessage) {
-            alert('Error: ' + errorMessage);
-            window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
-        }
-
-        /* El formulario NO se envía automáticamente, sino que usa JavaScript para construir la URL
-        El JavaScript captura el evento submit del formulario
-        Coge el valor del input de búsqueda
-        Construye manualmente la URL: index.php?c=Frase&m=buscarFrases&buscar=loQueBuscas
-        Redirige a esa URL con window.location.href */
-    </script>
-
-    <script>
-        // Obtener elementos
-        const modal = document.getElementById("modalEditar");
-        const span = document.getElementsByClassName("cerrar-modal")[0];
-
-        // Si el modal existe (porque PHP lo renderizó), configurar el cierre
-        if (modal && span) {
-            // Cuando el usuario hace clic en (x), cierra el modal y limpia la URL
-            span.onclick = function () {
-                modal.style.display = "none";
-                // Limpiar la URL para quitar los parámetros de edición
+            if (successMessage) {
+                alert(successMessage);
+                // Limpiar el parámetro de la URL sin recargar la página
                 window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
             }
 
-            // Cuando el usuario hace clic fuera del modal, también se cierra
-            window.onclick = function (event) {
-                if (event.target == modal) {
+            if (errorMessage) {
+                alert('Error: ' + errorMessage);
+                window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+            }
+
+            /* El formulario NO se envía automáticamente, sino que usa JavaScript para construir la URL
+            El JavaScript captura el evento submit del formulario
+            Coge el valor del input de búsqueda
+            Construye manualmente la URL: index.php?c=Frase&m=buscarFrases&buscar=loQueBuscas
+            Redirige a esa URL con window.location.href */
+        </script>
+
+        <script>
+            // Obtener elementos
+            const modal = document.getElementById("modalEditar");
+            const span = document.getElementsByClassName("cerrar-modal")[0];
+
+            // Si el modal existe (porque PHP lo renderizó), configurar el cierre
+            if (modal && span) {
+                // Cuando el usuario hace clic en (x), cierra el modal y limpia la URL
+                span.onclick = function () {
                     modal.style.display = "none";
+                    // Limpiar la URL para quitar los parámetros de edición
                     window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
                 }
+
+                // Cuando el usuario hace clic fuera del modal, también se cierra
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                        window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+                    }
+                }
             }
-        }
-    </script>
+        </script>
 </body>
 
 </html>
