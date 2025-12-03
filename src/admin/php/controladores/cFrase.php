@@ -32,9 +32,9 @@ class CFrase
     public function buscarFrases()
     {
         $this->vista = 'gestionarFrases';
-        
+
         $buscar = $_GET['buscar'] ?? '';
-        
+
         if (empty($buscar)) {
             $this->mensaje = "Por favor, introduce un término de búsqueda.";
             return ['mensaje' => $this->mensaje];
@@ -43,8 +43,12 @@ class CFrase
         // Buscar frases
         $resultados = $this->fraseMod->buscarFrases($buscar);
 
+        // También cargar las 10 últimas frases para que no desaparezcan
+        $this->listarFrases();
+
         return [
             'resultadosBusqueda' => $resultados,
+            'frases' => $this->frasesList,
             'mensaje' => $this->mensaje
         ];
     }
@@ -55,6 +59,8 @@ class CFrase
         $frase = $_POST['frase'] ?? '';
         $palabraFaltante = $_POST['palabraFaltante'] ?? '';
         $pistaInicial = $_POST['pista'][0] ?? '';
+        $autor = $_POST['autor'] ?? null;
+        $fecha = $_POST['fecha'] ?? null;
 
         // 2. Validación básica
         if (empty($frase) || empty($palabraFaltante) || empty($pistaInicial)) {
@@ -66,7 +72,9 @@ class CFrase
         $idFrase = $this->fraseMod->crearFraseYpista(
             $frase,
             $palabraFaltante,
-            $pistaInicial
+            $pistaInicial,
+            $autor,
+            $fecha
         );
 
         if ($idFrase) {
@@ -111,9 +119,8 @@ class CFrase
         $idFrase = $_REQUEST['idFrase'] ?? null;
 
         if (empty($idFrase)) {
-            $this->mensaje = "Error: No se proporcionó ID para eliminar.";
-            $this->gestionarFrases();
-            return;
+            $this->mensaje = "No se proporcionó ID para eliminar";
+            return $this->gestionarFrases();
         }
 
         $exito = $this->fraseMod->eliminarFrase($idFrase);
@@ -123,8 +130,7 @@ class CFrase
         } else {
             $this->mensaje = "Error al eliminar la frase.";
         }
-
-        $this->gestionarFrases();
+        return $this->gestionarFrases();
     }
 }
 ?>

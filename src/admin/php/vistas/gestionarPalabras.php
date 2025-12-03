@@ -24,6 +24,43 @@
         titulo("Palabra");
         ?>
 
+        <!-- Resultados de búsqueda -->
+        <?php if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) { ?>
+            <div id="resultadosBusqueda">
+                <h2>Resultados de la Búsqueda</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Palabra</th>
+                            <th>Definición</th>
+                            <th>Fecha Programada</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($resultadosBusqueda as $palabra) {
+                            echo "<tr>";
+                            echo "<td>" . $palabra['idPalabra'] . "</td>";
+                            echo "<td>" . $palabra['palabra'] . "</td>";
+                            echo "<td>" . $palabra['definicion'] . "</td>";
+                            echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
+                            echo "<td>";
+                            echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } elseif (isset($_GET['buscar'])) { ?>
+            <div class="mensaje">
+                <p>No se encontraron palabras con el término: <?php echo htmlspecialchars($_GET['buscar']); ?></p>
+            </div>
+        <?php } ?>
+
         <div id="contenedorAdmin">
             <h1>Añadir/Editar Palabra del Dia</h1>
             <form action="index.php?c=Palabra&m=guardarNuevaPalabra" method="post">
@@ -39,7 +76,7 @@
                 <input type="date" name="fecha" id="fecha">
 
                 <button type="button" id="btnAnadirPregunta">
-                    <i class="fa-regular fa-square-plus"></i> Añadir Pregunta
+                    <i class="fa-regular fa-square-plus"></i> Añadir Pista
                 </button>
 
                 <div id="cuestionarioContainer">
@@ -58,43 +95,7 @@
                 </div>
             <?php } ?>
 
-            <!-- Resultados de búsqueda -->
-            <?php if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) { ?>
-                <div id="resultadosBusqueda">
-                    <h2>Resultados de la Búsqueda</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Palabra</th>
-                                <th>Definición</th>
-                                <th>Fecha Programada</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($resultadosBusqueda as $palabra) {
-                                echo "<tr>";
-                                echo "<td>" . $palabra['idPalabra'] . "</td>";
-                                echo "<td>" . $palabra['palabra'] . "</td>";
-                                echo "<td>" . $palabra['definicion'] . "</td>";
-                                echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
-                                echo "<td>";
-                                echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
-                                echo "</td>";
-                                echo "</tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php } elseif (isset($_GET['buscar'])) { ?>
-                <div class="mensaje">
-                    <p>No se encontraron palabras con el término: <?php echo htmlspecialchars($_GET['buscar']); ?></p>
-                </div>
-            <?php } ?>
-            
+
     </main>
     <br>
     <div id="ultimasDiezPalabras">
@@ -148,6 +149,22 @@
                 window.location.href = 'index.php?c=Palabra&m=buscarPalabras&buscar=' + buscar;
             }
         });
+
+        // Mostrar alert si hay mensaje de éxito o error
+        const urlParams = new URLSearchParams(window.location.search);
+        const successMessage = urlParams.get('success');
+        const errorMessage = urlParams.get('error');
+
+        if (successMessage) {
+            alert(successMessage);
+            // Limpiar el parámetro de la URL sin recargar la página
+            window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+        }
+
+        if (errorMessage) {
+            alert('Error: ' + errorMessage);
+            window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+        }
 
         /* El formulario NO se envía automáticamente, sino que usa JavaScript para construir la URL
         El JavaScript captura el evento submit del formulario

@@ -4,7 +4,7 @@ require_once __DIR__ . '/mConexion.php';
 class Palabra extends Conexion
 {
 
-    public function crearPalabraYPista($frase, $palabraCorrecta, $pista)
+    public function crearPalabraYPista($frase, $palabraCorrecta, $pista, $fechaProgramada = null)
     {
         // Inicia una transacción para asegurar que ambas inserciones se completen
         $this->conexion->beginTransaction();
@@ -12,13 +12,14 @@ class Palabra extends Conexion
         try {
             // 1. Insertar la frase
             $sqlPalabra = "
-                    INSERT INTO palabras (palabra, definicion) 
-                    VALUES (:palabra, :definicion);
+                    INSERT INTO palabras (palabra, definicion, fechaProgramada) 
+                    VALUES (:palabra, :definicion, :fecha);
                 ";
 
             $stmtPalabra = $this->conexion->prepare($sqlPalabra);
             $stmtPalabra->bindParam(':palabra', $frase);
             $stmtPalabra->bindParam(':definicion', $palabraCorrecta);
+            $stmtPalabra->bindParam(':fecha', $fechaProgramada);
             $stmtPalabra->execute();
 
             $idPalabra = $this->conexion->lastInsertId();
@@ -41,7 +42,7 @@ class Palabra extends Conexion
 
         } catch (PDOException $e) {
             $this->conexion->rollBack();
-                echo "Error en la transacción: " . $e->getMessage();
+            echo "Error en la transacción: " . $e->getMessage();
             return false;
         }
         return false;
@@ -66,14 +67,15 @@ class Palabra extends Conexion
         $sql = "
                 SELECT * 
                 FROM palabras 
-                WHERE palabra LIKE :buscar 
-                   OR definicion LIKE :buscar
+                WHERE palabra LIKE :buscar1 
+                   OR definicion LIKE :buscar2
                 ORDER BY fechaProgramada DESC;
             ";
-        
+
         $stmt = $this->conexion->prepare($sql);
         $terminoBusqueda = '%' . $buscar . '%';
-        $stmt->bindParam(':buscar', $terminoBusqueda);
+        $stmt->bindParam(':buscar1', $terminoBusqueda);
+        $stmt->bindParam(':buscar2', $terminoBusqueda);
         $stmt->execute();
 
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);

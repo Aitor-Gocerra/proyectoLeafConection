@@ -42,18 +42,18 @@
                 <input type="date" name="fecha" id="fecha">
 
                 <button type="button" id="btnAnadirPregunta">
-                    <i class="fa-regular fa-square-plus"></i> Añadir Pregunta
+                    <i class="fa-regular fa-square-plus"></i> Añadir Pista
                 </button>
 
                 <div id="cuestionarioContainer">
                     <div class="cuestionarioPregunta">
                         <label>Pista</label>
                         <input type="text" name="pista[]" placeholder="Pista...">
-        </div>
-        </div>
+                    </div>
+                </div>
 
-        <input type="submit" value="Guardar Frase">
-        </form>
+                <input type="submit" value="Guardar Frase">
+            </form>
 
 
         </div>
@@ -152,6 +152,22 @@
                 window.location.href = 'index.php?c=Frase&m=buscarFrases&buscar=' + buscar;
             }
         });
+
+        // Mostrar alert si hay mensaje de éxito o error
+        const urlParams = new URLSearchParams(window.location.search);
+        const successMessage = urlParams.get('success');
+        const errorMessage = urlParams.get('error');
+
+        if (successMessage) {
+            alert(successMessage);
+            // Limpiar el parámetro de la URL sin recargar la página
+            window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+        }
+
+        if (errorMessage) {
+            alert('Error: ' + errorMessage);
+            window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+        }
     </script>
 </body>
 

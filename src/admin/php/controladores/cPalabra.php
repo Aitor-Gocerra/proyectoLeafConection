@@ -32,9 +32,9 @@ class CPalabra
     public function buscarPalabras()
     {
         $this->vista = 'gestionarPalabras';
-        
+
         $buscar = $_GET['buscar'] ?? '';
-        
+
         if (empty($buscar)) {
             $this->mensaje = "Por favor, introduce un término de búsqueda.";
             return ['mensaje' => $this->mensaje];
@@ -42,9 +42,13 @@ class CPalabra
 
         // Buscar palabras
         $resultados = $this->palabraMod->buscarPalabras($buscar);
-        
+
+        // También cargar las 10 últimas palabras para que no desaparezcan
+        $this->listarPalabras();
+
         return [
             'resultadosBusqueda' => $resultados,
+            'palabras' => $this->palabrasList,
             'mensaje' => $this->mensaje
         ];
     }
@@ -54,6 +58,7 @@ class CPalabra
         $palabra = $_POST['palabra'] ?? '';
         $palabraCorrecta = $_POST['palabraCorrecta'] ?? '';
         $pista = $_POST['pista'][0] ?? '';
+        $fecha = $_POST['fecha'] ?? null;
 
         // 2. Validación básica
         if (empty($palabra) || empty($palabraCorrecta) || empty($pista)) {
@@ -62,10 +67,11 @@ class CPalabra
             return;
         }
 
-        $idPalabra = $this->palabraMod->crearpalabraYpista(
+        $idPalabra = $this->palabraMod->crearPalabraYPista(
             $palabra,
             $palabraCorrecta,
-            $pista
+            $pista,
+            $fecha
         );
 
         if ($idPalabra) {
@@ -77,15 +83,16 @@ class CPalabra
         return $this->gestionarPalabras();
     }
 
-    public function actualizarPalabra() {
+    public function actualizarPalabra()
+    {
 
         if (empty($_POST['idPalabra']) || empty($_POST['palabra']) || empty($_POST['palabraCorrecta'])) {
             $this->mensaje = "Error: rellena todos los campos.";
             return $this->gestionarPalabras();
         }
 
-        $id              = $_POST['idPalabra'];
-        $palabra         = trim($_POST['palabra']);
+        $id = $_POST['idPalabra'];
+        $palabra = trim($_POST['palabra']);
         $palabraCorrecta = trim($_POST['palabraCorrecta']);
 
         $ok = $this->palabraMod->actualizarPalabra($id, $palabra, $palabraCorrecta);
@@ -122,19 +129,17 @@ class CPalabra
         $idPalabra = $_REQUEST['idPalabra'] ?? null;
 
         if (empty($idPalabra)) {
-            $this->mensaje = "Error: No se proporcionó ID para eliminar.";
-            $this->gestionarPalabras();
-            return;
+            $this->mensaje = "No se proporcionó ID para eliminar";
+            return $this->gestionarPalabras();
         }
 
         $exito = $this->palabraMod->eliminarpalabra($idPalabra);
 
         if ($exito) {
-            $this->mensaje = "palabra ID: {$idPalabra} eliminada correctamente.";
+           $this->mensaje = "Palabra ID: {$idPalabra} eliminada correctamente.";
         } else {
             $this->mensaje = "Error al eliminar la palabra.";
         }
-
         return $this->gestionarPalabras();
     }
 }
