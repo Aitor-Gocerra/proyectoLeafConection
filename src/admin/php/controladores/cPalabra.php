@@ -56,12 +56,12 @@ class CPalabra
     {
         // 1. Recoger y sanitizar datos del formulario
         $palabra = $_POST['palabra'] ?? '';
-        $palabraCorrecta = $_POST['palabraCorrecta'] ?? '';
+        $definicion = $_POST['definicion'] ?? '';
         $pista = $_POST['pista'][0] ?? '';
         $fecha = $_POST['fecha'] ?? null;
 
         // 2. Validación básica
-        if (empty($palabra) || empty($palabraCorrecta) || empty($pista)) {
+        if (empty($palabra) || empty($definicion) || empty($pista)) {
             $this->mensaje = "Error: Faltan campos obligatorios para la palabra.";
             $this->gestionarPalabras();
             return;
@@ -69,11 +69,16 @@ class CPalabra
 
         $idPalabra = $this->palabraMod->crearPalabraYPista(
             $palabra,
-            $palabraCorrecta,
+            $definicion,
             $pista,
             $fecha
         );
 
+        if($idPalabra){
+            if(isset($_POST['pista'])){
+                for($i = 1; $i < count($_POST['pista']); $i++)
+            }
+        }
         if ($idPalabra) {
             $this->mensaje = "palabra guardada correctamente con ID: " . $idPalabra;
         } else {
@@ -86,16 +91,16 @@ class CPalabra
     public function actualizarPalabra()
     {
 
-        if (empty($_POST['idPalabra']) || empty($_POST['palabra']) || empty($_POST['palabraCorrecta'])) {
+        if (empty($_POST['idPalabra']) || empty($_POST['palabra']) || empty($_POST['definicion'])) {
             $this->mensaje = "Error: rellena todos los campos.";
             return $this->gestionarPalabras();
         }
 
         $id = $_POST['idPalabra'];
         $palabra = trim($_POST['palabra']);
-        $palabraCorrecta = trim($_POST['palabraCorrecta']);
+        $definicion = trim($_POST['definicion']);
 
-        $ok = $this->palabraMod->actualizarPalabra($id, $palabra, $palabraCorrecta);
+        $ok = $this->palabraMod->actualizarPalabra($id, $palabra, $definicion);
 
         if ($ok) {
             $this->mensaje = "Palabra actualizada correctamente.";
