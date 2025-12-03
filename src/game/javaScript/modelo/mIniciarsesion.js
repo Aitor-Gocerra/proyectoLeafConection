@@ -24,7 +24,7 @@ export class mIniciarSesion {
                     error.style.display = 'block';
                 }
             } else {
-                let error = document.getElementById('mensaje-error');
+                error = document.getElementById('mensaje-error');
                 error.textContent = 'Fallo al contactar con el servidor.'
                 error.style.display = 'block'; 
             }

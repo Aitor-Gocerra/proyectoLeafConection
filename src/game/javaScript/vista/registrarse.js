@@ -7,6 +7,7 @@ function mostrarError(mensaje) {
     if (divError) {
         divError.textContent = mensaje;
         divError.style.display = 'block';
+        divError.style.color = 'red';
     }
 }
 

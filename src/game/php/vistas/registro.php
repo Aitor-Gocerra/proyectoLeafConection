@@ -38,9 +38,7 @@
             <label for="contrasenia2">Confirmar contraseña</label>
             <input type="password" placeholder="Confirme contraseña" id="input-contrasenia2">
 
-            <div class="error-msg" id="pass-error-msg" style="color: red; font-size: 0.9em;"></div>
-
-            <div id="mensaje-error" style="color: red; margin: 10px 0;"></div>
+            <div id="mensaje-error"></div>
 
             <a href="#" id="btn-crearcuenta" class="boton-autenticacion-primario">Crear Cuenta</a> 
 

@@ -27,8 +27,6 @@
             <label for="input-email">Correo electrónico</label>
             <input type="text" id="input-email" placeholder="Introduce correo"> 
             
-            <div class="error-msg" id="email-error-msg" style="color: red; font-size: 0.9em;"></div>
-            
             <label for="input-password">Contraseña</label>
             <input type="password" id="input-password" placeholder="Introduce contraseña"> 
 
