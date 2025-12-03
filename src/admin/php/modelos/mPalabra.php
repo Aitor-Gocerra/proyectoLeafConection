@@ -18,7 +18,7 @@ class Palabra extends Conexion
         $stmtPalabra->bindParam(':definicion', $definicion);
         $stmtPalabra->bindParam(':fecha', $fechaProgramada);
 
-        if($stmtPalabra->execute()){
+        if ($stmtPalabra->execute()) {
             return $this->conexion->lastInsertId();
         }
 
@@ -79,7 +79,7 @@ class Palabra extends Conexion
     public function anadirPista($idPalabra, $pista)
     {
         $sql = "
-                INSERT INTO PistasFrase (idPalabra, pista) 
+                INSERT INTO PistasPalabras (idPalabra, pista) 
                 VALUES (:idPalabra, :pista);
                 ";
 

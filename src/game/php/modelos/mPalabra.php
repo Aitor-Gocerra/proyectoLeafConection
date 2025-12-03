@@ -1,42 +1,46 @@
 <?php
-    require_once __DIR__ . '/mConexion.php';
+require_once __DIR__ . '/mConexion.php';
 
-    class Palabra extends Conexion{
+class Palabra extends Conexion
+{
 
-        public function mostrarPalabra(){
-            $fecha = date('Y-m-d');
+    public function mostrarPalabra()
+    {
+        $fecha = date('Y-m-d');
 
-            $sql = "
+        $sql = "
                 SELECT *
                 FROM Palabras
                 WHERE DATE(fechaProgramada) = :fecha
                 LIMIT 1;
             ";
 
-            $stmt = $this->conexion->prepare($sql);
+        $stmt = $this->conexion->prepare($sql);
 
-            $stmt->bindParam(':fecha', $fecha);
+        $stmt->bindParam(':fecha', $fecha);
+        $stmt->execute();
 
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        }
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-        public function mostrarPista($idPalabra){
+    public function mostrarPista($idPalabra)
+    {
 
-            $sql = "
+        $sql = "
                 SELECT pista
-                FROM PistaPalabras
+                FROM PistasPalabras
                 WHERE idPalabra = :id;
             ";
 
-            $stmt = $this->conexion->prepare($sql);
+        $stmt = $this->conexion->prepare($sql);
 
-            $stmt->bindParam(':id', $idPalabra, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $idPalabra, PDO::PARAM_INT);
 
-            $stmt->execute();
+        $stmt->execute();
 
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-    }   
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+}
 ?>
 
 <!-- CREATE TABLE Palabras (

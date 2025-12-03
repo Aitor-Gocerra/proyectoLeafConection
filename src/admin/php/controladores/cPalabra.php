@@ -62,10 +62,9 @@ class CPalabra
         $pistas = $_POST['pista'] ?? [];
 
         // 2. Validación básica
-        if (empty($palabra) || empty($definicion) || empty($pista)) {
+        if (empty($palabra) || empty($definicion)) {
             $this->mensaje = "Error: Faltan campos obligatorios para la palabra.";
-            $this->gestionarPalabras();
-            return;
+            return $this->gestionarPalabras();
         }
 
         $idPalabra = $this->palabraMod->crearPalabra(
@@ -83,9 +82,9 @@ class CPalabra
                     $this->palabraMod->anadirPista($idPalabra, $pistaPalabra);
                 }
             }
-            $this->mensaje = "Frase guardada correctamente con ID: " . $idPalabra;
+            $this->mensaje = "Palabra guardada correctamente con ID: " . $idPalabra;
         } else {
-            $this->mensaje = "Error al guardar la frase. Revise logs de base de datos.";
+            $this->mensaje = "Error al guardar la palabra. Revise logs de base de datos.";
         }
 
         return $this->gestionarPalabras();
@@ -126,7 +125,7 @@ class CPalabra
         $exito = $this->palabraMod->eliminarpalabra($idPalabra);
 
         if ($exito) {
-           $this->mensaje = "Palabra ID: {$idPalabra} eliminada correctamente.";
+            $this->mensaje = "Palabra ID: {$idPalabra} eliminada correctamente.";
         } else {
             $this->mensaje = "Error al eliminar la palabra.";
         }

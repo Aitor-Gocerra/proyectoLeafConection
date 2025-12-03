@@ -57,7 +57,7 @@
             </div>
         <?php } elseif (isset($_GET['buscar'])) { ?>
             <div class="mensaje">
-                <p>No se encontraron palabras con el término: <?php echo htmlspecialchars($_GET['buscar']); ?></p>
+                <p>No se encontraron palabras con el término: <?php echo $_GET['buscar']; ?></p>
             </div>
         <?php } ?>
 
@@ -68,8 +68,8 @@
                 <input type="text" name="palabra" id="palabra" placeholder="Ej: Arból...">
                 <p>Añade una palabra para que sea adivinada.</p>
 
-                <label for="palabraCorrecta">Definición</label>
-                <input type="text" name="palabraCorrecta" id="palabraCorrecta"
+                <label for="definicion">Definición</label>
+                <input type="text" name="definicion" id="definicion"
                     placeholder="Ej: Planta de tallo leñoso y elevado, que se ramifica a cierta altura del suelo.">
 
                 <label for="fecha">Fecha programada</label>
