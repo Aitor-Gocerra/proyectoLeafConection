@@ -33,7 +33,7 @@
         </div>
         <div id="misAmigos">
             <h2>Lista de Amigos</h2>
-            <div id="contenedorAmigo">
+            <div id="contenedorAmigo"><!-- Aquí se verian los amigos agregados se debe de hacer las dos de maner dinámica-->
                 <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
                 <p class="nombreAmigo">Aitor Gomez</p>
                 <div class="simboloAmigo">
@@ -45,10 +45,9 @@
             <h2>Solicitudes de Amistad</h2>
             <div id="contenedorSolicitudes">
                 <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
-                <p class="nombreAmigo">Aitor Gomez</p>
-                <button type="submit" class="aceptarSolicitud">Aceptar <i
-                        class="fa-solid fa-user-check"></i></button></i>
-                <button type="submit" class="rechazarSolicitud">Rechazar <i class="fa-solid fa-user-xmark"></i></button>
+                <p class="nombreAmigo">Aitor Gomez</p> <!-- Aquí se verian el amigo y deberiamosde coger su id para aceptar o rechazar su solicitud-->
+                <button type="submit" class="aceptarSolicitud" id="btnAceptarSolicitud">Aceptar <i class="fa-solid fa-user-check"></i></button></i>
+                <button type="submit" class="rechazarSolicitud" id="btnRechazarSolicitud" >Rechazar <i class="fa-solid fa-user-xmark"></i></button>
             </div>
         </div>
     </main>

@@ -1,7 +1,16 @@
-/*import { cAmigos } from '../controlador/cAmigos.js';
-const controlador = new cAmigos();*/
+/* === PARTE SUPERIOR DE AMIGOS.JS === */
+import { cAmigos } from '../controlador/cAmigos.js';
+const controlador = new cAmigos();
 
-/* MENÚ QUE CAMBIA LOS DISPLAY DE LISTA DE AMIGOS Y LAS SOLICITUDES */
+// 🔑 Conexión Vista -> Controlador
+const miObjetoVista = {
+    mostrarError: mostrarError, 
+    mostrarExito: mostrarExito,
+    limpiarMensajes: limpiarMensajes,
+    navegarATab: navegarATab,
+};
+
+controlador.vista = miObjetoVista;
 
 const btnAmigos = document.getElementById("todosAmigos");
 const btnSolicitudes = document.getElementById("solicitudesAmigos");
@@ -39,6 +48,19 @@ function navegarATab() {
     let newUrl = window.location.pathname + '?c=Paginas&m=amigos';
     window.location.href = newUrl;
 }
+
+// Función de Éxito (necesaria para el controlador)
+function mostrarExito(mensaje) {
+    const divError = document.getElementById('mensaje-error-amigos');
+    if (divError) {
+        divError.textContent = mensaje;
+        divError.style.color = 'green';
+        divError.style.display = 'block';
+        divError.style.fontSize = '0.8rem';
+        divError.style.marginLeft = '1rem';
+    }
+}
+
 
 //Es la funcion que permite mostrar un mensaje de error en caso de que la contraseña o correo este vacia
 function mostrarError(mensaje) {
@@ -79,17 +101,39 @@ document.getElementById('encontrarAmigo').addEventListener('click', async functi
     
     if (usuario === '') {
         mostrarError('El usuario no está completo.');
-        return; // 🔑 Esta validación simple ahora se ejecutará.
     }
 
     console.log("Vista: Validación OK. Enviando datos al Controlador...");
-    /*controlador.cAmigos(usuario);*/
+    controlador.cAmigos(usuario);
 });
 
-    const btnEliminarAmigo = document.getElementById('eliminarAmigoBtn');
-    const confirmModal = document.getElementById('confirmModal');
-    const cancelBtn = document.getElementById('cancelBtn');
-    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+//fUNCION PARA LOS BOTONES ACEPTAR O RECHAZAR SI SE OCULTAN INDEPENDIENTEMENTE LO QUE HAGAS
+let botonAceptar =  document.getElementById('btnAceptarSolicitud');
+let botnRechazar =  document.getElementById('btnRechazarSolicitud');
+
+botonAceptar.addEventListener('click', async function (event){
+        event.preventDefault();
+        limpiarMensajes();
+
+        botnRechazar.style.display = 'none';
+        botonAceptar.style.display = 'none';
+        controlador.cAmigos(usuario);
+})
+
+botnRechazar.addEventListener('click', async function (event){
+        event.preventDefault();
+        limpiarMensajes();
+
+        botnRechazar.style.display = 'none';
+        botonAceptar.style.display = 'none';
+        controlador.cAmigos(usuario);
+})
+
+/*********************************MODAL SIRVE PARA CONFIRMAR LA ELIMINACIONDE AMIGOS DEL USUARIO ***************/
+    const btnEliminarAmigo = document.getElementById('eliminarAmigoBtn'); /******* BOTON DE ELIMINAR AMIGO DEL MODAL******* */
+    const confirmModal = document.getElementById('confirmModal');/******* BOTON DE QUE APAREZCA O SE OCULTE EL MODAL*/
+    const cancelBtn = document.getElementById('cancelBtn');/******* BOTON DE CANCELAR ELIMINAR EL AMIGO*/
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn'); /******* BOTON DE ACEPTAR LA ELIMINACION DEL AMIGO*/
 
 
     function mostrarModal() {
@@ -115,7 +159,7 @@ document.getElementById('encontrarAmigo').addEventListener('click', async functi
     if (confirmDeleteBtn) {
         confirmDeleteBtn.addEventListener('click', function() {
             ocultarModal(); 
-            /*controlador.cAmigos(usuario);*/
+            controlador.cAmigos(usuario);
         });
     }
 
