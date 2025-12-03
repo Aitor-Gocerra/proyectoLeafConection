@@ -59,7 +59,7 @@ class CPalabra
         $definicion = $_POST['definicion'] ?? '';
         $fecha = $_POST['fecha'] ?? null;
 
-        $pista = $_POST['pista'] ?? [];
+        $pistas = $_POST['pista'] ?? [];
 
         // 2. Validación básica
         if (empty($palabra) || empty($definicion) || empty($pista)) {
@@ -68,23 +68,22 @@ class CPalabra
             return;
         }
 
-        $idPalabra = $this->palabraMod->crearPalabraYPista(
+        $idPalabra = $this->palabraMod->crearPalabra(
             $palabra,
             $definicion,
-            $pista,
             $fecha
         );
 
-        if ($idFrase) {
+        if ($idPalabra) {
             // Recorremos el array de pistas (esto guarda la pista 1, la 2, la 3, etc.)
             foreach ($pistas as $pistaPalabra) {
                 // Solo guardamos si el texto no está vacío
                 if (!empty(trim($pistaPalabra))) {
                     // Llamada al segundo método del modelo: AÑADIR PISTA
-                    $this->fraseMod->anadirPista($idFrase, $pistaPalabra);
+                    $this->palabraMod->anadirPista($idPalabra, $pistaPalabra);
                 }
             }
-            $this->mensaje = "Frase guardada correctamente con ID: " . $idFrase;
+            $this->mensaje = "Frase guardada correctamente con ID: " . $idPalabra;
         } else {
             $this->mensaje = "Error al guardar la frase. Revise logs de base de datos.";
         }
@@ -114,24 +113,6 @@ class CPalabra
 
         return $this->gestionarPalabras();
     }
-    /* public function anadirPistaAdicional() {
-        $idPalabra = $_POST['idPalabra'] ?? null;
-        $nuevaPista = $_POST['nuevaPista'] ?? '';
-
-        if (empty($idPalabra) || empty($nuevaPista)) {
-            $this->mensaje = "Error: ID de palabra o nueva pista faltante.";
-            return;
-        }
-
-        // Llama al método del modelo para añadir la pista
-        $exito = $this->palabraMod->anadirPista($idPalabra, $nuevaPista);
-
-        if ($exito) {
-            $this->mensaje = "Pista añadida correctamente a la palabra ID: " . $idPalabra;
-        } else {
-            $this->mensaje = "Error al añadir la pista.";
-        }
-    } */
 
     public function eliminarPalabra()
     {

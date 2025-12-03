@@ -4,7 +4,7 @@
             <div class="modal-contenido">
                 <span class="cerrar-modal">x</span>
                 <h3><i class="fas fa-lightbulb"></i> Pista Extra</h3>
-                <p>Texto de la pista que quieres mostrar al usuario.</p>
+                <p><?php echo $pista ?></p>
             </div>
         </div>
     ';

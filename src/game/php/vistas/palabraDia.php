@@ -23,7 +23,7 @@
                     </button>
                 </div>
                 <div class="pista">
-                    <p>El proceso de reciclaje de materia orgánica, como hojas y restos de comida, en una enmienda rica para el suelo.</p>
+                    <p><?php echo $palabra ?></p>
                 </div>
                 <div class="contenedorAcierto">
                     <input type="text" name="acertarPalabra" class="introducirPalabra" placeholder="Tu suposición...">

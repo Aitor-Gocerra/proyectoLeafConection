@@ -4,48 +4,26 @@ require_once __DIR__ . '/mConexion.php';
 class Palabra extends Conexion
 {
 
-    public function crearPalabraYPista($frase, $palabraCorrecta, $pista, $fechaProgramada = null)
+    public function crearPalabra($frase, $definicion, $fechaProgramada)
     {
-        // Inicia una transacción para asegurar que ambas inserciones se completen
-        $this->conexion->beginTransaction();
+        // 1. Insertar la frase
+        $sqlPalabra = "
+                INSERT INTO palabras (palabra, definicion, fechaProgramada) 
+                VALUES (:palabra, :definicion, :fecha);
+            ";
 
-        try {
-            // 1. Insertar la frase
-            $sqlPalabra = "
-                    INSERT INTO palabras (palabra, definicion, fechaProgramada) 
-                    VALUES (:palabra, :definicion, :fecha);
-                ";
+        $stmtPalabra = $this->conexion->prepare($sqlPalabra);
 
-            $stmtPalabra = $this->conexion->prepare($sqlPalabra);
-            $stmtPalabra->bindParam(':palabra', $frase);
-            $stmtPalabra->bindParam(':definicion', $palabraCorrecta);
-            $stmtPalabra->bindParam(':fecha', $fechaProgramada);
-            $stmtPalabra->execute();
+        $stmtPalabra->bindParam(':palabra', $frase);
+        $stmtPalabra->bindParam(':definicion', $definicion);
+        $stmtPalabra->bindParam(':fecha', $fechaProgramada);
 
-            $idPalabra = $this->conexion->lastInsertId();
-
-            if ($idPalabra) {
-                // 2. Insertar la pista relacionada
-                $sqlPista = "
-                        INSERT INTO pistaspalabras (idPalabra, pista) 
-                        VALUES (:idPalabra, :pista);
-                    ";
-
-                $stmtPista = $this->conexion->prepare($sqlPista);
-                $stmtPista->bindParam(':idPalabra', $idPalabra);
-                $stmtPista->bindParam(':pista', $pista);
-                $stmtPista->execute();
-
-                $this->conexion->commit();
-                return $idPalabra;
-            }
-
-        } catch (PDOException $e) {
-            $this->conexion->rollBack();
-            echo "Error en la transacción: " . $e->getMessage();
-            return false;
+        if($stmtPalabra->execute()){
+            return $this->conexion->lastInsertId();
         }
+
         return false;
+
     }
 
     public function listarPalabras()
@@ -83,7 +61,7 @@ class Palabra extends Conexion
         return !empty($resultado) ? $resultado : null;
     }
 
-    public function actualizarPalabra($idPalabra, $palabra, $palabraCorrecta)
+    public function actualizarPalabra($idPalabra, $palabra, $definicion)
     {
         $sql = "
                 UPDATE palabras 
@@ -92,13 +70,13 @@ class Palabra extends Conexion
             ";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':palabra', $palabra);
-        $stmt->bindParam(':correcta', $palabraCorrecta);
+        $stmt->bindParam(':correcta', $definicion);
         $stmt->bindParam(':id', $idPalabra, PDO::PARAM_INT);
 
         return $stmt->execute();
     }
 
-    /* public function anadirPista($idPalabra, $pista)
+    public function anadirPista($idPalabra, $pista)
     {
         $sql = "
                 INSERT INTO PistasFrase (idPalabra, pista) 
@@ -106,11 +84,11 @@ class Palabra extends Conexion
                 ";
 
         $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':idPalabra', $idFrase, PDO::PARAM_INT);
+        $stmt->bindParam(':idPalabra', $idPalabra, PDO::PARAM_INT);
         $stmt->bindParam(':pista', $pista);
 
         return $stmt->execute();
-    } */
+    }
 
     public function eliminarPalabra($idPalabra)
     {
