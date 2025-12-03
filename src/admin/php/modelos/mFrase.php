@@ -6,47 +6,24 @@ class Frase extends Conexion
 
     public function crearFraseYpista($frase, $palabraFaltante, $pista, $autor = null, $fechaProgramada = null)
     {
-        // Inicia una transacción para asegurar que ambas inserciones se completen
-        $this->conexion->beginTransaction();
+        
+        $sqlFrase = "
+                INSERT INTO Frases (frase, palabraFaltante, autor, fechaProgramada) 
+                VALUES (:frase, :palabra, :autor, :fecha);
+            ";
 
-        try {
-            // 1. Insertar la frase
-            $sqlFrase = "
-                    INSERT INTO Frases (frase, palabraFaltante, autor, fechaProgramada) 
-                    VALUES (:frase, :palabra, :autor, :fecha);
-                ";
+        $stmtFrase = $this->conexion->prepare($sqlFrase);
+        $stmtFrase->bindParam(':frase', $frase);
+        $stmtFrase->bindParam(':palabra', $palabraFaltante);
+        $stmtFrase->bindParam(':autor', $autor);
+        $stmtFrase->bindParam(':fecha', $fechaProgramada);
 
-            $stmtFrase = $this->conexion->prepare($sqlFrase);
-            $stmtFrase->bindParam(':frase', $frase);
-            $stmtFrase->bindParam(':palabra', $palabraFaltante);
-            $stmtFrase->bindParam(':autor', $autor);
-            $stmtFrase->bindParam(':fecha', $fechaProgramada);
-            $stmtFrase->execute();
+        $stmtFrase->execute();
 
-            $idFrase = $this->conexion->lastInsertId();
+        $idFrase = $this->conexion->lastInsertId();
 
-            if ($idFrase) {
-                // 2. Insertar la pista relacionada
-                $sqlPista = "
-                        INSERT INTO PistasFrase (idFrase, pista) 
-                        VALUES (:idFrase, :pista);
-                    ";
+        return $idFrase;
 
-                $stmtPista = $this->conexion->prepare($sqlPista);
-                $stmtPista->bindParam(':idFrase', $idFrase);
-                $stmtPista->bindParam(':pista', $pista);
-                $stmtPista->execute();
-
-                $this->conexion->commit();
-                return (int) $idFrase;
-            }
-
-        } catch (PDOException $e) {
-            $this->conexion->rollBack();
-            echo "Error en la transacción: " . $e->getMessage();
-            return false;
-        }
-        return false;
     }
 
     public function listarFrases()

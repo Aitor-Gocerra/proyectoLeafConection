@@ -58,7 +58,7 @@ class CFrase
         // 1. Recoger y sanitizar datos del formulario
         $frase = $_POST['frase'] ?? '';
         $palabraFaltante = $_POST['palabraFaltante'] ?? '';
-        $pistaInicial = $_POST['pista'][0] ?? '';
+        $pistaInicial = $_POST['pista'] ?? '';
         $autor = $_POST['autor'] ?? null;
         $fecha = $_POST['fecha'] ?? null;
 
@@ -91,7 +91,7 @@ class CFrase
             $this->mensaje = "Error al guardar la frase. Revise logs de base de datos.";
         }
 
-        $this->gestionarFrases();
+        return $this->gestionarFrases();
     }
 
     public function anadirPistaAdicional()
