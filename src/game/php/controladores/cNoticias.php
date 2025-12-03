@@ -26,7 +26,7 @@
             $idNoticia = $_GET['idNoticia']; 
             $temporizador = $_POST['tiempo'];
             $respuestas = $this->objNoticia->obtenerRespuestas($idNoticia);
-
+            
             $puntuacion = 0;
             $intentos = 1;
 

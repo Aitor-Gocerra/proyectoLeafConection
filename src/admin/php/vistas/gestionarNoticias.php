@@ -62,12 +62,135 @@
             </div>
         </main>
 
+        <main>
+        <!-- Resultados de búsqueda -->
+        <?php if (1 == 1) { ?>
+            <div id="resultadosBusqueda">
+                <h2>Resultados de la Búsqueda</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titulo</th>
+                            <th>Noticia</th>
+                            <th>Fecha Programada</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($resultadosBusqueda as $noticia) {
+                            echo "<tr>";
+                            echo "<td>" . $noticia['idFrase'] . "</td>";
+                            echo "<td>" . $noticia['frase'] . "</td>";
+                            echo "<td>" . $noticia['palabraFaltante'] . "</td>";
+                            echo "<td>" . $noticia['fechaProgramada'] ?? 'No programada' . "</td>";
+                            echo "<td>";
+                            echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\">Eliminar</a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } elseif (isset($_GET['buscar'])) { ?>
+            <div class="mensaje">
+                <p>No se encontraron frases con el término: <?php echo $_GET['buscar']; ?></p>
+            </div>
+        <?php } ?>
+
+        <br>
+        <div id="ultimasDiezFrases">
+            <h2>Últimas 10 Frases</h2>
+            <?php if (isset($frases) && !empty($frases)) { ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Frase</th>
+                            <th>Palabra Faltante</th>
+                            <th>Fecha Programada</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($frases as $frase) {
+                            echo "<tr>";
+                            echo "<td>" . $frase['idFrase'] . "</td>";
+                            echo "<td>" . $frase['frase'] . "</td>";
+                            echo "<td>" . $frase['palabraFaltante'] . "</td>";
+                            echo "<td>" . ($frase['fechaProgramada'] ?? 'No programada') . "</td>";
+                            echo "<td>";
+                            echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\">Eliminar</a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <p>No hay frases guardadas aún.</p>
+            <?php } ?>
+        </div>
+    </main>
+
+    <script>
+        // Script para el buscador de frases
+        document.getElementById('formBuscar').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const buscar = document.getElementById('inputBuscar').value;
+            if (buscar.trim() !== '') {
+                window.location.href = 'index.php?c=Frase&m=buscarFrases&buscar=' + buscar;
+            }
+        });
+
+        // Mostrar alert si hay mensaje de éxito o error
+        const urlParams = new URLSearchParams(window.location.search);
+        const successMessage = urlParams.get('success');
+        const errorMessage = urlParams.get('error');
+
+        if (successMessage) {
+            alert(successMessage);
+            // Limpiar el parámetro de la URL sin recargar la página
+            window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+        }
+
+        if (errorMessage) {
+            alert('Error: ' + errorMessage);
+            window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+        }
+    </script>
+
         <footer>
             <?php
                 require_once 'parciales/footer.php';
             ?>
         </footer>
 
-        <script src="./javascript/anadirPregunta.js"></script>
+        <script>
+            let btnAñadirPregunta = document.getElementById("añadirPregunta");
+            let plantilla = document.querySelector(".cuestionarioPregunta"); // primera pregunta
+            let contenedor = document.getElementById("cuestionarioContainer");
+
+            btnAñadirPregunta.addEventListener("click", function(e) {
+                e.preventDefault();
+
+                // Clonar la plantilla
+                let nuevaPregunta = document.createElement("div");
+                nuevaPregunta.classList.add("cuestionarioPregunta");
+                nuevaPregunta.innerHTML = plantilla.innerHTML;
+
+                // Limpiar valores de los inputs
+                let inputs = nuevaPregunta.querySelectorAll('input');
+                inputs.forEach(input => input.value = '');
+
+                // Añadir al contenedor de preguntas
+                contenedor.appendChild(nuevaPregunta);
+            });
+        </script>
+
+
     </body>
 </html>
