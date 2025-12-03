@@ -52,6 +52,40 @@
             }
         }
 
-    }
+        public function obtenerRespuestas($idNoticia){
+            $sql = "SELECT * FROM RespuestaCorrecta WHERE idNoticia = :idNoticia;";
+            try{
+                $sth = $this->conexion->prepare($sql);
+                $sth->execute(['idNoticia' => $idNoticia]);
+                $respuestas = $sth->fetchAll(PDO::FETCH_ASSOC);
+                return $respuestas;
+            }
+            catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
 
+        public function guardarPartida($idNoticia, $temporizador, $puntuacion, $intentos, $idUsuario){
+
+            $sql1 = "INSERT INTO Partida (temporizador, puntuacion, intentos, idUsuario) 
+                    VALUES (:temporizador, :puntuacion, :intentos, :idUsuario);"; 
+
+            $sql2 = "INSERT INTO NoticiaDia (idPartida, idNoticia) VALUES (:idPartida, :idNoticia);";
+            
+            try{
+                $this->conexion->beginTransaction();
+                $sth = $this->conexion->prepare($sql1);
+                $sth->execute(['temporizador' => $temporizador, 'puntuacion' => $puntuacion, 'intentos' => $intentos, 'idUsuario' => $idUsuario]);
+                $idPartida = $this->conexion->lastInsertId();
+                $sth = $this->conexion->prepare($sql2);
+                $sth->execute(['idPartida' => $idPartida, 'idNoticia' => $idNoticia]);
+                $this->conexion->commit();
+                return true;
+            } catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+    }
 ?>

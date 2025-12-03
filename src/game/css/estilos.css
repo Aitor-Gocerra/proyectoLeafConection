@@ -1471,6 +1471,10 @@ footer {
                 list-style: none;
                 padding-left: 0.75rem;
             }
+
+            ul li{
+                font-weight: lighter;
+            }
             
             ul li input[type=radio]{
                 appearance: none; /* Quita los estilos por defecto. */
