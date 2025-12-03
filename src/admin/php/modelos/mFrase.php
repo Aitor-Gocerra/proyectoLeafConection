@@ -4,7 +4,7 @@ require_once __DIR__ . '/mConexion.php';
 class Frase extends Conexion
 {
 
-    public function crearFrase($frase, $palabraFaltante, $pista, $autor = null, $fechaProgramada = null)
+    public function crearFrase($frase, $palabraFaltante, $fechaProgramada = null)
     {
         
         $sqlFrase = "
