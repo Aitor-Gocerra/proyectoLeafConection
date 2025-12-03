@@ -1,6 +1,6 @@
 <?php
-    DEFINE ("servidor", "localhost");
-    DEFINE ("usuario", "root");
-    DEFINE ("password", "");
-    DEFINE ("nombreDB", "leafconnect");
+    DEFINE ("SERVIDOR", "localhost");
+    DEFINE ("USUARIO", "root");
+    DEFINE ("PASSWORD", "");
+    DEFINE ("BDD", "leafconnect");
 ?>

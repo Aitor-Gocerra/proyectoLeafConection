@@ -17,25 +17,17 @@
 
                 <div id="noticia_titulo">
                     <h1>
-                        Nacidos en 2020 sufrirán el triple de extremos climáticos
+                        <?php echo $noticia['titulo']; ?>
                     </h1>
                 </div>
 
                 <div id="noticia_imagen">
-                    <div id="imagen"></div>
+                    <div id="imagen" style="background-image: url('<?php echo $noticia['urlImagen']; ?>')"></div>
                 </div>
 
                 <div id="noticia_contenido">
                     <p class="noticia_parrafo">
-                        Los fenómenos climáticos extremos dejarán de ser excepcionales. Según el informe, los 
-                        niños de Aragón (97%), Cataluña (96%) y La Rioja (94%) serán los más expuestos a sufrir, 
-                        cada año, al menos un evento climático extremo: olas de calor, inundaciones, sequías, 
-                        incendios o pérdidas de cosechas. Si el calentamiento se estabilizara en 1,5°C -el 
-                        objetivo del Acuerdo de París-, esta exposición se reduciría drásticamente al 65%.<br></br>
-                        
-                        El documento aporta una poderosa visualización: hasta 111 millones de niños nacidos en 
-                        2020 podrían sufrir olas de calor extremas a lo largo de su vida si la temperatura global 
-                        alcanza los 3,5°C.<br></br>
+                        <?php echo $noticia['noticia']; ?>
                     </p>
                 </div>
             </section>
@@ -46,7 +38,25 @@
                 </h2>
 
                 <form action="">
-                    <div class="noticia_pregunta">
+
+                    <?php 
+                        foreach($preguntas as $pregunta){
+                            echo 
+                                '<div class="noticia_pregunta">' .
+                                    '<h4>' . $pregunta['pregunta'] . '<h4>' .
+                                    '<ul>';
+                                        foreach ($opciones as $opcion) {
+                                            if ($opcion['nPregunta'] == $pregunta['nPregunta']){
+                                                echo '<li><input type="radio" name="'. $pregunta['nPregunta'] .'" value="'.$opcion['nOpcion'] .'">' . $opcion['opcion'] .'></li>';
+                                            }
+                                        }
+                            echo    '</ul>' .
+                                '</div>';
+
+                        }
+                    ?>
+
+                    <!-- <div class="noticia_pregunta">
                         <h4>1. ¿Por qué los niños del año 2020 podrían sufrir más eventos climáticos extremos que generaciones anteriores? <i class="fa-regular fa-circle-check"></i></h4>
                         <ul>
                             <li><input type="radio" name="1">Porque el cambio climático está aumentando la frecuencia de fenómenos extremos.</li>
@@ -62,7 +72,7 @@
                             <li><input type="radio" name="2">Porque están menos interesados en informarse sobre el clima.</li>
                             <li><input type="radio" name="2">Porque no tienen la posibilidad de viajar a otros países con mejor clima.</li>
                         </ul>
-                    </div>
+                    </div> -->
 
                     <input type="submit" value="Enviar respuesta">
                 </form>

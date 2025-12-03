@@ -36,7 +36,7 @@
                     <i class="fas fa-globe"></i>
                     <h2 class="tituloTarjeta">Noticia del día</h2>
                     <p class="descripcionTarjeta">Aprende sobre la noticia eco-ambiental del dia</p>
-                    <a href="index.php?c=Paginas&m=noticiaDia">Comenzar desafío</a>
+                    <a href="index.php?c=Noticias&m=noticiaDia">Comenzar desafío</a>
                 </div>
 
                 <div class="tarjetaJuego">
