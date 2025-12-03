@@ -28,7 +28,6 @@ export class mAmigos {
 
     async enviarSolicitud(identificador) {
         let formData = new FormData();
-        // 🔑 Clave: 'identificador' Valor: identificador del usuario
         formData.append('identificador', identificador); 
         
         return this._sendAction('enviarSolicitud', formData);
@@ -36,14 +35,12 @@ export class mAmigos {
     
     async eliminarAmigo(amigoID) {
         let formData = new FormData();
-        // 🔑 Clave: 'amigo_id'  Valor: ID del amigo
         formData.append('amigo_id', amigoID); 
         return this._sendAction('eliminarAmigo', formData);
     }
 
     async aceptarSolicitud(solicitudID, emisorID) {
         let formData = new FormData();
-        // 🔑 Claves: 'solicitud_id' y 'emisor_id'
         formData.append('solicitud_id', solicitudID);
         formData.append('emisor_id', emisorID);
         return this._sendAction('aceptarSolicitud', formData);
@@ -51,7 +48,6 @@ export class mAmigos {
 
     async eliminarSolicitud(solicitudID) {
         let formData = new FormData();
-        // 🔑 Clave: 'solicitud_id' 
         formData.append('solicitud_id', solicitudID);
         return this._sendAction('rechazarSolicitud', formData);
     }
