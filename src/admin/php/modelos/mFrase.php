@@ -41,7 +41,7 @@ class Frase extends Conexion
 
         } catch (PDOException $e) {
             $this->conexion->rollBack();
-            // Aquí puedes loggear el error
+                echo "Error en la transacción: " . $e->getMessage();
             return false;
         }
         return false;
@@ -62,19 +62,19 @@ class Frase extends Conexion
 
         return !empty($resultado) ? $resultado : null;
     }
-    public function buscarFrases($query)
+    public function buscarFrases($buscar)
     {
         $sql = "
                 SELECT * 
                 FROM Frases 
-                WHERE frase LIKE :query 
-                   OR palabraFaltante LIKE :query
+                WHERE frase LIKE :buscar 
+                   OR palabraFaltante LIKE :buscar
                 ORDER BY fechaProgramada DESC;
             ";
         
         $stmt = $this->conexion->prepare($sql);
-        $searchTerm = '%' . $query . '%';
-        $stmt->bindParam(':query', $searchTerm);
+        $terminoBusqueda = '%' . $buscar . '%';
+        $stmt->bindParam(':buscar', $terminoBusqueda);
         $stmt->execute();
 
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);

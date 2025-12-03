@@ -41,7 +41,7 @@ class Palabra extends Conexion
 
         } catch (PDOException $e) {
             $this->conexion->rollBack();
-            echo "Error en la transacción: " . $e->getMessage();
+                echo "Error en la transacción: " . $e->getMessage();
             return false;
         }
         return false;
@@ -72,8 +72,8 @@ class Palabra extends Conexion
             ";
         
         $stmt = $this->conexion->prepare($sql);
-        $searchTerm = '%' . $buscar . '%';
-        $stmt->bindParam(':buscar', $searchTerm);
+        $terminoBusqueda = '%' . $buscar . '%';
+        $stmt->bindParam(':buscar', $terminoBusqueda);
         $stmt->execute();
 
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);

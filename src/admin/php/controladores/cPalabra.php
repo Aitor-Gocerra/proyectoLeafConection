@@ -37,18 +37,13 @@ class CPalabra
         
         if (empty($buscar)) {
             $this->mensaje = "Por favor, introduce un término de búsqueda.";
-            $this->listarPalabras();
-            return ['palabras' => $this->palabrasList, 'mensaje' => $this->mensaje];
+            return ['mensaje' => $this->mensaje];
         }
 
         // Buscar palabras
         $resultados = $this->palabraMod->buscarPalabras($buscar);
         
-        // También cargar las últimas 10 palabras
-        $this->listarPalabras();
-        
         return [
-            'palabras' => $this->palabrasList,
             'resultadosBusqueda' => $resultados,
             'mensaje' => $this->mensaje
         ];

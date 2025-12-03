@@ -24,7 +24,6 @@
         titulo("Palabra");
         ?>
 
-
         <div id="contenedorAdmin">
             <h1>Añadir/Editar Palabra del Dia</h1>
             <form action="index.php?c=Palabra&m=guardarNuevaPalabra" method="post">
@@ -95,7 +94,6 @@
                     <p>No se encontraron palabras con el término: <?php echo htmlspecialchars($_GET['buscar']); ?></p>
                 </div>
             <?php } ?>
-
             
     </main>
     <br>

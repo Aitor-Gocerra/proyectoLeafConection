@@ -445,7 +445,7 @@ main {
 /**************************** ÚLTIMAS 10 PALABRAS/FRASES ****************************/
 
 #ultimasDiezPalabras, #ultimasDiezFrases {
-    width: 90%;
+    width: 94%;
     max-width: 1100px;
     margin: 2rem auto;
     background-color: #ffffff;
@@ -679,5 +679,9 @@ footer {
         width: 100%;
         margin: auto;
         padding: 2rem;
+    }
+
+    #ultimasDiezPalabras, #ultimasDiezFrases {
+        width: 80%;
     }
 }
