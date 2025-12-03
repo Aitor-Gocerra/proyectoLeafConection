@@ -23,6 +23,40 @@
                 titulo("Noticia");
             ?>
 
+            <?php if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) { ?>
+                <div id="resultadosBusqueda">
+                    <h2>Resultados de la Búsqueda</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titulo</th>
+                                <th>Fecha Programada</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($resultadosBusqueda as $noticia) {
+                                echo "<tr>";
+                                echo "<td>" . $noticia['idNoticia'] . "</td>";
+                                echo "<td>" . $noticia['titulo'] . "</td>";
+                                echo "<td>" . ($noticia['fechaProgramada'] ?? 'No programada') . "</td>";
+                                echo "<td>";
+                                echo "<a href='index.php?c=GestionarNoticias&m=eliminar&idNoticia=" . $noticia['idNoticia'] . "' onclick=\"return confirm('¿Eliminar esta noticia?')\">Eliminar</a>";
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php } elseif (isset($_GET['buscar'])) { ?>
+                <div class="mensaje">
+                    <p>No se encontraron noticias con el término: <?php echo $_GET['buscar']; ?></p>
+                </div>
+            <?php } ?>
+
             <div id="contenedorAdmin">
                 <h1>Gestión de noticias</h1>
                 <form action="" method="post" id="noticia_formulario">
@@ -63,43 +97,7 @@
         </main>
 
         <!-- Resultados de búsqueda -->
-        <?php if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) { ?>
-            <div id="resultadosBusqueda">
-                <h2>Resultados de la Búsqueda</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Titulo</th>
-                            <th>Noticia</th>
-                            <th>Fecha Programada</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($resultadosBusqueda as $noticia) {
-                            echo "<tr>";
-                            echo "<td>" . $noticia['idNoticia'] . "</td>";
-                            echo "<td>" . $noticia['titulo'] . "</td>";
-                            echo "<td>" . $noticia['noticia'] . "</td>";
-                            echo "<td>" . ($noticia['fechaProgramada'] ?? 'No programada') . "</td>";
-                            echo "<td>";
-                            echo "<a href='index.php?c=GestionarNoticias&m=eliminar&idNoticia=" . $noticia['idNoticia'] . "' onclick=\"return confirm('¿Eliminar esta noticia?')\">Eliminar</a>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php } elseif (isset($_GET['buscar'])) { ?>
-            <div class="mensaje">
-                <p>No se encontraron noticias con el término: <?php echo $_GET['buscar']; ?></p>
-            </div>
-        <?php } ?>
-
-        <br>
+        
         <div id="ultimasDiezFrases">
             <h2>Últimas 10 Frases</h2>
             <?php if (isset($noticias) && !empty($noticias)) { ?>
