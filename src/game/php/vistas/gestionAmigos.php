@@ -22,9 +22,11 @@
             <h2>Añadir Nuevo Amigo</h2>
             <p class="descripcion">Busca a tus amigos por nombre de usuario o correo electrónico</p>
             <div class="contenedorBuscarAmigo">
-                <input type="text" name="buscarAmigo" class="introducirAmigo" placeholder="nombredelusuario#1234">
-                <button type="submit" class="enviarAmigo"><i class="fa-solid fa-user-plus"></i> Enviar Solicitud
-                </button>
+                <form method="POST" action="">
+                    <input type="text" name="buscarAmigo" class="introducirAmigo" placeholder="nombredelusuario#1234">
+                    <button type="submit" class="enviarAmigo" id="anadirAmigo"><i class="fa-solid fa-user-plus"></i> Enviar Solicitud</button>
+                    <div id="mensaje-error"></div>
+                </form>
             </div>
         </div>
         <div id="amigosSolicitudes">
@@ -96,6 +98,7 @@
         });
 
     </script>
+    <script type="module" src="javascript/vista/amigos.js"></script>
 </body>
 
 </html>

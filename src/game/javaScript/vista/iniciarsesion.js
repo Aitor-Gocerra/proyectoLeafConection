@@ -35,7 +35,7 @@ controlador.vista = miObjetoVista;
 
 //----------------Comenzamos a revisar que los campos no estén vacíos 
 
-// Asumimos que el evento se engancha al CLICK del botón/enlace de Iniciar Sesión (#btn-login)
+// Asumimos que el evento se engancha al CLICK 
 document.getElementById('btn-login').addEventListener('click', async function (event) { 
     
     // Detiene la acción por defecto del enlace

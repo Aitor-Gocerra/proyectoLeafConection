@@ -16,7 +16,7 @@ export class MRegistrarse {
                     const errorDiv = document.getElementById('mensaje-error');
                     
                     if(errorDiv) {
-                        if(result === '1062'){
+                        if(result === '1062'){ //Significa la duplicidad de datos repetidos es decir que ya existe el usuario
                             errorDiv.textContent = 'El usuario ya existe. Por favor, intente con otro correo.';
                         } else if (result === 'ContrasenasDiferentes') {
                             errorDiv.textContent = 'Las contraseñas no son iguales';
