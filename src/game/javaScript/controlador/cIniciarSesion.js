@@ -1,5 +1,5 @@
-//javascript/Controlador/cIniciarSesion.js
-/*import { mIniciarsesion } from '../models/mIniciarsesion.js';*/
+/*javascript/Controlador/cIniciarSesion.js
+import { mIniciarsesion } from '../modelo/mIniciarsesion.js';*/
 
 export class cIniciarSesion {
     modelo;
@@ -19,10 +19,10 @@ export class cIniciarSesion {
          }
         
         /*let formData = new FormData(); 
-        formData.append('correo', email); 
-        formData.append('contrasenia', password); 
+        formData.append('correo', email); 
+        formData.append('contrasenia', password); 
 
-        this.modelo.mIniciarSesion(formData);*/
+        this.modelo.mIniciarSesion(formData);*/
     }
      
     validarEmail(email) {
