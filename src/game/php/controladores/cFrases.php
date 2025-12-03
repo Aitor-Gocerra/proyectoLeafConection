@@ -12,7 +12,6 @@ class CFrases
 
     public function __construct()
     {
-
         $this->fraseMod = new Frase();
         $this->vista = '';
     }    
