@@ -30,7 +30,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} 
+}
 
 body {
     font-family: var(--fuente);
@@ -170,10 +170,10 @@ main {
     }
 
     #navegador {
-    display: flex;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
     }
 
     #navegador a {
@@ -262,6 +262,7 @@ main {
         font-size: 1rem;
     }
 }
+
 /******************************* CONTENEDOR DE ADMINISTRADOR USUARIO, PALABRA, FRASE, NOTICIA Y CONSEJO*****************/
 #contenedorAdmin {
     width: 100%;
@@ -438,6 +439,65 @@ main {
     }
 }
 
+/**************************** ÚLTIMAS 10 PALABRAS/FRASES ****************************/
+
+#ultimasDiezPalabras, #ultimasDiezFrases {
+    width: 94%;
+    max-width: 1100px;
+    margin: 2rem auto;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+#ultimasDiezPalabras h2, #ultimasDiezFrases h2 {
+    font-size: 1.4rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-azul-1);
+    padding-bottom: 0.5rem;
+}
+
+#ultimasDiezPalabras table, #ultimasDiezFrases table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+#ultimasDiezPalabras th, #ultimasDiezFrases th {
+    background-color: #e6fffa;
+    color: #2c7a7b;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    border-radius: 6px 6px 0 0;
+}
+
+#ultimasDiezPalabras td, #ultimasDiezFrases td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: var(--color-texto-gris);
+}
+
+#ultimasDiezPalabras tr:last-child td, #ultimasDiezFrases tr:last-child td {
+    border-bottom: none;
+}
+
+#ultimasDiezPalabras tr:hover, #ultimasDiezFrases tr:hover {
+    background-color: #f7fafc;
+}
+
+#ultimasDiezPalabras a, #ultimasDiezFrases a {
+    color: #e53e3e;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+#ultimasDiezPalabras a:hover, #ultimasDiezFrases a:hover {
+    text-decoration: underline;
+}
 
 /****************************** FOOTER                      ******************************/
 
@@ -479,7 +539,7 @@ footer {
         font-size: 1.8rem;
     }
 
-    main > p {
+    main>p {
         font-size: 0.95rem;
         margin-bottom: 2rem;
     }
@@ -518,7 +578,7 @@ footer {
         font-size: 1.5rem;
     }
 
-    main > p {
+    main>p {
         font-size: 0.9rem;
         margin-bottom: 1.5rem;
     }
@@ -535,7 +595,7 @@ footer {
 /* LAPTOP (1024px-1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
     header {
-        padding: 1rem 2rem;
+        padding: 0.5rem 1rem;
     }
 
     nav {
@@ -563,7 +623,7 @@ footer {
         font-size: 2.3rem;
     }
 
-    main > p {
+    main>p {
         font-size: 1.05rem;
         margin-bottom: 2.8rem;
     }
@@ -607,7 +667,7 @@ footer {
         font-size: 2.3rem;
     }
 
-    main > p {
+    main>p {
         font-size: 1.05rem;
         margin-bottom: 2.8rem;
     }
@@ -617,6 +677,8 @@ footer {
         margin: auto;
         padding: 2rem;
     }
+
+    #ultimasDiezPalabras, #ultimasDiezFrases {
+        width: 80%;
+    }
 }
-
-
