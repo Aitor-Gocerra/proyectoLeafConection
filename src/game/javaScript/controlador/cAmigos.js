@@ -47,7 +47,6 @@ export class cAmigos {
     async aceptarSolicitud(solicitudID, emisorID) {
         this.vista.limpiarMensajes();
         const resultado = await this.modelo.aceptarSolicitud(solicitudID, emisorID);
-        .
         if (resultado.success) {
             this.vista.navegarATab('amigos'); 
         } else {
