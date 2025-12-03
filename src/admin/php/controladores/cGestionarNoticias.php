@@ -19,6 +19,20 @@
             return ['noticias' => $this->listaNoticias, 'mensaje' => $this->mensaje];
         }
 
+        public function añadirNoticia(){
+            var_dump($_POST);
+            /*$titulo = $_POST['titulo'];
+            $noticia = $_POST['noticia'];
+            $url = $_POST['url'];
+            $preguntas = $_POST['preguntas'];
+            $opciones = $_POST['opciones'];
+            $respuestas = $_POST['respuestas_correctas'];*/
+
+            $opciones = explode("/", $_POST['opciones'][0]);
+
+            var_dump($opciones);
+        }
+
         public function buscarNoticias(){
             $buscar = $_GET['buscar'] ?? '';
             $this->vista = 'gestionarNoticias';

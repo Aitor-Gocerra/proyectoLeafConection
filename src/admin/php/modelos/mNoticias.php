@@ -6,12 +6,30 @@
             parent::__construct();
         }
 
-        public function añadir($titulo, $noticia, $fechaProgramada, $urlImagen){
-            $sql = "INSERT INTO Noticias (titulo, noticia, fechaProgramada, urlImagen) VALUES (:titulo, :noticia, :fechaProgramada, :urlImagen);";
+        public function añadir($titulo, $noticia, $fechaProgramada, $urlImagen, $preguntas, $opciones, $respuestas){
+            $sql1 = "INSERT INTO Noticias (titulo, noticia, fechaProgramada, urlImagen) VALUES (:titulo, :noticia, :fechaProgramada, :urlImagen);";
+            $sql2 = "INSERT INTO Preguntas (idNoticia, nPregunta, pregunta) VALUES (:idNoticia, :nPregunta, :pregunta);";
+            $sql3 = "INSERT INTO Opciones (idNoticia, nPregunta, nOpcion, opcion) VALUES (:idNoticia, :nPregunta, :nOpcion, :opcion);";
+            $sql4 = "INSERT INTO RespuestaCorrecta (idNoticia, nPregunta, nOpcion) VALUES (:idNoticia, :nPregunta, :nOpcion);";
+
             try{
-                $sth = $this->conexion->prepare($sql);
+                $this->conexion->beginTransaction();
+                
+                $sth = $this->conexion->prepare($sql1);
                 $sth->execute(['titulo' => $titulo, 'noticia' => $noticia, 'fechaProgramada' => $fechaProgramada, 'urlImagen' => $urlImagen]);
-                return true;
+                $idNoticia = $this->conexion->lastInsertId();
+
+                $sth = $this->conexion->prepare($sql2);
+                foreach($preguntas as $i => $pregunta){
+                    $sth->execute(['idNoticia' => $idNoticia, 'nPregunta' => ($i + 1), 'pregunta' => $pregunta]);
+                }
+
+                $sth = $this->conexion->prepare($sql3);
+                foreach($opciones as $i => $opcion){
+                    $sth->execute(['idNoticia' => $idNoticia, 'nPregunta' => ($i + 1), 'pregunta' => $pregunta]);
+                }
+
+                $this->conexion->commit();
             } catch(PDOException $e){
                 echo "Error: " . $e->getMessage();
                 return false;

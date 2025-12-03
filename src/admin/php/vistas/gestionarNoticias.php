@@ -59,31 +59,31 @@
 
             <div id="contenedorAdmin">
                 <h1>Gestión de noticias</h1>
-                <form action="" method="post" id="noticia_formulario">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" placeholder="Ej: Greta Thunberg">
+                <form action="./index.php?c=GestionarNoticias&m=añadirNoticia" method="post" id="noticia_formulario">
+                    <label for="titulo">Título</label>
+                    <input type="text" name="titulo" id="titulo" placeholder="Ej: Greta Thunberg" required>
 
-                    <label for="contenido">Contenido</label>
-                    <textarea name="contenido" id="contenido" rows="5" placeholder="Escribe el contenido de la noticia"></textarea>
+                    <label for="noticia">Contenido</label>
+                    <textarea name="noticia" id="noticia" rows="5" placeholder="Escribe el contenido de la noticia" required></textarea>
 
                     <label for="url">URL de la imagen</label>
-                    <input type="text" name="url" id="url" placeholder="Ej: https://...">
+                    <input type="text" name="url" id="url" placeholder="Ej: https://..." required>
 
                     <label for="fecha">Fecha programada</label>
-                    <input type="date" name="fecha" id="fecha">
+                    <input type="date" name="fecha" id="fecha" required>
 
                     <label>Cuestionario</label>
 
                     <div id="cuestionarioContainer">
                         <div class="cuestionarioPregunta">
                             <label>Pregunta</label>
-                            <input type="text" name="pregunta[]" placeholder="Escribe la pregunta">
+                            <input type="text" name="preguntas[]" value="kamehameha" placeholder="Escribe la pregunta" required>
 
                             <label>Opciones (separadas por '/')</label>
-                            <input type="text" name="opciones[]" class="opciones" placeholder="Opción1/Opción2/Opción3">
+                            <input type="text" name="opciones[]" class="opciones" placeholder="Opción1/Opción2/Opción3" required>
 
                             <label>Respuesta correcta</label>
-                            <input type="number" name="respuesta_correcta[]" min="1" placeholder="Número de la respuesta correcta">
+                            <input type="number" name="respuestas_correctas[]" min="1" placeholder="Número de la respuesta correcta" required>
                         </div>
                     </div>
 
