@@ -1107,11 +1107,39 @@ footer {
         font-family: 'Digital-7', monospace;
         font-size: 1rem;
         text-align: center;
-        margin: 1rem auto 3rem auto;
+        /* margin: 1rem auto 3rem auto; */
+        margin: 0;
         padding: 0.5rem 0.5rem;
         box-shadow: 1px 2px 3px rgb(0, 0, 0, 0.2);
         border-radius: 6px;
         background-color: #dbdbdb;
+        display: inline-block;
+    }
+
+    .contenedor-timer-pista {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem; /* Espacio entre el reloj y la bombilla */
+        margin: 1rem auto 3rem auto; /* El margen que antes tenía el temporizador */
+    }
+
+    /* Estilo del botón bombilla */
+    .boton-bombilla {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem; /* Tamaño del icono */
+        color: var(--color-texto-gris); /* Color apagado por defecto */
+        transition: transform 0.2s, color 0.3s;
+        padding: 0.5rem;
+        border-radius: 50%;
+    }
+
+    .boton-bombilla:hover {
+        color: var(--color-acento-b); /* Color naranja/amarillo al pasar el ratón (#f6ad55) */
+        background-color: #fffaf0;
+        transform: scale(1.1); /* Efecto de crecimiento */
     }
 
     .pista {
@@ -1156,6 +1184,62 @@ footer {
     }
 }
 
+/* --- ESTILOS DE LA VENTANA EMERGENTE (MODAL) --- */
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; 
+    z-index: 2000; /* Por encima de todo, incluso del header */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5); /* Fondo negro semitransparente */
+    backdrop-filter: blur(4px); /* Efecto borroso en el fondo */
+}
+
+.modal-contenido {
+    background-color: var(--color-fondo);
+    margin: 15% auto; /* 15% desde arriba y centrado */
+    padding: 2rem;
+    border: 1px solid var(--color-secundario);
+    border-radius: var(--borde-radius);
+    width: 80%; 
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    position: relative;
+    animation: animatetop 0.4s;
+}
+
+/* Animación de entrada */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.modal-contenido h3 {
+    color: var(--color-acento-b);
+    margin-bottom: 1rem;
+    font-family: var(--fuente);
+}
+
+/* Botón de cerrar (X) */
+.cerrar-modal {
+    color: var(--color-texto-gris);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.cerrar-modal:hover,
+.cerrar-modal:focus {
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
 /* Medidas adaptativas para diferentes pantallas */
 @media (max-width: 1024px) {
     #cajaPalabra {
@@ -1170,6 +1254,14 @@ footer {
         width: 40%;
         margin: 11rem auto 1rem auto;
         padding: 2rem;
+    }
+
+    .contenedor-timer-pista {
+        margin: 1rem auto 3rem auto;
+    }
+
+    .boton-bombilla {
+        font-size: 1.4rem; /* Tamaño equilibrado para laptop */
     }
 }
 
@@ -1188,6 +1280,23 @@ footer {
 
     #contenedorModificarFrase h1 {
         font-size: 1.7rem;
+    }
+
+    /* Ajustes para la pista y el modal en móvil */
+    .contenedor-timer-pista {
+        gap: 0.8rem; /* Reducimos el espacio entre reloj y bombilla */
+        margin: 4rem auto 1rem auto; /* Ajuste vertical */
+    }
+
+    .boton-bombilla {
+        font-size: 1.2rem; /* Hacemos la bombilla más pequeña para que coincida con el reloj */
+        padding: 0.3rem;
+    }
+
+    .modal-contenido {
+        width: 90%; /* En móvil queremos que la ventana ocupe casi todo el ancho */
+        margin: 30% auto; /* La bajamos un poco más */
+        padding: 1.5rem;
     }
 }
 
