@@ -47,6 +47,8 @@
                             echo "<td>" . $palabra['definicion'] . "</td>";
                             echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
+                            echo "<a href='index.php?c=Palabra&m=editarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Editar esta palabra?')\" style='color:orange'>Editar</a>";
+                            echo "<br>";
                             echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
                             echo "</td>";
                             echo "</tr>";
@@ -62,7 +64,7 @@
         <?php } ?>
 
         <div id="contenedorAdmin">
-            <h1>Añadir/Editar Palabra del Dia</h1>
+            <h1>Añadir Palabra del Dia</h1>
             <form action="index.php?c=Palabra&m=guardarNuevaPalabra" method="post">
                 <label for="palabra">Palabra</label>
                 <input type="text" name="palabra" id="palabra" placeholder="Ej: Arból...">
@@ -120,6 +122,8 @@
                         echo "<td>" . $palabra['definicion'] . "</td>";
                         echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
                         echo "<td>";
+                        echo "<a href='index.php?c=Palabra&m=editarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Editar esta palabra?')\" style='color:orange'>Editar</a>";
+                        echo "<br>";
                         echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
                         echo "</td>";
                         echo "</tr>";
@@ -131,6 +135,10 @@
             <p>No hay palabras guardadas aún.</p>
         <?php } ?>
     </div>
+
+    <?php
+    require_once 'parciales/modalEditar.php';
+    ?>
 
     <footer>
         <?php
@@ -171,6 +179,30 @@
         Coge el valor del input de búsqueda
         Construye manualmente la URL: index.php?c=Frase&m=buscarFrases&buscar=loQueBuscas
         Redirige a esa URL con window.location.href */
+    </script>
+
+    <script>
+        // Obtener elementos
+        const modal = document.getElementById("modalEditar");
+        const span = document.getElementsByClassName("cerrar-modal")[0];
+
+        // Si el modal existe (porque PHP lo renderizó), configurar el cierre
+        if (modal && span) {
+            // Cuando el usuario hace clic en (x), cierra el modal y limpia la URL
+            span.onclick = function () {
+                modal.style.display = "none";
+                // Limpiar la URL para quitar los parámetros de edición
+                window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+            }
+
+            // Cuando el usuario hace clic fuera del modal, también se cierra
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+                }
+            }
+        }
     </script>
 </body>
 

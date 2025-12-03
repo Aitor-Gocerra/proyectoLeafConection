@@ -39,7 +39,7 @@
         </div>
 
         <?php
-        require_once 'parciales/modalPista.php';
+            require_once 'parciales/modalPista.php';
         ?>
     </main>
     <?php

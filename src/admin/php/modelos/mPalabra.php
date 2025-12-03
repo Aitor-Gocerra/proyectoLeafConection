@@ -61,6 +61,21 @@ class Palabra extends Conexion
         return !empty($resultado) ? $resultado : null;
     }
 
+    public function obtenerPalabra($idPalabra)
+    {
+        $sql = "
+                SELECT * 
+                FROM palabras 
+                WHERE idPalabra = :id
+            ";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':id', $idPalabra, PDO::PARAM_INT);
+
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function actualizarPalabra($idPalabra, $palabra, $definicion)
     {
         $sql = "

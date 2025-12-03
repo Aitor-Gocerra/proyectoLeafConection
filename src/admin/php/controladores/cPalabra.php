@@ -113,6 +113,24 @@ class CPalabra
         return $this->gestionarPalabras();
     }
 
+    public function editarPalabra()
+    {
+        $this->vista = 'gestionarPalabras';
+        $idPalabra = $_GET['idPalabra'] ?? null;
+
+        $palabraEditar = null;
+        if ($idPalabra) {
+            $palabraEditar = $this->palabraMod->obtenerPalabra($idPalabra);
+        }
+
+        $this->listarPalabras();
+        return [
+            'palabras' => $this->palabrasList,
+            'mensaje' => $this->mensaje,
+            'palabraEditar' => $palabraEditar
+        ];
+    }
+
     public function eliminarPalabra()
     {
         $idPalabra = $_REQUEST['idPalabra'] ?? null;
