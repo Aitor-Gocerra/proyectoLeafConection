@@ -59,6 +59,20 @@ class Frase extends Conexion
         return !empty($resultado) ? $resultado : null;
     }
 
+    public function obtenerFrase($idFrase)
+    {
+        $sql = "
+                SELECT * 
+                FROM Frases 
+                WHERE idFrase = :id
+            ";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bindParam(':id', $idFrase, PDO::PARAM_INT);
+
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     public function actualizarFrase($idFrase, $frase, $palabraFaltante)
     {
         $sql = "

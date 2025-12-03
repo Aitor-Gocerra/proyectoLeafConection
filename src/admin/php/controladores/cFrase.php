@@ -111,6 +111,23 @@ class CFrase
             $this->mensaje = "Error al añadir la pista.";
         }
     }
+    public function editarFrase()
+    {
+        $this->vista = 'gestionarFrases';
+        $idFrase = $_GET['idFrase'] ?? null;
+
+        $fraseEditar = null;
+        if ($idFrase) {
+            $fraseEditar = $this->fraseMod->obtenerFrase($idFrase);
+        }
+
+        $this->listarFrases();
+        return [
+            'frases' => $this->frasesList,
+            'mensaje' => $this->mensaje,
+            'fraseEditar' => $fraseEditar
+        ];
+    }
 
     public function eliminarFrase()
     {

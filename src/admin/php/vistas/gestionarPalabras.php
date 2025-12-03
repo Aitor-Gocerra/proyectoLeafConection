@@ -137,7 +137,7 @@
     </div>
 
     <?php
-    require_once 'parciales/modalEditar.php';
+    require_once 'parciales/modalEditarPalabra.php';
     ?>
 
     <footer>
