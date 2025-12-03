@@ -82,7 +82,7 @@
                 <div id="cuestionarioContainer">
                     <div class="cuestionarioPregunta">
                         <label>Pista</label>
-                        <input type="text" name="pista[]" placeholder="Pista...">
+                        <input type="text" name="pista[]" placeholder="Pista..." required>
                     </div>
                 </div>
 
