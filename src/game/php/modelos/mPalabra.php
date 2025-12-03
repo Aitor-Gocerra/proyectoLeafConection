@@ -40,6 +40,23 @@ class Palabra extends Conexion
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function palabraCorrecta($idPalabra){
+
+        $sql = "
+            SELECT palabra
+            FROM Palabras
+            WHERE idPalabra = :id;
+        ";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $stmt->bindParam(':id', $idPalabra, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>
 

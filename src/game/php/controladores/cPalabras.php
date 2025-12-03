@@ -7,6 +7,7 @@ class CPalabras
     private $palabraMod;
     public $mensaje;
     public $palabra;
+    public $correcta;
     public $pista;
     public $vista;
 
@@ -32,6 +33,7 @@ class CPalabras
 
             // Ahora sí podemos pedir la pista usando ese ID
             $this->pista = $this->palabraMod->mostrarPista($idPalabra);
+            $this->correcta = $this->palabraMod->palabraCorrecta($idPalabra);
 
         } else {
             // Si no hay palabra programada para hoy, dejamos todo vacío o ponemos un mensaje
@@ -42,7 +44,8 @@ class CPalabras
         return [
             'palabra' => $this->palabra,
             'pista' => $this->pista,
-            'mensaje' => $this->mensaje
+            'mensaje' => $this->mensaje,
+            'correcta' => $this->correcta
         ];
 
     }

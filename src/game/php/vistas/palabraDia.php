@@ -32,6 +32,10 @@
                 <input type="text" name="acertarPalabra" class="introducirPalabra" placeholder="Tu suposición...">
                 <button type="submit" class="enviarPalabra">Acierta</button>
             </div>
+            <div id="zonaRespuesta" style="display: none; text-align: center; margin-top: 15px;">
+                <p>La respuesta correcta es:</p>
+                <h3 id="textoSolucion" style="color: #27ae60; text-transform: uppercase;"></h3>
+            </div>
         </div>
 
         <?php
@@ -49,9 +53,9 @@
 
     <script>
         // Obtener elementos
-        var modal = document.getElementById("modalPista");
-        var btn = document.getElementById("btnPista");
-        var span = document.getElementsByClassName("cerrar-modal")[0];
+        const modal = document.getElementById("modalPista");
+        const btn = document.getElementById("btnPista");
+        const span = document.getElementsByClassName("cerrar-modal")[0];
 
         // Cuando el usuario hace clic en la bombilla, abre el modal
         btn.onclick = function () {
@@ -69,6 +73,10 @@
                 modal.style.display = "none";
             }
         }
+    </script>
+
+    <script>
+        //
     </script>
 </body>
 
