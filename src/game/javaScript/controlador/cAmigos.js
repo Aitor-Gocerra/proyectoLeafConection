@@ -10,13 +10,13 @@ export class cAmigos {
         /*this.modelo = new mAmigos();*/
     }
 
-    // 1. GESTIÓN DE ENVÍO DE SOLICITUD (Botón 'encontrarAmigo')
+    //GESTIÓN DE ENVÍO DE SOLICITUD (Botón 'encontrarAmigo')
 
     async enviarSolicitud(identificador) {
         this.vista.limpiarMensajes();
 
 
-        // 2. Llamada al Modelo para enviar la petición al servidor (PHP)
+        //Llamada al Modelo para enviar la petición al servidor (PHP)
         const resultado = await this.modelo.enviarSolicitud(identificador);
         
         if (resultado.success) {
@@ -27,7 +27,7 @@ export class cAmigos {
         }
     }
 
-    // 2. GESTIÓN DE ELIMINACIÓN DE AMIGO (Modal de Confirmación)
+    //GESTIÓN DE ELIMINACIÓN DE AMIGO DEL MODAL
 
     async eliminarAmigo(amigoID) {
         this.vista.limpiarMensajes();
@@ -42,7 +42,7 @@ export class cAmigos {
         }
     }
 
-    // 3. GESTIÓN DE SOLICITUDES (Botones Aceptar/Rechazar)
+    // GESTIÓN DE SOLICITUDES (Botones Aceptar/Rechazar)
     
     async aceptarSolicitud(solicitudID, emisorID) {
         this.vista.limpiarMensajes();

@@ -1,14 +1,15 @@
-/* === PARTE SUPERIOR DE AMIGOS.JS === */
 import { cAmigos } from '../controlador/cAmigos.js';
 const controlador = new cAmigos();
 
-// 🔑 Conexión Vista -> Controlador
+/* ESTO ES LO QUE LE PASAMOS AL MODELO PARA QUE REUTILICE DE ESTA VISTA DE AMIGO */
 const miObjetoVista = {
     mostrarError: mostrarError, 
     mostrarExito: mostrarExito,
     limpiarMensajes: limpiarMensajes,
     navegarATab: navegarATab,
 };
+
+/* AQUÍ TENEMOS DOS BOTONES QUE PARA IR CAMBIANDO DE LISTA DE AMIGOS O ACEPTAR/RECHAZAR SOLICITUDES DE NUEVAS PERSONAS */
 
 controlador.vista = miObjetoVista;
 
@@ -42,14 +43,14 @@ btnSolicitudes.addEventListener("click", () => {
 
 });
 
-// Lo uso para recargar la pagina en caso que eliminemosaceptemos o rechazemos a una persona
+// LO UTILIZO PARA RECARGAR LA PAGINA CUANDO CAMBIO DE BOTONES Y QUE SE ACTUALICE LIS AMIGOS Y LAS SOLICITUDES ENTRANTES
 function navegarATab() {
 
     let newUrl = window.location.pathname + '?c=Paginas&m=amigos';
     window.location.href = newUrl;
 }
 
-// Función de Éxito (necesaria para el controlador)
+//LA USO EN EL CONTROLADOR PARA MOSTRAR QUE SALIO BIEN EL ENVIAR LA SOLICITUD DE AMISTAD QUE ESTO SE CONTROLARA EN EL MODELO
 function mostrarExito(mensaje) {
     const divError = document.getElementById('mensaje-error-amigos');
     if (divError) {
@@ -83,13 +84,7 @@ function limpiarMensajes() {
     }
 }
 
-/*const miObjetoVista = {
-    mostrarError: mostrarError, 
-    limpiarMensajes: limpiarMensajes,
-};*/
-
-//controlador.vista = miObjetoVista;
-
+/* VERIFICA O VALIDA QUE EL CAMPO DE USUARIO CUANDO ENVIAMOS LA SOLICITUD NO ESTE VACÍO */
 document.getElementById('encontrarAmigo').addEventListener('click', async function (event) { 
     
     event.preventDefault();
