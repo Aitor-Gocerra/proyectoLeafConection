@@ -72,16 +72,15 @@ class CFrase
         $idFrase = $this->fraseMod->crearFrase(
             $frase,
             $palabraFaltante,
-            $pistaInicial,
             $fecha
         );
 
         if ($idFrase) {
             // Recorremos el array de pistas (esto guarda la pista 1, la 2, la 3, etc.)
-            foreach ($pistas as $pistaTexto) {
+            foreach ($pistaInicial as $pistaTexto) {
                 // Solo guardamos si el texto no está vacío
                 if (!empty(trim($pistaTexto))) {
-                    // Llamada al segundo método del modelo: AÑADIR PISTA
+                    // Llamada al método del modelo: AÑADIR PISTA
                     $this->fraseMod->anadirPista($idFrase, $pistaTexto);
                 }
             }

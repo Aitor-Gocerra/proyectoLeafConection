@@ -4,9 +4,9 @@ require_once __DIR__ . '/mConexion.php';
 class Frase extends Conexion
 {
 
-    public function crearFrase($frase, $palabraFaltante, $fechaProgramada = null)
+    public function crearFrase($frase, $palabraFaltante, $fechaProgramada)
     {
-        
+
         $sqlFrase = "
                 INSERT INTO Frases (frase, palabraFaltante, fechaProgramada) 
                 VALUES (:frase, :palabra, :fecha);
