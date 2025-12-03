@@ -17,11 +17,6 @@
             <h1>¡Bienvenido, Usuario!</h1>
             <p>Elige un desafío a continuación para empezar a aprender y a divertirte</p>
             
-            <?php
-                if (isset($mensaje)) {
-                    echo '<p>' . $mensaje . '</p>';
-                }
-            ?>
             <div id="contenedorTarjetas">
                 <div class="tarjetaJuego">
                     <i class="fas fa-puzzle-piece"></i>

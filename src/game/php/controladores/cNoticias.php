@@ -45,7 +45,7 @@
                 $mensaje = 'Error al guardar la partida';
             }
 
-            $this->vista = 'inicio';
+            $this->vista = 'noticiaDia';
             return ['mensaje' => $mensaje];
         }
     }

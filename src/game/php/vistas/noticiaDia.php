@@ -13,7 +13,11 @@
             ?>
         </header>
         <main id="noticia_contenedor" class="contenedor_noticia">
-            
+            <?php
+                if (isset($mensaje)) {
+                    echo '<p>' . $mensaje . '</p>'; // Mostrar como popup la cantidad de puntos obtenidos
+                }
+            ?>
             <section id="noticia_seccion_principal">
                 <div id="noticia_titulo">
                     <h1>
