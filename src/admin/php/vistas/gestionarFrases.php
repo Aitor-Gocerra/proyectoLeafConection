@@ -34,10 +34,7 @@
 
                 <label for="palabraFaltante">Palabra que falta</label>
                 <input type="text" name="palabraFaltante" id="palabraFaltante" placeholder="Ej: hijos">
-
-                <label for="autor">Autor</label>
-                <input type="text" name="autor" id="autor" placeholder="Ej: Provervio nativo americano">
-
+                
                 <label for="fecha">Fecha programada</label>
                 <input type="date" name="fecha" id="fecha">
 

@@ -57,8 +57,9 @@ class CPalabra
         // 1. Recoger y sanitizar datos del formulario
         $palabra = $_POST['palabra'] ?? '';
         $definicion = $_POST['definicion'] ?? '';
-        $pista = $_POST['pista'][0] ?? '';
         $fecha = $_POST['fecha'] ?? null;
+
+        $pista = $_POST['pista'] ?? [];
 
         // 2. Validación básica
         if (empty($palabra) || empty($definicion) || empty($pista)) {
@@ -74,15 +75,18 @@ class CPalabra
             $fecha
         );
 
-        if($idPalabra){
-            if(isset($_POST['pista'])){
-                for($i = 1; $i < count($_POST['pista']); $i++)
+        if ($idFrase) {
+            // Recorremos el array de pistas (esto guarda la pista 1, la 2, la 3, etc.)
+            foreach ($pistas as $pistaPalabra) {
+                // Solo guardamos si el texto no está vacío
+                if (!empty(trim($pistaPalabra))) {
+                    // Llamada al segundo método del modelo: AÑADIR PISTA
+                    $this->fraseMod->anadirPista($idFrase, $pistaPalabra);
+                }
             }
-        }
-        if ($idPalabra) {
-            $this->mensaje = "palabra guardada correctamente con ID: " . $idPalabra;
+            $this->mensaje = "Frase guardada correctamente con ID: " . $idFrase;
         } else {
-            $this->mensaje = "Error al guardar la palabra. Revise logs de base de datos.";
+            $this->mensaje = "Error al guardar la frase. Revise logs de base de datos.";
         }
 
         return $this->gestionarPalabras();

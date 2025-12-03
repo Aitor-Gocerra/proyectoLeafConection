@@ -4,26 +4,23 @@ require_once __DIR__ . '/mConexion.php';
 class Frase extends Conexion
 {
 
-    public function crearFraseYpista($frase, $palabraFaltante, $pista, $autor = null, $fechaProgramada = null)
+    public function crearFrase($frase, $palabraFaltante, $pista, $autor = null, $fechaProgramada = null)
     {
         
         $sqlFrase = "
-                INSERT INTO Frases (frase, palabraFaltante, autor, fechaProgramada) 
-                VALUES (:frase, :palabra, :autor, :fecha);
+                INSERT INTO Frases (frase, palabraFaltante, fechaProgramada) 
+                VALUES (:frase, :palabra, :fecha);
             ";
 
         $stmtFrase = $this->conexion->prepare($sqlFrase);
         $stmtFrase->bindParam(':frase', $frase);
         $stmtFrase->bindParam(':palabra', $palabraFaltante);
-        $stmtFrase->bindParam(':autor', $autor);
         $stmtFrase->bindParam(':fecha', $fechaProgramada);
 
-        $stmtFrase->execute();
-
-        $idFrase = $this->conexion->lastInsertId();
-
-        return $idFrase;
-
+        if ($stmtFrase->execute()) {
+            return $this->conexion->lastInsertId();
+        }
+        return false;
     }
 
     public function listarFrases()

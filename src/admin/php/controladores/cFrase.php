@@ -58,9 +58,9 @@ class CFrase
         // 1. Recoger y sanitizar datos del formulario
         $frase = $_POST['frase'] ?? '';
         $palabraFaltante = $_POST['palabraFaltante'] ?? '';
-        $pistaInicial = $_POST['pista'] ?? '';
-        $autor = $_POST['autor'] ?? null;
         $fecha = $_POST['fecha'] ?? null;
+
+        $pistaInicial = $_POST['pista'] ?? [];
 
         // 2. Validación básica
         if (empty($frase) || empty($palabraFaltante) || empty($pistaInicial)) {
@@ -69,21 +69,20 @@ class CFrase
             return;
         }
 
-        $idFrase = $this->fraseMod->crearFraseYpista(
+        $idFrase = $this->fraseMod->crearFrase(
             $frase,
             $palabraFaltante,
             $pistaInicial,
-            $autor,
             $fecha
         );
 
         if ($idFrase) {
-            // Añadir pistas adicionales si existen
-            if (isset($_POST['pista']) && count($_POST['pista']) > 1) {
-                for ($i = 1; $i < count($_POST['pista']); $i++) {
-                    if (!empty($_POST['pista'][$i])) {
-                        $this->fraseMod->anadirPista($idFrase, $_POST['pista'][$i]);
-                    }
+            // Recorremos el array de pistas (esto guarda la pista 1, la 2, la 3, etc.)
+            foreach ($pistas as $pistaTexto) {
+                // Solo guardamos si el texto no está vacío
+                if (!empty(trim($pistaTexto))) {
+                    // Llamada al segundo método del modelo: AÑADIR PISTA
+                    $this->fraseMod->anadirPista($idFrase, $pistaTexto);
                 }
             }
             $this->mensaje = "Frase guardada correctamente con ID: " . $idFrase;
