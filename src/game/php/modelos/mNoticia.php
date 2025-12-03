@@ -1,8 +1,8 @@
 <?php 
 
-    require_once __DIR__ .'/../config/Conectar.php';
+    require_once __DIR__ .'/mConexion.php';
 
-    class Noticia extends Conectar{
+    class Noticia extends Conexion{
 
         public function __construct(){
             parent::__construct();

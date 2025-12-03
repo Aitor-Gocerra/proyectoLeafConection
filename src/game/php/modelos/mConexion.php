@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . '/../configDB.php';
+    require_once __DIR__ . '/../config/configdb.php';
 
     class Conexion {
         
@@ -8,10 +8,10 @@
         public function __construct(){
             
             $this->conexion = new PDO (
-                "mysql:host=" . servidor .
-                ";dbname=" . nombreDB . ";charset=UTF8",
-                usuario,
-                password,
+                "mysql:host=" . SERVIDOR .
+                ";dbname=" . BDD . ";charset=UTF8",
+                USUARIO,
+                PASSWORD,
                 [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

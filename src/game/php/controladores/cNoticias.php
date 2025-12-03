@@ -1,6 +1,6 @@
 <?php 
 
-    require_once __DIR__ .'/../modelos/Noticia.php';
+    require_once __DIR__ .'/../modelos/mNoticia.php';
 
     class CNoticias {
 
