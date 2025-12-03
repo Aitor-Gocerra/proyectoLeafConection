@@ -25,6 +25,11 @@
                         <button type="submit" class="enviarPalabra">Enviar</button>
                     </div>
             </div>
+
+            <?php
+                require_once 'parciales/modalPista.php';
+            ?>
+            
         </main>
         
         <?php

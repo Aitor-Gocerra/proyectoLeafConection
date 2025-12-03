@@ -16,15 +16,24 @@
             <div id="cajaPalabra">
                 <h2 class="tituloPalabra">Palabra del día</h2>
                 <p class="descripcionPalabra">Usa la siguiente definición para adivinar la eco-palabra.</p>
-                <p class="temporizador"><i class="fas fa-clock"></i> </i>5:00</p>
+                <div class="contenedor-timer-pista">
+                    <p class="temporizador"><i class="fas fa-clock"></i> 5:00</p>
+                    <button id="btnPista" class="boton-bombilla" title="Ver pista extra">
+                        <i class="fas fa-lightbulb"></i>
+                    </button>
+                </div>
                 <div class="pista">
                     <p>El proceso de reciclaje de materia orgánica, como hojas y restos de comida, en una enmienda rica para el suelo.</p>
                 </div>
-                    <div class="contenedorAcierto">
-                        <input type="text" name="acertarPalabra" class="introducirPalabra" placeholder="Tu suposición...">
-                        <button type="submit" class="enviarPalabra">Acierta</button>
-                    </div>
+                <div class="contenedorAcierto">
+                    <input type="text" name="acertarPalabra" class="introducirPalabra" placeholder="Tu suposición...">
+                    <button type="submit" class="enviarPalabra">Acierta</button>
+                </div>
             </div>
+
+            <?php
+                require_once 'parciales/modalPista.php';
+            ?>
         </main>
         <?php
             require_once 'parciales/botonVolver.php';
@@ -34,5 +43,29 @@
                 require_once 'parciales/footer.php';
             ?>
         </footer>
+
+        <script>
+            // Obtener elementos
+            var modal = document.getElementById("modalPista");
+            var btn = document.getElementById("btnPista");
+            var span = document.getElementsByClassName("cerrar-modal")[0];
+
+            // Cuando el usuario hace clic en la bombilla, abre el modal
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // Cuando el usuario hace clic en (x), cierra el modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // Cuando el usuario hace clic fuera del modal, también se cierra
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
     </body>
 </html>
