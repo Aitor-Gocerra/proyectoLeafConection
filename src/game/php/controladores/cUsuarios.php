@@ -21,22 +21,29 @@ class CUsuarios{
         $this->vista = 'inicio';
     }
 
-
     public function registrar($datos){
-        if($this->comprobarDatosReg($datos)){
-            $datos["contrasenia"] = $this->cifrarPassword($datos["contrasenia"]);
-            if ($this->objMUsuario->registrar($datos)){
-                $this->vista = '';
-                echo 'true';
-                return true;
-            }else{
-                $this->vista = '';
-                echo $this->objMUsuario->codError;
-                return false;
-            }
-        }else{
+        
+        if(!$this->comprobarDatosReg($datos)){
             $this->vista = '';
-            echo 'false';
+            echo 'false'; 
+            return false;
+        }
+        
+        if ($this->objMUsuario->usuarioExiste($datos['usuario'])) {
+            $this->vista = '';
+            echo 'UsuarioExiste';
+            return false;
+        }
+        
+        $datos["contrasenia"] = $this->cifrarPassword($datos["contrasenia"]);
+        
+        if ($this->objMUsuario->registrar($datos)){
+            $this->vista = '';
+            echo 'true';
+            return true;
+        } else {
+            $this->vista = '';
+            echo $this->objMUsuario->codError;
             return false;
         }
     }
@@ -54,7 +61,8 @@ class CUsuarios{
                 return false;
             }
         }
-        echo $this->objMUsuario->codError; 
+        $this->vista = '';
+        echo 'DatosIncompletos';
         return false;
     }
 
@@ -66,7 +74,7 @@ class CUsuarios{
     }
 
     private function comprobarDatosReg($datos){
-        if(empty($datos) || empty($datos["correo"]) || empty($datos["contrasenia"]))
+        if(empty($datos) || empty($datos["usuario"]) || empty($datos["correo"]) || empty($datos["contrasenia"]))
             return false;
         else
             return true;
@@ -80,8 +88,4 @@ class CUsuarios{
     private function cifrarPassword($password){
         return password_hash($password, PASSWORD_DEFAULT);
     }
-
-
-    
-
 }

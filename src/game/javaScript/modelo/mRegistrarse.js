@@ -13,7 +13,7 @@ export class MRegistrarse {
                 if(result === 'true'){
                     window.location.href = "index.php?";
                 }else{
-                    const errorDiv = document.getElementById('mensaje-error');
+                    const errorDiv = document.getElementById('index.php?c=Usuarios&m=inicio');
                     
                     if(errorDiv) {
                         if(result === '1062'){ //Significa la duplicidad de datos repetidos es decir que ya existe el usuario

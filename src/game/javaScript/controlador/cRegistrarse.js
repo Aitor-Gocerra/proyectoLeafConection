@@ -1,12 +1,12 @@
 //javascript/Controlador/cRegistrarse.js
-/*import { mRegistrarse } from '../models/mRegistrarse.js';*/
+import { mRegistrarse } from '../models/mRegistrarse.js';
 
 export class cRegistrarse {
     modelo;
     vista; 
 
     constructor() {
-        /*this.modelo = new mRegistrarse();*/
+        this.modelo = new mRegistrarse();
     }
 
     cRegistrarse(usuario,email, password) {
@@ -23,13 +23,14 @@ export class cRegistrarse {
             return;
          }
         
-        /*let formData = new FormData(); 
+        let formData = new FormData(); 
         formData.append('nombre', usuario);
-        formData.append('correo', email); 
-        formData.append('contrasenia', password); '
-        this.modelo.mRegistrarse(formData);*/
+        formData.append('correo', email); 
+        formData.append('contrasenia', password); 
+        this.modelo.mRegistrarse(formData);
     }
      
+//////////METODOS DE VALIDACION PARA EMAIL Y NOMBREUSUARIO
     validarEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);

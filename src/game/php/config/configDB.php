@@ -2,5 +2,5 @@
     DEFINE ("servidor", "localhost");
     DEFINE ("usuario", "root");
     DEFINE ("password", "");
-    DEFINE ("nombreDB", "leafconnect");
+    DEFINE ("nombreDB", "prueba");
 ?>

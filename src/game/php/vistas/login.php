@@ -32,7 +32,7 @@
 
             <div id="mensaje-error"></div>
             
-            <a href="#" id="btn-login" class="boton-autenticacion-primario">Iniciar Sesión</a> 
+            <button type="button" id="btn-login" class="boton-autenticacion-primario">Iniciar Sesión</button>
             <a href="index.php?c=Paginas&m=inicio" class="boton-autenticacion-secundario">Jugar como invitado</a>
             <p>¿No tienes cuenta? <a href="index.php?c=Paginas&m=registro">Regístrate</a></p>
         </form>
