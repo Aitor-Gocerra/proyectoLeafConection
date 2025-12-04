@@ -21,7 +21,7 @@ class VPalabra {
         divRespuesta.className = 'zonaRespuesta';
         divRespuesta = `
             <p>La respuesta correcta es:</p>
-            <h3 id="textoSolucion" style="color: #27ae60; text-transform: uppercase;"></h3>
+            <h3 id="textoSolucion" style="color: #27ae60; text-transform: uppercase;">  </h3>
         `;
         this.contenedor.appendChild(divRespuesta);
     }

@@ -23,7 +23,7 @@
                     </button>
                 </div>
                 <div class="pista">
-                    <p><?php echo isset($frase['definicion']) ? $frase['definicion'] : 'No hay palabra disponible.'; ?></p>
+                    <p><?php echo isset($frase['definicion']) ? $frase['definicion'] : 'No hay frase disponible.'; ?></p>
                 </div>
                 <div class="contenedorAcierto">
                     <input type="text" name="acertarPalabra" class="introducirPalabra" placeholder="Tu suposición...">
@@ -49,5 +49,29 @@
         </footer>
 
         <script src="../../javascript/menuDesplegable.js"></script>
+
+        <script>
+            // Obtener elementos
+            const modal = document.getElementById("modalPista");
+            const btn = document.getElementById("btnPista");
+            const span = document.getElementsByClassName("cerrar-modal")[0];
+
+            // Cuando el usuario hace clic en la bombilla, abre el modal
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            // Cuando el usuario hace clic en (x), cierra el modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // Cuando el usuario hace clic fuera del modal, también se cierra
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
     </body>
 </html>
