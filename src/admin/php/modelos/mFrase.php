@@ -70,19 +70,20 @@ class Frase extends Conexion
         $stmt->bindParam(':id', $idFrase, PDO::PARAM_INT);
 
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function actualizarFrase($idFrase, $frase, $palabraFaltante)
+    public function actualizarFrase($idFrase, $frase, $palabraFaltante, $fecha)
     {
         $sql = "
                 UPDATE Frases 
-                SET frase = :frase, palabraFaltante = :palabra 
+                SET frase = :frase, palabraFaltante = :palabra, fechaProgramada = :fecha 
                 WHERE idFrase = :id
             ";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':frase', $frase);
         $stmt->bindParam(':palabra', $palabraFaltante);
+        $stmt->bindParam(':fecha', $fecha);
         $stmt->bindParam(':id', $idFrase, PDO::PARAM_INT);
 
         return $stmt->execute();
@@ -111,6 +112,21 @@ class Frase extends Conexion
 
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':id', $idFrase, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    public function actualizarFechas()
+    {
+        /* $fechaActual = date('Y-m-d'); */
+
+        $sql = "
+            UPDATE Frases
+            SET fechaProgramada = NULL
+            WHERE fechaProgramada < NOW();
+        ";
+
+        $stmt = $this->conexion->prepare($sql);
 
         return $stmt->execute();
     }

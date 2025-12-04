@@ -111,10 +111,12 @@ class CFrase
             $this->mensaje = "Error al añadir la pista.";
         }
     }
+
     public function editarFrase()
     {
         $this->vista = 'gestionarFrases';
         $idFrase = $_GET['idFrase'] ?? null;
+        $usarModal = isset($_GET['modal']) && $_GET['modal'] == '1';
 
         $fraseEditar = null;
         if ($idFrase) {
@@ -125,8 +127,33 @@ class CFrase
         return [
             'frases' => $this->frasesList,
             'mensaje' => $this->mensaje,
-            'fraseEditar' => $fraseEditar
+            'fraseEditar' => $fraseEditar,
+            'usarModal' => $usarModal
         ];
+    }
+
+    public function actualizarFrase()
+    {
+
+        if (empty($_POST['idFrase']) || empty($_POST['frase']) || empty($_POST['palabraFaltante'])) {
+            $this->mensaje = "Error: rellena todos los campos.";
+            return $this->gestionarFrases();
+        }
+
+        $id = $_POST['idFrase'];
+        $frase = trim($_POST['frase']);
+        $palabraFaltante = trim($_POST['palabraFaltante']);
+        $fecha = $_POST['fecha'];
+
+        $ok = $this->fraseMod->actualizarFrase($id, $frase, $palabraFaltante, $fecha);
+
+        if ($ok) {
+            $this->mensaje = "Frase actualizada correctamente.";
+        } else {
+            $this->mensaje = "Error al actualizar la frase.";
+        }
+
+        return $this->gestionarFrases();
     }
 
     public function eliminarFrase()
@@ -146,6 +173,19 @@ class CFrase
             $this->mensaje = "Error al eliminar la frase.";
         }
         return $this->gestionarFrases();
+    }
+
+    public function actualizarFechas()
+    {
+        $exito = $this->fraseMod->actualizarFechas();
+
+        if ($exito) {
+            $mensaje = "Fechas actualizadas correctamente";
+            header("Location: index.php?c=Frase&m=gestionarFrases&success=" . $mensaje);
+        } else {
+            $mensaje = "Error al actualizar fechas";
+            header("Location: index.php?c=Frase&m=gestionarFrases&error=" . $mensaje);
+        }
     }
 }
 ?>

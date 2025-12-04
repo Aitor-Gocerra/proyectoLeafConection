@@ -118,6 +118,7 @@ class CPalabra
     {
         $this->vista = 'gestionarPalabras';
         $idPalabra = $_GET['idPalabra'] ?? null;
+        $usarModal = isset($_GET['modal']) && $_GET['modal'] == '1';
 
         $palabraEditar = null;
         if ($idPalabra) {
@@ -128,7 +129,8 @@ class CPalabra
         return [
             'palabras' => $this->palabrasList,
             'mensaje' => $this->mensaje,
-            'palabraEditar' => $palabraEditar
+            'palabraEditar' => $palabraEditar,
+            'usarModal' => $usarModal
         ];
     }
 
@@ -151,10 +153,11 @@ class CPalabra
         return $this->gestionarPalabras();
     }
 
-    public function actualizarFechas(){
+    public function actualizarFechas()
+    {
         $exito = $this->palabraMod->actualizarFechas();
 
-        if($exito){
+        if ($exito) {
             $mensaje = "Fechas actualizadas correctamente";
             header("Location: index.php?c=Palabra&m=gestionarPalabras&success=" . $mensaje);
         } else {

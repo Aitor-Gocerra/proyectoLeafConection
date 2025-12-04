@@ -24,42 +24,6 @@
         require_once 'parciales/buscador.php';
         titulo("Frase");
         ?>
-        <div id="contenedorAdmin">
-            <h1>Añadir Frase del Dia</h1>
-            <form action="index.php?c=Frase&m=guardarNuevaFrase" method="post">
-                <label for="frase">Frase</label>
-                <input type="text" name="frase" id="frase"
-                    placeholder="Ej: La Tierra no es una herencia de nuestros padres, sino un prestamo de nuestros _____.">
-                <p>Usa '___' para el lugar donde ira la palabra que falta</p>
-
-                <label for="palabraFaltante">Palabra que falta</label>
-                <input type="text" name="palabraFaltante" id="palabraFaltante" placeholder="Ej: hijos">
-
-                <label for="fecha">Fecha programada</label>
-                <input type="date" name="fecha" id="fecha">
-
-                <button type="button" id="btnAnadirPregunta">
-                    <i class="fa-regular fa-square-plus"></i> Añadir Pista
-                </button>
-
-                <div id="cuestionarioContainer">
-                    <div class="cuestionarioPregunta">
-                        <label>Pista</label>
-                        <input type="text" name="pista[]" placeholder="Pista..." required>
-                    </div>
-                </div>
-
-                <input type="submit" value="Guardar Frase">
-            </form>
-
-
-        </div>
-
-        <?php if (isset($mensaje) && !empty($mensaje)) { ?>
-            <div class="mensaje">
-                <p><?php echo $mensaje; ?></p>
-            </div>
-        <?php } ?>
 
         <!-- Resultados de búsqueda -->
         <?php if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) { ?>
@@ -84,7 +48,7 @@
                             echo "<td>" . $frase['palabraFaltante'] . "</td>";
                             echo "<td>" . ($frase['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
-                            echo "<a href='index.php?c=Frase&m=editarFrase&idFrase=" . $frase['idFrase'] . "'>Editar</a>";
+                            echo "<a href='index.php?c=Frase&m=editarFrase&idFrase=" . $frase['idFrase'] . "&modal=1' onclick=\"return confirm('¿Editar esta frase?')\" style='color:orange'>Editar</a>";
                             echo "<br>";
                             echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\">Eliminar</a>";
                             echo "</td>";
@@ -99,6 +63,71 @@
                 <p>No se encontraron frases con el término: <?php echo $_GET['buscar']; ?></p>
             </div>
         <?php } ?>
+
+        <div id="contenedorAdmin">
+            <h1>Añadir/Editar Frase del Dia</h1>
+            <form
+                action="<?php echo (isset($fraseEditar) && !$usarModal) ? 'index.php?c=Frase&m=actualizarFrase' : 'index.php?c=Frase&m=guardarNuevaFrase'; ?>"
+                method="post">
+
+                <?php if (isset($fraseEditar) && !$usarModal) { ?>
+                    <input type="hidden" name="idFrase" value="<?php echo $fraseEditar['idFrase']; ?>">
+                <?php } ?>
+
+                <label for="frase">Frase</label>
+                <input type="text" name="frase" id="frase"
+                    placeholder="Ej: La Tierra no es una herencia de nuestros padres, sino un prestamo de nuestros _____."
+                    value="<?php echo (isset($fraseEditar) && !$usarModal) ? $fraseEditar['frase'] : ''; ?>" required>
+                <p>Usa '___' para el lugar donde ira la palabra que falta</p>
+
+                <label for="palabraFaltante">Palabra que falta</label>
+                <input type="text" name="palabraFaltante" id="palabraFaltante" placeholder="Ej: hijos"
+                    value="<?php echo (isset($fraseEditar) && !$usarModal) ? $fraseEditar['palabraFaltante'] : ''; ?>"
+                    required>
+
+                <label for="fecha">Fecha programada</label>
+                <input type="date" name="fecha" id="fecha"
+                    value="<?php echo (isset($fraseEditar) && !$usarModal) ? $fraseEditar['fechaProgramada'] : ''; ?>">
+
+                <?php if (!isset($fraseEditar) || $usarModal) { ?>
+                    <button type="button" id="btnAnadirPregunta">
+                        <i class="fa-regular fa-square-plus"></i> Añadir Pista
+                    </button>
+
+                    <div id="cuestionarioContainer">
+                        <div class="cuestionarioPregunta">
+                            <label>Pista</label>
+                            <input type="text" name="pista[]" placeholder="Pista..." required>
+                        </div>
+                    </div>
+                <?php } ?>
+
+                <div class="grupo-acciones">
+                    <input type="submit"
+                        value="<?php echo (isset($fraseEditar) && !$usarModal) ? 'Actualizar Frase' : 'Guardar Frase'; ?>">
+
+                    <?php if (isset($fraseEditar) && !$usarModal) { ?>
+                        <button type="button" class="btn-secundario"
+                            onclick="window.location.href='index.php?c=Frase&m=gestionarFrases'">
+                            <i class="fa-solid fa-times"></i>&nbsp;Cancelar
+                        </button>
+                    <?php } else { ?>
+                        <button type="button" class="btn-secundario" onclick="
+                                        if(confirm('Vas a poner a NULL todas las fechas antiguas. ¿Estás seguro?')) { 
+                                            window.location.href='index.php?c=Frase&m=actualizarFechas'; 
+                                        }">
+                            <i class="fa-solid fa-arrows-rotate"></i>&nbsp;Fechas
+                        </button>
+                    <?php } ?>
+                </div>
+            </form>
+
+            <?php if (isset($mensaje) && !empty($mensaje)) { ?>
+                <div class="mensaje">
+                    <p><?php echo $mensaje; ?></p>
+                </div>
+            <?php } ?>
+        </div>
 
         <br>
         <div id="ultimasDiezFrases">
@@ -123,7 +152,7 @@
                             echo "<td>" . $frase['palabraFaltante'] . "</td>";
                             echo "<td>" . ($frase['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
-                            echo "<a href='index.php?c=Frase&m=editarFrase&idFrase=" . $frase['idFrase'] . " onclick=\"return confirm('¿Editar esta frase?')\" style='color:orange'>Editar</a>";
+                            echo "<a href='index.php?c=Frase&m=editarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Editar esta frase?')\" style='color:orange'>Editar</a>";
                             echo "<br>";
                             echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\" style='color:red'>Eliminar</a>";
                             echo "</td>";
@@ -138,7 +167,13 @@
         </div>
 
         <?php
-        require_once 'parciales/modalEditarFrase.php';
+        if (isset($usarModal) && $usarModal) {
+            require_once 'parciales/modalEditarFrase.php';
+        }
+        ?>
+
+        <?php
+        require_once 'parciales/notificacion.php';
         ?>
 
     </main>
@@ -149,6 +184,7 @@
     </footer>
 
     <script src="javascript/anadirPregunta.js"></script>
+
     <script>
         // Script para el buscador de frases
         document.getElementById('formBuscar').addEventListener('submit', function (e) {
@@ -174,6 +210,12 @@
             alert('Error: ' + errorMessage);
             window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
         }
+
+        /* El formulario NO se envía automáticamente, sino que usa JavaScript para construir la URL
+        El JavaScript captura el evento submit del formulario
+        Coge el valor del input de búsqueda
+        Construye manualmente la URL: index.php?c=Frase&m=buscarFrases&buscar=loQueBuscas
+        Redirige a esa URL con window.location.href */
     </script>
 
     <script>
@@ -197,6 +239,22 @@
                     window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
                 }
             }
+        }
+    </script>
+
+    <script>
+        const mensaje = "<?php echo $mensaje ?? ''; ?>";
+
+        const notificacion = document.getElementById("notificacion");
+
+        if (mensaje !== "") {
+            notificacion.textContent = mensaje;
+            notificacion.style.opacity = "1";
+
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                notificacion.style.opacity = "0";
+            }, 3000);
         }
     </script>
 </body>
