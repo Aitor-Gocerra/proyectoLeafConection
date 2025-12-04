@@ -42,7 +42,8 @@
 
             if ($this->objNoticia->añadir($titulo, $noticia, $fecha, 
             $url, $preguntas, $arrOpciones, $respuestas)){
-                echo "a";
+                $this->mensaje = "La noticia ha sido agregada.";
+                $this->gestionarNoticias();
             }
         }
 
@@ -60,11 +61,20 @@
             // También cargar las 10 últimas noticias para que no desaparezcan
             $noticias = $this->objNoticia->listarNoticias();
     
-            
             return [
                 'resultadosBusqueda' => $resultados,
                 'noticias' => $noticias,
                 'mensaje' => $this->mensaje
             ];
         }
+
+        public function modificar(){
+            $idNoticia = $_GET['idNoticia'];
+
+            $noticia = $this->objNoticia->obtenerNoticia($idNoticia);
+
+            $this->vista = 'gestionarNoticias';
+            return ['noticia' => $noticia];
+        }
+
     }

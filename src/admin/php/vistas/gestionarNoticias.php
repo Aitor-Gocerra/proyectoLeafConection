@@ -32,20 +32,20 @@
                                 <th>ID</th>
                                 <th>Titulo</th>
                                 <th>Fecha Programada</th>
-                                <th>Acciones</th>
+                                <th>Modificar</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             foreach ($resultadosBusqueda as $noticia) {
-                                echo "<tr>";
-                                echo "<td>" . $noticia['idNoticia'] . "</td>";
-                                echo "<td>" . $noticia['titulo'] . "</td>";
-                                echo "<td>" . ($noticia['fechaProgramada'] ?? 'No programada') . "</td>";
-                                echo "<td>";
-                                echo "<a href='index.php?c=GestionarNoticias&m=eliminar&idNoticia=" . $noticia['idNoticia'] . "' onclick=\"return confirm('¿Eliminar esta noticia?')\">Eliminar</a>";
-                                echo "</td>";
-                                echo "</tr>";
+                                echo '<tr>' .
+                                        '<td>' . $noticia['idNoticia'] . '</td>' .
+                                        '<td>' . $noticia['titulo'] . '</td>' .
+                                        '<td>' . ($noticia['fechaProgramada'] ?? 'No programada') . '</td>' .
+                                        '<td style="text-align: center;"><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '"><i class="fa-solid fa-pen-to-square"></i></a></td>' .
+                                        '<td style="text-align: center;"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" onclick="return confirm(\'¿Eliminar esta noticia?\')"><i class="fa-regular fa-circle-xmark"></i></a></td>' .
+                                    '</tr>';
                             }
                             ?>
                         </tbody>
@@ -107,20 +107,26 @@
                             <th>ID</th>
                             <th>Noticia</th>
                             <th>Fecha Programada</th>
-                            <th>Acciones</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         foreach ($noticias as $noticia) {
-                            echo "<tr>";
-                            echo "<td>" . $noticia['idNoticia'] . "</td>";
-                            echo "<td>" . $noticia['titulo'] . "</td>";
-                            echo "<td>" . ($noticia['fechaProgramada'] ?? 'No programada') . "</td>";
-                            echo "<td>";
-                            echo "<a href='index.php?c=GestionarNoticias&m=eliminar&idNoticia=" . $noticia['idNoticia'] . "' onclick=\"return confirm('¿Eliminar esta noticia?')\">Eliminar</a>";
-                            echo "</td>";
-                            echo "</tr>";
+                            echo '<tr>
+                                    <td>' . $noticia['idNoticia'] . '</td>
+                                    <td>' . $noticia['titulo'] . '</td>
+                                    <td>' . ($noticia['fechaProgramada'] ?? 'No programada') . '</td>
+                                    <td style="text-align: center;" ><a href="index.php?c=GestionarNoticias&m=editar&idNoticia=' . $noticia['idNoticia'] . '">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a></td>
+                                    <td style="text-align: center;"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" 
+                                        onclick="return confirm(\'¿Eliminar esta noticia?\')">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                    </a></td>
+                                </tr>';
+
                         }
                         ?>
                     </tbody>

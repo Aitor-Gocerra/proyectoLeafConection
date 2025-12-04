@@ -79,5 +79,32 @@
                 return false;
             }
         }
+
+        public function eliminarNoticia($idNoticia){
+            $sql = "DELETE FROM Noticias WHERE idNoticia = :idNoticia;";
+
+            try{
+                $sth = $this->conexion->prepare($sql);
+                $sth->execute(['idNoticia' => $idNoticia]);
+                return $sth->rowCount() > 0 ? true : false;
+            }catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        public function obtenerNoticia($idNoticia){
+            $sql = "SELECT * FROM Noticias WHERE idNoticia = :idNoticia;";
+
+            try{
+                $sth = $this->conexion->prepare($sql);
+                $sth->execute(['idNoticia' => $idNoticia]);
+                $noticia = $sth->fetch(PDO::FETCH_ASSOC);
+                return $noticia;
+            } catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
     }
 ?>
