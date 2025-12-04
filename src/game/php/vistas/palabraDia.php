@@ -39,7 +39,7 @@
         </div>
 
         <?php
-            require_once 'parciales/modalPista.php';
+        require_once 'parciales/modalPista.php';
         ?>
     </main>
     <?php
@@ -75,9 +75,11 @@
         }
     </script>
 
-    <script>
-        //
-    </script>
+    <!-- MVC JavaScript: Cargar en orden (Modelo -> Controlador -> Vista -> App) -->
+    <script src="javaScript/modelos/mPalabra.js"></script>
+    <script src="javaScript/controladores/cPalabra.js"></script>
+    <script src="javaScript/vistas/vPalabraDia.js"></script>
+    <script src="javaScript/app.js"></script>
 </body>
 
 </html>

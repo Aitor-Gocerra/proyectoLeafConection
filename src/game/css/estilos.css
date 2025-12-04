@@ -1981,3 +1981,151 @@ footer {
     justify-content: center;
     width: 100%;
 }
+/****************************** ESTILOS MVC JAVASCRIPT - VALIDACIÓN DE PALABRA ******************************/
+
+/* Zona de respuesta (éxito, fallo, solución) */
+.zonaRespuesta {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.zonaRespuesta.exito {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border: 2px solid var(--color-secundario);
+}
+
+.zonaRespuesta.solucion {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    border: 2px solid var(--color-acento-b);
+}
+
+.icono-resultado {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.zonaRespuesta.exito .icono-resultado {
+    color: var(--color-secundario);
+}
+
+.zonaRespuesta.solucion .icono-resultado {
+    color: var(--color-acento-b);
+}
+
+.mensaje-resultado {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-texto-oscuro);
+    margin-bottom: 0.5rem;
+}
+
+.texto-solucion {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin: 0.5rem 0;
+    letter-spacing: 2px;
+}
+
+.submensaje {
+    font-size: 0.95rem;
+    color: var(--color-texto-gris);
+    margin-top: 0.5rem;
+}
+
+/* Animación shake para input incorrecto */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.shake {
+    animation: shake 0.5s;
+    border-color: #e74c3c !important;
+}
+
+/* Animación fadeInUp */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Notificaciones temporales */
+.notificacion {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #333;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-out;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+}
+
+.notificacion.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notificacion-error {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.notificacion-success {
+    background: linear-gradient(135deg, var(--color-secundario) 0%, var(--color-primario) 100%);
+}
+
+.notificacion-info {
+    background: linear-gradient(135deg, var(--color-acento-a) 0%, #2c7a7b 100%);
+}
+
+/* Responsive para notificaciones */
+@media (max-width: 767px) {
+    .notificacion {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        font-size: 0.9rem;
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .texto-solucion {
+        font-size: 1.5rem;
+    }
+    
+    .icono-resultado {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 479px) {
+    .zonaRespuesta {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .texto-solucion {
+        font-size: 1.3rem;
+    }
+    
+    .mensaje-resultado {
+        font-size: 1rem;
+    }
+}

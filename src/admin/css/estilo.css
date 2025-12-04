@@ -35,9 +35,8 @@
 body {
     font-family: var(--fuente);
     background-color: var(--color-fondo);
-    color: var(--color-texto-oscuro);
+    color: var(--color-texto-gris);
     line-height: 1.6;
-
 }
 
 /****************************** HEADER                      ******************************/
@@ -129,7 +128,7 @@ nav {
     a {
         display: block;
         padding: 0.7rem 1.3rem;
-        color: var(--color-texto-oscuro);
+        color: var(--color-texto-gris);
         text-decoration: none;
         transition: background-color 0.2s;
 
@@ -380,16 +379,20 @@ main {
 /* Contenedor que agrupa los botones en una fila */
 .grupo-acciones {
     display: flex;
-    justify-content: space-between; /* Empuja un botón a cada extremo */
-    align-items: center; /* Los alinea verticalmente al centro */
+    justify-content: space-between;
+    /* Empuja un botón a cada extremo */
+    align-items: center;
+    /* Los alinea verticalmente al centro */
     width: 100%;
     margin-top: 1rem;
-    gap: 1rem; /* Espacio mínimo entre ellos si la pantalla es muy pequeña */
+    gap: 1rem;
+    /* Espacio mínimo entre ellos si la pantalla es muy pequeña */
 }
 
 /* Estilo para el nuevo botón (usando tus variables) */
 .btn-secundario {
-    background-color: var(--color-acento-a); /* Usando tu color azul/verde acento */
+    background-color: var(--color-acento-a);
+    /* Usando tu color azul/verde acento */
     color: white;
     padding: 0.85rem 1.5rem;
     border: none;
@@ -401,7 +404,8 @@ main {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    max-width: 160px; /* Igual que tu botón submit */
+    max-width: 160px;
+    /* Igual que tu botón submit */
 }
 
 .btn-secundario:hover {
@@ -413,7 +417,7 @@ main {
 /* Ajuste para quitar el margin-top individual del submit dentro de este grupo 
    para que queden alineados perfectamente */
 .grupo-acciones input[type="submit"] {
-    margin-top: 0; 
+    margin-top: 0;
 }
 
 /****************************  GESTIÓN NOTICIA **************/
@@ -754,62 +758,191 @@ footer {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .contenedor-modal {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 2rem;
-    border: 1px solid #888;
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 0;
+    border: none;
     width: 90%;
-    max-width: 600px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 650px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     position: relative;
-    animation: animatetop 0.4s;
+    animation: animatetop 0.3s ease-out;
+    overflow: hidden;
 }
 
 @keyframes animatetop {
     from {
-        top: -300px;
-        opacity: 0
+        transform: translateY(-50px);
+        opacity: 0;
     }
 
     to {
-        top: 0;
-        opacity: 1
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
+/* Header del modal */
+.contenedor-modal h1 {
+    font-size: 1.5rem;
+    color: var(--color-primario);
+    margin: 0;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+    border-bottom: 2px solid var(--color-azul-1);
+    position: relative;
+}
+
+/* Botón cerrar */
 .cerrar-modal {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    color: #999;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    font-size: 32px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.2s;
+    line-height: 1;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: transparent;
 }
 
 .cerrar-modal:hover,
 .cerrar-modal:focus {
     color: var(--color-primario);
-    text-decoration: none;
-    cursor: pointer;
+    background-color: rgba(56, 161, 105, 0.1);
+    transform: rotate(90deg);
 }
 
+/* Formulario dentro del modal */
+.contenedor-modal form {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.contenedor-modal label {
+    font-weight: 600;
+    color: #2f855a;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.contenedor-modal input[type="text"],
+.contenedor-modal input[type="date"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #c6f6d5;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    font-family: var(--fuente);
+}
+
+.contenedor-modal input[type="text"]:focus,
+.contenedor-modal input[type="date"]:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.15);
+    outline: none;
+}
+
+.contenedor-modal input[type="submit"] {
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, var(--color-secundario) 0%, var(--color-primario) 100%);
+    color: white;
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(56, 161, 105, 0.2);
+}
+
+.contenedor-modal input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
+}
+
+.contenedor-modal input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Mensaje de aviso dentro del modal */
 .mensaje-aviso {
-    background-color: #fffaf0;
+    background: linear-gradient(135deg, #fffaf0 0%, #fef5e7 100%);
     border-left: 4px solid #ed8936;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 0.5rem 0 1rem 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(237, 137, 54, 0.1);
 }
 
 .mensaje-aviso p {
     color: #c05621;
     font-size: 0.9rem;
     margin: 0;
+    line-height: 1.5;
+}
+
+.mensaje-aviso::before {
+    content: "ℹ️";
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive para modales */
+@media (max-width: 767px) {
+    .contenedor-modal {
+        margin: 10% auto;
+        width: 95%;
+        max-width: 95%;
+    }
+
+    .contenedor-modal h1 {
+        font-size: 1.3rem;
+        padding: 1.2rem 1.5rem;
+    }
+
+    .contenedor-modal form {
+        padding: 1.5rem;
+    }
+
+    .cerrar-modal {
+        top: 1rem;
+        right: 1rem;
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 479px) {
+    .contenedor-modal {
+        margin: 5% auto;
+    }
+
+    .contenedor-modal h1 {
+        font-size: 1.2rem;
+        padding: 1rem 1.2rem;
+    }
+
+    .contenedor-modal form {
+        padding: 1.2rem;
+        gap: 1rem;
+    }
 }
