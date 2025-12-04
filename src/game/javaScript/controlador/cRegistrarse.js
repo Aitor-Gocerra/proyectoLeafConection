@@ -1,12 +1,12 @@
-//javascript/Controlador/cRegistrarse.js
-import { mRegistrarse } from '../models/mRegistrarse.js';
+/*javascript/Controlador/cRegistrarse.js
+import { mRegistrarse } from '../models/mRegistrarse.js';*/
 
 export class cRegistrarse {
     modelo;
     vista; 
 
     constructor() {
-        this.modelo = new mRegistrarse();
+        /*this.modelo = new mRegistrarse();*/
     }
 
     cRegistrarse(usuario,email, password) {
@@ -27,7 +27,7 @@ export class cRegistrarse {
         formData.append('nombre', usuario);
         formData.append('correo', email); 
         formData.append('contrasenia', password); 
-        this.modelo.mRegistrarse(formData);
+        //this.modelo.mRegistrarse(formData);
     }
      
 //////////METODOS DE VALIDACION PARA EMAIL Y NOMBREUSUARIO

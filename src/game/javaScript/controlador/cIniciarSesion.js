@@ -20,7 +20,6 @@ export class cIniciarSesion {
         let formData = new FormData(); 
         formData.append('correo', email); 
         formData.append('contrasenia', password); 
-        console.log(formData);
         this.modelo.mIniciarSesion(formData);
     }
 

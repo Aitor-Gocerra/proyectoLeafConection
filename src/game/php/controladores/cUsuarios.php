@@ -14,12 +14,9 @@ class CUsuarios{
         $this->vista = 'registro';
     }
     public function mostrarInicio(){
-        $this->vista = 'login';
-    }
-
-    public function mostrarInicioJuego(){
         $this->vista = 'inicio';
     }
+
 
     public function registrar($datos){
         
@@ -52,10 +49,9 @@ class CUsuarios{
     public function inicio($datos){
         if($this->comprobarDatosIni($datos)){
             if($resultado = $this->objMUsuario->inicio($datos)){
-                /*$this->vista = '';
+                $this->vista = '';
                 echo 'true';
-                return $resultado;*/
-                var_dump($resultado);
+                return $resultado;
             }else{
                 $this->vista = '';
                 echo $this->objMUsuario->codError;

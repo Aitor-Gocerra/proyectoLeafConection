@@ -3,7 +3,7 @@ class MUsuarios{
     public $codError;
     private $conexion;
     function __construct(){
-        require_once 'configDB.php';
+        require_once __DIR__.'\..\config\configDB.php';
         $objConexion = new Db();
         $this->conexion= $objConexion->conexion;
     }
