@@ -53,7 +53,7 @@ CREATE TABLE Tematica (
 CREATE TABLE Consejos (
     idConsejo SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     consejo VARCHAR(255) NOT NULL,
-    fechaProgramada TIMESTAMP NULL,
+    fechaProgramada DATETIME NULL DEFAULT NULL,
     idTematica TINYINT UNSIGNED NOT NULL,
 
     CONSTRAINT pk_idConsejo PRIMARY KEY (idConsejo),
@@ -84,7 +84,7 @@ CREATE TABLE Palabras (
     idPalabra SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     palabra VARCHAR(70) NOT NULL,
     definicion VARCHAR(180) NOT NULL,
-    fechaProgramada TIMESTAMP NULL,
+    fechaProgramada DATETIME NULL DEFAULT NULL,
     fechaCreacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT pk_idPalabra PRIMARY KEY (idPalabra)
 );
@@ -96,7 +96,7 @@ CREATE TABLE Frases (
     idFrase SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     frase VARCHAR(255) NOT NULL,
     palabraFaltante VARCHAR(40) NOT NULL,
-    fechaProgramada TIMESTAMP NULL,
+    fechaProgramada DATETIME NULL DEFAULT NULL,
     fechaCreacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT pk_idFrase PRIMARY KEY (idFrase)
 );
@@ -108,7 +108,7 @@ CREATE TABLE Noticias (
     idNoticia SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     titulo VARCHAR(120) NOT NULL,
     noticia TEXT NOT NULL,
-    fechaProgramada TIMESTAMP NULL,
+    fechaProgramada DATETIME NULL DEFAULT NULL,
     fechaCreacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     urlImagen VARCHAR(255) NOT NULL,
     CONSTRAINT pk_idNoticia PRIMARY KEY (idNoticia)

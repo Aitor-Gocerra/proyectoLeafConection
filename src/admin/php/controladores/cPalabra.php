@@ -101,8 +101,9 @@ class CPalabra
         $id = $_POST['idPalabra'];
         $palabra = trim($_POST['palabra']);
         $definicion = trim($_POST['definicion']);
+        $fecha = $_POST['fecha'];
 
-        $ok = $this->palabraMod->actualizarPalabra($id, $palabra, $definicion);
+        $ok = $this->palabraMod->actualizarPalabra($id, $palabra, $definicion, $fecha);
 
         if ($ok) {
             $this->mensaje = "Palabra actualizada correctamente.";
@@ -148,6 +149,18 @@ class CPalabra
             $this->mensaje = "Error al eliminar la palabra.";
         }
         return $this->gestionarPalabras();
+    }
+
+    public function actualizarFechas(){
+        $exito = $this->palabraMod->actualizarFechas();
+
+        if($exito){
+            $mensaje = "Fechas actualizadas correctamente";
+            header("Location: index.php?c=Palabra&m=gestionarPalabras&success=" . $mensaje);
+        } else {
+            $mensaje = "Error al actualizar fechas";
+            header("Location: index.php?c=Palabra&m=gestionarPalabras&error=" . $mensaje);
+        }
     }
 }
 ?>

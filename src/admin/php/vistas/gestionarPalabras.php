@@ -64,31 +64,66 @@
         <?php } ?>
 
         <div id="contenedorAdmin">
-            <h1>Añadir Palabra del Dia</h1>
-            <form action="index.php?c=Palabra&m=guardarNuevaPalabra" method="post">
+            <h1>Añadir/Editar Palabra del Dia</h1>
+            <form action="<?php echo isset($palabraEditar) ? 'index.php?c=Palabra&m=actualizarPalabra' : 'index.php?c=Palabra&m=guardarNuevaPalabra'; ?>" method="post">
+                
+                <?php if (isset($palabraEditar)): ?>
+                    <input type="hidden" name="idPalabra" value="<?php echo $palabraEditar['idPalabra']; ?>">
+                <?php endif; ?>
+            
                 <label for="palabra">Palabra</label>
-                <input type="text" name="palabra" id="palabra" placeholder="Ej: Arból...">
+                <input  type="text" 
+                        name="palabra" 
+                        id="palabra" 
+                        placeholder="Ej: Arból..."
+                        value="<?php echo isset($palabraEditar) ? $palabraEditar['palabra'] : ''; ?>"
+                        required>
                 <p>Añade una palabra para que sea adivinada.</p>
 
                 <label for="definicion">Definición</label>
-                <input type="text" name="definicion" id="definicion"
-                    placeholder="Ej: Planta de tallo leñoso y elevado, que se ramifica a cierta altura del suelo.">
+                <input  type="text" 
+                        name="definicion" 
+                        id="definicion"
+                        placeholder="Ej: Planta de tallo leñoso y elevado, que se ramifica a cierta altura del suelo."
+                        value="<?php echo isset($palabraEditar) ? $palabraEditar['definicion'] : ''; ?>"
+                        required>
 
                 <label for="fecha">Fecha programada</label>
-                <input type="date" name="fecha" id="fecha">
+                <input  type="date" 
+                        name="fecha" 
+                        id="fecha"
+                        value="<?php echo isset($palabraEditar) ? $palabraEditar['fechaProgramada'] : ''; ?>">>
 
-                <button type="button" id="btnAnadirPregunta">
-                    <i class="fa-regular fa-square-plus"></i> Añadir Pista
-                </button>
+                <?php if (!isset($palabraEditar)): ?>
+                    <button type="button" id="btnAnadirPregunta">
+                        <i class="fa-regular fa-square-plus"></i> Añadir Pista
+                    </button>
 
-                <div id="cuestionarioContainer">
-                    <div class="cuestionarioPregunta">
-                        <label>Pista</label>
-                        <input type="text" name="pista[]" placeholder="Pista..." required>
+                    <div id="cuestionarioContainer">
+                        <div class="cuestionarioPregunta">
+                            <label>Pista</label>
+                            <input type="text" name="pista[]" placeholder="Pista..." required>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
 
-                <input type="submit" value="Guardar Palabra">
+                <div class="grupo-acciones">
+                    <input type="submit" value="<?php echo isset($palabraEditar) ? 'Actualizar Palabra' : 'Guardar Palabra'; ?>">
+                    
+                    <?php if (isset($palabraEditar)): ?>
+                        <button type="button" class="btn-secundario" onclick="window.location.href='index.php?c=Palabra&m=gestionarPalabras'">
+                            <i class="fa-solid fa-times"></i>&nbsp;Cancelar
+                        </button>
+                    <?php else: ?>
+                        <button type="button" class="btn-secundario" 
+                                onclick="
+                                        if(confirm('Vas a poner a NULL todas las fechas antiguas. ¿Estás seguro?')) { 
+                                            window.location.href='index.php?c=Palabra&m=actualizarFechas'; 
+                                        }">
+                                <i class="fa-solid fa-arrows-rotate"></i>&nbsp;Fechas
+                        </button>
+                    <?php endif; ?>
+                </div>
             </form>
 
             <?php if (isset($mensaje) && !empty($mensaje)) { ?>
@@ -136,6 +171,10 @@
 
         <?php
         require_once 'parciales/modalEditarPalabra.php';
+        ?>
+
+        <?php
+        require_once 'parciales/notificacion.php';
         ?>
 
         <footer>
@@ -200,6 +239,22 @@
                         window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
                     }
                 }
+            }
+        </script>
+
+        <script>
+            const mensaje = "<?php echo $mensaje ?? ''; ?>";
+
+            const notificacion = document.getElementById("notificacion");
+
+            if (mensaje !== "") {
+                notificacion.textContent = mensaje;
+                notificacion.style.opacity = "1";
+
+                // Ocultar después de 3 segundos
+                setTimeout(() => {
+                    notificacion.style.opacity = "0";
+                }, 3000);
             }
         </script>
 </body>

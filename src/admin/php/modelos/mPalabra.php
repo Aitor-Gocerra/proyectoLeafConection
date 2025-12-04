@@ -76,16 +76,17 @@ class Palabra extends Conexion
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function actualizarPalabra($idPalabra, $palabra, $definicion)
+    public function actualizarPalabra($idPalabra, $palabra, $definicion, $fecha)
     {
         $sql = "
                 UPDATE palabras 
-                SET palabra = :palabra, definicion = :correcta 
+                SET palabra = :palabra, definicion = :correcta, fechaProgramada = :fecha 
                 WHERE idPalabra = :id
             ";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':palabra', $palabra);
         $stmt->bindParam(':correcta', $definicion);
+        $stmt->bindParam(':fecha', $fecha);
         $stmt->bindParam(':id', $idPalabra, PDO::PARAM_INT);
 
         return $stmt->execute();
@@ -118,4 +119,17 @@ class Palabra extends Conexion
         return $stmt->execute();
     }
 
+    public function actualizarFechas(){
+        /* $fechaActual = date('Y-m-d'); */
+
+        $sql = "
+            UPDATE palabras
+            SET fechaProgramada = NULL
+            WHERE fechaProgramada < NOW();
+        ";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        return $stmt->execute();
+    }
 }
