@@ -26,21 +26,20 @@
         <form action="POST" class="formulario-autenticacion" action="./controlador/recogerDatos.js">
 
             <h1>Comenzar</h1>
-            <label for="usuario">Nombre de Usuario</label>
+            <label for="input-usuario">Nombre de Usuario</label>
             <input type="text" placeholder="Introduce usuario" id="input-usuario">
 
-            <label for="correo">Correo electrónico</label>
+            <label for="input-correo">Correo electrónico</label>
             <input type="text" placeholder="Introduce correo" id="input-correo">
 
-            <label for="contrasenia">Contraseña</label>
+            <label for="input-contrasenia">Contraseña</label>
             <input type="password" placeholder="Introduce tu contraseña" id="input-contrasenia">
 
-            <label for="contrasenia2">Confirmar contraseña</label>
+            <label for="input-contrasenia2">Confirmar contraseña</label>
             <input type="password" placeholder="Confirme contraseña" id="input-contrasenia2">
-
             <div id="mensaje-error"></div>
 
-            <a href="#" id="btn-crearcuenta" class="boton-autenticacion-primario">Crear Cuenta</a> 
+            <button type="button" id="btn-crearcuenta" class="boton-autenticacion-primario"> Crear Cuenta</button>
 
             <p>¿Ya tienes cuenta? <a href="index.php?c=Paginas&m=login">Inicia sesión</a></p>
         </form>

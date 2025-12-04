@@ -1,43 +1,44 @@
-/*javascript/Controlador/cRegistrarse.js
-import { mRegistrarse } from '../models/mRegistrarse.js';*/
 
-export class cRegistrarse {
+import MRegistrarse from '../modelo/mRegistrarse.js'; 
+
+export default class cRegistrarse {
     modelo;
-    vista; 
+    vista;
 
     constructor() {
-        /*this.modelo = new mRegistrarse();*/
+        this.modelo = new MRegistrarse();
     }
 
-    cRegistrarse(usuario,email, password) {
+    iniciarRegistro(usuario, email, password) {
 
-        // 1. Validar el formario con un REGEX básico`'
         if (!this.validarEmail(email)) {
-            // Utilizamos el método que le asignamos antes
             this.vista.mostrarError('El formato del correo electrónico no es válido.');
             return;
-         }
+        }
 
-         if(!this.validarNombreUsuario(usuario)){
+        if(!this.validarNombreUsuario(usuario)){
             this.vista.mostrarError('El nick del usuario contiene carácteres especiales no válidos.');
             return;
-         }
+        }
         
         let formData = new FormData(); 
-        formData.append('nombre', usuario);
+        formData.append('usuario', usuario); // Usar 'usuario' o 'nombre' según tu BD
         formData.append('correo', email); 
         formData.append('contrasenia', password); 
-        //this.modelo.mRegistrarse(formData);
+        
+        console.log("Datos de registro:", formData.get('usuario'), formData.get('correo'));
+        this.modelo.mRegistrarse(formData);
     }
-     
-//////////METODOS DE VALIDACION PARA EMAIL Y NOMBREUSUARIO
+      
+    ////////// METODOS DE VALIDACION PARA EMAIL Y NOMBREUSUARIO
     validarEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
     validarNombreUsuario(nombreUsuario) {
-        const usuarioRegex = /^[a-zA-Z0-9_-]+$/;
+        // Permite letras, números, guiones bajos y guiones medios
+        const usuarioRegex = /^[a-zA-Z0-9_-]+$/; 
         return usuarioRegex.test(nombreUsuario);
     }
 }

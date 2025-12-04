@@ -1,4 +1,4 @@
-import { cRegistrarse } from '../controlador/cRegistrarse.js';
+import cRegistrarse from '../controlador/cRegistrarse.js';
 const controlador = new cRegistrarse();
 
 //Es la funcion que permite mostrar un mensaje de error en caso de que la contraseña o correo este vacia
@@ -63,6 +63,6 @@ document.getElementById('btn-crearcuenta').addEventListener('click', async funct
     }
 
     // 4. Le pasamos la información al controlador--> mInicioSesión
+    controlador.iniciarRegistro(usuario, email, password);
     console.log("Vista: Validación OK. Enviando datos al Controlador...");
-    controlador.cRegistrarse(usuario, email, password);
 });

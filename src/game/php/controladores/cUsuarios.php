@@ -7,7 +7,7 @@ class CUsuarios{
         $this->objMUsuario = new MUsuarios();
     }
 
-    public function predeterminada(){
+    public function login(){
         $this->vista = 'login';
     }
     public function mostrarRegistrar(){
@@ -20,7 +20,7 @@ class CUsuarios{
 
     public function registrar($datos){
         
-        if(!$this->comprobarDatosReg($datos)){
+        if(!$this->comprobarDatosRegistro($datos)){
             $this->vista = '';
             echo 'false'; 
             return false;
@@ -47,7 +47,7 @@ class CUsuarios{
     
 
     public function inicio($datos){
-        if($this->comprobarDatosIni($datos)){
+        if($this->comprobarDatosInicio($datos)){
             if($resultado = $this->objMUsuario->inicio($datos)){
                 $this->vista = '';
                 echo 'true';
@@ -63,14 +63,14 @@ class CUsuarios{
         return false;
     }
 
-    private function comprobarDatosIni($datos){
+    private function comprobarDatosInicio($datos){
         if(empty($datos) || empty($datos["correo"]) || empty($datos["contrasenia"]))
             return false;
         else
             return true;
     }
 
-    private function comprobarDatosReg($datos){
+    private function comprobarDatosRegistro($datos){
         if(empty($datos) || empty($datos["usuario"]) || empty($datos["correo"]) || empty($datos["contrasenia"]))
             return false;
         else
