@@ -33,8 +33,8 @@
             return $datos;
         }
 
-        public function guardarPartidaNoticiaDia(){ // FALTAN LAS VALIDACIONES DE RADIOBUTTONS, HACERLAS EN JS
-            $idUsuario = $_SESSION['idUsuario'] ?? 2; // ELIMINAR
+        public function guardarPartidaNoticiaDia(){
+            $idUsuario = $_SESSION['idUsuario'] ?? 2; 
             $idNoticia = $_GET['idNoticia']; 
             $temporizador = $_POST['tiempo'];
 

@@ -74,68 +74,12 @@
         </footer>
 
         <script>
-            // Obtengo las respuestas correctas y las del usuario desde el php convertidas a objetos
-            let respuestasCorrectas = <?php echo isset($respuestasCorrectas) ? json_encode($respuestasCorrectas) : '{}'; ?>;
-            let respuestasUsuario   = <?php echo isset($respuestasUsuario)   ? json_encode($respuestasUsuario)   : '{}'; ?>;
-
-            // Esperar a que el DOM esté completamente cargado
-            document.addEventListener('DOMContentLoaded', function() {
-                let form = document.getElementById('formNoticia');
-                let btnEnviar = document.getElementById('btnEnviar');
-
-                if (btnEnviar) {
-                    btnEnviar.addEventListener('click', function() {
-                        this.disabled = true; // Desactivar boton submit
-                    });
-                }
-
-                if (form && respuestasCorrectas && respuestasUsuario) {
-                    // Restaurar lo qeu ha marcado el jugador
-                    for (let nPregunta in respuestasUsuario) {
-                            if (respuestasUsuario.hasOwnProperty(nPregunta)) {
-                                let valorUsuario = String(respuestasUsuario[nPregunta]);
-                                let input = form.querySelector(
-                                    `input[type="radio"][name="${nPregunta}"][value="${valorUsuario}"]`
-                                );
-                                if (input) {
-                                    input.checked = true;
-                                }
-                            }
-                        }
-
-                    // Colocar la imagen si ha acertado o no
-                    for (let nPregunta in respuestasCorrectas) {
-                        if (respuestasCorrectas.hasOwnProperty(nPregunta)) {
-                            let opcionCorrecta = String(respuestasCorrectas[nPregunta]);
-                            let opcionUsuario  = (respuestasUsuario && respuestasUsuario[nPregunta] !== undefined) ? String(respuestasUsuario[nPregunta]) : null;
-
-                            // Coge todos los radios de esa pregunta
-                            let inputs = form.querySelectorAll(
-                                `input[type="radio"][name="${nPregunta}"]`
-                            );
-
-                            inputs.forEach(input => {
-                                let li = input.closest('li');
-                                let valor = String(input.value);
-
-                                // Marchar respuestas CORRECTAS
-                                if (valor === opcionCorrecta) {
-                                    let iconCheck = document.createElement('i');
-                                    iconCheck.className = 'fa-regular fa-circle-check';
-                                    li.appendChild(iconCheck);
-                                }
-
-                                // Marcar respuestas INCORRECTAS
-                                if (opcionUsuario !== null && valor === opcionUsuario && valor !== opcionCorrecta) {
-                                    let iconX = document.createElement('i');
-                                    iconX.className = 'fa-regular fa-circle-xmark';
-                                    li.appendChild(iconX);
-                                }
-                            });
-                        }
-                    }
-                }
-            });
+            // Variables PHP convertidas a JavaScript (solo disponibles si hay mensaje/respuestas)
+            window.idNoticia = <?php echo isset($noticia['idNoticia']) ? $noticia['idNoticia'] : 'null'; ?>;
+            window.respuestasCorrectas = <?php echo isset($respuestasCorrectas) ? json_encode($respuestasCorrectas) : '{}'; ?>;
+            window.respuestasUsuario   = <?php echo isset($respuestasUsuario)   ? json_encode($respuestasUsuario)   : '{}'; ?>;
         </script>
+
+        <script type="module" src="./js/vistas/noticiaDia.js"></script>
     </body>
 </html>
