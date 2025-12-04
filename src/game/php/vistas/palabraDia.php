@@ -19,10 +19,12 @@
                 <h2 class="tituloPalabra">Palabra del día</h2>
                 <p class="descripcionPalabra">Usa la siguiente definición para adivinar la eco-palabra.</p>
                 
-                <div class="contenedorTiempoPista">
-                <p id="temporizador"><i class="fas fa-clock"></i> </i>5:00</p>
+            <div class="contenedorTiempoPista">
+                <p id="temporizador">
+                <i class="fas fa-clock"></i> 
+                <span id="tiempoRestante">5:00</span></p>
                 
-            <i class="fas fa-lightbulb fa-2x" id="iconoPista"></i> 
+                <i class="fas fa-lightbulb fa-2x" id="iconoPista"></i> 
             </div>
             <div id="popupPista" class="popup">
             <div class="popup-contenido">
@@ -40,6 +42,9 @@
                     <div class="contenedorAcierto">
                         <input type="text" name="acertarPalabra" class="introducirPalabra" placeholder="Tu suposición...">
                         <button type="submit" class="enviarPalabra">Acierta</button>
+                    </div>
+                    <div class="contenedorErrorAcierto">
+                        <p id="mensaje"></p>
                     </div>
             </div>
         </main>
@@ -60,13 +65,16 @@
             document.getElementById('popupPista').style.display = 'none';
 });
 
-        // Cerrar si hace clic fuera del popup
+        
         window.addEventListener('click', function(ventana) {
         let popup = document.getElementById('popupPista');
         if (ventana.target === popup) {
         popup.style.display = 'none';
     }
 });
+
         </script>
+        <script src="./javaScript/palabraYFraseDia.js"></script>
+        <script src="./javaScript/temporizador.js"></script>
     </body>
 </html>

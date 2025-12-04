@@ -1142,6 +1142,9 @@ footer {
         border-radius: 3px;
     
 }
+    .enviarPalabra:hover{
+        background-color: var(--color-texto-gris);
+    }
     .contenedorTiempoPista {
     display: flex; 
     align-items: center; 
@@ -1209,6 +1212,21 @@ footer {
     font-size: 22px;
     cursor: pointer;
 }
+
+.contenedorErrorAcierto {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+#mensaje {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+}
+
+
+
 }
 /* Medidas adaptativas para diferentes pantallas */
 @media (max-width: 1024px) {
