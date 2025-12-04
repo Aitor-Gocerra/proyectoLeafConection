@@ -20,17 +20,30 @@
         }
 
         public function añadirNoticia(){
-            var_dump($_POST);
-            /*$titulo = $_POST['titulo'];
+            $titulo = $_POST['titulo'];
             $noticia = $_POST['noticia'];
             $url = $_POST['url'];
+            $fecha = $_POST['fecha'] ?? NULL;
             $preguntas = $_POST['preguntas'];
             $opciones = $_POST['opciones'];
-            $respuestas = $_POST['respuestas_correctas'];*/
+            $respuestas = $_POST['respuestas_correctas'];
 
-            $opciones = explode("/", $_POST['opciones'][0]);
+            $arrOpciones = [];
+            foreach ($opciones as $i => $opcion) {
+                if (trim($opcion) === '') continue; // evitar valores vacíos
+            
+                $elementos = explode('/', $opcion); // separar por '/'
+            
+                foreach ($elementos as $j => $elemento) {
+                    $texto = trim($elemento);
+                    $arrOpciones[$i][$j] = $texto;
+                }
+            }
 
-            var_dump($opciones);
+            if ($this->objNoticia->añadir($titulo, $noticia, $fecha, 
+            $url, $preguntas, $arrOpciones, $respuestas)){
+                echo "a";
+            }
         }
 
         public function buscarNoticias(){

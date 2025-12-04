@@ -1271,10 +1271,12 @@ footer {
 
             .fa-circle-check {
                 color: green;
+                margin-left: 1rem;
             }
 
             .fa-circle-xmark {
                 color: red;
+                margin-left: 1rem;
             }
         }
 

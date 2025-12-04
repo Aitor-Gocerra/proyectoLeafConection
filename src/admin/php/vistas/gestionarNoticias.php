@@ -70,14 +70,14 @@
                     <input type="text" name="url" id="url" placeholder="Ej: https://..." required>
 
                     <label for="fecha">Fecha programada</label>
-                    <input type="date" name="fecha" id="fecha" required>
+                    <input type="date" name="fecha" id="fecha">
 
                     <label>Cuestionario</label>
 
                     <div id="cuestionarioContainer">
                         <div class="cuestionarioPregunta">
                             <label>Pregunta</label>
-                            <input type="text" name="preguntas[]" value="kamehameha" placeholder="Escribe la pregunta" required>
+                            <input type="text" name="preguntas[]" placeholder="Escribe la pregunta" required>
 
                             <label>Opciones (separadas por '/')</label>
                             <input type="text" name="opciones[]" class="opciones" placeholder="Opción1/Opción2/Opción3" required>
@@ -99,7 +99,7 @@
         <!-- Resultados de búsqueda -->
         
         <div id="ultimasDiezFrases">
-            <h2>Últimas 10 Frases</h2>
+            <h2>Últimas 10 Noticias</h2>
             <?php if (isset($noticias) && !empty($noticias)) { ?>
                 <table>
                     <thead>

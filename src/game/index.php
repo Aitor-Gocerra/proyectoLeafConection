@@ -18,7 +18,7 @@
     }
     
     if ($objControlador->vista != '') {
-        if (is_array($datos)) extract($datos); 
+        if (is_array($datos)) extract($datos);
         require_once RUTA_VISTAS . $objControlador->vista . '.php';
     }
 ?>

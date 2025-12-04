@@ -12,25 +12,39 @@
             $sql3 = "INSERT INTO Opciones (idNoticia, nPregunta, nOpcion, opcion) VALUES (:idNoticia, :nPregunta, :nOpcion, :opcion);";
             $sql4 = "INSERT INTO RespuestaCorrecta (idNoticia, nPregunta, nOpcion) VALUES (:idNoticia, :nPregunta, :nOpcion);";
 
-            try{
+            try {
                 $this->conexion->beginTransaction();
-                
-                $sth = $this->conexion->prepare($sql1);
+        
+                $sth = $this->conexion->prepare($sql1); // Noticia
                 $sth->execute(['titulo' => $titulo, 'noticia' => $noticia, 'fechaProgramada' => $fechaProgramada, 'urlImagen' => $urlImagen]);
                 $idNoticia = $this->conexion->lastInsertId();
-
-                $sth = $this->conexion->prepare($sql2);
-                foreach($preguntas as $i => $pregunta){
-                    $sth->execute(['idNoticia' => $idNoticia, 'nPregunta' => ($i + 1), 'pregunta' => $pregunta]);
+        
+                $sth = $this->conexion->prepare($sql2); // Preguntas
+                foreach ($preguntas as $i => $pregunta) {
+                    $nPregunta = $i + 1;
+                    $sth->execute(['idNoticia' => $idNoticia, 'nPregunta' => $nPregunta, 'pregunta' => $pregunta]);
                 }
-
-                $sth = $this->conexion->prepare($sql3);
-                foreach($opciones as $i => $opcion){
-                    $sth->execute(['idNoticia' => $idNoticia, 'nPregunta' => ($i + 1), 'pregunta' => $pregunta]);
+        
+                $sth = $this->conexion->prepare($sql3); // Opciones
+                foreach ($opciones as $i => $opcionesPorPregunta) {
+                    $nPregunta = $i + 1;
+                    foreach ($opcionesPorPregunta as $j => $opcion) {
+                        $nOpcion = $j + 1;
+                        $sth->execute(['idNoticia' => $idNoticia, 'nPregunta' => $nPregunta, 'nOpcion' => $nOpcion, 'opcion' => $opcion]);
+                    }
                 }
-
+        
+                $sth = $this->conexion->prepare($sql4); // Respuestas
+                foreach ($respuestas as $i => $respuesta) {
+                    $nPregunta = $i + 1;
+                    $sth->execute(['idNoticia' => $idNoticia, 'nPregunta' => $nPregunta, 'nOpcion' => (int)$respuesta]);
+                }
+        
                 $this->conexion->commit();
-            } catch(PDOException $e){
+                return true;
+        
+            }  catch(PDOException $e){
+                $this->conexion->rollBack();
                 echo "Error: " . $e->getMessage();
                 return false;
             }

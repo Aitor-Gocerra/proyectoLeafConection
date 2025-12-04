@@ -53,7 +53,7 @@
         }
 
         public function obtenerRespuestas($idNoticia){
-            $sql = "SELECT * FROM RespuestaCorrecta WHERE idNoticia = :idNoticia;";
+            $sql = "SELECT nOpcion FROM RespuestaCorrecta WHERE idNoticia = :idNoticia;";
             try{
                 $sth = $this->conexion->prepare($sql);
                 $sth->execute(['idNoticia' => $idNoticia]);
