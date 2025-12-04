@@ -1,12 +1,12 @@
-/*javascript/Controlador/cIniciarSesion.js
-import { mIniciarsesion } from '../modelo/mIniciarsesion.js';*/
+javascript/Controlador/cIniciarSesion.js
+import { mIniciarsesion } from '../modelo/mIniciarsesion.js';
 
 export class cIniciarSesion {
     modelo;
     vista; 
 
     constructor() {
-        /*this.modelo = new mIniciarsesion();*/
+        this.modelo = new mIniciarsesion();
     }
 
     cIniciarSesion(email, password) {
@@ -18,11 +18,11 @@ export class cIniciarSesion {
             return;
          }
         
-        /*let formData = new FormData(); 
+        let formData = new FormData(); 
         formData.append('correo', email); 
         formData.append('contrasenia', password); 
 
-        this.modelo.mIniciarSesion(formData);*/
+        this.modelo.mIniciarSesion(formData);
     }
      
     validarEmail(email) {

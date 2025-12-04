@@ -24,6 +24,7 @@ export class cRegistrarse {
          }
         
         /*let formData = new FormData(); 
+        formData.append('nombre', usuario);
         formData.append('correo', email); 
         formData.append('contrasenia', password); '
         this.modelo.mRegistrarse(formData);*/

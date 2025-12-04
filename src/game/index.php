@@ -13,10 +13,19 @@
 
     $datos = []; // Guardar los datos que se obtienen del método
 
-    if (method_exists($objControlador, $_GET['m'])){
-        $datos = $objControlador->{    $_GET['m']  }();
+ if (method_exists($objControlador, $_GET['m'])){
+        
+        // 🔑 CAMBIO CLAVE AQUÍ: Detectar el tipo de petición
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Llamar al método y pasar $_POST como argumento (para registrar, inicio, aceptarSolicitud, etc.)
+            $datos = $objControlador->{$_GET['m']}($_POST);
+        } else {
+            // Llamar al método sin argumentos (para cargar la vista inicial, mostrarRegistrar, etc.)
+            $datos = $objControlador->{$_GET['m']}();
+        }
     }
     
+    // 5. Renderizar la Vista
     if ($objControlador->vista != '') {
         if (is_array($datos)) extract($datos); 
         require_once RUTA_VISTAS . $objControlador->vista . '.php';

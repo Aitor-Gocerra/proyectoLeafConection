@@ -3,7 +3,7 @@ export class mIniciarSesion {
     async mIniciarSesion(formData){
 
         try {
-            const response = await fetch('', { 
+            const response = await fetch('index.php?c=Usuarios&m=inicio', { 
                 method: 'POST',
                 body: formData,
             });
@@ -12,7 +12,7 @@ export class mIniciarSesion {
                 const result = await response.text();
     
                 if (result=='true') {
-                    window.location.href = "Redirigir al index";
+                    window.location.href = "index.php?c=Usuarios&m=mostrarInicio";
                 } else {
                     const error = document.getElementById('mensaje-error'); 
                     

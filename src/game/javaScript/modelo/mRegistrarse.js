@@ -2,7 +2,7 @@ export class MRegistrarse {
     constructor() {}
     async mRegistrarse(formData){
         try{
-            const response = await fetch(' Parte de php', {
+            const response = await fetch('index.php?c=Usuarios&m=registrar', {
                 method: 'POST',
                 body: formData, 
             });
@@ -10,8 +10,8 @@ export class MRegistrarse {
             if(response.ok){
                 const result = await response.text();
 
-                if(result === 'correcto'){
-                    window.location.href = " Parte de php";
+                if(result === 'true'){
+                    window.location.href = "index.php?";
                 }else{
                     const errorDiv = document.getElementById('mensaje-error');
                     
