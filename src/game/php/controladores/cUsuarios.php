@@ -52,9 +52,10 @@ class CUsuarios{
     public function inicio($datos){
         if($this->comprobarDatosIni($datos)){
             if($resultado = $this->objMUsuario->inicio($datos)){
-                $this->vista = '';
+                /*$this->vista = '';
                 echo 'true';
-                return $resultado;
+                return $resultado;*/
+                var_dump($resultado);
             }else{
                 $this->vista = '';
                 echo $this->objMUsuario->codError;

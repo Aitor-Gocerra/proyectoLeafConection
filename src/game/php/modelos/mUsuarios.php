@@ -36,7 +36,7 @@ class MUsuarios{
    public function inicio($datos){
         try{
             // 1. Búsqueda por correo
-            $sql='SELECT idUsuario, nombre, pw from Usuario where correo = :correo;'; 
+            $sql='SELECT  nombre, pw from usuario where correo = :correo;'; 
 
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':correo', $datos['correo'], PDO::PARAM_STR);
@@ -46,10 +46,8 @@ class MUsuarios{
             if($stmt->rowCount() > 0){
                 $fila = $stmt->fetch(PDO::FETCH_ASSOC);
                 
-                // 🔑 CORRECCIÓN CRÍTICA: Comparación de texto plano
-                // Esto compara la contraseña enviada ($datos["contrasenia"]) con la almacenada ($fila["pw"])
                 if($datos["contrasenia"] === $fila["pw"]){ 
-                    return $fila; // Login exitoso
+                    return $fila;
                 } else {
                     // Contraseña incorrecta
                     $this->codError = "ContraseniaIncorrrecta";

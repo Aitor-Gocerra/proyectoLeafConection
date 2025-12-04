@@ -1,6 +1,4 @@
 // Archivo: javascript/modelo/mIniciarsesion.js
-
-// 🔑 CORRECCIÓN: Usar 'export default' en la clase.
 export default class mIniciarSesion {
     constructor() {}
     async mIniciarSesion(formData){

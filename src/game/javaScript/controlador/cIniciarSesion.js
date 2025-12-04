@@ -1,6 +1,3 @@
-/* javascript/Controlador/cIniciarSesion.js */
-// 🛑 ERROR: import { mIniciarSesion } from '../modelo/mIniciarsesion.js';
-// ✅ CORRECCIÓN: Usar importación por defecto (sin llaves).
 import mIniciarSesion from '../modelo/mIniciarsesion.js';
 
 export class cIniciarSesion {
@@ -21,11 +18,9 @@ export class cIniciarSesion {
         }
 
         let formData = new FormData(); 
-        // 🔑 Envía 'correo' (Alineado con CUsuarios::comprobarDatosIni y MUsuarios::inicio)
         formData.append('correo', email); 
-        // 🔑 Envía 'contrasenia' (Alineado con CUsuarios::comprobarDatosIni y MUsuarios::inicio)
         formData.append('contrasenia', password); 
-
+        console.log(formData);
         this.modelo.mIniciarSesion(formData);
     }
 
