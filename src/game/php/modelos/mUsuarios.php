@@ -33,10 +33,9 @@ class MUsuarios{
     }
     
     
-   public function inicio($datos){
+    public function inicio($datos){
         try{
-            // 1. Búsqueda por correo
-            $sql='SELECT  nombre, pw from usuario where correo = :correo;'; 
+            $sql='SELECT idUsuario, nombre, pw from usuario where correo = :correo;'; 
 
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':correo', $datos['correo'], PDO::PARAM_STR);
@@ -46,16 +45,14 @@ class MUsuarios{
             if($stmt->rowCount() > 0){
                 $fila = $stmt->fetch(PDO::FETCH_ASSOC);
                 
-                if($datos["contrasenia"] === $fila["pw"]){ 
-                    return $fila;
+                if(password_verify($datos["contrasenia"], $fila["pw"])){ 
+                    return $fila; 
                 } else {
-                    // Contraseña incorrecta
                     $this->codError = "ContraseniaIncorrrecta";
                     return false;
                 }
             }
-            
-            // Si rowCount() es 0, el usuario no existe.
+
             $this->codError = "UsuarioIncorrecto"; 
             return false;
             
@@ -65,7 +62,6 @@ class MUsuarios{
             return false;
         }
     }
-
     public function usuarioExiste($nombreUsuario){
         try{
             $sql = "SELECT COUNT(*) FROM Usuario WHERE nombre = :nombre;";
