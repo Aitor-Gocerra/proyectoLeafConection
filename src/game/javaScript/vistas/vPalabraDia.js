@@ -1,6 +1,3 @@
-/**
- * Vista: Maneja la interfaz de usuario y eventos
- */
 class VPalabra {
 
     constructor(controlador) {
@@ -15,9 +12,7 @@ class VPalabra {
         this.inicializarEventos();
     }
 
-    /**
-     * Inicializa los event listeners
-     */
+    /* Inicio los listenes */
     inicializarEventos() {
         // Click en el botón
         this.botonEnviar.addEventListener('click', () => {
@@ -32,18 +27,12 @@ class VPalabra {
         });
     }
 
-    /**
-     * Maneja el envío de la respuesta
-     */
+    /* Como envio la respuesta */
     manejarEnvio() {
         const palabraUsuario = this.inputRespuesta.value;
         this.controlador.validarRespuesta(palabraUsuario);
     }
 
-    /**
-     * Muestra mensaje de éxito cuando la palabra es correcta
-     * @param {string} palabraCorrecta - La palabra correcta
-     */
     mostrarExito(palabraCorrecta) {
         this.limpiarContenedor();
 
@@ -53,22 +42,17 @@ class VPalabra {
             <div class="icono-resultado">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <p class="mensaje-resultado">¡Correcto! 🎉</p>
+            <p class="mensaje-resultado">¡Correcto!</p>
             <h3 class="texto-solucion">${palabraCorrecta.toUpperCase()}</h3>
             <p class="submensaje">¡Has acertado la palabra del día!</p>
         `;
 
         this.contenedorAcierto.appendChild(divRespuesta);
-        this.animarEntrada(divRespuesta);
     }
 
-    /**
-     * Muestra mensaje de fallo cuando la palabra es incorrecta
-     * @param {string} palabraUsuario - La palabra ingresada por el usuario
-     */
     mostrarFallo(palabraUsuario) {
         // No limpiamos el contenedor para que el usuario pueda intentar de nuevo
-        this.mostrarNotificacion('❌ Palabra incorrecta. Intenta de nuevo', 'error');
+        this.mostrarNotificacion('Palabra incorrecta. Intenta de nuevo', 'error');
 
         // Añadir efecto de shake al input
         this.inputRespuesta.classList.add('shake');
@@ -81,10 +65,6 @@ class VPalabra {
         this.inputRespuesta.focus();
     }
 
-    /**
-     * Muestra la solución correcta
-     * @param {string} palabraCorrecta - La palabra correcta
-     */
     mostrarSolucion(palabraCorrecta) {
         this.limpiarContenedor();
 
@@ -99,22 +79,12 @@ class VPalabra {
         `;
 
         this.contenedorAcierto.appendChild(divRespuesta);
-        this.animarEntrada(divRespuesta);
     }
 
-    /**
-     * Muestra un mensaje de error
-     * @param {string} mensaje - Mensaje de error a mostrar
-     */
     mostrarError(mensaje) {
         this.mostrarNotificacion(mensaje, 'error');
     }
 
-    /**
-     * Muestra una notificación temporal
-     * @param {string} mensaje - Mensaje a mostrar
-     * @param {string} tipo - Tipo de notificación (error, success, info)
-     */
     mostrarNotificacion(mensaje, tipo = 'info') {
         // Crear notificación
         const notificacion = document.createElement('div');
@@ -138,27 +108,10 @@ class VPalabra {
         }, 3000);
     }
 
-    /**
-     * Limpia el contenedor de respuestas
-     */
     limpiarContenedor() {
         // Eliminar solo las zonas de respuesta, mantener el input y botón
         const zonasRespuesta = this.contenedorAcierto.querySelectorAll('.zonaRespuesta');
         zonasRespuesta.forEach(zona => zona.remove());
     }
 
-    /**
-     * Anima la entrada de un elemento
-     * @param {HTMLElement} elemento - Elemento a animar
-     */
-    animarEntrada(elemento) {
-        elemento.style.opacity = '0';
-        elemento.style.transform = 'translateY(20px)';
-
-        setTimeout(() => {
-            elemento.style.transition = 'all 0.4s ease-out';
-            elemento.style.opacity = '1';
-            elemento.style.transform = 'translateY(0)';
-        }, 10);
-    }
 }

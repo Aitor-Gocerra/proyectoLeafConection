@@ -50,39 +50,28 @@ class CPalabras
 
     }
 
-
-    public function obtenerPalabraJSON()
-    {
-        // Evitamos que se cargue ninguna vista
-        $this->vista = '';
-
-        header('Content-Type: application/json');
-
-        try {
-            $palabra = $this->palabraMod->mostrarPalabra();
-
-            if ($palabra) {
-                $idPalabra = $palabra['idPalabra'];
-                $correcta = $this->palabraMod->palabraCorrecta($idPalabra);
-
-                echo json_encode([
-                    'success' => true,
-                    'palabra' => $correcta['palabra'] ?? null,
-                    'idPalabra' => $idPalabra
-                ]);
-            } else {
-                echo json_encode([
-                    'success' => false,
-                    'error' => 'No hay palabra programada para hoy'
-                ]);
-            }
-        } catch (Exception $e) {
-            http_response_code(500);
-            echo json_encode([
-                'success' => false,
-                'error' => 'Error al obtener la palabra: ' . $e->getMessage()
-            ]);
-        }
+    public function obtenerPalabraJSON() {
+    // No cargo ninguna vista
+    $this->vista = '';
+    header('Content-Type: application/json'); //Esto es necesario para que sepa que tipo de informacion va a recibir
+    
+    $palabra = $this->palabraMod->mostrarPalabra();
+    
+    if ($palabra) {
+        $idPalabra = $palabra['idPalabra'];
+        $correcta = $this->palabraMod->palabraCorrecta($idPalabra);
+        
+        echo json_encode([ //Paso los datos que recibo
+            'success' => true,
+            'palabra' => $correcta['palabra'],
+            'idPalabra' => $idPalabra
+        ]);
+    } else {
+        echo json_encode([
+            'success' => false,
+            'error' => 'No hay palabra programada para hoy'
+        ]);
     }
+}
 }
 ?>
