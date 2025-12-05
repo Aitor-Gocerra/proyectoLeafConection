@@ -20,6 +20,7 @@
             $opciones = $this->objNoticia->obtenerOpciones($noticia['idNoticia']);
 
             $this->vista = 'noticiaDia';
+            $idUsuario = $_SESSION['idUsuario'] ?? 2; // A modo de ejemplo
 
             $datos = ['noticia' => $noticia, 'preguntas' => $preguntas, 'opciones'  => $opciones];
 
@@ -34,13 +35,20 @@
         }
 
         public function guardarPartidaNoticiaDia(){
-            $idUsuario = $_SESSION['idUsuario'] ?? 2; 
+            $idUsuario = $_SESSION['idUsuario'] ?? 2; // A modo de ejemplo
+
+            if ($this->objNoticia->haJugadoHoy($idUsuario)){
+                $this->mensaje = 'Ya has jugado este juego';
+                return $this->noticiaDia();
+            }
+
             $idNoticia = $_GET['idNoticia']; 
-            $temporizador = $_POST['tiempo'];
+            $temporizador = $_POST['tiempo']; // A modo de ejemplo también
+
 
             $this->respuestasCorrectas = [];
             $filasRespuestas = $this->objNoticia->obtenerRespuestas($idNoticia);
-            if ($filasRespuestas && is_array($filasRespuestas)) {
+            if (is_array($filasRespuestas)) {
                 foreach ($filasRespuestas as $indice => $fila) {
                     $nPregunta = $indice + 1;
                     $this->respuestasCorrectas[$nPregunta] = (int)$fila['nOpcion'];
@@ -48,22 +56,21 @@
             }
 
             $this->respuestasUsuario = [];
-            foreach ($this->respuestasCorrectas as $nPregunta => $_) {
-                if (isset($_POST[$nPregunta])) {
-                    $this->respuestasUsuario[$nPregunta] = (int)$_POST[$nPregunta];
-                }
+            foreach ($this->respuestasCorrectas as $nPregunta => $_POST[$nPregunta]) {
+                $this->respuestasUsuario[$nPregunta] = (int)$_POST[$nPregunta];
             }
 
             $puntuacion = 0;
-            $intentos = 1;
+            $intentos = 1; // A modo de ejemplo
 
             foreach ($this->respuestasCorrectas as $nPregunta => $nOpcionCorrecta) {
-                if (isset($this->respuestasUsuario[$nPregunta]) && $this->respuestasUsuario[$nPregunta] === $nOpcionCorrecta) {
-                    $puntuacion += 3;
+                if ($this->respuestasUsuario[$nPregunta] == $nOpcionCorrecta) {
+                    $puntuacion += 3; // Sumar puntos
                 }
             }
 
-            if ($this->objNoticia->guardarPartida($idNoticia, $temporizador, $puntuacion, $intentos, $idUsuario)){
+            $resultado = $this->objNoticia->guardarPartida($idNoticia, $temporizador, $puntuacion, $intentos, $idUsuario);
+            if ($resultado){
                 $this->mensaje = 'Has obtenido ' . $puntuacion . ' puntos';
             } else {
                 $this->mensaje = 'Error al guardar la partida';
@@ -71,5 +78,7 @@
 
             return $this->noticiaDia();
         }
+
+        
     }
 ?>

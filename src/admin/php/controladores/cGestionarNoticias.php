@@ -32,8 +32,6 @@
 
             $arrOpciones = [];
             foreach ($opciones as $i => $opcion) {
-                if (trim($opcion) === '') continue; // evitar valores vacíos
-            
                 $elementos = explode('/', $opcion); // separar por '/'
             
                 foreach ($elementos as $j => $elemento) {

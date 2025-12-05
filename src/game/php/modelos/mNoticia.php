@@ -81,7 +81,25 @@
                 $sth = $this->conexion->prepare($sql2);
                 $sth->execute(['idPartida' => $idPartida, 'idNoticia' => $idNoticia]);
                 $this->conexion->commit();
-                return true;
+                return $sth->rowCount() > 0 ? true : false;
+            } catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        public function haJugadoHoy($idUsuario){
+            $sql = "SELECT * FROM noticiadia 
+                    INNER JOIN partida ON noticiadia.idPartida = partida.idPartida 
+                    INNER JOIN noticias ON noticiadia.idNoticia = noticias.idNoticia 
+                    WHERE partida.idUsuario = :idUsuario && DATE(noticias.fechaProgramada) = :fechaActual;";
+
+            $fechaActual = date("Y-m-d");
+
+            try{
+                $sth = $this->conexion->prepare($sql);
+                $sth->execute(['idUsuario' => $idUsuario, 'fechaActual' => $fechaActual]);
+                return $sth->rowCount() > 0 ? true : false;
             } catch(PDOException $e){
                 echo "Error: " . $e->getMessage();
                 return false;

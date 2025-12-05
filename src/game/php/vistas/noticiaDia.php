@@ -42,7 +42,7 @@
                     foreach($preguntas as $pregunta){
                         echo 
                             '<div class="noticia_pregunta">' .
-                                '<h4>' . $pregunta['pregunta'] . '<h4>' .
+                                '<h4>' . $pregunta['pregunta'] . '</h4>' .
                                 '<ul>';
                                     foreach ($opciones as $opcion) {
                                         if ($opcion['nPregunta'] == $pregunta['nPregunta']){
@@ -51,7 +51,6 @@
                                     }
                         echo    '</ul>' .
                             '</div>';
-
                     }
                 ?>
                     <input type="hidden" name="tiempo" value="180">
@@ -80,6 +79,6 @@
             window.respuestasUsuario   = <?php echo isset($respuestasUsuario)   ? json_encode($respuestasUsuario)   : '{}'; ?>;
         </script>
 
-        <script type="module" src="js/vistas/noticiaDia.js"></script>
+        <script type="module" src="./js/vistas/noticiaDia.js"></script>
     </body>
 </html>

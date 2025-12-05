@@ -1,16 +1,11 @@
+let btnEnviar = document.getElementById('btnEnviar');
+let form = document.getElementById('formNoticia');
 
-document.addEventListener('DOMContentLoaded', function() {
-    let form = document.getElementById('formNoticia');
-    let btnEnviar = document.getElementById('btnEnviar');
-
+document.addEventListener('DOMContentLoaded', function(e) {
+    console.log('noticiaDia.js cargado');
+    console.log('window.respuestasCorrectas:', window.respuestasCorrectas);
+    console.log('window.respuestasUsuario:', window.respuestasUsuario);
     
-    if (btnEnviar) {
-        btnEnviar.addEventListener('click', function() {
-            this.disabled = true; // Desactivar boton submit
-        });
-    }
-    
-
     // Variables globales
     let respuestasCorrectas = window.respuestasCorrectas || {};
     let respuestasUsuario   = window.respuestasUsuario || {};
@@ -29,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        if (Object.keys(respuestasUsuario).length > 0) {
+            btnEnviar.disabled = true;
+            btnEnviar.style.backgroundColor = "#929292ff";
+        }
 
         
         // Colocar los iconos de check y X según aciertos/errores
@@ -62,5 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
+        
     }
 });
