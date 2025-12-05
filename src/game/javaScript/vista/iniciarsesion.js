@@ -19,9 +19,8 @@ function limpiarMensajes() {
         divError.style.display = 'none';
     }
 }
-// ----------------------------------------------------
-//  CONEXIÓN CON EL MODELO LO QUE VAYA A NECESITAR
-// ----------------------------------------------------
+
+////////77 CONEXIÓN CON EL MODELO LO QUE VAYA A NECESITAR
 
 // 1. Crear el objeto Vista (que contiene los métodos que el Controlador llamará)
 const miObjetoVista = {

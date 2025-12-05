@@ -19,18 +19,13 @@ function limpiarMensajes() {
         divError.style.display = 'none';
     }
 }
-// ----------------------------------------------------
-//  CONEXIÓN CON EL MODELO LO QUE VAYA A NECESITAR
-// ----------------------------------------------------
+////// ESTA VARIABLE SE LA VAMOS A PASAR AL CONTROLADOR Y MODELO PARA QUE PUEDA UTILIZAR EL DIV DE ERRORES 
 
-// 1. Crear el objeto Vista (que contiene los métodos que el Controlador llamará)
+// ESTA VARIABLE ES UN OBJETO
 const miObjetoVista = {
-    // Asignamos las funciones locales al objeto
     mostrarError: mostrarError, 
     limpiarMensajes: limpiarMensajes,
 };
-
-// Se lo asignamos para cuando lo necesite usar
 controlador.vista = miObjetoVista;
 
 //----------------Comenzamos a revisar que los campos no estén vacíos 
