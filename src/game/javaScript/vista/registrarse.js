@@ -1,4 +1,4 @@
-import cRegistrarse from '../controlador/cRegistrarse.js';
+import {cRegistrarse} from '../controlador/cRegistrarse.js';
 const controlador = new cRegistrarse();
 
 //Es la funcion que permite mostrar un mensaje de error en caso de que la contraseña o correo este vacia

@@ -1,5 +1,5 @@
 
-export default class MRegistrarse {
+export class MRegistrarse {
     constructor() {}
     async mRegistrarse(formData){
         try{

@@ -1,6 +1,6 @@
-import MRegistrarse from '../modelo/mRegistrarse.js'; 
+import {MRegistrarse} from '../modelo/mRegistrarse.js'; 
 
-export default class cRegistrarse {
+export class cRegistrarse {
     modelo;
     vista;
 

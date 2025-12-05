@@ -1,4 +1,4 @@
-import mIniciarSesion from '../modelo/mIniciarsesion.js';
+import {mIniciarSesion} from '../modelo/mIniciarsesion.js';
 
 export class cIniciarSesion {
     modelo;

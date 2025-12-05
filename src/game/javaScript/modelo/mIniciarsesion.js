@@ -1,5 +1,5 @@
 //////////////////// TODO EXPLICADO EN REGISTRO
-export default class mIniciarSesion {
+export class mIniciarSesion {
     constructor() {}
     async mIniciarSesion(formData){
 
