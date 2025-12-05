@@ -74,12 +74,12 @@
         </footer>
 
         <script>
-            // Variables PHP convertidas a JavaScript (solo disponibles si hay mensaje/respuestas)
+            // Envío los arrays de respuestas a js convertidas a objetos.
             window.idNoticia = <?php echo isset($noticia['idNoticia']) ? $noticia['idNoticia'] : 'null'; ?>;
             window.respuestasCorrectas = <?php echo isset($respuestasCorrectas) ? json_encode($respuestasCorrectas) : '{}'; ?>;
             window.respuestasUsuario   = <?php echo isset($respuestasUsuario)   ? json_encode($respuestasUsuario)   : '{}'; ?>;
         </script>
 
-        <script type="module" src="./js/vistas/noticiaDia.js"></script>
+        <script type="module" src="js/vistas/noticiaDia.js"></script>
     </body>
 </html>
