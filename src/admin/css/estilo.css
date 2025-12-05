@@ -441,7 +441,7 @@ main {
 
 /**************************** ÚLTIMAS 10 PALABRAS/FRASES ****************************/
 
-#ultimasDiezPalabras, #ultimasDiezFrases {
+#ultimasDiezPalabras, #ultimasDiezFrases, #ultimasDiezNoticias {
     width: 94%;
     max-width: 1100px;
     margin: 2rem auto;
@@ -451,7 +451,7 @@ main {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-#ultimasDiezPalabras h2, #ultimasDiezFrases h2 {
+#ultimasDiezPalabras h2, #ultimasDiezFrases h2, #ultimasDiezNoticias h2 {
     font-size: 1.4rem;
     color: var(--color-primario);
     margin-bottom: 1rem;
@@ -459,13 +459,13 @@ main {
     padding-bottom: 0.5rem;
 }
 
-#ultimasDiezPalabras table, #ultimasDiezFrases table {
+#ultimasDiezPalabras table, #ultimasDiezFrases table, #ultimasDiezNoticias table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 0.5rem;
 }
 
-#ultimasDiezPalabras th, #ultimasDiezFrases th {
+#ultimasDiezPalabras th, #ultimasDiezFrases th, #ultimasDiezNoticias th {
     background-color: #e6fffa;
     color: #2c7a7b;
     font-weight: 600;
@@ -474,29 +474,38 @@ main {
     border-radius: 6px 6px 0 0;
 }
 
-#ultimasDiezPalabras td, #ultimasDiezFrases td {
+#ultimasDiezPalabras td, #ultimasDiezFrases td, #ultimasDiezNoticias td {
     padding: 1rem;
     border-bottom: 1px solid #e2e8f0;
     color: var(--color-texto-gris);
 }
 
-#ultimasDiezPalabras tr:last-child td, #ultimasDiezFrases tr:last-child td {
+#ultimasDiezPalabras tr:last-child td, #ultimasDiezFrases tr:last-child td, #ultimasDiezNoticias tr:last-child td {
     border-bottom: none;
 }
 
-#ultimasDiezPalabras tr:hover, #ultimasDiezFrases tr:hover {
+#ultimasDiezPalabras tr:hover, #ultimasDiezFrases tr:hover, #ultimasDiezNoticias tr:hover {
     background-color: #f7fafc;
 }
 
-#ultimasDiezPalabras a, #ultimasDiezFrases a {
+#ultimasDiezPalabras a, #ultimasDiezFrases a, #ultimasDiezNoticias a {
     color: #e53e3e;
     font-weight: 600;
     text-decoration: none;
     font-size: 0.9rem;
 }
 
-#ultimasDiezPalabras a:hover, #ultimasDiezFrases a:hover {
+#ultimasDiezPalabras a:hover, #ultimasDiezFrases a:hover, #ultimasDiezNoticias a:hover {
     text-decoration: underline;
+}
+
+#ultimasDiezNoticias{
+    .fa-pen-to-square{
+        color: #2c7a7b;
+    }
+    .fa-circle-xmark{
+        color: rgb(219, 0, 0);
+    }
 }
 
 /****************************** RESULTADOS DE BUSQUEDA      ********************/
@@ -542,6 +551,14 @@ main {
         tr:last-child td{
             border-bottom: none;
         }
+
+        .fa-pen-to-square{
+            color: #2c7a7b;
+        }
+        .fa-circle-xmark{
+            color: rgb(219, 0, 0);
+        }
+
     }
 
 }

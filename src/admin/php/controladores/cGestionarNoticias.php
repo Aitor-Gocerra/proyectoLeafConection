@@ -7,10 +7,12 @@
         public $vista;
         public $mensaje;
         public $listaNoticias;
+        public $idNoticia;
 
         public function __construct(){
             $this->objNoticia = new Noticia();
             $this->vista = '';
+            $this->idNoticia = $_GET['idNoticia'] ?? NULL;
         }
 
         public function gestionarNoticias(){
@@ -40,6 +42,10 @@
                 }
             }
 
+            var_dump($_POST);
+            echo "<br><br>";
+            var_dump($arrOpciones);
+            
             if ($this->objNoticia->añadir($titulo, $noticia, $fecha, 
             $url, $preguntas, $arrOpciones, $respuestas)){
                 $this->mensaje = "La noticia ha sido agregada.";
@@ -68,13 +74,75 @@
             ];
         }
 
-        public function modificar(){
-            $idNoticia = $_GET['idNoticia'];
-
-            $noticia = $this->objNoticia->obtenerNoticia($idNoticia);
-
-            $this->vista = 'gestionarNoticias';
-            return ['noticia' => $noticia];
+        public function eliminar(){
+            if ($this->objNoticia->eliminarNoticia($this->idNoticia)){
+                header("Location: ./index.php?c=GestionarNoticias&m=gestionarNoticias");
+            }
         }
+
+        public function modificar(){
+            $this->idNoticia = $_GET['idNoticia'] ?? null;
+            if (!$this->idNoticia) {
+                $this->vista = 'gestionarNoticias';
+                $this->mensaje = 'No se indicó idNoticia';
+                return ['mensaje' => $this->mensaje];
+            }
+        
+            $noticia = $this->objNoticia->obtenerNoticia($this->idNoticia);
+            $preguntas = $this->objNoticia->obtenerPreguntas($this->idNoticia);
+            $opciones = $this->objNoticia->obtenerOpciones($this->idNoticia);
+            $respuestasRaw = $this->objNoticia->obtenerRespuestas($this->idNoticia);
+        
+
+
+            /**
+             * Agrupar opciones por pregunta. $nPregunta => [op1, op2]
+             */
+            $opcionesPorPregunta = [];
+            foreach ($opciones as $op) {
+                $nPregunta = $op['nPregunta'];
+                $opcionesPorPregunta[$nPregunta][] = $op['opcion'];
+            }
+        
+            /**
+             * Crear un array con el N° de la pregunta y las opciones separadas por '/'
+             */
+            $opcionesImplode = [];
+            foreach ($preguntas as $i => $p) {
+                $n = $i + 1; // nPregunta real
+                if (isset($opcionesPorPregunta[$n])) {
+                    $opcionesImplode[$i] = implode('/', $opcionesPorPregunta[$n]);
+                } else {
+                    $opcionesImplode[$i] = '';
+                }
+            }
+        
+            
+
+            $respuestas = [];
+            foreach ($respuestasRaw as $r) {
+                if (isset($r['nPregunta']) && isset($r['nOpcion'])) {
+                    $respuestas[$r['nPregunta'] - 1] = $r['nOpcion'];
+                } elseif (isset($r['nOpcion'])) {
+                    // fallback si solo devuelve nOpcion en orden
+                    $respuestas[] = $r['nOpcion'];
+                }
+            }
+        
+            // asegurarnos de que $respuestas tenga la misma longitud que $preguntas
+            for ($i = 0; $i < count($preguntas); $i++) {
+                if (!isset($respuestas[$i])) $respuestas[$i] = '';
+            }
+        
+            // devolver los datos para la vista (los usaremos en JS)
+            $this->vista = 'gestionarNoticias';
+            return [
+                'noticia' => $noticia,
+                'preguntas' => $preguntas,
+                'opciones_implode' => $opcionesImplode,
+                'respuestas' => $respuestas
+            ];
+        }
+        
 
     }

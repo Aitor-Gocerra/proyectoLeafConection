@@ -106,5 +106,47 @@
                 return false;
             }
         }
+
+        public function obtenerPreguntas($idNoticia){
+            $sql = "SELECT * FROM Preguntas WHERE idNoticia = :idNoticia;";
+
+            try{
+                $sth = $this->conexion->prepare($sql);
+                $sth->execute(['idNoticia' => $idNoticia]);
+                $noticia = $sth->fetchAll(PDO::FETCH_ASSOC);
+                return $noticia;
+            } catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        public function obtenerOpciones($idNoticia){
+            $sql = "SELECT * FROM Opciones WHERE idNoticia = :idNoticia;";
+
+            try{
+                $sth = $this->conexion->prepare($sql);
+                $sth->execute(['idNoticia' => $idNoticia]);
+                $noticia = $sth->fetchAll(PDO::FETCH_ASSOC);
+                return $noticia;
+            } catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        public function obtenerRespuestas($idNoticia){
+            $sql = "SELECT nPregunta, nOpcion FROM RespuestaCorrecta WHERE idNoticia = :idNoticia;";
+            try{
+                $sth = $this->conexion->prepare($sql);
+                $sth->execute(['idNoticia' => $idNoticia]);
+                $respuestas = $sth->fetchAll(PDO::FETCH_ASSOC);
+                return $respuestas;
+            }
+            catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
     }
 ?>

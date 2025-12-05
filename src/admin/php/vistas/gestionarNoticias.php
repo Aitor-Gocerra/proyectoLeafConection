@@ -98,7 +98,7 @@
 
         <!-- Resultados de búsqueda -->
         
-        <div id="ultimasDiezFrases">
+        <div id="ultimasDiezNoticias">
             <h2>Últimas 10 Noticias</h2>
             <?php if (isset($noticias) && !empty($noticias)) { ?>
                 <table>
@@ -118,7 +118,7 @@
                                     <td>' . $noticia['idNoticia'] . '</td>
                                     <td>' . $noticia['titulo'] . '</td>
                                     <td>' . ($noticia['fechaProgramada'] ?? 'No programada') . '</td>
-                                    <td style="text-align: center;" ><a href="index.php?c=GestionarNoticias&m=editar&idNoticia=' . $noticia['idNoticia'] . '">
+                                    <td style="text-align: center;" ><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a></td>
                                     <td style="text-align: center;"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" 
@@ -143,6 +143,7 @@
         </footer>
 
 
+        <!-- Formulario de buscar -->
         <script>
             // Script para el buscador de noticias
             document.getElementById('formBuscar').addEventListener('submit', function (e) {
@@ -170,7 +171,90 @@
             }
         </script>
 
-        
+
+
+        <?php if (isset($noticia) && isset($preguntas) && isset($opciones_implode) && isset($respuestas)): ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Obtener los datos
+                let noticia = <?php echo json_encode($noticia); ?>;
+                let preguntas = <?php echo json_encode($preguntas); ?>;
+                let opcionesImplode = <?php echo json_encode($opciones_implode); ?>;
+                let respuestas = <?php echo json_encode($respuestas); ?>;
+
+
+
+                // Cambiar el action para cambiar el metodo a modificar
+                let form = document.getElementById('noticia_formulario');
+                form.action = `index.php?c=GestionarNoticias&m=modificar&idNoticia=${noticia.idNoticia}`;
+                
+
+
+                // Obtener los inputs del DOM
+                let inputTitulo = document.getElementById('titulo');
+                let textareaNoticia = document.getElementById('noticia');
+                let inputUrl = document.getElementById('url');
+                let inputFecha = document.getElementById('fecha');
+
+
+
+                // Rellenar datos de la noticia
+                inputTitulo.value = noticia.titulo || '';
+                textareaNoticia.value = noticia.noticia || '';
+                inputUrl.value = noticia.urlImagen || '';
+                
+                
+
+                let fechaStr = noticia.fechaProgramada || noticia.fechaCreacion || '';
+                if (fechaStr.length >= 10) fechaStr = fechaStr.substring(0,10);
+                inputFecha.value = fechaStr;
+                
+                
+
+                // Contenedor y plantilla
+                let contenedor = document.getElementById('cuestionarioContainer');
+                let cajaPregunta = document.querySelector('.cuestionarioPregunta');
+
+
+
+                if (contenedor && cajaPregunta) {
+                    contenedor.innerHTML = ''; // limpiar
+
+                    for (let i = 0; i < preguntas.length; i++) {
+                        let p = preguntas[i];
+                        let opcionesText = opcionesImplode[i] ?? '';
+                        let respuestaVal = respuestas[i] ?? '';
+
+                        let nuevo = document.createElement('div');
+                        nuevo.classList.add('cuestionarioPregunta');
+
+                        // Construir un html como las .cuestionarioPregunta
+                        nuevo.innerHTML = `
+                            <label>Pregunta</label>
+                            <input type="text" name="preguntas[]" placeholder="Escribe la pregunta" required>
+                            <label>Opciones (separadas por '/')</label>
+                            <input type="text" name="opciones[]" class="opciones" placeholder="Opción1/Opción2/Opción3" required>
+                            <label>Respuesta correcta</label>
+                            <input type="number" name="respuestas_correctas[]" min="1" placeholder="Número de la respuesta correcta" required>
+                        `;
+
+
+
+                        let inputs = nuevo.querySelectorAll('input');
+
+                        if (inputs[0]) inputs[0].value = p.pregunta || ''; // Pregunta
+                        if (inputs[1]) inputs[1].value = opcionesText; // Opciones hechas implode
+                        if (inputs[2]) inputs[2].value = respuestaVal; // Respuesta correcta
+
+                        contenedor.appendChild(nuevo);
+                    }
+                }
+            });
+        </script>
+        <?php endif; ?>
+
+
+        <!-- Botón para crear más campos para las preguntas. -->
         <script>
             let btnAñadirPregunta = document.getElementById("añadirPregunta");
             let plantilla = document.querySelector(".cuestionarioPregunta"); // primera pregunta
