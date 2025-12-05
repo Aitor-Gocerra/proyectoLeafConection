@@ -92,19 +92,22 @@ class CUsuarios{
     private function cifrarPassword($password){
         return password_hash($password, PASSWORD_DEFAULT);
     }
-
     public function cerrarSesionUsuario(){
+        //Lamamos la funcion de crearSesion porque para eliminarla hay que llamar a session_start()
         $this->crearSesion();
-        
-        session_unset();
+
+        setcookie(session_name(), '', time() - 1, '/');//session_name --> La sesión por defecto y la busca, '' --> Vacía la cookie,
+        //  time() - 1 --> Hace que caduque hace un segundo el navegador lo detecta y lo elimina, '/' --> Se asegura que sea la raiz del sitio web
+
+        //La destruye
         session_destroy();
         
-       $this->vista = 'login';
+        $this->vista = 'login';
     }
 
-    private function crearSesion() {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        private function crearSesion() {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
         }
-    }
 }
