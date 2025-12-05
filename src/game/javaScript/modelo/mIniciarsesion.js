@@ -1,4 +1,4 @@
-// Archivo: javascript/modelo/mIniciarsesion.js
+//////////////////// TODO EXPLICADO EN REGISTRO
 export default class mIniciarSesion {
     constructor() {}
     async mIniciarSesion(formData){
