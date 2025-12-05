@@ -10,7 +10,7 @@ class MUsuarios{
     
     public function registrar($datos){
         try{
-            $sql = "INSERT INTO usuario(nombre, correo, pw, estado) VALUES(:nombre, :correo, :pw, :estado);";
+            $sql = "INSERT INTO Usuario(nombre, correo, pw, estado) VALUES(:nombre, :correo, :pw, :estado);";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':nombre', $datos['usuario'], PDO::PARAM_STR);
             $stmt->bindValue(':correo', $datos['correo'], PDO::PARAM_STR);
@@ -35,7 +35,7 @@ class MUsuarios{
     
     public function inicio($datos){
         try{
-            $sql='SELECT idUsuario, nombre, pw from usuario where correo = :correo;'; 
+            $sql='SELECT idUsuario, nombre, pw from Usuario where correo = :correo;'; 
 
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':correo', $datos['correo'], PDO::PARAM_STR);
