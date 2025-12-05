@@ -1,6 +1,3 @@
-/**
- * Modelo: Maneja la lógica de datos y comunicación con el servidor
- */
 class MPalabra {
 
     constructor() {
@@ -8,10 +5,6 @@ class MPalabra {
         this.API_URL = 'index.php?c=Palabras&m=obtenerPalabraJSON';
     }
 
-    /**
-     * Obtiene la palabra correcta del día desde el servidor
-     * @returns {Promise<Object>} Objeto con la palabra correcta
-     */
     async obtenerPalabraCorrecta() {
         try {
             const respuesta = await fetch(this.API_URL);
@@ -34,11 +27,6 @@ class MPalabra {
         }
     }
 
-    /**
-     * Normaliza una palabra para comparación (sin acentos, minúsculas, sin espacios)
-     * @param {string} palabra - Palabra a normalizar
-     * @returns {string} Palabra normalizada
-     */
     normalizarPalabra(palabra) {
         return palabra
             .toLowerCase()
@@ -47,12 +35,6 @@ class MPalabra {
             .replace(/[\u0300-\u036f]/g, ""); // Elimina acentos
     }
 
-    /**
-     * Valida si la palabra del usuario es correcta
-     * @param {string} palabraUsuario - Palabra ingresada por el usuario
-     * @param {string} palabraCorrecta - Palabra correcta del día
-     * @returns {boolean} True si la palabra es correcta
-     */
     validarPalabra(palabraUsuario, palabraCorrecta) {
         const usuarioNormalizada = this.normalizarPalabra(palabraUsuario);
         const correctaNormalizada = this.normalizarPalabra(palabraCorrecta);

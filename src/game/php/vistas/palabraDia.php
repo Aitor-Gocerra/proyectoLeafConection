@@ -3,15 +3,15 @@
 
 <head>
     <?php
-    require_once 'parciales/head.php';
-    encabezado("Palabra del día - LeafConnect");
+        require_once 'parciales/head.php';
+        encabezado("Palabra del día - LeafConnect");
     ?>
 </head>
 
 <body>
     <header>
         <?php
-        require_once 'parciales/nav.php';
+            require_once 'parciales/nav.php';
         ?>
     </header>
     <main>
@@ -32,10 +32,6 @@
                 <input type="text" name="acertarPalabra" class="introducirPalabra" placeholder="Tu suposición...">
                 <button type="submit" class="enviarPalabra">Acierta</button>
             </div>
-            <!-- <div id="zonaRespuesta" style="display: none; text-align: center; margin-top: 15px;">
-                <p>La respuesta correcta es:</p>
-                <h3 id="textoSolucion" style="color: #27ae60; text-transform: uppercase;"></h3>
-            </div> -->
         </div>
 
         <?php
@@ -43,7 +39,7 @@
         ?>
     </main>
     <?php
-    require_once 'parciales/botonVolver.php';
+        require_once 'parciales/botonVolver.php';
     ?>
     <footer>
         <?php

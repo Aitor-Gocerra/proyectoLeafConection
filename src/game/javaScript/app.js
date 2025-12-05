@@ -1,7 +1,3 @@
-/**
- * Archivo de inicialización del MVC de JavaScript
- * Este archivo debe cargarse después de que el DOM esté listo
- */
 
 // Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {

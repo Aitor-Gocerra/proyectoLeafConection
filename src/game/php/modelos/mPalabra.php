@@ -58,25 +58,3 @@ class Palabra extends Conexion
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
-?>
-
-<!-- CREATE TABLE Palabras (
-    idPalabra SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    palabra VARCHAR(70) NOT NULL,
-    definicion VARCHAR(180) NOT NULL,
-    fechaProgramada TIMESTAMP NULL,
-    fechaCreacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT pk_idPalabra PRIMARY KEY (idPalabra)
-); 
-
-
-CREATE TABLE PistasPalabras (
-    idPista SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    idPalabra SMALLINT UNSIGNED NOT NULL,
-    pista VARCHAR(200) NOT NULL,
-
-    CONSTRAINT pk_PistaPalabra PRIMARY KEY (idPista),
-    CONSTRAINT fk_idPalabra_pistaPalabra FOREIGN KEY (idPalabra)
-        REFERENCES Palabras(idPalabra) ON DELETE CASCADE
-);
--->

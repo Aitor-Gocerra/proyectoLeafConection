@@ -8,9 +8,6 @@ class CPalabra {
         this.inicializar();
     }
 
-    /**
-     * Inicializa el controlador cargando la palabra correcta
-     */
     async inicializar() {
         try {
             const datos = await this.modelo.obtenerPalabraCorrecta();
@@ -22,10 +19,6 @@ class CPalabra {
         }
     }
 
-    /**
-     * Valida la palabra ingresada por el usuario
-     * @param {string} palabraUsuario - Palabra ingresada por el usuario
-     */
     validarRespuesta(palabraUsuario) {
         if (!palabraUsuario || palabraUsuario.trim() === '') {
             this.vista.mostrarError('Por favor, ingresa una palabra');
@@ -46,9 +39,6 @@ class CPalabra {
         }
     }
 
-    /**
-     * Muestra la respuesta correcta (cuando el usuario se rinde o se acaba el tiempo)
-     */
     mostrarRespuesta() {
         if (this.palabraCorrecta) {
             this.vista.mostrarSolucion(this.palabraCorrecta);

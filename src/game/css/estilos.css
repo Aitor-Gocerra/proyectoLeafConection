@@ -1638,9 +1638,6 @@ footer {
 }
 
 
-
-
-
 /****************************** P√ÅGINA -> CONSEJO DEL D√çA   ******************************/
 
 
@@ -1981,9 +1978,9 @@ footer {
     justify-content: center;
     width: 100%;
 }
-/****************************** ESTILOS MVC JAVASCRIPT - VALIDACI”N DE PALABRA ******************************/
+/****************************** ESTILOS MVC JAVASCRIPT - VALIDACIÔøΩN DE PALABRA ******************************/
 
-/* Zona de respuesta (Èxito, fallo, soluciÛn) */
+/* Zona de respuesta (ÔøΩxito, fallo, soluciÔøΩn) */
 .zonaRespuesta {
     text-align: center;
     margin-top: 1.5rem;
@@ -2036,7 +2033,7 @@ footer {
     margin-top: 0.5rem;
 }
 
-/* AnimaciÛn shake para input incorrecto */
+/* AnimaciÔøΩn shake para input incorrecto */
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
@@ -2048,7 +2045,7 @@ footer {
     border-color: #e74c3c !important;
 }
 
-/* AnimaciÛn fadeInUp */
+/* AnimaciÔøΩn fadeInUp */
 @keyframes fadeInUp {
     from {
         opacity: 0;

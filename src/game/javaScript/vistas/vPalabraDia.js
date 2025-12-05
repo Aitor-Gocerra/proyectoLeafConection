@@ -54,31 +54,9 @@ class VPalabra {
         // No limpiamos el contenedor para que el usuario pueda intentar de nuevo
         this.mostrarNotificacion('Palabra incorrecta. Intenta de nuevo', 'error');
 
-        // Añadir efecto de shake al input
-        this.inputRespuesta.classList.add('shake');
-        setTimeout(() => {
-            this.inputRespuesta.classList.remove('shake');
-        }, 500);
-
         // Limpiar el input
         this.inputRespuesta.value = '';
-        this.inputRespuesta.focus();
-    }
-
-    mostrarSolucion(palabraCorrecta) {
-        this.limpiarContenedor();
-
-        const divRespuesta = document.createElement('div');
-        divRespuesta.className = 'zonaRespuesta solucion';
-        divRespuesta.innerHTML = `
-            <div class="icono-resultado">
-                <i class="fas fa-lightbulb"></i>
-            </div>
-            <p class="mensaje-resultado">La respuesta correcta es:</p>
-            <h3 class="texto-solucion">${palabraCorrecta.toUpperCase()}</h3>
-        `;
-
-        this.contenedorAcierto.appendChild(divRespuesta);
+        
     }
 
     mostrarError(mensaje) {
