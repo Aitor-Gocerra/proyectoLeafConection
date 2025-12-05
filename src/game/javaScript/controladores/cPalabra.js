@@ -1,6 +1,3 @@
-/**
- * Controlador: Coordina el modelo y la vista
- */
 class CPalabra {
     constructor(modelo, vista) {
         this.modelo = modelo;

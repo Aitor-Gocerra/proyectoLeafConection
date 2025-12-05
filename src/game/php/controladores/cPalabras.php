@@ -51,27 +51,27 @@ class CPalabras
     }
 
     public function obtenerPalabraJSON() {
-    // No cargo ninguna vista
-    $this->vista = '';
-    header('Content-Type: application/json'); //Esto es necesario para que sepa que tipo de informacion va a recibir
-    
-    $palabra = $this->palabraMod->mostrarPalabra();
-    
-    if ($palabra) {
-        $idPalabra = $palabra['idPalabra'];
-        $correcta = $this->palabraMod->palabraCorrecta($idPalabra);
+        // No cargo ninguna vista
+        $this->vista = '';
+        header('Content-Type: application/json'); //Esto es necesario para que sepa que tipo de informacion va a recibir
         
-        echo json_encode([ //Paso los datos que recibo
-            'success' => true,
-            'palabra' => $correcta['palabra'],
-            'idPalabra' => $idPalabra
-        ]);
-    } else {
-        echo json_encode([
-            'success' => false,
-            'error' => 'No hay palabra programada para hoy'
-        ]);
+        $palabra = $this->palabraMod->mostrarPalabra();
+        
+        if ($palabra) {
+            $idPalabra = $palabra['idPalabra'];
+            $correcta = $this->palabraMod->palabraCorrecta($idPalabra);
+            
+            echo json_encode([ //Paso los datos que recibo
+                'success' => true,
+                'palabra' => $correcta['palabra'],
+                'idPalabra' => $idPalabra
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'error' => 'No hay palabra programada para hoy'
+            ]);
+        }
     }
-}
 }
 ?>
