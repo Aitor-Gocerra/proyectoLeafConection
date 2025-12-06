@@ -1,24 +1,27 @@
 <?php
-    require_once 'php/config/config.php';
+require_once 'php/config/config.php';
 
-    if(!isset($_GET['c'])) $_GET['c'] = DEF_CONTROLLER; // Controlador por defecto
-    
-    if(!isset($_GET['m'])) $_GET['m'] = DEF_METHOD; // Método por defecto
+if (!isset($_GET['c']))
+    $_GET['c'] = DEF_CONTROLLER; // Controlador por defecto
 
-    $rutaControlador = RUTA_CONTROLADORES . $_GET['c'] . '.php';
-    require_once $rutaControlador;
+if (!isset($_GET['m']))
+    $_GET['m'] = DEF_METHOD; // Método por defecto
 
-    $controlador = 'C' . $_GET['c'];
-    $objControlador = new $controlador();
+$rutaControlador = RUTA_CONTROLADORES . $_GET['c'] . '.php';
+require_once $rutaControlador;
 
-    $datos = []; // Guardar los datos que se obtienen del método
+$controlador = 'C' . $_GET['c'];
+$objControlador = new $controlador();
 
-    if (method_exists($objControlador, $_GET['m'])){
-        $datos = $objControlador->{    $_GET['m']  }();
-    }
-    
-    if ($objControlador->vista != '') {
-        if (is_array($datos)) extract($datos); 
-        require_once RUTA_VISTAS . $objControlador->vista . '.php';
-    }
+$datos = []; // Guardar los datos que se obtienen del método
+
+if (method_exists($objControlador, $_GET['m'])) {
+    $datos = $objControlador->{$_GET['m']}();
+}
+
+if ($objControlador->vista != '') {
+    if (is_array($datos))
+        extract($datos);
+    require_once RUTA_VISTAS . $objControlador->vista . '.php';
+}
 ?>
