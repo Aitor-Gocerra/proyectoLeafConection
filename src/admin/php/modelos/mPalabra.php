@@ -8,7 +8,7 @@ class Palabra extends Conexion
     {
         // 1. Insertar la frase
         $sqlPalabra = "
-                INSERT INTO palabras (palabra, definicion, fechaProgramada) 
+                INSERT INTO Palabras (palabra, definicion, fechaProgramada) 
                 VALUES (:palabra, :definicion, :fecha);
             ";
 
@@ -30,7 +30,7 @@ class Palabra extends Conexion
     {
         $sql = "
                 SELECT * 
-                FROM palabras 
+                FROM Palabras 
                 ORDER BY fechaProgramada DESC
                 LIMIT 10;
             ";
@@ -44,7 +44,7 @@ class Palabra extends Conexion
     {
         $sql = "
                 SELECT * 
-                FROM palabras 
+                FROM Palabras 
                 WHERE palabra LIKE :buscar1 
                    OR definicion LIKE :buscar2
                 ORDER BY fechaProgramada DESC;
@@ -65,21 +65,21 @@ class Palabra extends Conexion
     {
         $sql = "
                 SELECT * 
-                FROM palabras 
+                FROM Palabras 
                 WHERE idPalabra = :id
             ";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':id', $idPalabra, PDO::PARAM_INT);
 
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function actualizarPalabra($idPalabra, $palabra, $definicion, $fecha)
     {
         $sql = "
-                UPDATE palabras 
+                UPDATE Palabras 
                 SET palabra = :palabra, definicion = :correcta, fechaProgramada = :fecha 
                 WHERE idPalabra = :id
             ";
@@ -119,11 +119,12 @@ class Palabra extends Conexion
         return $stmt->execute();
     }
 
-    public function actualizarFechas(){
+    public function actualizarFechas()
+    {
         /* $fechaActual = date('Y-m-d'); */
 
         $sql = "
-            UPDATE palabras
+            UPDATE Palabras
             SET fechaProgramada = NULL
             WHERE fechaProgramada < NOW();
         ";

@@ -1,70 +1,52 @@
 <?php
-// Archivo de debug para ver errores en el hosting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-echo "<h1>Debug Admin Section</h1>";
+echo "Step 1: PHP funciona ✓<br><br>";
 
-// Test 1: Verificar que PHP funciona
-echo "<h2>Test 1: PHP funciona ✓</h2>";
+// Step 2: Verificar ruta actual
+echo "Step 2: Directorio actual<br>";
+echo "getcwd(): " . getcwd() . "<br>";
+echo "__DIR__: " . __DIR__ . "<br>";
+echo "__FILE__: " . __FILE__ . "<br><br>";
 
-// Test 2: Verificar la ruta de config.php
-echo "<h2>Test 2: Verificar archivo config.php</h2>";
-$configPath = 'php/config/config.php';
-if (file_exists($configPath)) {
-    echo "✓ config.php existe en: " . realpath($configPath) . "<br>";
-    require_once $configPath;
-    echo "✓ config.php cargado correctamente<br>";
-    echo "DEF_CONTROLLER: " . DEF_CONTROLLER . "<br>";
-    echo "DEF_METHOD: " . DEF_METHOD . "<br>";
+// Step 3: Verificar si existe config.php
+echo "Step 3: Verificar config.php<br>";
+$configFile = 'php/config/config.php';
+echo "Buscando: $configFile<br>";
+echo "file_exists(): " . (file_exists($configFile) ? 'SÍ' : 'NO') . "<br>";
+
+if (file_exists($configFile)) {
+    echo "realpath(): " . realpath($configFile) . "<br>";
 } else {
-    echo "❌ config.php NO existe en: $configPath<br>";
+    echo "❌ NO EXISTE. Listando archivos en php/:<br>";
+    if (is_dir('php')) {
+        $files = scandir('php');
+        echo "<pre>" . print_r($files, true) . "</pre>";
+
+        if (is_dir('php/config')) {
+            echo "Listando archivos en php/config/:<br>";
+            $configFiles = scandir('php/config');
+            echo "<pre>" . print_r($configFiles, true) . "</pre>";
+        } else {
+            echo "❌ El directorio php/config NO EXISTE<br>";
+        }
+    } else {
+        echo "❌ El directorio php NO EXISTE<br>";
+    }
 }
 
-// Test 3: Verificar la ruta del controlador
-echo "<h2>Test 3: Verificar controlador por defecto</h2>";
-$rutaControlador = RUTA_CONTROLADORES . DEF_CONTROLLER . '.php';
-echo "Ruta del controlador: $rutaControlador<br>";
-
-if (file_exists($rutaControlador)) {
-    echo "✓ Controlador existe en: " . realpath($rutaControlador) . "<br>";
-    require_once $rutaControlador;
-    echo "✓ Controlador cargado correctamente<br>";
-
-    // Test 4: Verificar que se puede instanciar
-    echo "<h2>Test 4: Instanciar controlador</h2>";
-    $controlador = 'C' . DEF_CONTROLLER;
-    echo "Nombre de clase: $controlador<br>";
-
+echo "<br>Step 4: Intentar cargar config.php<br>";
+if (file_exists($configFile)) {
     try {
-        $objControlador = new $controlador();
-        echo "✓ Controlador instanciado correctamente<br>";
-
-        // Test 5: Verificar método
-        echo "<h2>Test 5: Verificar método</h2>";
-        if (method_exists($objControlador, DEF_METHOD)) {
-            echo "✓ Método '" . DEF_METHOD . "' existe<br>";
-
-            // Test 6: Ejecutar método
-            echo "<h2>Test 6: Ejecutar método</h2>";
-            try {
-                $datos = $objControlador->{DEF_METHOD}();
-                echo "✓ Método ejecutado correctamente<br>";
-                echo "Vista: " . $objControlador->vista . "<br>";
-            } catch (Exception $e) {
-                echo "❌ Error al ejecutar método: " . $e->getMessage() . "<br>";
-                echo "Stack trace:<br><pre>" . $e->getTraceAsString() . "</pre>";
-            }
-        } else {
-            echo "❌ Método '" . DEF_METHOD . "' NO existe<br>";
-        }
+        require_once $configFile;
+        echo "✓ config.php cargado<br>";
+        echo "RUTA_CONTROLADORES: " . RUTA_CONTROLADORES . "<br>";
+        echo "DEF_CONTROLLER: " . DEF_CONTROLLER . "<br>";
     } catch (Exception $e) {
-        echo "❌ Error al instanciar controlador: " . $e->getMessage() . "<br>";
-        echo "Stack trace:<br><pre>" . $e->getTraceAsString() . "</pre>";
+        echo "❌ Error: " . $e->getMessage() . "<br>";
     }
 } else {
-    echo "❌ Controlador NO existe en: $rutaControlador<br>";
+    echo "❌ Saltando carga porque no existe<br>";
 }
-
-echo "<hr><p><strong>Si llegas hasta aquí sin errores, el problema está en otro lado.</strong></p>";
 ?>
