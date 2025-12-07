@@ -71,7 +71,7 @@
         }
     </script>
 
-    <script src="../../javascript/temporizador.js"></script>
+    <script src="../../javaScript/temporizador.js"></script>
 
     <!-- MVC JavaScript: Cargar en orden (Modelo -> Controlador -> Vista -> App) -->
     <script src="javaScript/modelos/mPalabra.js"></script>
