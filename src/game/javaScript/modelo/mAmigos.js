@@ -45,11 +45,15 @@ export class mAmigos {
             this.mostrarMensaje('Solicitud enviada correctamente.', 'green');
             
         } else {
-            // CORRECCIÓN 2: Recuperamos los mensajes específicos para saber qué pasó
+            // AÑADE ESTA LÍNEA PARA VER EL ERROR REAL EN LA CONSOLA DEL NAVEGADOR (F12)
+            console.log("El servidor devolvió:", result); 
+
             if (result === 'UsuarioNoExiste') this.mostrarMensaje('El usuario no existe.', 'red');
             else if (result === 'AutoSolicitud') this.mostrarMensaje('No puedes enviarte solicitud a ti mismo.', 'red');
             else if (result === 'SolicitudExistente') this.mostrarMensaje('Ya existe una solicitud pendiente.', 'red');
-            else this.mostrarMensaje('Error al enviar solicitud.', 'red');
+            
+            // Aquí es donde estás cayendo ahora:
+            else this.mostrarMensaje('Error al enviar solicitud. (Revisa consola)', 'red');
         }
     }
 

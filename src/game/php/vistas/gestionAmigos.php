@@ -44,10 +44,9 @@
         <div id="misSolicitudes">
             <h2>Solicitudes de Amistad</h2>
             <div id="contenedorSolicitudes">
-                <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
-                <p class="nombreAmigo">Aitor Gomez</p> <!-- Aquí se verian el amigo y deberiamosde coger su id para aceptar o rechazar su solicitud-->
-                <button type="submit" class="aceptarSolicitud" id="btnAceptarSolicitud">Aceptar <i class="fa-solid fa-user-check"></i></button></i>
-                <button type="submit" class="rechazarSolicitud" id="btnRechazarSolicitud" >Rechazar <i class="fa-solid fa-user-xmark"></i></button>
+                <?php
+                    require_once 'vistas/parciales/listaSolicitudes.php';
+                ?>
             </div>
         </div>
     </main>

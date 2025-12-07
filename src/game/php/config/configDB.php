@@ -4,7 +4,7 @@
     DEFINE ("servidor", "localhost");
     DEFINE ("usuario", "root");
     DEFINE ("password", "");
-    DEFINE ("nombreDB", "prueba");
+    DEFINE ("nombreDB", "leafconnect");
     // 2. DEFINICIÓN DE LA CLASE DE CONEXIÓN
     class Db {
         public $conexion;
