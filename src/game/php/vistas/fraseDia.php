@@ -50,8 +50,8 @@
         ?>
     </footer>
 
-    <script src="../../javaScript/temporizador.js"></script>
-    <script src="../../javaScript/menuDesplegable.js"></script>
+    <script src="javaScript/temporizador.js"></script>
+    <script src="javaScript/menuDesplegable.js"></script>
 
     <script>
         // Obtener elementos
