@@ -48,6 +48,7 @@
             ?>
         </footer>
 
+        <script src="../../javascript/temporizador.js"></script>
         <script src="../../javascript/menuDesplegable.js"></script>
 
         <script>

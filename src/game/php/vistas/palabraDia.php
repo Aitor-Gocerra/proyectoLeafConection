@@ -3,15 +3,15 @@
 
 <head>
     <?php
-        require_once 'parciales/head.php';
-        encabezado("Palabra del día - LeafConnect");
+    require_once 'parciales/head.php';
+    encabezado("Palabra del día - LeafConnect");
     ?>
 </head>
 
 <body>
     <header>
         <?php
-            require_once 'parciales/nav.php';
+        require_once 'parciales/nav.php';
         ?>
     </header>
     <main>
@@ -39,7 +39,7 @@
         ?>
     </main>
     <?php
-        require_once 'parciales/botonVolver.php';
+    require_once 'parciales/botonVolver.php';
     ?>
     <footer>
         <?php
@@ -70,6 +70,8 @@
             }
         }
     </script>
+
+    <script src="../../javascript/temporizador.js"></script>
 
     <!-- MVC JavaScript: Cargar en orden (Modelo -> Controlador -> Vista -> App) -->
     <script src="javaScript/modelos/mPalabra.js"></script>
