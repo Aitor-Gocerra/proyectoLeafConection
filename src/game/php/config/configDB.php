@@ -1,11 +1,10 @@
 <?php
     // 1. DEFINICIÓN DE CONSTANTES CON TUS DATOS
     // Nota: Uso comillas simples '' en el password para evitar conflictos con caracteres especiales.
-    define("servidor", "21.daw.esvirgua.com");
-    define("usuario", "daw_userbd21");
-    define("password", '21NTiJq]K)7]SQB=');
-    define("nombreDB", "daw_21_BD1");
-
+    DEFINE ("servidor", "localhost");
+    DEFINE ("usuario", "root");
+    DEFINE ("password", "");
+    DEFINE ("nombreDB", "prueba");
     // 2. DEFINICIÓN DE LA CLASE DE CONEXIÓN
     class Db {
         public $conexion;

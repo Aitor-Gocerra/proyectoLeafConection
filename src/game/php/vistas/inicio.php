@@ -14,7 +14,9 @@
         </header>
 
         <main>
-            <h1>¡Bienvenido, Usuario!</h1>
+            <?php
+                require_once 'parciales/bienvenida.php';
+            ?>
             <p>Elige un desafío a continuación para empezar a aprender y a divertirte</p>
             
             <div id="contenedorTarjetas">
