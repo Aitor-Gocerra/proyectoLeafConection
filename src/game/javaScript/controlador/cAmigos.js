@@ -1,5 +1,5 @@
-/* javascript/controlador/cAmigos.js 
-import { mAmigos } from '../modelo/mAmigos.js'; */
+
+import { mAmigos } from '../modelo/mAmigos.js'; 
 
 export class cAmigos {
     modelo;
@@ -7,61 +7,33 @@ export class cAmigos {
 
     constructor() {
         // Inicializa el Modelo JS (que se encargará de las peticiones AJAX al servidor)
-        /*this.modelo = new mAmigos();*/
+        this.modelo = new mAmigos();
     }
 
     //GESTIÓN DE ENVÍO DE SOLICITUD (Botón 'encontrarAmigo')
 
-    async enviarSolicitud(identificador) {
-        this.vista.limpiarMensajes();
+    enviarSolicitud(idAmigo) {
 
+        let formData = new FormData(); 
+        formData.append('idAmigo', idAmigo); 
 
-        //Llamada al Modelo para enviar la petición al servidor (PHP)
-        const resultado = await this.modelo.enviarSolicitud(identificador);
-        
-        if (resultado.success) {
-            document.getElementById('introducirAmigo').value = ''; 
-            this.vista.mostrarExito('Solicitud enviada a ' + identificador + '.');
-        } else {
-            this.vista.mostrarError(resultado.mensaje || 'Error desconocido al enviar solicitud.');
-        }
+        this.modelo.enviarSolicitud(formData);
     }
 
     //GESTIÓN DE ELIMINACIÓN DE AMIGO DEL MODAL
 
-    async eliminarAmigo(amigoID) {
-        this.vista.limpiarMensajes();
+    eliminarAmigo() {
 
-        const resultado = await this.modelo.eliminarAmigo(amigoID);
-
-        if (resultado.success) {
-            // Se usa navegarATab() para asegurar que la página recarga el contenido.
-            this.vista.navegarATab('amigos'); 
-        } else {
-            this.vista.mostrarError(resultado.mensaje || 'Error al eliminar al amigo.');
-        }
     }
 
     // GESTIÓN DE SOLICITUDES (Botones Aceptar/Rechazar)
     
-    async aceptarSolicitud(solicitudID, emisorID) {
+    aceptarSolicitud() {
         this.vista.limpiarMensajes();
-        const resultado = await this.modelo.aceptarSolicitud(solicitudID, emisorID);
-        if (resultado.success) {
-            this.vista.navegarATab('amigos'); 
-        } else {
-            this.vista.mostrarError(resultado.mensaje || 'Error al aceptar la solicitud.');
-        }
     }
 
-    async rechazarSolicitud(solicitudID) {
+    rechazarSolicitud() {
         this.vista.limpiarMensajes();
-        const resultado = await this.modelo.eliminarSolicitud(solicitudID); 
-
-        if (resultado.success) {
-            this.vista.navegarATab('solicitudes');
-        } else {
-            this.vista.mostrarError(resultado.mensaje || 'Error al rechazar la solicitud.');
-        }
+        
     }
 }

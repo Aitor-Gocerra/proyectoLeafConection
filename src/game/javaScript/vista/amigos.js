@@ -92,14 +92,14 @@ document.getElementById('encontrarAmigo').addEventListener('click', async functi
     limpiarMensajes();
 
     // Recojo el nick del usuario y válido que el campo no esté vacío
-    let usuario = document.getElementById('introducirAmigo').value.trim();  
+    let idAmigo = document.getElementById('introducirAmigo').value.trim();
     
-    if (usuario === '') {
+    if (idAmigo === '') {
         mostrarError('El usuario no está completo.');
     }
 
     console.log("Vista: Validación OK. Enviando datos al Controlador...");
-    controlador.cAmigos(usuario);
+    controlador.enviarSolicitud(idAmigo);
 });
 
 //fUNCION PARA LOS BOTONES ACEPTAR O RECHAZAR SI SE OCULTAN INDEPENDIENTEMENTE LO QUE HAGAS

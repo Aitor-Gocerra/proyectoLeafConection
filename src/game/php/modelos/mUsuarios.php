@@ -77,4 +77,66 @@ class MUsuarios{
             return true;
         }
     }
+
+
+    public function procesarSolicitud($idEmisor, $nombreDestino){
+        try {
+            // 1. BUSCAR EL ID DEL USUARIO DESTINO (Recuperamos idUsuario basándonos en el nombre)
+            $sql = "SELECT idUsuario FROM Usuario WHERE nombre = :nombre";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindValue(':nombre', $nombreDestino, PDO::PARAM_STR);
+            $stmt->execute();
+            
+            $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // Si no hay resultados, el usuario no existe
+            if(!$fila){
+                return 'UsuarioNoExiste';
+            }
+            
+            $idReceptor = $fila['idUsuario'];
+
+            // 2. EVITAR QUE SE ENVÍE SOLICITUD A SÍ MISMO
+            if($idEmisor == $idReceptor){
+                return 'AutoSolicitud';
+            }
+
+            // 3. COMPROBAR SI YA EXISTE UNA RELACIÓN (Aceptada o Pendiente)
+            // Verificamos si (Yo -> Él) O (Él -> Yo) existe en la tabla
+            $sqlCheck = "SELECT idUsuario1 FROM Amigos 
+                         WHERE (idUsuario1 = :emis AND idUsuario2 = :recep) 
+                            OR (idUsuario1 = :recep AND idUsuario2 = :emis)";
+            
+            $stmtCheck = $this->conexion->prepare($sqlCheck);
+            $stmtCheck->bindValue(':emis', $idEmisor, PDO::PARAM_INT);
+            $stmtCheck->bindValue(':recep', $idReceptor, PDO::PARAM_INT);
+            $stmtCheck->execute();
+
+            if($stmtCheck->rowCount() > 0){
+                return 'SolicitudExistente';
+            }
+
+            // 4. INSERTAR LA NUEVA SOLICITUD
+            // idUsuario1: Emisor (quien envía)
+            // idUsuario2: Receptor (quien recibe)
+            // fechaSolicitud: NOW() para la fecha/hora actual de la BD
+            // estado: 'pendiente'
+            $sqlInsert = "INSERT INTO Amigos (idUsuario1, idUsuario2, fechaSolicitud, estado) 
+                          VALUES (:id1, :id2, NOW(), 'pendiente')";
+            
+            $stmtInsert = $this->conexion->prepare($sqlInsert);
+            $stmtInsert->bindValue(':id1', $idEmisor, PDO::PARAM_INT);
+            $stmtInsert->bindValue(':id2', $idReceptor, PDO::PARAM_INT);
+            
+            if($stmtInsert->execute()){
+                return 'true'; // Éxito
+            } else {
+                return 'ErrorInsertar';
+            }
+
+        } catch (PDOException $e) {
+            error_log("Error en procesarSolicitud: " . $e->getMessage());
+            return 'ErrorBD';
+        }
+    }
 }
