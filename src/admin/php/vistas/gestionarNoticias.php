@@ -57,8 +57,8 @@
                                     '<td>' . $noticia['idNoticia'] . '</td>' .
                                     '<td>' . $noticia['titulo'] . '</td>' .
                                     '<td>' . $fechaFormato . '</td>' .
-                                    '<td class="tc"><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '"><i class="fa-solid fa-pen-to-square"></i></a></td>' .
-                                    '<td class="tc"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" onclick="return confirm(\'¿Eliminar esta noticia?\')"><i class="fa-regular fa-circle-xmark"></i></a></td>' .
+                                    '<td class="tc"><a href="index.php?c=Noticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '"><i class="fa-solid fa-pen-to-square"></i></a></td>' .
+                                    '<td class="tc"><a href="index.php?c=Noticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" onclick="return confirm(\'¿Eliminar esta noticia?\')"><i class="fa-regular fa-circle-xmark"></i></a></td>' .
                                 '</tr>';
                         }
                     echo
@@ -77,7 +77,7 @@
 
             <div id="contenedorAdmin">
                 <h1>Gestión de noticias</h1>
-                <form action="./index.php?c=GestionarNoticias&m=añadirNoticia" method="post" id="noticia_formulario">
+                <form action="./index.php?c=Noticias&m=añadirNoticia" method="post" id="noticia_formulario">
                     <label for="titulo">Título</label>
                     <input type="text" name="titulo" id="titulo" placeholder="Ej: Greta Thunberg">
 
@@ -108,7 +108,7 @@
                     <input type="submit" value="Guardar noticia" id="btnEnviar">
                 </form>
 
-                <button type="button" id="añadirPregunta">
+                <button type="button" id="btnAnadirPregunta">
                     <i class="fa-regular fa-square-plus"></i> Añadir Pregunta
                 </button>
             </div>
@@ -144,10 +144,10 @@
                                     <td>' . $noticia['idNoticia'] . '</td>
                                     <td>' . $noticia['titulo'] . '</td>
                                     <td>' . $fechaFormato . '</td>
-                                    <td class="tc"><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '">
+                                    <td class="tc"><a href="index.php?c=Noticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a></td>
-                                    <td class="tc"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" 
+                                    <td class="tc"><a href="index.php?c=Noticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" 
                                         onclick="return confirm(\'¿Eliminar esta noticia?\')">
                                         <i class="fa-regular fa-circle-xmark"></i>
                                     </a></td>
@@ -177,13 +177,13 @@
                 e.preventDefault();
                 const buscar = document.getElementById('inputBuscar').value.trim();
                 if (buscar != '') {
-                    window.location.href = 'index.php?c=GestionarNoticias&m=buscarNoticias&buscar=' + encodeURIComponent(buscar);
+                    window.location.href = 'index.php?c=Noticias&m=buscarNoticias&buscar=' + encodeURIComponent(buscar);
                 } else {
                     document.getElementById("buscadorFrasesPalabra").innerHTML += `
                         <div class="mensaje"><p>Por favor, introduce un término de búsqueda.</p></div>
                     `;
                     setTimeout(() => {
-                        window.location.href = 'index.php?c=GestionarNoticias&m=gestionarNoticias';
+                        window.location.href = 'index.php?c=Noticias&m=gestionarNoticias';
                     }, 1500);
                 }
             });
@@ -196,12 +196,12 @@
             if (successMessage) {
                 alert(successMessage);
                 // Limpiar el parámetro de la URL sin recargar la página
-                window.history.replaceState({}, document.title, 'index.php?c=GestionarNoticias&m=buscarNoticias');
+                window.history.replaceState({}, document.title, 'index.php?c=Noticias&m=buscarNoticias');
             }
 
             if (errorMessage) {
                 alert('Error: ' + errorMessage);
-                window.history.replaceState({}, document.title, 'index.php?c=GestionarNoticias&m=buscarNoticias');
+                window.history.replaceState({}, document.title, 'index.php?c=Noticias&m=buscarNoticias');
             }
         </script>
 
@@ -222,7 +222,7 @@
 
                 // Cambiar el action para cambiar el metodo a modificar
                 let form = document.getElementById('noticia_formulario');
-                form.action = `index.php?c=GestionarNoticias&m=guardarModificacion&idNoticia=${noticia.idNoticia}`;
+                form.action = `index.php?c=Noticias&m=guardarModificacion&idNoticia=${noticia.idNoticia}`;
                 
 
 
@@ -303,7 +303,7 @@
 
         <!-- Botón para crear más campos para las preguntas. -->
         <script>
-            let btnAñadirPregunta = document.getElementById("añadirPregunta");
+            let btnAñadirPregunta = document.getElementById("btnAnadirPregunta");
             let plantilla = document.querySelector(".cuestionarioPregunta"); // primera pregunta
             let contenedor = document.getElementById("cuestionarioContainer");
 
@@ -356,6 +356,6 @@
             });
         </script>
 
-        <script type="module" src="./js/vistas/noticiaDia.js"></script>
+        <script type="module" src="./javaScript/vistas/vNoticiaDia.js"></script>
     </body>
 </html>

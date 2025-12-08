@@ -23,19 +23,23 @@
             <p>¡Únete a Recquiz y aprende nuevos conocimentos!</p>
         </div>
 
-        <form action="" class="formulario-autenticacion">
+        <form action="POST" class="formulario-autenticacion" action="./controlador/recogerDatos.js">
 
             <h1>Comenzar</h1>
-            <label for="">Correo electrónico</label>
-            <input type="text" placeholder="Introduce correo">
+            <label for="input-usuario">Nombre de Usuario</label>
+            <input type="text" placeholder="Introduce usuario" id="input-usuario">
 
-            <label for="">Contraseña</label>
-            <input type="password" placeholder="Introduce tu contraseña">
+            <label for="input-correo">Correo electrónico</label>
+            <input type="text" placeholder="Introduce correo" id="input-correo">
 
-            <label for="">Confirmar contraseña</label>
-            <input type="password" placeholder="Confirme contraseña">
+            <label for="input-contrasenia">Contraseña</label>
+            <input type="password" placeholder="Introduce tu contraseña" id="input-contrasenia">
 
-            <input type="submit" class="boton-autenticacion-primario" value="Crear cuenta">
+            <label for="input-contrasenia2">Confirmar contraseña</label>
+            <input type="password" placeholder="Confirme contraseña" id="input-contrasenia2">
+            <div id="mensaje-error"></div>
+
+            <button type="button" id="btn-crearcuenta" class="boton-autenticacion-primario"> Crear Cuenta</button>
 
             <p>¿Ya tienes cuenta? <a href="index.php?c=Paginas&m=login">Inicia sesión</a></p>
         </form>
@@ -53,5 +57,7 @@
     </footer>
 
 </body>
+
+<script type="module" src="javascript/vistas/registrarse.js"></script>
 
 </html>

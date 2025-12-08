@@ -1,0 +1,39 @@
+
+// Esperar a que el DOM (la página HTML) esté completamente cargada
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Obtener el título de la página desde el <head>
+    const tituloCompleto = document.title;
+
+    // Variable para guardar qué tipo de página es
+    let tipoPagina = null;
+
+    // Determinar el tipo de página según el título
+    if (tituloCompleto.includes('Palabra')) {
+        tipoPagina = 'Palabra';
+    } else if (tituloCompleto.includes('Frase')) {
+        tipoPagina = 'Frase';
+    }
+
+    // Inicializar el MVC correspondiente según el tipo de página
+    switch (tipoPagina) {
+
+        case 'Palabra':
+            const modeloPalabra = new MPalabra();
+            const controladorPalabra = new CPalabra(modeloPalabra, null);
+            const vistaPalabra = new VPalabra(controladorPalabra);
+            controladorPalabra.vista = vistaPalabra;
+            break;
+
+        case 'Frase':
+            const modeloFrase = new MFrase();
+            const controladorFrase = new CFrase(modeloFrase, null);
+            const vistaFrase = new VFrase(controladorFrase);
+            controladorFrase.vista = vistaFrase;
+            break;
+
+        default:
+            console.warn('No se reconoció el tipo de página: ' + tituloCompleto);
+            break;
+    }
+});
