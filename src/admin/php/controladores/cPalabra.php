@@ -61,30 +61,45 @@ class CPalabra
 
         $pistas = $_POST['pista'] ?? [];
 
-        // 2. Validación básica
+        // Validación básica
         if (empty($palabra) || empty($definicion)) {
             $this->mensaje = "Error: Faltan campos obligatorios para la palabra.";
             return $this->gestionarPalabras();
         }
 
-        $idPalabra = $this->palabraMod->crearPalabra(
-            $palabra,
-            $definicion,
-            $fecha
-        );
+        // Iniciar transacción
+        try {
+            // Iniciamos la transacción ANTES de crear la palabra
+            $this->palabraMod->iniciarTransaccion();
 
-        if ($idPalabra) {
-            // Recorremos el array de pistas (esto guarda la pista 1, la 2, la 3, etc.)
+            $idPalabra = $this->palabraMod->crearPalabra(
+                $palabra,
+                $definicion,
+                $fecha
+            );
+
+            if (!$idPalabra) {
+                throw new Exception("Error al crear la palabra en la base de datos.");
+            }
+
             foreach ($pistas as $pistaPalabra) {
-                // Solo guardamos si el texto no está vacío
                 if (!empty(trim($pistaPalabra))) {
-                    // Llamada al segundo método del modelo: AÑADIR PISTA
-                    $this->palabraMod->anadirPista($idPalabra, $pistaPalabra);
+                    $resultado = $this->palabraMod->anadirPista($idPalabra, $pistaPalabra);
+
+                    if (!$resultado) {
+                        throw new Exception("Error al añadir la pista: " . $pistaPalabra);
+                    }
                 }
             }
+
+            //Si todo fue bien, confirmamos la transacción
+            $this->palabraMod->confirmarTransaccion();
             $this->mensaje = "Palabra guardada correctamente con ID: " . $idPalabra;
-        } else {
-            $this->mensaje = "Error al guardar la palabra. Revise logs de base de datos.";
+
+        } catch (Exception $e) {
+            // Si hubo algún error, revertimos todos los cambios (ROLLBACK)
+            $this->palabraMod->revertirTransaccion();
+            $this->mensaje = "Error: No se pudo guardar la palabra. " . $e->getMessage();
         }
 
         return $this->gestionarPalabras();
