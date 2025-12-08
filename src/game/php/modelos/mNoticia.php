@@ -89,10 +89,10 @@
         }
 
         public function haJugadoHoy($idUsuario){
-            $sql = "SELECT * FROM noticiadia 
-                    INNER JOIN partida ON noticiadia.idPartida = partida.idPartida 
-                    INNER JOIN noticias ON noticiadia.idNoticia = noticias.idNoticia 
-                    WHERE partida.idUsuario = :idUsuario && DATE(noticias.fechaProgramada) = :fechaActual;";
+            $sql = "SELECT * FROM NoticiaDia 
+                    INNER JOIN Partida ON NoticiaDia.idPartida = Partida.idPartida 
+                    INNER JOIN Noticias ON NoticiaDia.idNoticia = Noticias.idNoticia 
+                    WHERE Partida.idUsuario = :idUsuario && DATE(Noticias.fechaProgramada) = :fechaActual;";
 
             $fechaActual = date("Y-m-d");
 

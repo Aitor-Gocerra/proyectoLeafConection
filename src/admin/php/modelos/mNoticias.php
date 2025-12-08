@@ -85,7 +85,7 @@
                     $sth->execute(['pregunta' => $pregunta, 'idNoticia' => $idNoticia, 'nPregunta' => $nPregunta]);
                 }
 
-                $sth = $this->conexion->prepare($sql3); // Opciones
+                $sth = $this->conexion->prepare($sql3); // Opciones 
                 foreach ($opciones as $i => $opcionesPorPregunta) {
                     $nPregunta = $i + 1;
                     foreach ($opcionesPorPregunta as $j => $opcion) {
@@ -105,7 +105,7 @@
         
             } catch(PDOException $e){
                 $this->conexion->rollBack();
-                return $e->getCode();
+                return false;
             }
         }
 
@@ -114,10 +114,7 @@
 
             try{
                 $sth = $this->conexion->prepare($sql);
-                $sth->execute([
-                    'buscar1' => "%$buscar%",
-                    'buscar2' => "%$buscar%"
-                ]);
+                $sth->execute(['buscar1' => "%$buscar%",'buscar2' => "%$buscar%"]);
                 $noticias = $sth->fetchAll(PDO::FETCH_ASSOC);
                 return $noticias;
             } catch(PDOException $e){

@@ -40,14 +40,14 @@
                 }
             }
 
-            var_dump($_POST);
-            echo "<br><br>";
-            var_dump($arrOpciones);
-            
-            if ($this->objNoticia->añadir($titulo, $noticia, $fecha, 
-            $url, $preguntas, $arrOpciones, $respuestas)){
+            $resultado = $this->objNoticia->añadir($titulo, $noticia, $fecha, $url, $preguntas, $arrOpciones, $respuestas);
+
+            if ($resultado) {
                 $this->mensaje = "La noticia ha sido agregada.";
-                $this->gestionarNoticias();
+                return $this->gestionarNoticias();
+            } else {
+                $this->mensaje = "Error al añadir la noticia.";
+                return $this->gestionarNoticias();
             }
         }
 
@@ -157,8 +157,12 @@
             $resultado = $this->objNoticia->modificar($this->idNoticia, $titulo, $noticia, $fecha, 
             $url, $preguntas, $arrOpciones, $respuestas);
 
-            if (is_bool($resultado) && $resultado == true){
+            if ($resultado) {
                 header("Location: ./index.php?c=GestionarNoticias&m=gestionarNoticias");
+                exit;
+            } else {
+                $this->mensaje = "Error en la modificación.";
+                return $this->gestionarNoticias();
             }
         }
 
