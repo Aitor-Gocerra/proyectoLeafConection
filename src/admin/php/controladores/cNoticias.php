@@ -2,7 +2,7 @@
     // Usamos el modelo de administración de noticias (mNoticias.php), no el de juego
     require_once __DIR__ .'/../modelos/mNoticias.php';
 
-    class CGestionarNoticias{
+    class cNoticias{
         public $objNoticia;
         public $vista;
         public $mensaje;
@@ -12,13 +12,14 @@
         public function __construct(){
             $this->objNoticia = new Noticia();
             $this->vista = '';
-            $this->idNoticia = $_GET['idNoticia'] ?? NULL;
+            $this->idNoticia = $_GET['idNoticia'] ?? NULL; // Obtener el idNoticia desde el constructor
         }
 
         public function gestionarNoticias(){
             $this->vista = 'gestionarNoticias';
             $this->listaNoticias = $this->objNoticia->listarNoticias();
-            return ['noticias' => $this->listaNoticias, 'mensaje' => $this->mensaje];
+            $fechasUsadas = $this->objNoticia->obtenerFechasNoticias();
+            return ['noticias' => $this->listaNoticias, 'mensaje' => $this->mensaje, 'fechasUsadas' => $fechasUsadas];
         }
 
         public function añadirNoticia(){
@@ -69,7 +70,7 @@
 
         public function eliminar(){
             if ($this->objNoticia->eliminarNoticia($this->idNoticia)){
-                header("Location: ./index.php?c=GestionarNoticias&m=gestionarNoticias");
+                header("Location: ./index.php?c=Noticias&m=gestionarNoticias");
             }
         }
 
@@ -85,8 +86,7 @@
             $preguntas = $this->objNoticia->obtenerPreguntas($this->idNoticia);
             $opciones = $this->objNoticia->obtenerOpciones($this->idNoticia);
             $opcionesCorrectas = $this->objNoticia->obtenerRespuestas($this->idNoticia);
-            $fechasUsadas = $this->objNoticia->obtenerFechasNoticias();
-
+            $fechasUsadas = $this->objNoticia->obtenerFechasNoticiasExcepto($this->idNoticia);
 
             /**
              * Agrupar opciones por pregunta. $nPregunta => [op1, op2]
@@ -118,7 +118,9 @@
                 }
             }
         
-            // asegurarnos de que $respuestas tenga la misma longitud que $preguntas
+            /**
+             * Validar que $respuestas tenga la misma longitud que $preguntas
+             */
             for ($i = 0; $i < count($preguntas); $i++) {
                 if (!isset($respuestas[$i])) $respuestas[$i] = '';
             }
@@ -158,7 +160,7 @@
             $url, $preguntas, $arrOpciones, $respuestas);
 
             if ($resultado) {
-                header("Location: ./index.php?c=GestionarNoticias&m=gestionarNoticias");
+                header("Location: ./index.php?c=Noticias&m=gestionarNoticias");
                 exit;
             } else {
                 $this->mensaje = "Error en la modificación.";
@@ -167,3 +169,4 @@
         }
 
     }
+?>

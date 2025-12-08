@@ -461,6 +461,12 @@ main {
 
 }
 
+.error-msg{
+    color: red;
+    font-size: .9em;
+    margin-left: .5rem;
+}
+
 #btnAnadirPregunta {
     margin-top: 0.8rem;
     background-color: var(--color-secundario);
@@ -484,11 +490,85 @@ main {
     transform: translateY(0);
 }
 
+#resultadosBusquedaNoticias{
+    width: 100%;
+    margin: 1rem 0rem;
+    padding: 1.5rem;
+    background-color: #e6fffa;
+    /* Color de fondo similar al navegador de enlaces */
+    border-radius: 12px;
+    border: 1px solid var(--color-azul-1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    h2{
+        font-size: 1.2rem;
+        color: #2c7a7b;
+        /* Color de texto similar al navegador */
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--color-azul-1);
+        padding-bottom: 0.5rem;
+    }
+
+    table{
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.5rem;
+
+        th{
+            background-color: #e6fffa;
+            color: #2c7a7b;
+            font-weight: 600;
+            padding: 1rem;
+            text-align: left;
+            border-radius: 6px 6px 0 0;
+        }
+
+        td{
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--color-texto-gris);
+        }
+
+        td > a{
+            display: block;
+            text-align: center;
+        }
+
+        tr:last-child td{
+            border-bottom: none;
+        }
+
+        .fa-pen-to-square{
+            color: #2c7a7b;
+        }
+        .fa-circle-xmark{
+            color: rgb(219, 0, 0);
+        }
+
+    }
+
+}
+
+#ultimasDiezNoticias{
+    td > a{
+        display: block;
+        text-align: center;
+    }
+    
+    .fa-pen-to-square{
+        color: #2c7a7b;
+    }
+    .fa-circle-xmark{
+        color: rgb(219, 0, 0);
+    }
+}
+
 /**************************** ÚLTIMAS 10 PALABRAS/FRASES ****************************/
 
 #ultimasDiezPalabras,
 #ultimasDiezFrases,
-#resultadosBusqueda {
+#resultadosBusqueda,
+#ultimasDiezNoticias {
     width: 94%;
     max-width: 1100px;
     margin: 2rem auto;
@@ -500,7 +580,8 @@ main {
 
 #ultimasDiezPalabras h2,
 #ultimasDiezFrases h2,
-#resultadosBusqueda h2 {
+#resultadosBusqueda h2,
+#ultimasDiezNoticias h2 {
     font-size: 1.4rem;
     color: var(--color-primario);
     margin-bottom: 1rem;
@@ -510,7 +591,8 @@ main {
 
 #ultimasDiezPalabras table,
 #ultimasDiezFrases table,
-#resultadosBusqueda table {
+#resultadosBusqueda table,
+#ultimasDiezNoticias table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 0.5rem;
@@ -518,7 +600,8 @@ main {
 
 #ultimasDiezPalabras th,
 #ultimasDiezFrases th,
-#resultadosBusqueda th {
+#resultadosBusqueda th,
+#ultimasDiezNoticias th{
     background-color: #e6fffa;
     color: #2c7a7b;
     font-weight: 600;
@@ -529,7 +612,8 @@ main {
 
 #ultimasDiezPalabras td,
 #ultimasDiezFrases td,
-#resultadosBusqueda td {
+#resultadosBusqueda td,
+#ultimasDiezNoticias td {
     padding: 1rem;
     border-bottom: 1px solid #e2e8f0;
     color: var(--color-texto-gris);
@@ -537,19 +621,22 @@ main {
 
 #ultimasDiezPalabras tr:last-child td,
 #ultimasDiezFrases tr:last-child td,
-#resultadosBusqueda tr:last-child td {
+#resultadosBusqueda tr:last-child td,
+#ultimasDiezNoticias tr:last-child td{
     border-bottom: none;
 }
 
 #ultimasDiezPalabras tr:hover,
 #ultimasDiezFrases tr:hover,
-#resultadosBusqueda tr:hover {
+#resultadosBusqueda tr:hover,
+#ultimasDiezNoticias tr:hover{
     background-color: #f7fafc;
 }
 
 #ultimasDiezPalabras a,
 #ultimasDiezFrases a,
-#resultadosBusqueda a {
+#resultadosBusqueda a,
+#ultimasDiezNoticias a{
     color: #e53e3e;
     font-weight: 600;
     text-decoration: none;
@@ -558,9 +645,12 @@ main {
 
 #ultimasDiezPalabras a:hover,
 #ultimasDiezFrases a:hover,
-#resultadosBusqueda a:hover {
+#resultadosBusqueda a:hover,
+#ultimasDiezNoticias a:hover {
     text-decoration: underline;
 }
+
+
 
 /****************************** FOOTER                      ******************************/
 

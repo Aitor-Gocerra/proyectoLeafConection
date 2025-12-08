@@ -79,6 +79,6 @@
             window.respuestasUsuario   = <?php echo isset($respuestasUsuario)   ? json_encode($respuestasUsuario)   : '{}'; ?>;
         </script>
 
-        <script type="module" src="./js/vistas/noticiaDia.js"></script>
+        <script type="module" src="./javaScript/vistas/vNoticiaDia.js"></script>
     </body>
 </html>
