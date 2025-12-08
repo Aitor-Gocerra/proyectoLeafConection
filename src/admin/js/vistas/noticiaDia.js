@@ -5,26 +5,58 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
         let errores = 0;
 
+
         // Limpiar mensajes anteriores
         form.querySelectorAll('.error-msg').forEach(msg => msg.remove());
+
+
+
+
+
 
         // Validar campos principales
         ['titulo', 'noticia', 'url'].forEach(id => {
             const campo = document.getElementById(id);
-            if (!campo.value.trim()) {
+            if (!campo.value.trim()) { // SI el campo está vacío, salta el mismo error
                 const error = document.createElement('span');
                 error.className = 'error-msg';
                 error.textContent = 'Este campo es obligatorio.';
                 campo.parentNode.insertBefore(error, campo.nextSibling);
                 errores++;
             }
+
+
+
+
+            // Usar la clase URL para validarla, si no salta el error, es correcta
+
+            if (id == 'url'){
+                try {
+                    new URL(campo.value.trim());
+                } catch {
+                    const error = document.createElement('span');
+                    error.className = 'error-msg';
+                    error.textContent = 'URL no es válida.';
+                    campo.parentNode.insertBefore(error, campo.nextSibling);
+                    errores++;
+                }
+            }
         });
 
-        // Validar cada pregunta
+
+
+
+
+
+
+        // Validar cada pregunta reccorriendola
         form.querySelectorAll('.cuestionarioPregunta').forEach(preguntaDiv => {
+
             const preguntaInput = preguntaDiv.querySelector('input[name="preguntas[]"]');
             const opcionesInput = preguntaDiv.querySelector('input.opciones');
             const respuestaInput = preguntaDiv.querySelector('input[name="respuestas_correctas[]"]');
+
+
 
             if (!preguntaInput.value.trim()) {
                 const error = document.createElement('span');
@@ -33,6 +65,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 preguntaInput.parentNode.insertBefore(error, preguntaInput.nextSibling);
                 errores++;
             }
+
+
+
+            
 
             const opcionesTexto = opcionesInput.value.trim();
             if (!opcionesTexto) {
@@ -49,7 +85,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 errores++;
             }
 
-            const opcionesArray = opcionesTexto.split('/').map(o => o.trim()).filter(o => o);
+
+
+
+            // Validaciones para el campo opciones, al que se hará implode
+            // El número de respuesta debe coincidir con el número de opciones.
+
+            const opcionesArray = opcionesTexto.split('/').map(x => x.trim()).filter(x => x);
 
             const respuesta = parseInt(respuestaInput.value, 10);
             if (isNaN(respuesta)) {
@@ -67,9 +109,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+
+
+
+
+        
         if (errores > 0) {
             e.preventDefault();
-            alert('Corrige los errores antes de enviar el formulario.');
         } else {
             btnEnviar.disabled = true;
             btnEnviar.style.backgroundColor = "#929292ff";

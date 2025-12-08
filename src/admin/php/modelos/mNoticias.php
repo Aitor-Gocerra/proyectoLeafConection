@@ -205,15 +205,27 @@
             }
         }
 
-        public function obtenerFechasNoticias(){
-            $sql = "SELECT idNoticia, fechafechaProgramada FROM Noticias;";
+        public function obtenerFechasNoticiasExcepto($idNoticia){
+            $sql = "SELECT idNoticia, date(fechaProgramada) as fechaProgramada FROM Noticias WHERE idNoticia != :idNoticia";
+        
+            try{
+                $sth = $this->conexion->prepare($sql);
+                $sth->execute(['idNoticia' => $idNoticia]);
+                $fechasNoticias = $sth->fetchAll(PDO::FETCH_ASSOC);
+                return $fechasNoticias;
+            } catch(PDOException $e){
+                return false;
+            }
+        }
 
+        public function obtenerFechasNoticias(){
+            $sql = "SELECT idNoticia, date(fechaProgramada) as fechaProgramada FROM Noticias;";
+        
             try{
                 $sth = $this->conexion->query($sql);
-                $fechas = $sth->fetchAll(PDO::FETCH_ASSOC);
-                return $fechas;
+                $fechasNoticias = $sth->fetchAll(PDO::FETCH_ASSOC);
+                return $fechasNoticias;
             } catch(PDOException $e){
-                echo "Error: " . $e->getMessage();
                 return false;
             }
         }

@@ -25,8 +25,9 @@
 
             <?php
                 if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) {
+                    
                     echo
-                    '<div id="resultadosBusqueda">
+                    '<div id="resultadosBusquedaNoticias">
                         <h2>Resultados de la Búsqueda</h2>
                         <table>
                             <thead>
@@ -40,11 +41,22 @@
                             </thead>
                             <tbody>';
                         foreach ($resultadosBusqueda as $noticia) {
+
+                            // Darle formato a la fecha para quitar las horas, minutos y segundos.
+                            $fecha = $noticia['fechaProgramada'] ?? null;
+                    
+                            if ($fecha) {
+                                $fechaFormato = date("d-m-Y", strtotime($fecha));
+                            } else {
+                                $fechaFormato = "No programada";
+                            }
+
+
                             echo
                                 '<tr>' .
                                     '<td>' . $noticia['idNoticia'] . '</td>' .
                                     '<td>' . $noticia['titulo'] . '</td>' .
-                                    '<td>' . ($noticia['fechaProgramada'] ?? 'No programada') . '</td>' .
+                                    '<td>' . $fechaFormato . '</td>' .
                                     '<td class="tc"><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '"><i class="fa-solid fa-pen-to-square"></i></a></td>' .
                                     '<td class="tc"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" onclick="return confirm(\'¿Eliminar esta noticia?\')"><i class="fa-regular fa-circle-xmark"></i></a></td>' .
                                 '</tr>';
@@ -120,10 +132,18 @@
                     <tbody>
                         <?php
                         foreach ($noticias as $noticia) {
+                            $fecha = $noticia['fechaProgramada'] ?? null;
+
+                            if ($fecha) {
+                                $fechaFormato = date("d-m-Y", strtotime($fecha));
+                            } else {
+                                $fechaFormato = "No programada";
+                            }
+
                             echo '<tr>
                                     <td>' . $noticia['idNoticia'] . '</td>
                                     <td>' . $noticia['titulo'] . '</td>
-                                    <td>' . ($noticia['fechaProgramada'] ?? 'No programada') . '</td>
+                                    <td>' . $fechaFormato . '</td>
                                     <td class="tc"><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a></td>
@@ -150,6 +170,7 @@
 
 
         <!-- Formulario de buscar -->
+        
         <script>
             // Script para el buscador de noticias
             document.getElementById('formBuscar').addEventListener('submit', function (e) {
@@ -184,9 +205,9 @@
             }
         </script>
 
+        <!-- Verificar si se han obtenido los datos para la modificación -->
 
-
-        <?php if (isset($noticia) && isset($preguntas) && isset($opciones_implode) && isset($respuestas)): ?>
+        <?php if (isset($noticia) && isset($preguntas) && isset($opciones_implode) && isset($respuestas) && isset($fechasUsadas)): ?>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // Obtener los datos
@@ -194,8 +215,10 @@
                 let preguntas = <?php echo json_encode($preguntas); ?>;
                 let opcionesImplode = <?php echo json_encode($opciones_implode); ?>;
                 let respuestas = <?php echo json_encode($respuestas); ?>;
+                let fechasUsadas = <?php echo json_encode(array_column($fechasUsadas ?? [], 'fechaProgramada')); ?>;
 
-
+                console.log("Antes de modificar, verificar las fechas que ya están en uso: ")
+                console.log(fechasUsadas);
 
                 // Cambiar el action para cambiar el metodo a modificar
                 let form = document.getElementById('noticia_formulario');
@@ -210,15 +233,25 @@
                 let inputFecha = document.getElementById('fecha');
 
 
+                // Validar si la fecha es repetida, ya que es CSU
+                inputFecha.addEventListener('change', function() {
+                    let val = this.value;
+                    if (!val) return;
+                    if (fechasUsadas.includes(val)) {
+                        alert("Esa fecha ya está ocupada.");
+                        this.value = "";
+                        this.focus();
+                    }
+                });
+
+
 
                 // Rellenar datos de la noticia
-                inputTitulo.value = noticia.titulo || '';
-                textareaNoticia.value = noticia.noticia || '';
-                inputUrl.value = noticia.urlImagen || '';
+                inputTitulo.value = noticia.titulo;
+                textareaNoticia.value = noticia.noticia;
+                inputUrl.value = noticia.urlImagen;
                 
-                
-
-                let fechaStr = noticia.fechaProgramada || noticia.fechaCreacion || '';
+                let fechaStr = noticia.fechaProgramada || '';
                 if (fechaStr.length >= 10) fechaStr = fechaStr.substring(0,10);
                 inputFecha.value = fechaStr;
                 
@@ -252,7 +285,7 @@
                             <input type="number" name="respuestas_correctas[]" min="1" placeholder="Número de la respuesta correcta" required>
                         `;
 
-
+                        // Dar valor a los 3 inputs de cada contenedor de pregunta
 
                         let inputs = nuevo.querySelectorAll('input');
 
@@ -288,6 +321,38 @@
 
                 // Añadir al contenedor de preguntas
                 contenedor.appendChild(nuevaPregunta);
+            });
+        </script>
+
+
+        <!-- Validar si la fecha existe en otra noticia -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let fechasUsadas = <?php echo json_encode(array_column($fechasUsadas ?? [], 'fechaProgramada')); ?>;
+
+                let inputFecha = document.getElementById('fecha');
+
+                console.log("Antes de añadir, verificar las fechas que ya están en uso: ")
+                console.log(fechasUsadas); // Visualizar fechas usadas
+
+
+                // Crear un span para mostrar errores
+                let errorSpan = document.createElement('span');
+                errorSpan.className = 'error-msg';
+                inputFecha.parentNode.insertBefore(errorSpan, inputFecha.nextSibling); // Si uso append, se muestra al final del form
+
+                inputFecha.addEventListener('change', function() {
+                    let val = this.value; // YYYY-MM-DD
+                    if (!val) return;
+
+                    if (fechasUsadas.includes(val)) {
+                        errorSpan.textContent = "Esa fecha ya está ocupada.";
+                        this.value = "";
+                        this.focus();
+                    } else {
+                        errorSpan.textContent = ""; // Limpiar mensaje si está bien
+                    }
+                });
             });
         </script>
 

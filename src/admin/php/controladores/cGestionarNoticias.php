@@ -12,13 +12,14 @@
         public function __construct(){
             $this->objNoticia = new Noticia();
             $this->vista = '';
-            $this->idNoticia = $_GET['idNoticia'] ?? NULL;
+            $this->idNoticia = $_GET['idNoticia'] ?? NULL; // Obtener el idNoticia desde el constructor
         }
 
         public function gestionarNoticias(){
             $this->vista = 'gestionarNoticias';
             $this->listaNoticias = $this->objNoticia->listarNoticias();
-            return ['noticias' => $this->listaNoticias, 'mensaje' => $this->mensaje];
+            $fechasUsadas = $this->objNoticia->obtenerFechasNoticias();
+            return ['noticias' => $this->listaNoticias, 'mensaje' => $this->mensaje, 'fechasUsadas' => $fechasUsadas];
         }
 
         public function añadirNoticia(){
@@ -85,8 +86,7 @@
             $preguntas = $this->objNoticia->obtenerPreguntas($this->idNoticia);
             $opciones = $this->objNoticia->obtenerOpciones($this->idNoticia);
             $opcionesCorrectas = $this->objNoticia->obtenerRespuestas($this->idNoticia);
-            $fechasUsadas = $this->objNoticia->obtenerFechasNoticias();
-
+            $fechasUsadas = $this->objNoticia->obtenerFechasNoticiasExcepto($this->idNoticia);
 
             /**
              * Agrupar opciones por pregunta. $nPregunta => [op1, op2]
@@ -118,7 +118,9 @@
                 }
             }
         
-            // asegurarnos de que $respuestas tenga la misma longitud que $preguntas
+            /**
+             * Validar que $respuestas tenga la misma longitud que $preguntas
+             */
             for ($i = 0; $i < count($preguntas); $i++) {
                 if (!isset($respuestas[$i])) $respuestas[$i] = '';
             }
