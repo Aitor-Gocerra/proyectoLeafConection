@@ -22,28 +22,31 @@ class CUsuarios{
 
     public function registrar($datos){
         
+        // 1. Primera validación de campos vacíos
         if(!$this->comprobarDatosRegistro($datos)){
             $this->vista = '';
-            echo 'false'; 
-            exit();
+            echo 'DatosIncompletos';
+            return false;
         }
         
+        // 2. Validación de usuario duplicado
         if ($this->objMUsuario->usuarioExiste($datos['usuario'])) {
             $this->vista = '';
             echo 'UsuarioExiste';
-            exit();
+            return false;
         }
         
+        // 3. Cifrado y Registro
         $datos["contrasenia"] = $this->cifrarPassword($datos["contrasenia"]);
         
         if ($this->objMUsuario->registrar($datos)){
             $this->vista = '';
             echo 'true';
-            exit();
+            return true;
         } else {
-            $this->vista = '';
+            $this->vista = '';      
             echo $this->objMUsuario->codError;
-            exit();
+            return false;
         }
     }
 
@@ -62,17 +65,17 @@ class CUsuarios{
 
                 $this->vista = '';
                 echo 'true';
-                exit();
+                return 'true';
             } else {
                 $this->vista = '';
                 echo $this->objMUsuario->codError;
-                exit();
+                return $this->objMUsuario->codError;
             }
         }
         
         $this->vista = '';
         echo 'DatosIncompletos';
-        exit();
+        return 'DatosIncompletos';
     }
 
     public function enviarSolicitud($datos){
@@ -80,6 +83,8 @@ class CUsuarios{
         $this->sessionStart();
 
         if(empty($datos["idAmigo"])){ 
+            $this->vista = '';
+            echo 'DatosIncompletos';
             return 'DatosIncompletos';
         }
 
@@ -92,8 +97,9 @@ class CUsuarios{
         $resultado = $this->objMUsuario->procesarSolicitud($idEmisor, $nombreDestino);
 
         // 6. Devolvemos la respuesta al JS
+        $this->vista = '';
         echo $resultado;
-        exit();
+        return $resultado;
     }
 
     private function comprobarDatosInicio($datos){
@@ -132,3 +138,4 @@ class CUsuarios{
             }
         }
 }
+?>

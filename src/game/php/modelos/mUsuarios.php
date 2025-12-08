@@ -112,7 +112,7 @@ class MUsuarios{
                 return 'SolicitudExistente';
             }
 
-            // 4. INSERTAR LA NUEVA SOLICITUD (CORREGIDO)
+            // 4. INSERTAR LA NUEVA SOLICITUD
             // Estado: 0 (Pendiente), Fecha: NOW()
             $sqlInsert = "INSERT INTO Amigos (idUsuario1, idUsuario2, fechaSolicitud, estado) VALUES (:id1, :id2, NOW(), 0)";
             
@@ -120,7 +120,6 @@ class MUsuarios{
             $stmtInsert->bindValue(':id1', $idEmisor, PDO::PARAM_INT);
             $stmtInsert->bindValue(':id2', $idReceptor, PDO::PARAM_INT);
             
-            // No hace falta bindear el 0, ya está fijo en la sentencia SQL
             
             if($stmtInsert->execute()){
                 return 'true';
