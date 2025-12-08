@@ -7,10 +7,18 @@
         }
 
         public function añadir($titulo, $noticia, $fechaProgramada, $urlImagen, $preguntas, $opciones, $respuestas){
-            $sql1 = "INSERT INTO Noticias (titulo, noticia, fechaProgramada, urlImagen) VALUES (:titulo, :noticia, :fechaProgramada, :urlImagen);";
-            $sql2 = "INSERT INTO Preguntas (idNoticia, nPregunta, pregunta) VALUES (:idNoticia, :nPregunta, :pregunta);";
-            $sql3 = "INSERT INTO Opciones (idNoticia, nPregunta, nOpcion, opcion) VALUES (:idNoticia, :nPregunta, :nOpcion, :opcion);";
-            $sql4 = "INSERT INTO RespuestaCorrecta (idNoticia, nPregunta, nOpcion) VALUES (:idNoticia, :nPregunta, :nOpcion);";
+            $sql1 = "INSERT INTO Noticias (titulo, noticia, fechaProgramada, urlImagen) 
+                    VALUES (:titulo, :noticia, :fechaProgramada, :urlImagen);";
+
+            $sql2 = "INSERT INTO Preguntas (idNoticia, nPregunta, pregunta) 
+                    VALUES (:idNoticia, :nPregunta, :pregunta);";
+
+            $sql3 = "INSERT INTO Opciones (idNoticia, nPregunta, nOpcion, opcion) 
+                    VALUES (:idNoticia, :nPregunta, :nOpcion, :opcion);";
+
+            $sql4 = "INSERT INTO RespuestaCorrecta (idNoticia, nPregunta, nOpcion) 
+                    VALUES (:idNoticia, :nPregunta, :nOpcion);";
+
 
             try {
                 $this->conexion->beginTransaction();
@@ -50,6 +58,57 @@
             }
         }
 
+        public function modificar($idNoticia, $titulo, $noticia, $fechaProgramada, $urlImagen, $preguntas, $opciones, $respuestas){
+            $sql1 = "UPDATE Noticias            SET titulo = :titulo, noticia = :noticia, fechaProgramada = :fechaProgramada, urlImagen = :urlImagen
+                    WHERE idNoticia = :idNoticia;";
+
+            $sql2 = "UPDATE Preguntas           SET pregunta = :pregunta    
+                    WHERE idNoticia = :idNoticia AND nPregunta = :nPregunta;";
+
+            $sql3 = "UPDATE Opciones            SET opcion = :opcion        
+                    WHERE idNoticia = :idNoticia AND nPregunta = :nPregunta AND nOpcion = :nOpcion;";
+
+            $sql4 = "UPDATE RespuestaCorrecta   SET nOpcion = :nOpcion 
+                    WHERE idNoticia = :idNoticia AND nPregunta = :nPregunta;";
+
+
+            try {
+                $this->conexion->beginTransaction();
+        
+                $sth = $this->conexion->prepare($sql1); // Noticia
+                $sth->execute(['titulo' => $titulo, 'noticia' => $noticia, 'fechaProgramada' => $fechaProgramada, 'urlImagen' => $urlImagen, 'idNoticia' => $idNoticia]);
+        
+
+                $sth = $this->conexion->prepare($sql2); // Preguntas
+                foreach ($preguntas as $i => $pregunta) {
+                    $nPregunta = $i + 1;
+                    $sth->execute(['pregunta' => $pregunta, 'idNoticia' => $idNoticia, 'nPregunta' => $nPregunta]);
+                }
+
+                $sth = $this->conexion->prepare($sql3); // Opciones
+                foreach ($opciones as $i => $opcionesPorPregunta) {
+                    $nPregunta = $i + 1;
+                    foreach ($opcionesPorPregunta as $j => $opcion) {
+                        $nOpcion = $j + 1;
+                        $sth->execute(['opcion' => $opcion, 'idNoticia' => $idNoticia, 'nPregunta' => (int)$nPregunta, 'nOpcion' => (int)$nOpcion]);
+                    }
+                }
+
+                $sth = $this->conexion->prepare($sql4); // Respuestas
+                foreach ($respuestas as $i => $respuesta) {
+                    $nPregunta = $i + 1;
+                    $sth->execute(['nOpcion' => $respuesta, 'idNoticia' => $idNoticia, 'nPregunta' => $nPregunta]);
+                }
+        
+                $this->conexion->commit();
+                return true;
+        
+            } catch(PDOException $e){
+                $this->conexion->rollBack();
+                return $e->getCode();
+            }
+        }
+
         public function buscarNoticia($buscar){
             $sql = "SELECT * FROM Noticias WHERE titulo LIKE :buscar1 OR noticia LIKE :buscar2 ORDER BY fechaProgramada DESC;";
 
@@ -68,7 +127,7 @@
         }
 
         public function listarNoticias(){
-            $sql = "SELECT * FROM Noticias ORDER BY fechaProgramada DESC LIMIT 10;";
+            $sql = "SELECT * FROM Noticias ORDER BY fechaCreacion DESC LIMIT 10;";
             
             try{
                 $sth = $this->conexion->query($sql);
@@ -144,6 +203,19 @@
                 return $respuestas;
             }
             catch(PDOException $e){
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        public function obtenerFechasNoticias(){
+            $sql = "SELECT idNoticia, fechafechaProgramada FROM Noticias;";
+
+            try{
+                $sth = $this->conexion->query($sql);
+                $fechas = $sth->fetchAll(PDO::FETCH_ASSOC);
+                return $fechas;
+            } catch(PDOException $e){
                 echo "Error: " . $e->getMessage();
                 return false;
             }

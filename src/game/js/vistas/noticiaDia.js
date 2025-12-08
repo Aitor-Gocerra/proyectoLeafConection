@@ -2,11 +2,7 @@ let btnEnviar = document.getElementById('btnEnviar');
 let form = document.getElementById('formNoticia');
 
 document.addEventListener('DOMContentLoaded', function(e) {
-    console.log('noticiaDia.js cargado');
-    console.log('window.respuestasCorrectas:', window.respuestasCorrectas);
-    console.log('window.respuestasUsuario:', window.respuestasUsuario);
     
-    // Variables globales
     let respuestasCorrectas = window.respuestasCorrectas || {};
     let respuestasUsuario   = window.respuestasUsuario || {};
 

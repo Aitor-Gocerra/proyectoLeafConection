@@ -439,6 +439,24 @@ main {
     }
 }
 
+.tc{
+    text-align: center;
+}
+
+.fa-pen-to-square{
+    color: var(--color-acento-b);
+}
+
+.fa-circle-xmark{
+    color: red;
+}
+
+.error-msg{
+    color: red;
+    font-size: .9em;
+    margin-left: .5rem;
+}
+
 /**************************** ÚLTIMAS 10 PALABRAS/FRASES ****************************/
 
 #ultimasDiezPalabras, #ultimasDiezFrases, #ultimasDiezNoticias {

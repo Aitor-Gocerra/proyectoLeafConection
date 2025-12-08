@@ -54,11 +54,7 @@
         public function buscarNoticias(){
             $buscar = $_GET['buscar'] ?? '';
             $this->vista = 'gestionarNoticias';
-            if (empty($buscar)) {
-                $this->mensaje = "Por favor, introduce un término de búsqueda.";
-                return ['mensaje' => $this->mensaje];
-            }
-    
+
             // Buscar noticias
             $resultados = $this->objNoticia->buscarNoticia($buscar);
     
@@ -66,9 +62,8 @@
             $noticias = $this->objNoticia->listarNoticias();
     
             return [
-                'resultadosBusqueda' => $resultados,
-                'noticias' => $noticias,
-                'mensaje' => $this->mensaje
+                'resultadosBusqueda' => $resultados, // Listado de noticias que coincidan con $buscar
+                'noticias' => $noticias, // Volver a cargar las últimas 10 noticias
             ];
         }
 
@@ -89,8 +84,8 @@
             $noticia = $this->objNoticia->obtenerNoticia($this->idNoticia);
             $preguntas = $this->objNoticia->obtenerPreguntas($this->idNoticia);
             $opciones = $this->objNoticia->obtenerOpciones($this->idNoticia);
-            $respuestasRaw = $this->objNoticia->obtenerRespuestas($this->idNoticia);
-        
+            $opcionesCorrectas = $this->objNoticia->obtenerRespuestas($this->idNoticia);
+            $fechasUsadas = $this->objNoticia->obtenerFechasNoticias();
 
 
             /**
@@ -115,15 +110,11 @@
                 }
             }
         
-            
 
             $respuestas = [];
-            foreach ($respuestasRaw as $r) {
+            foreach ($opcionesCorrectas as $r) {
                 if (isset($r['nPregunta']) && isset($r['nOpcion'])) {
                     $respuestas[$r['nPregunta'] - 1] = $r['nOpcion'];
-                } elseif (isset($r['nOpcion'])) {
-                    // fallback si solo devuelve nOpcion en orden
-                    $respuestas[] = $r['nOpcion'];
                 }
             }
         
@@ -138,9 +129,37 @@
                 'noticia' => $noticia,
                 'preguntas' => $preguntas,
                 'opciones_implode' => $opcionesImplode,
-                'respuestas' => $respuestas
+                'respuestas' => $respuestas,
+                'fechasUsadas' => $fechasUsadas
             ];
         }
         
+
+        public function guardarModificacion(){
+            $titulo = $_POST['titulo'];
+            $noticia = $_POST['noticia'];
+            $fecha = $_POST['fecha'] ?? NULL;
+            $url = $_POST['url'];
+            $preguntas = $_POST['preguntas'];
+            $opciones = $_POST['opciones'];
+            $respuestas = $_POST['respuestas_correctas'];
+
+            $arrOpciones = [];
+            foreach ($opciones as $i => $opcion) {
+                $elementos = explode('/', $opcion); // separar por '/'
+            
+                foreach ($elementos as $j => $elemento) {
+                    $texto = trim($elemento);
+                    $arrOpciones[$i][$j] = $texto;
+                }
+            }
+
+            $resultado = $this->objNoticia->modificar($this->idNoticia, $titulo, $noticia, $fecha, 
+            $url, $preguntas, $arrOpciones, $respuestas);
+
+            if (is_bool($resultado) && $resultado == true){
+                header("Location: ./index.php?c=GestionarNoticias&m=gestionarNoticias");
+            }
+        }
 
     }

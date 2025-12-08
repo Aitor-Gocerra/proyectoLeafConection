@@ -23,51 +23,57 @@
                 titulo("Noticia");
             ?>
 
-            <?php if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) { ?>
-                <div id="resultadosBusqueda">
-                    <h2>Resultados de la Búsqueda</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Titulo</th>
-                                <th>Fecha Programada</th>
-                                <th>Modificar</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($resultadosBusqueda as $noticia) {
-                                echo '<tr>' .
-                                        '<td>' . $noticia['idNoticia'] . '</td>' .
-                                        '<td>' . $noticia['titulo'] . '</td>' .
-                                        '<td>' . ($noticia['fechaProgramada'] ?? 'No programada') . '</td>' .
-                                        '<td style="text-align: center;"><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '"><i class="fa-solid fa-pen-to-square"></i></a></td>' .
-                                        '<td style="text-align: center;"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" onclick="return confirm(\'¿Eliminar esta noticia?\')"><i class="fa-regular fa-circle-xmark"></i></a></td>' .
-                                    '</tr>';
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php } elseif (isset($_GET['buscar'])) { ?>
-                <div class="mensaje">
-                    <p>No se encontraron noticias con el término: <?php echo $_GET['buscar']; ?></p>
-                </div>
-            <?php } ?>
+            <?php
+                if (isset($resultadosBusqueda) && !empty($resultadosBusqueda)) {
+                    echo
+                    '<div id="resultadosBusqueda">
+                        <h2>Resultados de la Búsqueda</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Título</th>
+                                    <th>Fecha Programada</th>
+                                    <th>Modificar</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>';
+                        foreach ($resultadosBusqueda as $noticia) {
+                            echo
+                                '<tr>' .
+                                    '<td>' . $noticia['idNoticia'] . '</td>' .
+                                    '<td>' . $noticia['titulo'] . '</td>' .
+                                    '<td>' . ($noticia['fechaProgramada'] ?? 'No programada') . '</td>' .
+                                    '<td class="tc"><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '"><i class="fa-solid fa-pen-to-square"></i></a></td>' .
+                                    '<td class="tc"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" onclick="return confirm(\'¿Eliminar esta noticia?\')"><i class="fa-regular fa-circle-xmark"></i></a></td>' .
+                                '</tr>';
+                        }
+                    echo
+                            '</tbody>
+                        </table>
+                    </div>';
+                } elseif (isset($_GET['buscar'])) {
+                    echo '<div class="mensaje"><p>No se encontraron noticias con el término: ' . $_GET['buscar'] . '</p></div>';
+                }
+
+                if (isset($mensaje)){
+                    echo $mensaje;
+                }
+            ?>
+
 
             <div id="contenedorAdmin">
                 <h1>Gestión de noticias</h1>
                 <form action="./index.php?c=GestionarNoticias&m=añadirNoticia" method="post" id="noticia_formulario">
                     <label for="titulo">Título</label>
-                    <input type="text" name="titulo" id="titulo" placeholder="Ej: Greta Thunberg" required>
+                    <input type="text" name="titulo" id="titulo" placeholder="Ej: Greta Thunberg">
 
                     <label for="noticia">Contenido</label>
-                    <textarea name="noticia" id="noticia" rows="5" placeholder="Escribe el contenido de la noticia" required></textarea>
+                    <textarea name="noticia" id="noticia" rows="5" placeholder="Escribe el contenido de la noticia"></textarea>
 
                     <label for="url">URL de la imagen</label>
-                    <input type="text" name="url" id="url" placeholder="Ej: https://..." required>
+                    <input type="text" name="url" id="url" placeholder="Ej: https://...">
 
                     <label for="fecha">Fecha programada</label>
                     <input type="date" name="fecha" id="fecha">
@@ -77,17 +83,17 @@
                     <div id="cuestionarioContainer">
                         <div class="cuestionarioPregunta">
                             <label>Pregunta</label>
-                            <input type="text" name="preguntas[]" placeholder="Escribe la pregunta" required>
+                            <input type="text" name="preguntas[]" placeholder="Escribe la pregunta">
 
                             <label>Opciones (separadas por '/')</label>
-                            <input type="text" name="opciones[]" class="opciones" placeholder="Opción1/Opción2/Opción3" required>
+                            <input type="text" name="opciones[]" class="opciones" placeholder="Opción1/Opción2/Opción3">
 
                             <label>Respuesta correcta</label>
-                            <input type="number" name="respuestas_correctas[]" min="1" placeholder="Número de la respuesta correcta" required>
+                            <input type="number" name="respuestas_correctas[]" min="1" placeholder="Número de la respuesta correcta">
                         </div>
                     </div>
 
-                    <input type="submit" value="Guardar noticia">
+                    <input type="submit" value="Guardar noticia" id="btnEnviar">
                 </form>
 
                 <button type="button" id="añadirPregunta">
@@ -118,10 +124,10 @@
                                     <td>' . $noticia['idNoticia'] . '</td>
                                     <td>' . $noticia['titulo'] . '</td>
                                     <td>' . ($noticia['fechaProgramada'] ?? 'No programada') . '</td>
-                                    <td style="text-align: center;" ><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '">
+                                    <td class="tc"><a href="index.php?c=GestionarNoticias&m=modificar&idNoticia=' . $noticia['idNoticia'] . '">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a></td>
-                                    <td style="text-align: center;"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" 
+                                    <td class="tc"><a href="index.php?c=GestionarNoticias&m=eliminar&idNoticia=' . $noticia['idNoticia'] . '" 
                                         onclick="return confirm(\'¿Eliminar esta noticia?\')">
                                         <i class="fa-regular fa-circle-xmark"></i>
                                     </a></td>
@@ -149,8 +155,15 @@
             document.getElementById('formBuscar').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const buscar = document.getElementById('inputBuscar').value.trim();
-                if (buscar !== '') {
+                if (buscar != '') {
                     window.location.href = 'index.php?c=GestionarNoticias&m=buscarNoticias&buscar=' + encodeURIComponent(buscar);
+                } else {
+                    document.getElementById("buscadorFrasesPalabra").innerHTML += `
+                        <div class="mensaje"><p>Por favor, introduce un término de búsqueda.</p></div>
+                    `;
+                    setTimeout(() => {
+                        window.location.href = 'index.php?c=GestionarNoticias&m=gestionarNoticias';
+                    }, 1500);
                 }
             });
 
@@ -186,7 +199,7 @@
 
                 // Cambiar el action para cambiar el metodo a modificar
                 let form = document.getElementById('noticia_formulario');
-                form.action = `index.php?c=GestionarNoticias&m=modificar&idNoticia=${noticia.idNoticia}`;
+                form.action = `index.php?c=GestionarNoticias&m=guardarModificacion&idNoticia=${noticia.idNoticia}`;
                 
 
 
@@ -208,6 +221,7 @@
                 let fechaStr = noticia.fechaProgramada || noticia.fechaCreacion || '';
                 if (fechaStr.length >= 10) fechaStr = fechaStr.substring(0,10);
                 inputFecha.value = fechaStr;
+                
                 
                 
 
@@ -276,5 +290,7 @@
                 contenedor.appendChild(nuevaPregunta);
             });
         </script>
+
+        <script type="module" src="./js/vistas/noticiaDia.js"></script>
     </body>
 </html>
