@@ -25,7 +25,7 @@
                 </button>
             </div>
             <div class="pista">
-                <p><?php echo isset($frase['definicion']) ? $frase['definicion'] : 'No hay frase disponible.'; ?></p>
+                <p><?php echo isset($frase['frase']) ? $frase['frase'] : 'No hay frase disponible.'; ?></p>
             </div>
             <div class="contenedorAcierto">
                 <input type="text" name="acertarPalabra" class="introducirPalabra" placeholder="Tu suposición...">
