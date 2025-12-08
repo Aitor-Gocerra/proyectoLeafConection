@@ -1,4 +1,6 @@
+
 import { cAmigos } from '../controlador/cAmigos.js';
+console.log("!!! EL SCRIPT HA CARGADO !!!");
 const controlador = new cAmigos();
 
 /* ESTO ES LO QUE LE PASAMOS AL MODELO PARA QUE REUTILICE DE ESTA VISTA DE AMIGO */
@@ -96,6 +98,7 @@ document.getElementById('encontrarAmigo').addEventListener('click', async functi
     
     if (idAmigo === '') {
         mostrarError('El usuario no está completo.');
+        return;
     }
 
     console.log("Vista: Validación OK. Enviando datos al Controlador...");
@@ -124,37 +127,53 @@ botnRechazar.addEventListener('click', async function (event){
         controlador.cAmigos(usuario);
 })
 
-/*********************************MODAL SIRVE PARA CONFIRMAR LA ELIMINACIONDE AMIGOS DEL USUARIO ***************/
-    const btnEliminarAmigo = document.getElementById('eliminarAmigoBtn'); /******* BOTON DE ELIMINAR AMIGO DEL MODAL******* */
-    const confirmModal = document.getElementById('confirmModal');/******* BOTON DE QUE APAREZCA O SE OCULTE EL MODAL*/
-    const cancelBtn = document.getElementById('cancelBtn');/******* BOTON DE CANCELAR ELIMINAR EL AMIGO*/
-    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn'); /******* BOTON DE ACEPTAR LA ELIMINACION DEL AMIGO*/
+    /* ==========================================
+    LÓGICA DEL MODAL (Corregida y Blindada)
+    ========================================== */
 
+    const modal = document.getElementById('confirmModal');
+    const contenedorMisAmigos = document.getElementById('misAmigos'); // El div que envuelve a toda la lista
 
-    function mostrarModal() {
-        confirmModal.classList.add('active'); 
-    }
+    // 1. ABRIR MODAL
+    // Usamos "delegación": Escuchamos clicks en toda la lista, no botón por botón.
+    if (contenedorMisAmigos) {
+        contenedorMisAmigos.addEventListener('click', function(e) {
+            
+            // El truco: 'closest' busca si lo que has clickado (o su padre) es el botón de eliminar
+            const botonEliminar = e.target.closest('.eliminarAmigo');
 
-    function ocultarModal() {
-        confirmModal.classList.remove('active');
-    }
-
-
-    if (btnEliminarAmigo) {
-        btnEliminarAmigo.addEventListener('click', function (event) {
-            event.preventDefault(); 
-            mostrarModal(); 
+            if (botonEliminar) {
+                e.preventDefault(); // IMPORTANTE: Evita que el botón recargue la página
+                
+                // Opción A: Si usas clases CSS para mostrarlo
+                if(modal) modal.classList.add('active'); 
+                
+                // Opción B: Si no tienes CSS para '.active', descomenta la línea de abajo para forzarlo:
+                // if(modal) modal.style.display = 'flex'; 
+                
+                console.log("Abriendo modal...");
+            }
         });
     }
 
-    if (cancelBtn) {
-        cancelBtn.addEventListener('click', ocultarModal);
+    // 2. CERRAR MODAL (Botón Cancelar)
+    const btnCancelar = document.getElementById('cancelBtn');
+    if (btnCancelar) {
+        btnCancelar.addEventListener('click', function() {
+            if(modal) modal.classList.remove('active');
+            // if(modal) modal.style.display = 'none'; // Descomenta si usaste la Opción B
+        });
     }
 
-    if (confirmDeleteBtn) {
-        confirmDeleteBtn.addEventListener('click', function() {
-            ocultarModal(); 
-            controlador.cAmigos(usuario);
+    // 3. CONFIRMAR ELIMINACIÓN (Botón Eliminar del Modal)
+    const btnConfirmar = document.getElementById('confirmDeleteBtn');
+    if (btnConfirmar) {
+        btnConfirmar.addEventListener('click', function() {
+            // Aquí llamas a tu función real de borrar
+            console.log("¡Amigo eliminado!");
+            
+            if(modal) modal.classList.remove('active');
+            // if(modal) modal.style.display = 'none'; // Descomenta si usaste la Opción B
         });
     }
 

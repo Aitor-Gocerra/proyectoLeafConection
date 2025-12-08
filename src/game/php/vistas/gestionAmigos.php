@@ -44,9 +44,11 @@
         <div id="misSolicitudes">
             <h2>Solicitudes de Amistad</h2>
             <div id="contenedorSolicitudes">
-                <?php
-                    require_once 'vistas/parciales/listaSolicitudes.php';
-                ?>
+                <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
+                <p class="nombreAmigo">Aitor Gomez</p>
+                <button type="submit" class="aceptarSolicitud" id="btnAceptarSolicitud">Aceptar <i
+                        class="fa-solid fa-user-check"></i></button></i>
+                <button type="submit" class="rechazarSolicitud" id="btnRechazarSolicitud">Rechazar <i class="fa-solid fa-user-xmark"></i></button>
             </div>
         </div>
     </main>
@@ -59,7 +61,7 @@
         ?>
     </footer>
 
-    <div id="confirmModal" class="modal-overlay-simple">
+   <div id="confirmModal" class="modal-overlay-simple">
         <div class="modal-content-simple">
             <h3>¿Estás seguro?</h3>
             <p>Esta acción eliminará a tu amigo permanentemente.</p>
