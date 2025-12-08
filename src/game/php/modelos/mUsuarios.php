@@ -4,7 +4,6 @@ require_once __DIR__ . '/mConexion.php';
 
 class MUsuarios extends Conexion{
     public $codError;
-    private $conexion;
     
     public function registrar($datos){
         try{
