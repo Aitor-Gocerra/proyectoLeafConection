@@ -70,5 +70,60 @@ class CFrases
             ]);
         }
     }
+
+    public function guardarPartida()
+    {
+        $this->vista = '';
+        header('Content-Type: application/json');
+
+        $idUsuario = $_SESSION['idUsuario'] ?? null;
+
+        if (!$idUsuario) {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Usuario no autenticado'
+            ]);
+            return;
+        }
+
+        // Verificar si ya jugó hoy
+        if ($this->fraseMod->haJugadoHoy($idUsuario)) {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Ya has jugado la frase del día hoy'
+            ]);
+            return;
+        }
+
+        // Obtener datos del POST
+        $idFrase = $_POST['idFrase'] ?? null;
+        $temporizador = $_POST['tiempo'] ?? 0;
+        $puntuacion = $_POST['puntuacion'] ?? 0;
+        $intentos = $_POST['intentos'] ?? 1;
+
+        if (!$idFrase) {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Datos incompletos'
+            ]);
+            return;
+        }
+
+        // Guardar la partida en la base de datos
+        $resultado = $this->fraseMod->guardarPartida($idFrase, $temporizador, $puntuacion, $intentos, $idUsuario);
+
+        if ($resultado) {
+            echo json_encode([
+                'success' => true,
+                'mensaje' => 'Partida guardada correctamente',
+                'puntuacion' => $puntuacion
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Error al guardar la partida'
+            ]);
+        }
+    }
 }
 ?>

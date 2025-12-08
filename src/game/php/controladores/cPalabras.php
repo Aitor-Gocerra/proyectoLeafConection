@@ -50,17 +50,18 @@ class CPalabras
 
     }
 
-    public function obtenerPalabraJSON() {
+    public function obtenerPalabraJSON()
+    {
         // No cargo ninguna vista
         $this->vista = '';
         header('Content-Type: application/json'); //Esto es necesario para que sepa que tipo de informacion va a recibir
-        
+
         $palabra = $this->palabraMod->mostrarPalabra();
-        
+
         if ($palabra) {
             $idPalabra = $palabra['idPalabra'];
             $correcta = $this->palabraMod->palabraCorrecta($idPalabra);
-            
+
             echo json_encode([ //Paso los datos que recibo
                 'success' => true,
                 'palabra' => $correcta['palabra'],
@@ -70,6 +71,61 @@ class CPalabras
             echo json_encode([
                 'success' => false,
                 'error' => 'No hay palabra programada para hoy'
+            ]);
+        }
+    }
+
+    public function guardarPartida()
+    {
+        $this->vista = '';
+        header('Content-Type: application/json');
+
+        $idUsuario = $_SESSION['idUsuario'] ?? null;
+
+        if (!$idUsuario) {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Usuario no autenticado'
+            ]);
+            return;
+        }
+
+        // Verificar si ya jugó hoy
+        if ($this->palabraMod->haJugadoHoy($idUsuario)) {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Ya has jugado la palabra del día hoy'
+            ]);
+            return;
+        }
+
+        // Obtener datos del POST
+        $idPalabra = $_POST['idPalabra'] ?? null;
+        $temporizador = $_POST['tiempo'] ?? 0;
+        $puntuacion = $_POST['puntuacion'] ?? 0;
+        $intentos = $_POST['intentos'] ?? 1;
+
+        if (!$idPalabra) {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Datos incompletos'
+            ]);
+            return;
+        }
+
+        // Guardar la partida en la base de datos
+        $resultado = $this->palabraMod->guardarPartida($idPalabra, $temporizador, $puntuacion, $intentos, $idUsuario);
+
+        if ($resultado) {
+            echo json_encode([
+                'success' => true,
+                'mensaje' => 'Partida guardada correctamente',
+                'puntuacion' => $puntuacion
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Error al guardar la partida'
             ]);
         }
     }

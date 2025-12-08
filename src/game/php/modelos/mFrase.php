@@ -57,5 +57,48 @@ class Frase extends Conexion
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function guardarPartida($idFrase, $temporizador, $puntuacion, $intentos, $idUsuario)
+    {
+
+        $sql1 = "INSERT INTO Partida (temporizador, puntuacion, intentos, idUsuario) 
+                VALUES (:temporizador, :puntuacion, :intentos, :idUsuario);";
+
+        $sql2 = "INSERT INTO FraseDia (idPartida, idFrase) VALUES (:idPartida, :idFrase);";
+
+        try {
+            $this->conexion->beginTransaction();
+            $sth = $this->conexion->prepare($sql1);
+            $sth->execute(['temporizador' => $temporizador, 'puntuacion' => $puntuacion, 'intentos' => $intentos, 'idUsuario' => $idUsuario]);
+            $idPartida = $this->conexion->lastInsertId();
+            $sth = $this->conexion->prepare($sql2);
+            $sth->execute(['idPartida' => $idPartida, 'idFrase' => $idFrase]);
+            $this->conexion->commit();
+            return $sth->rowCount() > 0 ? true : false;
+        } catch (PDOException $e) {
+            $this->conexion->rollBack();
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function haJugadoHoy($idUsuario)
+    {
+        $sql = "SELECT * FROM FraseDia 
+                INNER JOIN Partida ON FraseDia.idPartida = Partida.idPartida 
+                INNER JOIN Frases ON FraseDia.idFrase = Frases.idFrase 
+                WHERE Partida.idUsuario = :idUsuario && DATE(Frases.fechaProgramada) = :fechaActual;";
+
+        $fechaActual = date("Y-m-d");
+
+        try {
+            $sth = $this->conexion->prepare($sql);
+            $sth->execute(['idUsuario' => $idUsuario, 'fechaActual' => $fechaActual]);
+            return $sth->rowCount() > 0 ? true : false;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 ?>
