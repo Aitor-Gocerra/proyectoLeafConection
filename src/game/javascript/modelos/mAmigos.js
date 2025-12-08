@@ -53,7 +53,7 @@ export class mAmigos {
             else if (result === 'SolicitudExistente') this.mostrarMensaje('Ya existe una solicitud pendiente.', 'red');
             
             // Aquí es donde estás cayendo ahora:
-            else this.mostrarMensaje('Error al enviar solicitud. (Revisa consola)', 'red');
+            else this.mostrarMensaje('Error al enviar solicitud.', 'red');
         }
     }
 
