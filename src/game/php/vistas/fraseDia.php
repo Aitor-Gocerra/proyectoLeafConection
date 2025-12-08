@@ -76,6 +76,12 @@
             }
         }
     </script>
+
+    <!-- MVC JavaScript: Cargar en orden (Modelo -> Controlador -> Vista -> App) -->
+    <script src="javaScript/modelos/mFrase.js"></script>
+    <script src="javaScript/controladores/cFrase.js"></script>
+    <script src="javaScript/vistas/vFraseDia.js"></script>
+    <script src="javaScript/app.js"></script>
 </body>
 
 </html>

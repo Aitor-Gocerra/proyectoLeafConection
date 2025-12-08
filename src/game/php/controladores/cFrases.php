@@ -14,7 +14,8 @@ class CFrases
     {
         $this->fraseMod = new Frase();
         $this->vista = '';
-    }    
+    }
+
     public function cargaDatosJuego()
     {
 
@@ -43,6 +44,31 @@ class CFrases
             'mensaje' => $this->mensaje
         ];
 
+    }
+
+    public function obtenerFraseJSON()
+    {
+        // No cargo ninguna vista
+        $this->vista = '';
+        header('Content-Type: application/json');
+
+        $frase = $this->fraseMod->mostrarFrase();
+
+        if ($frase) {
+            $idFrase = $frase['idFrase'];
+            $correcta = $this->fraseMod->palabraFaltante($idFrase);
+
+            echo json_encode([
+                'success' => true,
+                'palabra' => $correcta['palabraFaltante'], // La palabra que falta en la frase
+                'idFrase' => $idFrase
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'error' => 'No hay frase programada para hoy'
+            ]);
+        }
     }
 }
 ?>
