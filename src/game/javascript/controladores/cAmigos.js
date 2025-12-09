@@ -22,18 +22,17 @@ export class cAmigos {
 
     //GESTIÓN DE ELIMINACIÓN DE AMIGO DEL MODAL
 
-    eliminarAmigo() {
+    rechazarEliminar(idAmigo) {
 
+        let formData = new FormData(); 
+        formData.append('idAmigo', idAmigo); 
+        this.modelo.rechazarEliminar(formData);
     }
 
-    // GESTIÓN DE SOLICITUDES (Botones Aceptar/Rechazar)
-    
-    aceptarSolicitud() {
-        this.vista.limpiarMensajes();
-    }
+    aceptarSolicitud(idAmigo){
 
-    rechazarSolicitud() {
-        this.vista.limpiarMensajes();
-        
+        let formData = new FormData(); 
+        formData.append('idAmigo', idAmigo); 
+        this.modelo.aceptarSolicitud(formData);
     }
 }

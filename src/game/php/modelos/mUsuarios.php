@@ -137,7 +137,7 @@ class MUsuarios extends Conexion{
         }
     }
 
-public function listarSolicitudes($idUsuario)
+    public function listarSolicitudes($idUsuario)
     {
         
         $sql = "
@@ -158,8 +158,36 @@ public function listarSolicitudes($idUsuario)
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
-            // Si falla, mostramos el error para saber qué pasa
             echo "Error SQL: " . $e->getMessage();
+            return [];
+        }
+    }
+
+
+    public function rechazarEliminar($idUsuario, $idAmigo){
+        
+
+            $sql = "DELETE FROM Amigos 
+                    WHERE (idUsuario1 = :miId1 AND idUsuario2 = :amigoId1) 
+                    OR (idUsuario1 = :amigoId2 AND idUsuario2 = :miId2)";
+            
+            try {
+            $stmt = $this->conexion->prepare($sql);
+            
+            $stmt->bindValue(':miId1',    $idUsuario, PDO::PARAM_INT);
+            $stmt->bindValue(':amigoId1', $idAmigo,   PDO::PARAM_INT);
+            
+            $stmt->bindValue(':amigoId2', $idAmigo,   PDO::PARAM_INT);
+            $stmt->bindValue(':miId2',    $idUsuario, PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                return 'true';
+            } else {
+                return 'ErrorBD';
+            }
+
+        } catch (PDOException $e) {
+            echo "ErrorSQL: " . $e->getMessage();
             return [];
         }
     }

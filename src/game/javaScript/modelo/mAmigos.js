@@ -72,30 +72,35 @@ export class mAmigos {
     }
 
     // 3. RECHAZAR SOLICITUD (Faltaba esta)
-    async rechazarSolicitud(formData) {
-        const result = await this.peticiones('rechazarSolicitud', formData);
+async rechazarEliminar(formData) {
+        // [DEPURACIÓN 1] Ver qué estamos enviando
+        console.log("📤 Enviando petición de rechazo..."); 
+        for (let pair of formData.entries()) {
+            console.log(pair[0]+ ': ' + pair[1]); 
+        }
 
-        if (!result) return;
+        const result = await this.peticiones('rechazarEliminar', formData);
 
-        if (result === 'true') {
+        // [DEPURACIÓN 2] Ver qué devuelve el servidor EXACTAMENTE
+        console.log("📥 Respuesta CRUDA del servidor:", result);
+
+        if (!result) {
+            console.error("❌ El servidor devolvió NULL o vacío.");
+            return;
+        }
+
+        // [CORRECCIÓN] Limpiamos espacios en blanco (trim) por si PHP añade saltos de línea
+        const respuestaLimpia = result.trim();
+
+        if (respuestaLimpia === 'true') {
             this.mostrarMensaje('Solicitud rechazada.', 'green');
             setTimeout(() => location.reload(), 1000); 
         } else {
-            this.mostrarMensaje('Error al rechazar solicitud.', 'red');
-        }
-    }
-
-    // 4. ELIMINAR AMIGO
-    async eliminarAmigo(formData) {
-        const result = await this.peticiones('eliminarAmigo', formData);
-
-        if (!result) return;
-
-        if (result === 'true') {
-            this.mostrarMensaje('Amigo eliminado.', 'green');
-            setTimeout(() => location.reload(), 1000); 
-        } else {
-            this.mostrarMensaje('Error al eliminar amigo.', 'red');
+            // [DEPURACIÓN 3] Aquí veremos el error real
+            console.error("❌ NO ES 'true'. El servidor dijo:", result);
+            
+            // Mostramos el error en pantalla para que lo veas rápido
+            this.mostrarMensaje('Error del servidor: ' + respuestaLimpia, 'red');
         }
     }
 }

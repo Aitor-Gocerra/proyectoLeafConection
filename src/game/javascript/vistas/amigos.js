@@ -138,8 +138,8 @@ botnRechazar.forEach(boton => {
         this.style.display = 'none';
         this.parentElement.querySelector('.aceptarSolicitud').style.display = 'none';
 
-        controlador.rechazarSolicitud(idUsuario);
-    });
+        controlador.rechazarEliminar(idUsuario);
+    })
 });
 
     const modal = document.getElementById('confirmModal');

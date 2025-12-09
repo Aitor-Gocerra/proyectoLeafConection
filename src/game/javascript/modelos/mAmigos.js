@@ -53,7 +53,7 @@ export class mAmigos {
             else if (result === 'SolicitudExistente') this.mostrarMensaje('Ya existe una solicitud pendiente.', 'red');
             
             // Aquí es donde estás cayendo ahora:
-            else this.mostrarMensaje('Error al enviar solicitud.', 'red');
+            else this.mostrarMensaje('Error al enviar solicitud. (Revisa consola)', 'red');
         }
     }
 
@@ -63,39 +63,24 @@ export class mAmigos {
 
         if (!result) return;
 
-        if (result === 'true') {
-            this.mostrarMensaje('Solicitud aceptada. Actualizando...', 'green');
-            setTimeout(() => location.reload(), 1000); 
-        } else {
-            this.mostrarMensaje('Error al aceptar solicitud.', 'red');
+        if (!result) {
+            return;
+        }
+        if (result !== 'true') {
+            this.mostrarMensaje('Error del servidor: ' + result, 'red');
         }
     }
 
     // 3. RECHAZAR SOLICITUD (Faltaba esta)
-    async rechazarSolicitud(formData) {
-        const result = await this.peticiones('rechazarSolicitud', formData);
+    async rechazarEliminar(formData) {
 
-        if (!result) return;
+        const result = await this.peticiones('rechazarEliminar', formData);
 
-        if (result === 'true') {
-            this.mostrarMensaje('Solicitud rechazada.', 'green');
-            setTimeout(() => location.reload(), 1000); 
-        } else {
-            this.mostrarMensaje('Error al rechazar solicitud.', 'red');
+        if (!result) {
+            return;
         }
-    }
-
-    // 4. ELIMINAR AMIGO
-    async eliminarAmigo(formData) {
-        const result = await this.peticiones('eliminarAmigo', formData);
-
-        if (!result) return;
-
-        if (result === 'true') {
-            this.mostrarMensaje('Amigo eliminado.', 'green');
-            setTimeout(() => location.reload(), 1000); 
-        } else {
-            this.mostrarMensaje('Error al eliminar amigo.', 'red');
+        if (result !== 'true') {
+            this.mostrarMensaje('Error del servidor: ' + result, 'red');
         }
     }
 }
