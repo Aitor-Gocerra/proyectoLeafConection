@@ -27,7 +27,7 @@ class MPalabra {
         }
     }
 
-    async guardarPartida(idPalabra, tiempo, puntuacion, intentos, idUsuario) {
+    async guardarPartida(idPalabra, tiempo, puntuacion, intentos) {
         try {
             const datosFormulario = new FormData();
             datosFormulario.append('idPalabra', idPalabra);
@@ -35,9 +35,7 @@ class MPalabra {
             datosFormulario.append('puntuacion', puntuacion);
             datosFormulario.append('intentos', intentos);
 
-            if (idUsuario) {
-                datosFormulario.append('idUsuario', idUsuario);
-            }
+            // El idUsuario se recoge de la sesión PHP en el servidor
 
             const respuesta = await fetch('index.php?c=Palabras&m=guardarPartida', {
                 method: 'POST',

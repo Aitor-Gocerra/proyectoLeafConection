@@ -71,11 +71,6 @@
         }
     </script>
 
-    <script>
-        // Definir constante global con el ID del usuario desde la sesión PHP
-        const ID_USUARIO = <?php echo isset($_SESSION['idUsuario']) ? json_encode($_SESSION['idUsuario']) : 'null'; ?>;
-    </script>
-    
     <script src="javaScript/temporizador.js"></script>
 
     <!-- MVC JavaScript: Cargar en orden (Modelo -> Controlador -> Vista -> App) -->
