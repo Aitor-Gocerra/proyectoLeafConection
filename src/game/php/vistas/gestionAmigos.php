@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-    <script type="module" src="javascript/vistas/amigos.js"></script>
+    <script type="module" src="javaScript/vistas/amigos.js"></script>
 </body>
 
 </html>

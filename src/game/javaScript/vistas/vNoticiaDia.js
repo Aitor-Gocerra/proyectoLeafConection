@@ -1,55 +1,60 @@
 let btnEnviar = document.getElementById('btnEnviar');
 let form = document.getElementById('formNoticia');
 
-console.log("hola");
 document.addEventListener('DOMContentLoaded', function(e) {
-    
+
     let respuestasCorrectas = window.respuestasCorrectas || {};
     let respuestasUsuario   = window.respuestasUsuario || {};
 
-    
-    if (form && respuestasCorrectas) {
+    // Restaurar lo que ha marcado el jugador a cada radio
 
-        // Restaurar lo que ha marcado el jugador
+
+
+    if (form && respuestasUsuario) {
         for (let nPregunta in respuestasUsuario) {
-            if (respuestasUsuario.hasOwnProperty(nPregunta)) {
+            if (Object.prototype.hasOwnProperty.call(respuestasUsuario, nPregunta)) {
                 let valorUsuario = String(respuestasUsuario[nPregunta]);
                 let input = form.querySelector(`input[type="radio"][name="${nPregunta}"][value="${valorUsuario}"]`);
-                if (input) {
-                    input.checked = true;
-                }
+                if (input) input.checked = true;
             }
         }
+
+
+
 
         if (Object.keys(respuestasUsuario).length > 0) {
             btnEnviar.disabled = true;
             btnEnviar.style.backgroundColor = "#929292ff";
         }
+    }
 
-        
-        // Colocar los iconos de check y X según aciertos/errores
+
+
+
+
+
+    // Marcar iconos de acierto/error
+    if (form && respuestasCorrectas) {
         for (let nPregunta in respuestasCorrectas) {
-            if (respuestasCorrectas.hasOwnProperty(nPregunta)) {
+            if (Object.prototype.hasOwnProperty.call(respuestasCorrectas, nPregunta)) {
                 let opcionCorrecta = String(respuestasCorrectas[nPregunta]);
                 let opcionUsuario  = (respuestasUsuario && respuestasUsuario[nPregunta] !== undefined) ? String(respuestasUsuario[nPregunta]) : null;
 
-                // Coge todos los radios de esa pregunta
-                let inputs = form.querySelectorAll(
-                    `input[type="radio"][name="${nPregunta}"]`
-                );
 
+
+                
+                let inputs = form.querySelectorAll(`input[type="radio"][name="${nPregunta}"]`);
                 inputs.forEach(input => {
-                    let li = input.closest('li'); // Va a li (contenedor padre)
+                    let li = input.closest('li');
+                    if (!li) return;
                     let valor = String(input.value);
 
-                    // Marcar respuestas CORRECTAS con check verde
                     if (valor === opcionCorrecta) {
                         let iconCheck = document.createElement('i');
                         iconCheck.className = 'fa-regular fa-circle-check';
                         li.appendChild(iconCheck);
                     }
 
-                    // Marcar respuestas INCORRECTAS del usuario con X roja
                     if (opcionUsuario !== null && valor === opcionUsuario && valor !== opcionCorrecta) {
                         let iconX = document.createElement('i');
                         iconX.className = 'fa-regular fa-circle-xmark';
@@ -58,6 +63,37 @@ document.addEventListener('DOMContentLoaded', function(e) {
                 });
             }
         }
-        
     }
+
+    // Validación en cliente: impedir envío si faltan preguntas
+    if (form && btnEnviar && Object.keys(respuestasCorrectas).length > 0 && !btnEnviar.disabled) {
+        form.addEventListener('submit', function(ev) {
+            // contar preguntas esperadas
+            const preguntasEsperadas = Object.keys(respuestasCorrectas).length;
+            let respondidas = 0;
+
+
+
+
+
+            for (let nPregunta in respuestasCorrectas) {
+                if (Object.prototype.hasOwnProperty.call(respuestasCorrectas, nPregunta)) {
+                    let selector = `input[type="radio"][name="${nPregunta}"]:checked`;
+                    if (form.querySelector(selector)) respondidas++;
+                }
+            }
+
+
+
+
+
+            if (respondidas < preguntasEsperadas) {
+                ev.preventDefault();
+                // Mensaje amigable al usuario (puedes cambiar por un modal)
+                alert(`Debes responder las ${preguntasEsperadas} preguntas. Faltan ${preguntasEsperadas - respondidas}.`);
+                return false;
+            }
+        });
+    }
+
 });

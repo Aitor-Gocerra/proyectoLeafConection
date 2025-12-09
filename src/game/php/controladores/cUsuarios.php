@@ -12,12 +12,18 @@ class CUsuarios{
         $this->vista = 'login';
     }
 
-    public function mostrarRegistrar(){
+    public function registro(){
         $this->vista = 'registro';
     }
 
     public function mostrarInicio(){
+        $this->sessionStart();
         $this->vista = 'inicio';
+    }
+
+    public function amigos(){
+        $this->sessionStart();
+        $this->vista = 'gestionAmigos';
     }
 
     public function registrar($datos){
@@ -119,6 +125,7 @@ class CUsuarios{
     private function cifrarPassword($password){
         return password_hash($password, PASSWORD_DEFAULT);
     }
+    
     public function cerrarSesionUsuario(){
         //Lamamos la funcion de crearSesion porque para eliminarla hay que llamar a session_start()
         $this->sessionStart();

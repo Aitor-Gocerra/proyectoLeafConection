@@ -24,14 +24,14 @@
                     <i class="fas fa-puzzle-piece"></i>
                     <h2 class="tituloTarjeta">Palabra del dia</h2>
                     <p class="descripcionTarjeta">Adivina la eco-palabra del dia</p>
-                    <a href="index.php?c=Paginas&m=palabraDia">Comenzar desafío</a>
+                    <a href="index.php?c=Palabras&m=cargaDatosJuego">Comenzar desafío</a>
                 </div>
 
                 <div class="tarjetaJuego">
                     <i class="fas fa-quote-left"></i>
                     <h2 class="tituloTarjeta">Frase del dia</h2>
                     <p class="descripcionTarjeta">Completa la cita inspiradora</p>
-                    <a href="index.php?c=Paginas&m=fraseDia">Comenzar desafío</a>
+                    <a href="index.php?c=Frases&m=cargaDatosJuego">Comenzar desafío</a>
                 </div>
 
                 <div class="tarjetaJuego">
