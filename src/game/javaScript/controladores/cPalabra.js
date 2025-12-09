@@ -11,14 +11,13 @@ class CPalabra {
     }
 
     async inicializar() {
-        try {
-            const datos = await this.modelo.obtenerPalabraCorrecta();
+        const datos = await this.modelo.obtenerPalabraCorrecta();
+        if (datos) {
             this.palabraCorrecta = datos.palabra;
             this.idPalabra = datos.idPalabra;
-            console.log('Palabra cargada correctamente');
-        } catch (error) {
-            console.error('Controlador: Error al inicializar:', error);
-            this.vista.mostrarError('No se pudo cargar la palabra del día');
+            console.log('Palabra cargada: ' + this.palabraCorrecta);
+        } else {
+            console.error('No se pudo cargar la palabra');
         }
     }
 
@@ -55,10 +54,9 @@ class CPalabra {
     async guardarJuego() {
         if (!this.idPalabra) return;
 
-        // Obtener datos del temporizador (asumiendo que existen estas funciones globales o en un módulo)
-        // Puedes necesitar ajustar esto según cómo tengas implementado el temporizador
-        const tiempoTranscurrido = typeof obtenerTiempoTranscurrido === 'function' ? obtenerTiempoTranscurrido() : 0;
-        const tiempoRestante = typeof obtenerTiempoRestante === 'function' ? obtenerTiempoRestante() : 0;
+        // Obtener datos del temporizador
+        const tiempoTranscurrido = obtenerTiempoTranscurrido();
+        const tiempoRestante = obtenerTiempoRestante();
 
         // Puntuación sencilla: 1 punto por segundo restante
         const puntuacion = tiempoRestante;
