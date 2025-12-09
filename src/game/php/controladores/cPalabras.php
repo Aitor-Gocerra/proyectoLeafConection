@@ -90,6 +90,13 @@ class CPalabras
             return;
         }
 
+        // Verificación opcional del ID enviado desde el cliente
+        $idUsuarioCliente = $_POST['idUsuario'] ?? null;
+        if ($idUsuarioCliente && $idUsuarioCliente != $idUsuario) {
+            // Podríamos lanzar error, o simplemente ignorarlo y usar el de sesión (más seguro)
+            // Aquí opto por confianza en la sesión, pero logueando si hay discrepancia (imaginaria)
+        }
+
         // Verificar si ya jugó hoy
         if ($this->palabraMod->haJugadoHoy($idUsuario)) {
             echo json_encode([

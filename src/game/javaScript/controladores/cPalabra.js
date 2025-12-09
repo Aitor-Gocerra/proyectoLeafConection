@@ -43,7 +43,7 @@ class CPalabra {
             const tiempo = obtenerTiempoTranscurrido();
             const puntuacion = Math.max(0, 100 - (this.intentos * 5)); // Puntuación básica
 
-            this.modelo.guardarPartida(this.idPalabra, tiempo, puntuacion, this.intentos)
+            this.modelo.guardarPartida(this.idPalabra, tiempo, puntuacion, this.intentos, ID_USUARIO)
                 .then(res => {
                     if (res && res.success) {
                         console.log('Partida guardada correctamente');
