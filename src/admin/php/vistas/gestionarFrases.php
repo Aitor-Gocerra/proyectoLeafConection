@@ -66,6 +66,7 @@
 
         <div id="contenedorAdmin">
             <h1>Añadir/Editar Frase del Dia</h1>
+            <a href="#ultimasDiezFrases">Ir al listado de frases</a>
             <form
                 action="<?php echo (isset($fraseEditar) && !$usarModal) ? 'index.php?c=Frase&m=actualizarFrase' : 'index.php?c=Frase&m=guardarNuevaFrase'; ?>"
                 method="post">

@@ -65,6 +65,7 @@
 
         <div id="contenedorAdmin">
             <h1>Añadir/Editar Palabra del Dia</h1>
+            <a href="#ultimasDiezPalabras">Ir al listado de palabras</a>
             <form
                 action="<?php echo (isset($palabraEditar) && !$usarModal) ? 'index.php?c=Palabra&m=actualizarPalabra' : 'index.php?c=Palabra&m=guardarNuevaPalabra'; ?>"
                 method="post">
