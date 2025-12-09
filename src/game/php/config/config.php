@@ -6,7 +6,5 @@
     define("DEF_CONTROLLER", "Paginas");
     define("DEF_METHOD", "login");
 
-    // CONTROLADORES y MODELOS
-
     define("CONTROLADOR_USUARIO","Usuarios");
 ?>

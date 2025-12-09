@@ -17,7 +17,7 @@ echo '
 
     if (isset($_SESSION['usuario'])) {
         echo '
-                <a href="index.php?c=Paginas&m=amigos"><i class="fas fa-users"></i> Mis Amigos</a>
+                <a href="index.php?c=Usuarios&m=amigos"><i class="fas fa-users"></i> Mis Amigos</a>
                 <a href="index.php?c=Paginas&m=estadisticas"><i class="fas fa-chart-bar"></i> Mis Estadísticas</a>
                 <a href="index.php?c=Usuarios&m=cerrarSesionUsuario"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>';
     } else {
