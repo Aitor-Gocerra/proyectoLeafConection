@@ -64,8 +64,11 @@
         <?php } ?>
 
         <div id="contenedorAdmin">
-            <h1>Añadir/Editar Palabra del Dia</h1>
-            <a href="#ultimasDiezPalabras">Ir al listado de palabras</a>
+            <div class="encabezado-seccion">
+                <h1>Añadir/Editar Palabra del Dia</h1>
+                <a href="#ultimasDiezPalabras" class="enlace-listado">Ir al listado de palabras <i
+                        class="fa-solid fa-arrow-down"></i></a>
+            </div>
             <form
                 action="<?php echo (isset($palabraEditar) && !$usarModal) ? 'index.php?c=Palabra&m=actualizarPalabra' : 'index.php?c=Palabra&m=guardarNuevaPalabra'; ?>"
                 method="post">
@@ -125,7 +128,7 @@
         </div>
 
         <br>
-        
+
         <div id="ultimasDiezPalabras">
             <h2>Últimas 10 Palabras</h2>
             <?php if (isset($palabras) && !empty($palabras)) { ?>
