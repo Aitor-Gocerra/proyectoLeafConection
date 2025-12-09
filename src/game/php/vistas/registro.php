@@ -58,6 +58,6 @@
 
 </body>
 
-<script type="module" src="javascript/vistas/registrarse.js"></script>
+<script type="module" src="javaScript/vistas/registrarse.js"></script>
 
 </html>

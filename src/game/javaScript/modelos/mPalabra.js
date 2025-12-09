@@ -27,32 +27,6 @@ class MPalabra {
         }
     }
 
-    async guardarPartida(idPalabra, tiempo, puntuacion, intentos) {
-        try {
-            const datosFormulario = new FormData();
-            datosFormulario.append('idPalabra', idPalabra);
-            datosFormulario.append('tiempo', tiempo);
-            datosFormulario.append('puntuacion', puntuacion);
-            datosFormulario.append('intentos', intentos);
-
-            // El idUsuario se recoge de la sesión PHP en el servidor
-
-            const respuesta = await fetch('index.php?c=Palabras&m=guardarPartida', {
-                method: 'POST',
-                body: datosFormulario
-            });
-
-            if (!respuesta.ok) {
-                throw new Error(`Error HTTP: ${respuesta.status}`);
-            }
-
-            return await respuesta.json();
-        } catch (error) {
-            console.error('Modelo: Error al guardar la partida:', error);
-            return { success: false, error: error.message };
-        }
-    }
-
     normalizarPalabra(palabra) {
         return palabra
             .toLowerCase()
@@ -66,5 +40,37 @@ class MPalabra {
         const correctaNormalizada = this.normalizarPalabra(palabraCorrecta);
 
         return usuarioNormalizada === correctaNormalizada;
+    }
+
+    async guardarPartida(idPalabra, tiempo, puntuacion, intentos) {
+        try {
+            const formData = new FormData();
+            formData.append('idPalabra', idPalabra);
+            formData.append('tiempo', tiempo);
+            formData.append('puntuacion', puntuacion);
+            formData.append('intentos', intentos);
+
+            const respuesta = await fetch('index.php?c=Palabras&m=guardarPartida', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!respuesta.ok) {
+                throw new Error(`Error HTTP: ${respuesta.status}`);
+            }
+
+            const datos = await respuesta.json();
+
+            if (!datos.success) {
+                throw new Error(datos.error || 'Error al guardar la partida');
+            }
+
+            return datos;
+
+        } catch (error) {
+            console.error('Modelo: Error al guardar la partida:', error);
+            // No lanzamos error para no interrumpir la experiencia del usuario, solo logueamos
+            return { success: false, error: error.message };
+        }
     }
 }

@@ -33,8 +33,8 @@
             <div id="mensaje-error"></div>
             
             <button type="button" id="btn-login" class="boton-autenticacion-primario">Iniciar Sesión</button>
-            <a href="index.php?c=Paginas&m=inicio" class="boton-autenticacion-secundario">Jugar como invitado</a>
-            <p>¿No tienes cuenta? <a href="index.php?c=Paginas&m=registro">Regístrate</a></p>
+            <a href="index.php?c=Usuarios&m=mostrarInicio" class="boton-autenticacion-secundario">Jugar como invitado</a>
+            <p>¿No tienes cuenta? <a href="index.php?c=Usuarios&m=registro">Regístrate</a></p>
         </form>
 
     </main>
@@ -44,7 +44,7 @@
         require_once 'parciales/footer.php';
         ?>
     </footer>
-    <script type="module" src="javascript/vistas/iniciarsesion.js"></script>
+    <script type="module" src="javaScript/vistas/iniciarsesion.js"></script>
 </body>
 
 </html>

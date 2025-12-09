@@ -70,15 +70,19 @@ class Frase extends Conexion
             $this->conexion->beginTransaction();
             $sth = $this->conexion->prepare($sql1);
             $sth->execute(['temporizador' => $temporizador, 'puntuacion' => $puntuacion, 'intentos' => $intentos, 'idUsuario' => $idUsuario]);
+
             $idPartida = $this->conexion->lastInsertId();
+            
             $sth = $this->conexion->prepare($sql2);
             $sth->execute(['idPartida' => $idPartida, 'idFrase' => $idFrase]);
+
             $this->conexion->commit();
-            return $sth->rowCount() > 0 ? true : false;
+
+            return ['success' => true];
+
         } catch (PDOException $e) {
             $this->conexion->rollBack();
-            echo "Error: " . $e->getMessage();
-            return false;
+            return ['success' => false, 'error' => $e->getMessage()];
         }
     }
 

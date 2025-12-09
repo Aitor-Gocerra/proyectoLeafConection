@@ -79,7 +79,7 @@ class MUsuarios extends Conexion{
     public function procesarSolicitud($idEmisor, $nombreDestino){
         try {
             // 1. BUSCAR EL ID DEL USUARIO DESTINO
-            $sql = "SELECT idUsuario FROM usuario WHERE nombre = :nombre";
+            $sql = "SELECT idUsuario FROM Usuario WHERE nombre = :nombre";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':nombre', $nombreDestino, PDO::PARAM_STR);
             $stmt->execute();
@@ -98,17 +98,25 @@ class MUsuarios extends Conexion{
             }
 
             // 3. COMPROBAR SI YA EXISTE RELACIÓN
-            $sqlCheck = "SELECT idUsuario1 FROM Amigos WHERE (idUsuario1 = :emisor AND idUsuario2 = :receptor) OR (idUsuario1 = :receptor AND idUsuario2 = :emisor)";
+            // Usamos nombres DISTINTOS para cada hueco (:emisor1, :receptor1...) para evitar el error HY093
+            $sqlCheck = "SELECT idUsuario1 FROM Amigos 
+                         WHERE (idUsuario1 = :emisor1 AND idUsuario2 = :receptor1) 
+                            OR (idUsuario1 = :receptor2 AND idUsuario2 = :emisor2)";
             
             $stmtCheck = $this->conexion->prepare($sqlCheck);
-            $stmtCheck->bindValue(':emisor', $idEmisor, PDO::PARAM_INT);
-            $stmtCheck->bindValue(':receptor', $idReceptor, PDO::PARAM_INT);
+            
+            // Enlazamos las 4 variables por separado
+            $stmtCheck->bindValue(':emisor1', $idEmisor, PDO::PARAM_INT);
+            $stmtCheck->bindValue(':receptor1', $idReceptor, PDO::PARAM_INT);
+            
+            $stmtCheck->bindValue(':receptor2', $idReceptor, PDO::PARAM_INT);
+            $stmtCheck->bindValue(':emisor2', $idEmisor, PDO::PARAM_INT);
+            
             $stmtCheck->execute();
 
             if($stmtCheck->rowCount() > 0){
                 return 'SolicitudExistente';
             }
-
             // 4. INSERTAR LA NUEVA SOLICITUD
             // Estado: 0 (Pendiente), Fecha: NOW()
             $sqlInsert = "INSERT INTO Amigos (idUsuario1, idUsuario2, fechaSolicitud, estado) VALUES (:id1, :id2, NOW(), 0)";

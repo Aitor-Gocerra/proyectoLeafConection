@@ -3,8 +3,8 @@ class CPalabra {
         this.modelo = modelo;
         this.vista = vista;
         this.palabraCorrecta = null;
-        this.intentos = 0;
         this.idPalabra = null;
+        this.intentos = 0;
 
         // Cargar la palabra correcta al iniciar
         this.inicializar();
@@ -33,25 +33,12 @@ class CPalabra {
             return;
         }
 
-        this.intentos++;
         const esCorrecta = this.modelo.validarPalabra(palabraUsuario, this.palabraCorrecta);
+        this.intentos++;
 
         if (esCorrecta) {
             this.vista.mostrarExito(this.palabraCorrecta);
-
-            // Calcular puntuación y enviar datos
-            const tiempo = obtenerTiempoTranscurrido();
-            const puntuacion = Math.max(0, 100 - (this.intentos * 5)); // Puntuación básica
-
-            this.modelo.guardarPartida(this.idPalabra, tiempo, puntuacion, this.intentos)
-                .then(res => {
-                    if (res && res.success) {
-                        console.log('Partida guardada correctamente');
-                    } else {
-                        console.error('Error al guardar partida:', res);
-                    }
-                });
-
+            this.guardarJuego();
         } else {
             this.vista.mostrarFallo(palabraUsuario);
         }
@@ -62,6 +49,31 @@ class CPalabra {
             this.vista.mostrarSolucion(this.palabraCorrecta);
         } else {
             this.vista.mostrarError('No hay palabra disponible');
+        }
+    }
+
+    async guardarJuego() {
+        if (!this.idPalabra) return;
+
+        // Obtener datos del temporizador (asumiendo que existen estas funciones globales o en un módulo)
+        // Puedes necesitar ajustar esto según cómo tengas implementado el temporizador
+        const tiempoTranscurrido = typeof obtenerTiempoTranscurrido === 'function' ? obtenerTiempoTranscurrido() : 0;
+        const tiempoRestante = typeof obtenerTiempoRestante === 'function' ? obtenerTiempoRestante() : 0;
+
+        // Puntuación sencilla: 1 punto por segundo restante
+        const puntuacion = tiempoRestante;
+
+        const resultado = await this.modelo.guardarPartida(
+            this.idPalabra,
+            tiempoTranscurrido,
+            puntuacion,
+            this.intentos
+        );
+
+        if (resultado.success) {
+            console.log('Partida guardada. Puntuación:', puntuacion);
+        } else {
+            console.warn('No se pudo guardar la partida:', resultado.error);
         }
     }
 }

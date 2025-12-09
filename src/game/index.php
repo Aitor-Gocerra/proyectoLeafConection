@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'php/config/config.php';
 
 if (!isset($_GET['c']))
@@ -16,14 +17,14 @@ $objControlador = new $controlador();
 $datos = []; // Guardar los datos que se obtienen del método
 
 if (method_exists($objControlador, $_GET['m'])) {
-    
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $datos = $objControlador->{$_GET['m']}($_POST);
     } 
     else {
         $datos = $objControlador->{$_GET['m']}();
     }
-    
+
 }
 
 if ($objControlador->vista != '') {
