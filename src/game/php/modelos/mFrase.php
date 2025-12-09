@@ -72,7 +72,7 @@ class Frase extends Conexion
             $sth->execute(['temporizador' => $temporizador, 'puntuacion' => $puntuacion, 'intentos' => $intentos, 'idUsuario' => $idUsuario]);
 
             $idPartida = $this->conexion->lastInsertId();
-            
+
             $sth = $this->conexion->prepare($sql2);
             $sth->execute(['idPartida' => $idPartida, 'idFrase' => $idFrase]);
 
