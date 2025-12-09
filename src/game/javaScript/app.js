@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
         tipoPagina = 'Palabra';
     } else if (tituloCompleto.includes('Frase')) {
         tipoPagina = 'Frase';
+    } else {
+        tipoPagina = 'Noticia';
     }
 
     // Inicializar el MVC correspondiente según el tipo de página
@@ -30,6 +32,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const controladorFrase = new CFrase(modeloFrase, null);
             const vistaFrase = new VFrase(controladorFrase);
             controladorFrase.vista = vistaFrase;
+            break;
+            
+        case 'Noticia':
+            const modeloNoticia = new MNoticia();
+            const controladorNoticia = new CNoticia(modeloNoticia, null);
+            const vistaNoticia = new VNoticia(controladorNoticia);
+            controladorNoticia.vista = vistaNoticia;
             break;
 
         default:
