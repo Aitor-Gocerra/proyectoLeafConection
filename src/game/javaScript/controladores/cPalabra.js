@@ -3,6 +3,8 @@ class CPalabra {
         this.modelo = modelo;
         this.vista = vista;
         this.palabraCorrecta = null;
+        this.intentos = 0;
+        this.idPalabra = null;
 
         // Cargar la palabra correcta al iniciar
         this.inicializar();
@@ -12,6 +14,7 @@ class CPalabra {
         try {
             const datos = await this.modelo.obtenerPalabraCorrecta();
             this.palabraCorrecta = datos.palabra;
+            this.idPalabra = datos.idPalabra;
             console.log('Palabra cargada correctamente');
         } catch (error) {
             console.error('Controlador: Error al inicializar:', error);
@@ -30,10 +33,25 @@ class CPalabra {
             return;
         }
 
+        this.intentos++;
         const esCorrecta = this.modelo.validarPalabra(palabraUsuario, this.palabraCorrecta);
 
         if (esCorrecta) {
             this.vista.mostrarExito(this.palabraCorrecta);
+
+            // Calcular puntuación y enviar datos
+            const tiempo = obtenerTiempoTranscurrido();
+            const puntuacion = Math.max(0, 100 - (this.intentos * 5)); // Puntuación básica
+
+            this.modelo.guardarPartida(this.idPalabra, tiempo, puntuacion, this.intentos)
+                .then(res => {
+                    if (res && res.success) {
+                        console.log('Partida guardada correctamente');
+                    } else {
+                        console.error('Error al guardar partida:', res);
+                    }
+                });
+
         } else {
             this.vista.mostrarFallo(palabraUsuario);
         }

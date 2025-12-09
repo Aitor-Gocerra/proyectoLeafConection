@@ -27,6 +27,30 @@ class MPalabra {
         }
     }
 
+    async guardarPartida(idPalabra, tiempo, puntuacion, intentos) {
+        try {
+            const datosFormulario = new FormData();
+            datosFormulario.append('idPalabra', idPalabra);
+            datosFormulario.append('tiempo', tiempo);
+            datosFormulario.append('puntuacion', puntuacion);
+            datosFormulario.append('intentos', intentos);
+
+            const respuesta = await fetch('index.php?c=Palabras&m=guardarPartida', {
+                method: 'POST',
+                body: datosFormulario
+            });
+
+            if (!respuesta.ok) {
+                throw new Error(`Error HTTP: ${respuesta.status}`);
+            }
+
+            return await respuesta.json();
+        } catch (error) {
+            console.error('Modelo: Error al guardar la partida:', error);
+            return { success: false, error: error.message };
+        }
+    }
+
     normalizarPalabra(palabra) {
         return palabra
             .toLowerCase()
