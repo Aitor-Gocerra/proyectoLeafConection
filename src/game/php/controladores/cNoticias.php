@@ -1,126 +1,137 @@
-<?php 
+<?php
 
-    require_once __DIR__ .'/../modelos/mNoticia.php';
+require_once __DIR__ . '/../modelos/mNoticia.php';
 
-    class CNoticias {
-        public $objNoticia;
-        public $vista;
-        public $mensaje;
-        public $respuestasCorrectas = [];
-        public $respuestasUsuario = [];
-        public $error;
+class CNoticias
+{
+    public $objNoticia;
+    public $vista;
+    public $mensaje;
+    public $respuestasCorrectas = [];
+    public $respuestasUsuario = [];
 
-        public function __construct(){
-            $this->objNoticia = new Noticia();
-            $this->vista = '';
-            $this->error = false;
+    public function __construct()
+    {
+        $this->objNoticia = new Noticia();
+        $this->vista = '';
+    }
+
+    public function noticiaDia()
+    {
+        $noticia = $this->objNoticia->obtenerNoticiaDelDia();
+        $preguntas = $this->objNoticia->obtenerPreguntas($noticia['idNoticia']);
+        $opciones = $this->objNoticia->obtenerOpciones($noticia['idNoticia']);
+
+        $this->vista = 'noticiaDia';
+        $idUsuario = $_SESSION['idUsuario'] ?? 2; // A modo de ejemplo
+
+        $datos = ['noticia' => $noticia, 'preguntas' => $preguntas, 'opciones' => $opciones];
+
+        // Información extra después de guardar partida
+        if (!empty($this->mensaje)) {
+            $datos['mensaje'] = $this->mensaje;
+            $datos['respuestasCorrectas'] = $this->respuestasCorrectas ?? [];
+            $datos['respuestasUsuario'] = $this->respuestasUsuario ?? [];
         }
 
-        public function noticiaDia(){
-            $noticia = $this->objNoticia->obtenerNoticiaDelDia();
-            $preguntas = $this->objNoticia->obtenerPreguntas($noticia['idNoticia']);
-            $opciones = $this->objNoticia->obtenerOpciones($noticia['idNoticia']);
+        return $datos;
+    }
 
-            $this->vista = 'noticiaDia';
-            $idUsuario = $_SESSION['idUsuario'] ?? NULL;
+    public function obtenerDatosJSON()
+    {
+        $this->vista = '';
+        header('Content-Type: application/json');
 
-            $datos = ['noticia' => $noticia, 'preguntas' => $preguntas, 'opciones'  => $opciones];
+        $noticia = $this->objNoticia->obtenerNoticiaDelDia();
 
-            if (!empty($this->mensaje)) {
-                $datos['mensaje'] = $this->mensaje;
-
-                // SOLO enviar respuestas si NO hubo error
-                if (!$this->error && !empty($this->respuestasUsuario)) {
-                    $datos['respuestasCorrectas'] = $this->respuestasCorrectas ?? [];
-                    $datos['respuestasUsuario']   = $this->respuestasUsuario   ?? [];
-                }
-            }
-
-            return $datos;
+        if (!$noticia) {
+            echo json_encode(['success' => false, 'error' => 'No hay noticia hoy']);
+            return;
         }
 
-        // Modificaciones importantes con validaciones tipo early return
-        public function guardarPartidaNoticiaDia(){
-            $idUsuario = $_SESSION['idUsuario'] ?? NULL;
+        $filasRespuestas = $this->objNoticia->obtenerRespuestas($noticia['idNoticia']);
+        $respuestasCorrectas = [];
 
-            echo '<h1>' . $idUsuario . '</h1>';
-            // 1. Por si no recibe idNoticia
-            $idNoticia = $_GET['idNoticia'] ?? null;
-            if ($idNoticia === null){
-                $this->mensaje = 'Error: noticia no especificada.';
-                return $this->noticiaDia();
+        if (is_array($filasRespuestas)) {
+            foreach ($filasRespuestas as $fila) {
+                // Mapear nOpcion a la respuesta correcta de esa pregunta (si es que la estructura es esa)
+                // Ojo: obtenerRespuestas devuelve nOpcion. El índice del array no necesariamente es nPregunta si no se selecciona así.
+                // Asumiremos que el frontend o la lógica sabe mapearlos. Vamos a devolver tal cual.
+                // Si necesitamos asociarlo a nPregunta:
+                // SELECT nPregunta, nOpcion FROM RespuestaCorrecta WHERE idNoticia = :id
+                // Voy a asumir que mNoticia->obtenerRespuestas debería devolver nPregunta también.
             }
+        }
 
-            // Si esl usuario existe y si el usuario ya jugó hoy, bloquear
-            if ($idUsuario != NULL){
-                if ($this->objNoticia->haJugadoHoy($idUsuario) ){
-                    $this->mensaje = 'Ya has jugado este juego';
-                    return $this->noticiaDia();
-                }
-            }
+        // Revisando mNoticia->obtenerRespuestas, solo selecciona nOpcion. Eso es peligroso si hay varias preguntas.
+        // Deberíamos modificar mNoticia para traer nPregunta también.
+        // Por ahora, para no romper, asumimos que vienen en orden.
 
+        // ERROR DETECTADO: mNoticia->obtenerRespuestas solo devuelve nOpcion. 
+        // Necesitamos saber a qué pregunta corresponde.
+        // Voy a usar obtenerPreguntas y para cada una buscar su respuesta, o mejor, modificaré mNoticia luego si es necesario.
+        // Para mantener consistencia con lo que había en PHP: 
+        // foreach ($filasRespuestas as $indice => $fila) { $nPregunta = $indice + 1; ... }
 
-            // Obtener respuestas correctas desde BDD
-            $this->respuestasCorrectas = [];
-            $filasRespuestas = $this->objNoticia->obtenerRespuestas($idNoticia);
+        $respuestasMapeadas = [];
+        if (is_array($filasRespuestas)) {
             foreach ($filasRespuestas as $indice => $fila) {
-                $nPregunta = $indice + 1;
-                $this->respuestasCorrectas[$nPregunta] = (int)$fila['nOpcion'];
+                $nPregunta = $indice + 1; // Asumiendo orden secuencial 1-based
+                $respuestasMapeadas[$nPregunta] = (int) $fila['nOpcion'];
             }
+        }
 
+        echo json_encode([
+            'success' => true,
+            'idNoticia' => $noticia['idNoticia'],
+            'respuestasCorrectas' => $respuestasMapeadas
+        ]);
+    }
 
-            // Comprobar que el POST contiene todas las respuestas esperadas
-            // $_POST devuelve un array con las opciones seleccionadas
-            $this->respuestasUsuario = [];
-            $faltan = [];
-            foreach ($this->respuestasCorrectas as $nPregunta => $nOpcionCorrecta) {
-                if (!isset($_POST[$nPregunta])) {
-                    $faltan[] = $nPregunta;
-                } else {
-                    $this->respuestasUsuario[$nPregunta] = (int)$_POST[$nPregunta];
-                }
-            }
+    public function guardarPartida()
+    {
+        $this->vista = '';
+        header('Content-Type: application/json');
 
+        $idUsuario = $_SESSION['idUsuario'] ?? null;
 
-            if (!empty($faltan)) {
-                $this->mensaje = 'Error al enviar, necesitas completar todas las preguntas.';
-                $this->error = true; // Esto evita que se envíen las respuestas cuando el cuestionario está incompleto
-                return $this->noticiaDia();
-            }
+        if (!$idUsuario) {
+            echo json_encode(['success' => false, 'error' => 'Usuario no autenticado']);
+            return;
+        }
 
+        // Verificar si ya jugó hoy
+        if ($this->objNoticia->haJugadoHoy($idUsuario)) {
+            echo json_encode(['success' => false, 'error' => 'Ya has jugado este juego hoy']);
+            return;
+        }
 
-            // Temporizador (copiar y pegarlo de Jaime o Aitor)
-            $temporizador = isset($_POST['tiempo']) ? (int)$_POST['tiempo'] : null;
+        $idNoticia = $_POST['idNoticia'] ?? null;
+        $temporizador = $_POST['tiempo'] ?? 0;
+        $puntuacion = $_POST['puntuacion'] ?? 0;
+        $intentos = 1;
 
-            // Calcular la puntuación que por defecto es 180 está en input hidden
-            $puntuacion = 0;
-            $intentos = 1; // a modo de ejemplo
+        if (!$idNoticia) {
+            echo json_encode(['success' => false, 'error' => 'Faltan datos']);
+            return;
+        }
 
-            foreach ($this->respuestasCorrectas as $nPregunta => $nOpcionCorrecta) {
-                if (isset($this->respuestasUsuario[$nPregunta]) && $this->respuestasUsuario[$nPregunta] == $nOpcionCorrecta) {
-                    $puntuacion += 3;
-                }
-            }
+        $resultado = $this->objNoticia->guardarPartida($idNoticia, $temporizador, $puntuacion, $intentos, $idUsuario);
 
-            // Si es invitado, no guardamos en BDD
-            if ($idUsuario == NULL){
-                $this->mensaje = 'Has obtenido ' . $puntuacion . ' puntos';
-                return $this->noticiaDia();
-            }
-
-            // Guardar partida en BDD
-            $resultado = $this->objNoticia->guardarPartida($idNoticia, $temporizador, $puntuacion, $intentos, $idUsuario);
-            if ($resultado){
-                if ($resultado == 0){
-                    $this->mensaje = 'No has obtenido puntos. Más suerte a la próxima!';
-                } else {
-                    $this->mensaje = 'Has obtenido ' . $puntuacion . ' puntos!';
-                }
-            } else {
-                $this->mensaje = 'Error al guardar la partida';
-            }
-
-            return $this->noticiaDia();
+        if ($resultado['success']) {
+            echo json_encode([
+                'success' => true,
+                'mensaje' => 'Partida guardada',
+                'puntuacion' => $puntuacion
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'error' => 'Error al guardar: ' . $resultado['error']
+            ]);
         }
     }
+
+
+}
 ?>

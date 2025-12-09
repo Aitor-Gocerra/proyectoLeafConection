@@ -74,12 +74,13 @@ class Palabra extends Conexion
             $idPartida = $this->conexion->lastInsertId();
             $sth = $this->conexion->prepare($sql2);
             $sth->execute(['idPartida' => $idPartida, 'idPalabra' => $idPalabra]);
+
             $this->conexion->commit();
-            return $sth->rowCount() > 0 ? true : false;
+
+            return ['success' => true];
         } catch (PDOException $e) {
             $this->conexion->rollBack();
-            echo "Error: " . $e->getMessage();
-            return false;
+            return ['success' => false, 'error' => $e->getMessage()];
         }
     }
 

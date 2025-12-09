@@ -133,23 +133,4 @@ class Palabra extends Conexion
 
         return $stmt->execute();
     }
-
-    // Métodos para manejar transacciones
-    public function iniciarTransaccion()
-    {
-        return $this->conexion->beginTransaction();
-    }
-
-    public function confirmarTransaccion()
-    {
-        return $this->conexion->commit();
-    }
-
-    public function revertirTransaccion()
-    {
-        if ($this->conexion->inTransaction()) {
-            return $this->conexion->rollBack();
-        }
-        return false;
-    }
 }

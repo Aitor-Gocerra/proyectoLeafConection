@@ -112,7 +112,7 @@ class CFrases
         // Guardar la partida en la base de datos
         $resultado = $this->fraseMod->guardarPartida($idFrase, $temporizador, $puntuacion, $intentos, $idUsuario);
 
-        if ($resultado) {
+        if ($resultado['success']) {
             echo json_encode([
                 'success' => true,
                 'mensaje' => 'Partida guardada correctamente',
@@ -121,7 +121,7 @@ class CFrases
         } else {
             echo json_encode([
                 'success' => false,
-                'error' => 'Error al guardar la partida'
+                'error' => 'Error al guardar la partida: ' . $resultado['error']
             ]);
         }
     }

@@ -116,7 +116,7 @@ class CPalabras
         // Guardar la partida en la base de datos
         $resultado = $this->palabraMod->guardarPartida($idPalabra, $temporizador, $puntuacion, $intentos, $idUsuario);
 
-        if ($resultado) {
+        if ($resultado['success']) {
             echo json_encode([
                 'success' => true,
                 'mensaje' => 'Partida guardada correctamente',
@@ -125,7 +125,7 @@ class CPalabras
         } else {
             echo json_encode([
                 'success' => false,
-                'error' => 'Error al guardar la partida'
+                'error' => 'Error al guardar la partida: ' . $resultado['error']
             ]);
         }
     }
