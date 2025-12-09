@@ -108,17 +108,21 @@ class CUsuarios{
 
         // Si no hay usuario logueado, no buscamos nada
         if (!isset($_SESSION['idUsuario'])) {
-            return ['solicitudes' => []];
+            return ['solicitudes' => [],'amigos'      => []];
         }
 
-        // Llamamos al Modelo para obtener los datos
-        $listaSolicitudes = $this->objMUsuario->listarSolicitudes($_SESSION['idUsuario']);
+        $miID = $_SESSION['idUsuario'];
 
-        // Devolvemos el array.
-        return ['solicitudes' => $listaSolicitudes];
+        // 4. Llamamos al Modelo para obtener LAS DOS listas
+        $listaSolicitudes = $this->objMUsuario->listarSolicitudes($miID);
+        $listaAmigos      = $this->objMUsuario->listarAmigos($miID); 
+
+        // 5. Devolvemos un array con DOS claves
+        return ['solicitudes' => $listaSolicitudes,'amigos'=> $listaAmigos  
+        ];
     }
 
-public function rechazarEliminar() {
+    public function rechazarEliminar() {
  
         $this->sessionStart();
 
@@ -132,6 +136,29 @@ public function rechazarEliminar() {
         if ($miID && $idAmigo) {
             // Pasamos los DOS argumentos al modelo
             $resultado = $this->objMUsuario->rechazarEliminar($miID, $idAmigo); 
+
+            // Devolvemos lo que diga el modelo
+            echo $resultado; 
+        } else {
+            // Si falta alguno de los dos IDs, fallamos
+            echo 'Error:FaltanDatos';
+        }
+    }
+
+    public function aceptarSolicitud($datos)
+    {
+        $this->sessionStart();
+
+        // Recogemos los ids necesarios validamos que no este vacío en los dos
+        $miID = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : null;
+        
+        // EL ID DEL AMIGO
+        $idAmigo = isset($_POST['idAmigo']) ? $_POST['idAmigo'] : null;
+
+        // Verificamos que tenemos los dos
+        if ($miID && $idAmigo) {
+            // Pasamos los DOS argumentos al modelo
+            $resultado = $this->objMUsuario->aceptarSolicitud($miID, $idAmigo); 
 
             // Devolvemos lo que diga el modelo
             echo $resultado; 

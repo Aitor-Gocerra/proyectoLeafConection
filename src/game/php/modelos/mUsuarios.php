@@ -163,6 +163,32 @@ class MUsuarios extends Conexion{
         }
     }
 
+    public function listarAmigos($idUsuario) {
+        try {
+            /////FALLO AQUI CORREGIR MAÑANA
+            $sql = "SELECT 
+                        Usuario.idUsuario as idAmigo,  
+                        Usuario.nombre as nombreAmigo
+                    FROM Amigos
+                    INNER JOIN Usuario ON (
+                        CASE 
+                            WHEN Amigos.idUsuario1 = :miID THEN Usuario.idUsuario = Amigos.idUsuario2
+                            WHEN Amigos.idUsuario2 = :miID THEN Usuario.idUsuario = Amigos.idUsuario1
+                        END
+                    )
+                    WHERE (Amigos.idUsuario1 = :miID OR Amigos.idUsuario2 = :miID) 
+                    AND Amigos.estado = 1"; 
+
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindValue(':miID', $idUsuario, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            return [];
+        }
+    }
 
     public function rechazarEliminar($idUsuario, $idAmigo){
         
@@ -189,6 +215,34 @@ class MUsuarios extends Conexion{
         } catch (PDOException $e) {
             echo "ErrorSQL: " . $e->getMessage();
             return [];
+        }
+    }
+
+    public function aceptarSolicitud($idReceptor, $idEmisor) {
+
+            $sql = "UPDATE Amigos 
+                    SET estado = 1
+                    WHERE idUsuario1 = :emisor AND idUsuario2 = :receptor";
+
+            try { 
+                $stmt = $this->conexion->prepare($sql);
+                
+                // Asignamos los valores
+                $stmt->bindValue(':receptor', $idReceptor, PDO::PARAM_INT); 
+                $stmt->bindValue(':emisor',   $idEmisor,   PDO::PARAM_INT); 
+
+                if ($stmt->execute()) {
+                    if ($stmt->rowCount() > 0) {
+                        return 'true';
+                    } else {
+                        return 'Error:SolicitudNoEncontrada';
+                    }
+                } else {
+                    return 'ErrorBD';
+                }
+
+            } catch (PDOException $e) {
+                return "ErrorSQL: " . $e->getMessage();
         }
     }
 }
