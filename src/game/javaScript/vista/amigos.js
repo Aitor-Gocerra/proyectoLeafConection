@@ -1,6 +1,5 @@
 
 import { cAmigos } from '../controlador/cAmigos.js';
-console.log("!!! EL SCRIPT HA CARGADO !!!");
 const controlador = new cAmigos();
 
 /* ESTO ES LO QUE LE PASAMOS AL MODELO PARA QUE REUTILICE DE ESTA VISTA DE AMIGO */
@@ -106,7 +105,7 @@ document.getElementById('encontrarAmigo').addEventListener('click', async functi
 });
 
 //fUNCION PARA LOS BOTONES ACEPTAR O RECHAZAR SI SE OCULTAN INDEPENDIENTEMENTE LO QUE HAGAS
-let botonAceptar =  document.getElementById('btnAceptarSolicitud');
+/*let botonAceptar =  document.getElementById('btnAceptarSolicitud');
 let botnRechazar =  document.getElementById('btnRechazarSolicitud');
 
 botonAceptar.addEventListener('click', async function (event){
@@ -125,7 +124,7 @@ botnRechazar.addEventListener('click', async function (event){
         botnRechazar.style.display = 'none';
         botonAceptar.style.display = 'none';
         controlador.cAmigos(usuario);
-})
+})*/
 
     /* ==========================================
     LÓGICA DEL MODAL (Corregida y Blindada)

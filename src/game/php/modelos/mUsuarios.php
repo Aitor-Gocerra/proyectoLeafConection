@@ -98,7 +98,7 @@ class MUsuarios extends Conexion{
             }
 
             // 3. COMPROBAR SI YA EXISTE RELACIÓN
-            // Usamos nombres DISTINTOS para cada hueco (:emisor1, :receptor1...) para evitar el error HY093
+            // Usamos nombres DISTINTOS para cada hueco 
             $sqlCheck = "SELECT idUsuario1 FROM Amigos 
                          WHERE (idUsuario1 = :emisor1 AND idUsuario2 = :receptor1) 
                             OR (idUsuario1 = :receptor2 AND idUsuario2 = :emisor2)";
@@ -134,6 +134,33 @@ class MUsuarios extends Conexion{
 
         } catch (PDOException $e) {
             return "ErrorSQL: " . $e->getMessage();
+        }
+    }
+
+public function listarSolicitudes($idUsuario)
+    {
+        
+        $sql = "
+            SELECT 
+                Amigos.idUsuario1 AS idEmisor,
+                Usuario.nombre AS nombreAmigo
+            FROM Amigos
+            INNER JOIN Usuario ON Amigos.idUsuario1 = Usuario.idUsuario
+            WHERE Amigos.idUsuario2 = :idUsuario 
+            AND (Amigos.estado = 0 OR Amigos.estado = b'0');
+        ";
+
+        try {
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            // Si falla, mostramos el error para saber qué pasa
+            echo "Error SQL: " . $e->getMessage();
+            return [];
         }
     }
 }

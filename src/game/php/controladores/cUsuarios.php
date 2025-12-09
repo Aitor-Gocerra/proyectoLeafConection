@@ -17,13 +17,7 @@ class CUsuarios{
     }
 
     public function mostrarInicio(){
-        $this->sessionStart();
         $this->vista = 'inicio';
-    }
-
-    public function amigos(){
-        $this->sessionStart();
-        $this->vista = 'gestionAmigos';
     }
 
     public function registrar($datos){
@@ -95,8 +89,8 @@ class CUsuarios{
         }
 
         // 4. Preparamos los datos para el Modelo
-        $idEmisor = $_SESSION['idUsuario']; // Lo sacamos de la sesión (Seguro)
-        $nombreDestino = $datos["idAmigo"]; // Lo sacamos del formulario (Input usuario)
+        $idEmisor = $_SESSION['idUsuario']; // Lo sacamos de la sesión 
+        $nombreDestino = $datos["idAmigo"]; // Lo sacamos del formulario 
 
         // 5. Llamamos al Modelo
         // El modelo debe devolver strings exactos: 'true', 'UsuarioNoExiste', etc.
@@ -106,6 +100,25 @@ class CUsuarios{
         $this->vista = '';
         echo $resultado;
         return $resultado;
+    }
+
+    public function amigos(){
+        // 1. Iniciar sesión para saber quién es el usuario
+        $this->sessionStart();
+
+        // 2. Definir la vista
+        $this->vista = 'gestionAmigos';
+
+        // 3. Si no hay usuario logueado, no buscamos nada (o redirigimos al login)
+        if (!isset($_SESSION['idUsuario'])) {
+            return ['solicitudes' => []];
+        }
+
+        // 4. Llamamos al Modelo para obtener los datos
+        $listaSolicitudes = $this->objMUsuario->listarSolicitudes($_SESSION['idUsuario']);
+
+        // 5. Devolvemos el array. En la vista esto se convertirá en la variable $solicitudes
+        return ['solicitudes' => $listaSolicitudes];
     }
 
     private function comprobarDatosInicio($datos){
