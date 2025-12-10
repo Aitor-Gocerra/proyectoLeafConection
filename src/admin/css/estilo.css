@@ -570,7 +570,8 @@ main {
 #ultimasDiezPalabras,
 #ultimasDiezFrases,
 #resultadosBusqueda,
-#ultimasDiezNoticias {
+#ultimasDiezNoticias,
+#ultimosDiezConsejos {
     width: 94%;
     max-width: 1100px;
     margin: 2rem auto;
@@ -583,7 +584,8 @@ main {
 #ultimasDiezPalabras h2,
 #ultimasDiezFrases h2,
 #resultadosBusqueda h2,
-#ultimasDiezNoticias h2 {
+#ultimasDiezNoticias h2,
+#ultimosDiezConsejos h2{
     font-size: 1.4rem;
     color: var(--color-primario);
     margin-bottom: 1rem;
@@ -594,7 +596,8 @@ main {
 #ultimasDiezPalabras table,
 #ultimasDiezFrases table,
 #resultadosBusqueda table,
-#ultimasDiezNoticias table {
+#ultimasDiezNoticias table,
+#ultimosDiezConsejos table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 0.5rem;
@@ -603,7 +606,8 @@ main {
 #ultimasDiezPalabras th,
 #ultimasDiezFrases th,
 #resultadosBusqueda th,
-#ultimasDiezNoticias th {
+#ultimasDiezNoticias th,
+#ultimosDiezConsejos th{
     background-color: #e6fffa;
     color: #2c7a7b;
     font-weight: 600;
@@ -615,7 +619,8 @@ main {
 #ultimasDiezPalabras td,
 #ultimasDiezFrases td,
 #resultadosBusqueda td,
-#ultimasDiezNoticias td {
+#ultimasDiezNoticias td,
+#ultimosDiezConsejos td{
     padding: 1rem;
     border-bottom: 1px solid #e2e8f0;
     color: var(--color-texto-gris);
@@ -624,21 +629,24 @@ main {
 #ultimasDiezPalabras tr:last-child td,
 #ultimasDiezFrases tr:last-child td,
 #resultadosBusqueda tr:last-child td,
-#ultimasDiezNoticias tr:last-child td {
+#ultimasDiezNoticias tr:last-child td ,
+#ultimosDiezConsejos tr:last-child td{
     border-bottom: none;
 }
 
 #ultimasDiezPalabras tr:hover,
 #ultimasDiezFrases tr:hover,
 #resultadosBusqueda tr:hover,
-#ultimasDiezNoticias tr:hover {
+#ultimasDiezNoticias tr:hover,
+#ultimosDiezConsejos tr:hover{
     background-color: #f7fafc;
 }
 
 #ultimasDiezPalabras a,
 #ultimasDiezFrases a,
 #resultadosBusqueda a,
-#ultimasDiezNoticias a {
+#ultimasDiezNoticias a,
+#ultimosDiezConsejos a {
     color: #e53e3e;
     font-weight: 600;
     text-decoration: none;
@@ -648,7 +656,8 @@ main {
 #ultimasDiezPalabras a:hover,
 #ultimasDiezFrases a:hover,
 #resultadosBusqueda a:hover,
-#ultimasDiezNoticias a:hover {
+#ultimasDiezNoticias a:hover,
+#ultimosDiezConsejos a:hover {
     text-decoration: underline;
 }
 
