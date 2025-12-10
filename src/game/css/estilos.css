@@ -56,7 +56,7 @@ header {
     /* -webkit-backdrop-filter es el prefijo para navegadores basados en WebKit (Chrome, Safari)
        para asegurar compatibilidad mientras la propiedad se estandariza */
     -webkit-backdrop-filter: blur(10px);
-    padding: 0;
+    padding: 0.8rem 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     /* z-index controla el orden de apilamiento. Un valor alto (1000) asegura que el header
        esté por encima de otros elementos cuando se superponen */
@@ -77,7 +77,7 @@ nav {
 
 .infoJuego h3 {
     color: var(--color-acento-a);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 600;
     margin: 0;
 }
@@ -153,7 +153,6 @@ main {
     padding-top: 5rem;
 
     h1 {
-        text-align: left;
         color: var(--color-primario);
         font-size: 2rem;
         font-weight: 700;
@@ -909,7 +908,7 @@ footer {
 @media (max-width: 479px) {
     header {
         padding: 0.7rem 0.8rem;
-        width: 94%;
+        width: 100%;
     }
 
     nav i {
@@ -944,6 +943,7 @@ footer {
     }
 
     main h1 {
+        padding-top: 1rem;
         font-size: 1.5rem;
     }
 
@@ -1505,7 +1505,7 @@ footer {
 @media (max-width: 700px) {
     #cajaPalabra {
         width: 95%;
-        margin: 10rem auto 1rem auto;
+        margin: 2rem auto 1rem auto;
         padding: 1.8rem;
     }
 }
