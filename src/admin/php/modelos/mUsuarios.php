@@ -42,15 +42,6 @@ class Usuarios extends Conexion
         $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
         return $stmt->execute();
     }
-
-    public function eliminarUsuario($idUsuario)
-    {
-        $sql = "DELETE FROM Usuario WHERE idUsuario = :idUsuario";
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-        return $stmt->execute();
-    }
-
     public function buscarUsuarios($buscar)
     {
         // Table 'Usuario'

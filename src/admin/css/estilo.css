@@ -461,7 +461,7 @@ main {
 
 }
 
-.error-msg{
+.error-msg {
     color: red;
     font-size: .9em;
     margin-left: .5rem;
@@ -490,7 +490,7 @@ main {
     transform: translateY(0);
 }
 
-#resultadosBusquedaNoticias{
+#resultadosBusquedaNoticias {
     width: 100%;
     margin: 1rem 0rem;
     padding: 1.5rem;
@@ -500,7 +500,7 @@ main {
     border: 1px solid var(--color-azul-1);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 
-    h2{
+    h2 {
         font-size: 1.2rem;
         color: #2c7a7b;
         /* Color de texto similar al navegador */
@@ -509,12 +509,12 @@ main {
         padding-bottom: 0.5rem;
     }
 
-    table{
+    table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 0.5rem;
 
-        th{
+        th {
             background-color: #e6fffa;
             color: #2c7a7b;
             font-weight: 600;
@@ -523,25 +523,26 @@ main {
             border-radius: 6px 6px 0 0;
         }
 
-        td{
+        td {
             padding: 1rem;
             border-bottom: 1px solid #e2e8f0;
             color: var(--color-texto-gris);
         }
 
-        td > a{
+        td>a {
             display: block;
             text-align: center;
         }
 
-        tr:last-child td{
+        tr:last-child td {
             border-bottom: none;
         }
 
-        .fa-pen-to-square{
+        .fa-pen-to-square {
             color: #2c7a7b;
         }
-        .fa-circle-xmark{
+
+        .fa-circle-xmark {
             color: rgb(219, 0, 0);
         }
 
@@ -549,16 +550,17 @@ main {
 
 }
 
-#ultimasDiezNoticias{
-    td > a{
+#ultimasDiezNoticias {
+    td>a {
         display: block;
         text-align: center;
     }
-    
-    .fa-pen-to-square{
+
+    .fa-pen-to-square {
         color: #2c7a7b;
     }
-    .fa-circle-xmark{
+
+    .fa-circle-xmark {
         color: rgb(219, 0, 0);
     }
 }
@@ -601,7 +603,7 @@ main {
 #ultimasDiezPalabras th,
 #ultimasDiezFrases th,
 #resultadosBusqueda th,
-#ultimasDiezNoticias th{
+#ultimasDiezNoticias th {
     background-color: #e6fffa;
     color: #2c7a7b;
     font-weight: 600;
@@ -622,21 +624,21 @@ main {
 #ultimasDiezPalabras tr:last-child td,
 #ultimasDiezFrases tr:last-child td,
 #resultadosBusqueda tr:last-child td,
-#ultimasDiezNoticias tr:last-child td{
+#ultimasDiezNoticias tr:last-child td {
     border-bottom: none;
 }
 
 #ultimasDiezPalabras tr:hover,
 #ultimasDiezFrases tr:hover,
 #resultadosBusqueda tr:hover,
-#ultimasDiezNoticias tr:hover{
+#ultimasDiezNoticias tr:hover {
     background-color: #f7fafc;
 }
 
 #ultimasDiezPalabras a,
 #ultimasDiezFrases a,
 #resultadosBusqueda a,
-#ultimasDiezNoticias a{
+#ultimasDiezNoticias a {
     color: #e53e3e;
     font-weight: 600;
     text-decoration: none;
@@ -1043,12 +1045,14 @@ footer {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-    flex-wrap: wrap; /* Para pantallas pequeñas */
+    flex-wrap: wrap;
+    /* Para pantallas pequeñas */
     gap: 1rem;
 }
 
 .encabezado-seccion h1 {
-    margin-bottom: 0 !important; /* Sobrescribir el margen por defecto del h1 */
+    margin-bottom: 0 !important;
+    /* Sobrescribir el margen por defecto del h1 */
 }
 
 .enlace-listado {
@@ -1070,5 +1074,147 @@ footer {
     background-color: var(--color-secundario);
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Allow class usage for multiple containers */
+.contenedor-admin {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.contenedor-admin h1 {
+    font-size: 1.6rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+.contenedor-admin form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contenedor-admin label {
+    font-weight: 600;
+    color: #2f855a;
+    font-size: 0.95rem;
+}
+
+/* Copied from #contenedorAdmin inputs */
+.contenedor-admin input[type="text"],
+.contenedor-admin input[type="email"],
+.contenedor-admin input[type="password"],
+.contenedor-admin input[type="search"],
+.contenedor-admin input[type="date"],
+.contenedor-admin input[type="url"],
+.contenedor-admin select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #c6f6d5;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+.contenedor-admin input:focus,
+.contenedor-admin textarea:focus,
+.contenedor-admin select:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 6px rgba(72, 187, 120, 0.4);
+    outline: none;
+}
+
+.contenedor-admin input[type="submit"] {
+    margin-top: 0.8rem;
+    background-color: var(--color-secundario);
+    color: var(--color-fondo);
+    padding: 0.85rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    max-width: 160px;
+}
+
+.contenedor-admin input[type="submit"]:hover {
+    background-color: var(--color-primario);
+    transform: translateY(-2px);
+}
+
+.contenedor-admin ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.contenedor-admin ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+
+/****************************** GESTIÓN DE USUARIOS LAYOUT ******************************/
+.admin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Reusing styles for the user list table specifically */
+#listadoUsuarios {
+    /* Mix of contenedor-admin styles and specific table styles */
+    width: 100%;
+    /* Changed from 94% to full in container or keep separate? Using contenedor-admin class handles the box */
+}
+
+#listadoUsuarios h2,
+#listadoUsuarios h1 {
+    font-size: 1.4rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-azul-1);
+    padding-bottom: 0.5rem;
+}
+
+#listadoUsuarios table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+#listadoUsuarios th {
+    background-color: #e6fffa;
+    color: #2c7a7b;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    border-radius: 6px 6px 0 0;
+}
+
+#listadoUsuarios td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: var(--color-texto-gris);
+}
+
+#listadoUsuarios tr:last-child td {
+    border-bottom: none;
+}
+
+#listadoUsuarios tr:hover {
+    background-color: #f7fafc;
 }
