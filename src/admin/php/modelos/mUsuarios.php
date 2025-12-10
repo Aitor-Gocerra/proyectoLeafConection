@@ -6,7 +6,7 @@ class Usuarios extends Conexion
     public function anadirUsuario($nombre, $correo, $password)
     {
         $sql = "
-            INSERT INTO Administrador (nombre, correo, pw) 
+            INSERT INTO Administrador (nombre, correo, password) 
             VALUES (:nombre, :correo, :password)
             ";
 
