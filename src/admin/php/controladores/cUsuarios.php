@@ -84,9 +84,9 @@ class CUsuarios
         // I'll check strict match.
 
         $buscar = $_POST['buscar'] ?? '';
-        $estado = $_POST['estado'] ?? '';
+        $estado = $_POST['estado'] ?? null;
 
-        if (empty($buscar) || empty($estado)) {
+        if (empty($buscar) || !isset($estado)) {
             $this->mensaje = "Introduce un usuario y selecciona un estado.";
             return $this->gestionarUsuarios();
         }

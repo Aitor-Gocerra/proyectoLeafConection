@@ -46,8 +46,8 @@
 
                 <label>Estado</label>
                 <ul>
-                    <li><input type="radio" name="estado" value="activo" required> Activo</li>
-                    <li><input type="radio" name="estado" value="detenido"> Detenido</li>
+                    <li><input type="radio" name="estado" value="1" required> Activo</li>
+                    <li><input type="radio" name="estado" value="0"> Detenido</li>
                 </ul>
 
                 <input type="submit" value="Modificar estado">
@@ -86,7 +86,7 @@
                                 <td><?php echo $user['idUsuario']; ?></td>
                                 <td><?php echo $user['nombre']; ?></td>
                                 <td><?php echo $user['correo']; ?></td>
-                                <td><?php echo $user['estado']; ?></td>
+                                <td><?php echo ($user['estado'] == 1) ? 'Activo' : 'Detenido/Inactivo'; ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

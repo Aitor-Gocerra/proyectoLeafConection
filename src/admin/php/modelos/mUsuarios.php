@@ -6,9 +6,13 @@ class Usuarios extends Conexion
     public function anadirUsuario($nombre, $correo, $password)
     {
         $sql = "
-            INSERT INTO Usuarios (nombre, correo, password, estado) 
-            VALUES (:nombre, :correo, :password, 'activo')
+            INSERT INTO Usuario (nombre, correo, pw, estado) 
+            VALUES (:nombre, :correo, :password, 1)
             ";
+        // Note: Table name in DB script is 'Usuario', not 'Usuarios'.
+        // Column is 'pw', not 'password'.
+        // Correcting this now based on schema.
+
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':correo', $correo);
@@ -24,10 +28,7 @@ class Usuarios extends Conexion
 
     public function listarUsuarios()
     {
-        $sql = "
-            SELECT * FROM Usuarios 
-            ORDER BY idUsuario DESC
-            ";
+        $sql = "SELECT * FROM Usuario ORDER BY idUsuario DESC";
         $stmt = $this->conexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -35,23 +36,16 @@ class Usuarios extends Conexion
 
     public function modificarEstadoUsuario($idUsuario, $estado)
     {
-        $sql = "
-            UPDATE Usuarios 
-            SET estado = :estado 
-            WHERE idUsuario = :idUsuario
-            ";
+        $sql = "UPDATE Usuario SET estado = :estado WHERE idUsuario = :idUsuario";
         $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':estado', $estado);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
         $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
         return $stmt->execute();
     }
 
     public function eliminarUsuario($idUsuario)
     {
-        $sql = "
-            DELETE FROM Usuarios 
-            WHERE idUsuario = :idUsuario
-            ";
+        $sql = "DELETE FROM Usuario WHERE idUsuario = :idUsuario";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
         return $stmt->execute();
@@ -59,11 +53,8 @@ class Usuarios extends Conexion
 
     public function buscarUsuarios($buscar)
     {
-        $sql = "
-            SELECT * FROM Usuarios 
-            WHERE nombre LIKE :buscar OR correo LIKE :buscar 
-            ORDER BY idUsuario DESC
-            ";
+        // Table 'Usuario'
+        $sql = "SELECT * FROM Usuario WHERE nombre LIKE :buscar OR correo LIKE :buscar ORDER BY idUsuario DESC";
         $stmt = $this->conexion->prepare($sql);
         $termino = '%' . $buscar . '%';
         $stmt->bindParam(':buscar', $termino);
