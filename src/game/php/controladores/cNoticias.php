@@ -109,7 +109,5 @@ class CNoticias
             ]);
         }
     }
-
-
 }
 ?>

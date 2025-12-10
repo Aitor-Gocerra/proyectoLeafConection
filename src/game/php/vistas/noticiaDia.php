@@ -39,7 +39,6 @@
                 </h2>
 
                 <form id="formNoticia" method="post">
-
                     <?php
                     foreach ($preguntas as $pregunta) {
                         echo

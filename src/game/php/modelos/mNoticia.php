@@ -59,7 +59,7 @@ class Noticia extends Conexion
 
     public function obtenerRespuestas($idNoticia)
     {
-        $sql = "SELECT nOpcion FROM RespuestaCorrecta WHERE idNoticia = :idNoticia;";
+        $sql = "SELECT nPregunta, nOpcion FROM RespuestaCorrecta WHERE idNoticia = :idNoticia;";
         try {
             $sth = $this->conexion->prepare($sql);
             $sth->execute(['idNoticia' => $idNoticia]);
@@ -99,7 +99,7 @@ class Noticia extends Conexion
         $sql = "SELECT * FROM NoticiaDia 
                     INNER JOIN Partida ON NoticiaDia.idPartida = Partida.idPartida 
                     INNER JOIN Noticias ON NoticiaDia.idNoticia = Noticias.idNoticia 
-                    WHERE Partida.idUsuario = :idUsuario && DATE(Noticias.fechaProgramada) = :fechaActual;";
+                    WHERE Partida.idUsuario = :idUsuario AND DATE(Noticias.fechaProgramada) = :fechaActual;";
 
         $fechaActual = date("Y-m-d");
 
