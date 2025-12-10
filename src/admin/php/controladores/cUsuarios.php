@@ -60,10 +60,6 @@ class CUsuarios
             return $this->gestionarUsuarios();
         }
 
-        // Ideally I'd need an ID. But the form doesn't provide it hiddenly unless I change the view logic to be: Search -> Show List -> Click Modify.
-        // BUT, the View currently has 3 separate blocks: Add, Modify, Delete.
-        // This implies the action is independent.
-        // I will first Search for users matching.
         $usuarios = $this->modelo->buscarUsuarios($buscar);
 
         if (count($usuarios) == 1) {
@@ -81,10 +77,6 @@ class CUsuarios
 
     public function buscarUsuarios()
     {
-        // This is for a general search if implemented, or maybe called by view?
-        // In cFrase logic, there was a specific route.
-        // Here, the view doesn't have a main search bar for listing, but "gestionarUsuarios.php" has "parciales/navegador.php".
-        // I'll leave this basic or reuse.
         return $this->gestionarUsuarios(); // Helper
     }
 }

@@ -72,12 +72,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($usuarios as $user) { ?>
+                        <?php foreach ($usuarios as $usuario) { ?>
                             <tr>
-                                <td><?php echo $user['idUsuario']; ?></td>
-                                <td><?php echo $user['nombre']; ?></td>
-                                <td><?php echo $user['correo']; ?></td>
-                                <td><?php echo ($user['estado'] == 1) ? 'Activo' : 'Detenido/Inactivo'; ?></td>
+                                <td><?php echo $usuario['idUsuario']; ?></td>
+                                <td><?php echo $usuario['nombre']; ?></td>
+                                <td><?php echo $usuario['correo']; ?></td>
+                                <td><?php echo ($usuario['estado'] == 1) ? 'Activo' : 'Detenido/Inactivo'; ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

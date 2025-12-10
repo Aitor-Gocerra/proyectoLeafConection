@@ -9,9 +9,6 @@ class Usuarios extends Conexion
             INSERT INTO Usuario (nombre, correo, pw, estado) 
             VALUES (:nombre, :correo, :password, 1)
             ";
-        // Note: Table name in DB script is 'Usuario', not 'Usuarios'.
-        // Column is 'pw', not 'password'.
-        // Correcting this now based on schema.
 
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':nombre', $nombre);
@@ -28,7 +25,11 @@ class Usuarios extends Conexion
 
     public function listarUsuarios()
     {
-        $sql = "SELECT * FROM Usuario ORDER BY idUsuario DESC";
+        $sql = "
+            SELECT * 
+            FROM Usuario 
+            ORDER BY idUsuario DESC
+        ";
         $stmt = $this->conexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -36,7 +37,11 @@ class Usuarios extends Conexion
 
     public function modificarEstadoUsuario($idUsuario, $estado)
     {
-        $sql = "UPDATE Usuario SET estado = :estado WHERE idUsuario = :idUsuario";
+        $sql = "
+            UPDATE Usuario 
+            SET estado = :estado 
+            WHERE idUsuario = :idUsuario
+            ";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
         $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
@@ -44,11 +49,17 @@ class Usuarios extends Conexion
     }
     public function buscarUsuarios($buscar)
     {
-        // Table 'Usuario'
-        $sql = "SELECT * FROM Usuario WHERE nombre LIKE :buscar OR correo LIKE :buscar ORDER BY idUsuario DESC";
+        $sql = "
+            SELECT * 
+            FROM Usuario 
+            WHERE nombre LIKE :nombre 
+            OR correo LIKE :correo 
+            ORDER BY idUsuario DESC
+        ";
         $stmt = $this->conexion->prepare($sql);
         $termino = '%' . $buscar . '%';
-        $stmt->bindParam(':buscar', $termino);
+        $stmt->bindParam(':nombre', $termino);
+        $stmt->bindParam(':correo', $termino);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
