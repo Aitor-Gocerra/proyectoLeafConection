@@ -22,7 +22,7 @@
         <div class="admin-grid">
             <!-- Añadir Usuario -->
             <div class="contenedor-admin">
-                <h1>Añadir Usuario</h1>
+                <h1>Añadir Administrador</h1>
                 <form action="index.php?c=Usuarios&m=anadirUsuario" method="post">
                     <label for="nombreUsuario">Nombre</label>
                     <input type="text" name="nombre" id="nombreUsuario" placeholder="Introducir nombre del usuario"
@@ -35,7 +35,7 @@
                     <input type="password" name="password" id="passUsuario" placeholder="Introducir contraseña"
                         required>
 
-                    <input type="submit" value="Añadir usuario">
+                    <input type="submit" value="Añadir administrador">
                 </form>
             </div>
 
