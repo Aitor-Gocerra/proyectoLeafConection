@@ -59,11 +59,11 @@ class CFrase {
         const tiempoRestante = obtenerTiempoRestante();
 
         // Puntuación sencilla: 1 punto por segundo restante
-        const puntuacion = tiempoRestante;
+        const puntuacion = tiempoTranscurrido;
 
         const resultado = await this.modelo.guardarPartida(
             this.idFrase,
-            tiempoTranscurrido,
+            tiempoRestante,
             puntuacion,
             this.intentos
         );
