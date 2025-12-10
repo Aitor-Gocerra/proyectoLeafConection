@@ -78,9 +78,9 @@
                 <select name="idTematicaConsejo" id="idTematicaConsejo" required>
                     <option value="">-- Seleccione una opción --</option>
                     <?php
-                    // Cargar temáticas si vienen (el controlador editar devuelve tematicas), o pedir al modelo si no están
+                    // Cargar temáticas si vienen  o pedir al modelo si no están
                     if (!isset($tematicas) || $tematicas === null) {
-                        // intentar cargar desde el modelo si no existe (fallback)
+                        // intentar cargar desde el modelo si no existe 
                         require_once __DIR__ . '/../modelos/mConsejo.php';
                         $m = new Consejo();
                         $tematicas = $m->listarTematicas();

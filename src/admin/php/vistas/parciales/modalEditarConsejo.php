@@ -1,7 +1,4 @@
-<?php
-if (isset($consejoEditar) && $consejoEditar) {
-    $tematicas = $tematicas ?? [];
-    $idTematicaActual = $consejoEditar['idTematica'] ?? null;
+<?php if (isset($consejoEditar) && $consejoEditar) {
     ?>
     <div id="modalEditar" class="modal" style="display: block;">
         <div class="contenedor-modal">
@@ -11,7 +8,7 @@ if (isset($consejoEditar) && $consejoEditar) {
                 <input type="hidden" name="idConsejoEdicion" value="<?php echo $consejoEditar['idConsejo']; ?>">
 
                 <label for="consejoEditar">Consejo</label>
-                <input type="text" name="consejo" id="consejoEditar" value="<?php echo htmlspecialchars($consejoEditar['consejo'], ENT_QUOTES); ?>">
+                <input type="text" name="consejo" id="consejoEditar" value="<?php echo $consejoEditar['consejo']; ?>">
 
                 <label for="tematicaEditar">Temática</label>
                 <select name="idTematicaConsejo" id="tematicaEditar">
@@ -21,14 +18,14 @@ if (isset($consejoEditar) && $consejoEditar) {
                         $nombre = $t['nombreTematica'];
                         $selected = ($id == $idTematicaActual) ? 'selected' : '';
                     ?>
-                        <option value="<?php echo htmlspecialchars($id, ENT_QUOTES); ?>" <?php echo $selected; ?>>
-                            <?php echo htmlspecialchars($nombre, ENT_QUOTES); ?>
+                        <option value="<?php echo $id ?>" <?php echo $selected; ?>>
+                            <?php echo $nombre ?>
                         </option>
                     <?php } ?>
                 </select>
 
                 <label for="fechaEditar">Fecha programada</label>
-                <input type="date" name="fechaProgramada" id="fechaEditar" value="<?php echo htmlspecialchars($consejoEditar['fechaProgramada'] ?? '', ENT_QUOTES); ?>">
+                <input type="date" name="fechaProgramada" id="fechaEditar" value="<?php echo $consejoEditar['fechaProgramada'] ; ?>">
 
                 <div class="mensaje-aviso">
                     <p>Nota: edición rápida.</p>
