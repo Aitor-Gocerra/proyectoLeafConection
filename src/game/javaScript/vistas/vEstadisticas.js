@@ -28,9 +28,6 @@ class VEstadisticas {
             'datosPuntuacion'
         ];
 
-        console.log(datos[valores[4]]); // va bien
-        console.log(datos[valores[5]]); // va bien correcto
-
         this.tarjetas.forEach((tarjeta, i) => {
             if (i != 5){
                 let valor = datos[valores[i]] ?? 'nada';
