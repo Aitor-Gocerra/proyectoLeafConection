@@ -59,9 +59,31 @@ class MUsuarios extends Conexion{
             return false;
         }
     }
-    public function usuarioExiste($nombreUsuario){
+
+    public function estado($nombre)
+    {
+        $sql = 'SELECT COUNT(*) FROM Usuario Where nombre = :nombre AND estado = 0 ;';
+
         try{
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return $stmt->fetchColumn() > 0;
+
+            } catch (PDOException $e) {
+            // En caso de error de base de datos, debes decidir si es más seguro permitir o bloquear el inicio de sesión.
+            // Por defecto, asumimos que no hay baneo si la verificación falla, pero se registra el error.
+            error_log("Error SQL al verificar baneo: " . $e->getMessage());
+            return false;
+            }
+    }
+
+    public function usuarioExiste($nombreUsuario){
+       
             $sql = "SELECT COUNT(*) FROM Usuario WHERE nombre = :nombre;";
+          try{   
             $stmt = $this->conexion->prepare($sql);
             $stmt->bindValue(':nombre', $nombreUsuario, PDO::PARAM_STR);
             $stmt->execute();

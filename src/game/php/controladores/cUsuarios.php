@@ -50,33 +50,43 @@ class CUsuarios{
         }
     }
 
-    public function inicio($datos){
+public function inicio($datos){
 
-        if($this->comprobarDatosInicio($datos)){
-            if($resultado = $this->objMUsuario->inicio($datos)){
+    if ($this->comprobarDatosInicio($datos)){
+        if ($resultado = $this->objMUsuario->inicio($datos)){
+            
+            $estado = $this->objMUsuario->estado($resultado['nombre']);
+            
+            if (!$estado){ 
                 
                 $this->sessionStart();
-                
                 $_SESSION['usuario'] = $resultado['nombre'];
                 
-                if(isset($resultado['idUsuario'])) {
+                if (isset($resultado['idUsuario'])) {
                     $_SESSION['idUsuario'] = $resultado['idUsuario'];
                 }
 
                 $this->vista = '';
                 echo 'true';
                 return 'true';
+                
             } else {
                 $this->vista = '';
-                echo $this->objMUsuario->codError;
-                return $this->objMUsuario->codError;
+                echo 'UsuarioDesactivado';
+                return 'UsuarioDesactivado';
             }
+            
+        } else {
+            $this->vista = '';
+            echo $this->objMUsuario->codError;
+            return $this->objMUsuario->codError;
         }
-        
-        $this->vista = '';
-        echo 'DatosIncompletos';
-        return 'DatosIncompletos';
     }
+    
+    $this->vista = '';
+    echo 'DatosIncompletos';
+    return 'DatosIncompletos';
+}
 
     public function enviarSolicitud($datos){
         $this->sessionStart();
