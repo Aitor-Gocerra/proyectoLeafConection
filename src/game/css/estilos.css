@@ -368,9 +368,10 @@ footer {
 /****************************** PÁGINA -> ESTADISTICAS            ******************************/
 /* ESTILO ESTADISTICAS */
 #tituloEstadisticas {
-    margin-top: 5.625rem;
-    /* 90px */
-    font-family: var(--fuente-principal);
+    padding: 1.5rem 0rem;
+    line-height: 1.2;
+    color: var(--color-primario);
+    font-size: 3rem;
 }
 
 #tablaEstadisticas {
@@ -381,10 +382,34 @@ footer {
     gap: 2rem;
 
     .tarjetaEstadisticas {
-        &:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
-        &:nth-child(2) { grid-area: 2 / 1 / 3 / 2; }
-        &:nth-child(3) { grid-area: 1 / 2 / 2 / 3; }
-        &:nth-child(4) { grid-area: 2 / 2 / 3 / 3; }
+        &:nth-child(1) { 
+            grid-area: 1 / 1 / 2 / 2;
+            &::before{
+                content: 'partidas';
+                margin-top: -1rem;
+            }
+        }
+        &:nth-child(2) { 
+            grid-area: 2 / 1 / 3 / 2;
+            &::before{
+                content: 'puntos';
+                margin-top: -1rem;
+            }
+        }
+        &:nth-child(3) { 
+            grid-area: 1 / 2 / 2 / 3;
+            &::before{
+                content: 'puntos';
+                margin-top: -1rem;
+            }
+        }
+        &:nth-child(4) { 
+            grid-area: 2 / 2 / 3 / 3;
+            &::before{
+                content: 'minutos';
+                margin-top: -1rem;
+            }
+        }
         &:nth-child(5) { 
             grid-area: 1 / 3 / 3 / 5;
             i{
@@ -392,13 +417,13 @@ footer {
             }
 
             p{
-                font-size: 3rem;
-                margin-bottom: -4rem;
+                font-size: 2rem;
+                margin-bottom: -2rem;
             }
 
             h3{
                 margin-top: -4rem;
-                font-size: 2rem;
+                font-size: 3rem;
             }
         }
     }
@@ -451,57 +476,57 @@ footer {
         &:nth-child(5) { 
             grid-area: 3 / 1 / 4 / 3; 
             p{
-                font-size: 3rem;
-                margin-bottom: 0rem;
+                font-size: 2rem;
+                margin-bottom: -2rem;
             }
 
             h3{
-                margin-top: 0rem;
+                margin-top: -2rem;
+                font-size: 3rem;
+            }
+        } 
+    }
+}
+
+@media (max-width: 575px) {
+    #tablaEstadisticas{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    #tablaEstadisticas .tarjetaEstadisticas {
+        &:nth-child(1) { grid-area: 1 / 1 / 2 / 2; }
+        &:nth-child(2) { grid-area: 2 / 1 / 3 / 2; }
+        &:nth-child(3) { grid-area: 3 / 1 / 4 / 2; }
+        &:nth-child(4) { grid-area: 4 / 1 / 5 / 2; }
+        &:nth-child(5) { 
+            grid-area: 5 / 1 / 7 / 2;
+            p{
                 font-size: 2rem;
+                margin-bottom: -3rem;
+            }
+
+            h3{
+                margin-top: -3rem;
+                font-size: 3rem;
             }
         } 
     }
 }
 
 
-/*
-.tarjetaEstadisticas p {
-    float: left;
-    font-family: var(--fuente-principal);
+#graficoPuntaje{
+    width: 100%;
+    background: #e6f7e8;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    margin: 2rem auto;
+    max-width: 700px;
+    max-height: 400px;
 }
 
-.tarjetaEstadisticas h3 {
-    clear: left;
-    font-family: var(--fuente-principal);
-}*/
 
-
-#graficoEstadisticas {
-    background-color: #e6fffa;
-    margin-top: 1.25rem;
-    /* 20px */
-    border-radius: 0.625rem;
-    /* 10px */
-    padding: 0.625rem;
-    /* 10px */
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3)
-        /* 2px, 8px */
-}
-
-#graficoEstadisticas h2 {
-    /* Asegurar que los títulos no causen desbordamiento */
-    word-wrap: break-word;
-}
-
-#graficoEstadisticas img {
-    display: block;
-    margin: auto;
-    padding: 0.625rem;
-    /* 10px */
-    /* Asegurar que la imagen nunca exceda el ancho del contenedor */
-    max-width: 100%;
-    height: auto;
-}
 
 /****************************** PÁGINA -> GESTION DE AMIGOS            ******************************/
 
@@ -526,7 +551,7 @@ footer {
         color: var(--color-texto-principal);
     }
 
-   .contenedorBuscarAmigo {
+    .contenedorBuscarAmigo {
         display: grid;
         grid-template-columns: 4fr 1fr;
         gap: 0.5rem;

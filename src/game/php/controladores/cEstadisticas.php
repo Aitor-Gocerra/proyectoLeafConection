@@ -32,12 +32,16 @@
                 $racha = $this->obtenerRacha($idUsuario);
                 $datosPuntuacion = $this->obtenerPuntajeUltimaSemana($idUsuario);
 
+                $s = $tiempoMedio;
+                $m = $s / 60;
+                $tiempoMedioXPartida = number_format($m, 2);
+
                 echo json_encode([
                     'success' => true,
                     'partidasJugadas' => $partidas,
                     'puntuacionTotal' => $puntuacionTotal,
                     'mayorPuntuacion' => $mayorPuntuacion,
-                    'tiempoMedioPorPartida' => $tiempoMedio,
+                    'tiempoMedioPorPartida' => $tiempoMedioXPartida,
                     'racha' => $racha,
                     'datosPuntuacion' => $datosPuntuacion
                 ]);
