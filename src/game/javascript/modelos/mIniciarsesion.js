@@ -1,12 +1,12 @@
 //////////////////// TODO EXPLICADO EN REGISTRO
-export class mIniciarSesion {
+class MIniciarsesion {
     constructor() {}
-    async mIniciarSesion(formData){
+    async MIniciarSesion(datosFormulario){
 
         try {
             const response = await fetch('index.php?c=Usuarios&m=inicio', {
                 method: 'POST',
-                body: formData,
+                body: datosFormulario,
             });
 
             if(response.ok) {

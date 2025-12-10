@@ -1,4 +1,5 @@
 
+
 // Esperar a que el DOM (la página HTML) esté completamente cargada
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -13,8 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
         tipoPagina = 'Palabra';
     } else if (tituloCompleto.includes('Frase')) {
         tipoPagina = 'Frase';
-    } else {
+    } else if (tituloCompleto.includes('Noticia')){
         tipoPagina = 'Noticia';
+    }else if (tituloCompleto.includes('Login')){
+        tipoPagina = 'Login';
+    }else if (tituloCompleto.includes('Registro')){
+        tipoPagina = 'Registro';
     }
 
     // Inicializar el MVC correspondiente según el tipo de página
@@ -39,6 +44,20 @@ document.addEventListener('DOMContentLoaded', function () {
             const controladorNoticia = new CNoticia(modeloNoticia, null);
             const vistaNoticia = new VNoticia(controladorNoticia);
             controladorNoticia.vista = vistaNoticia;
+            break;
+
+        case 'Login':
+            const modeloLogin = new MIniciarsesion();
+            const controladorLogin = new CIniciarsesion(modeloLogin, null);
+            const vistaLogin = new VIniciarsesion(controladorLogin);
+            controladorLogin.vista = vistaLogin;
+            break;
+        
+        case 'Registro':
+            const modeloRegistro = new MRegistro();
+            const controladorRegistro = new CRegistro(modeloRegistro, null);
+            const vistaRegistro = new VRegistro(controladorRegistro);
+            controladorRegistro.vista = vistaRegistro;
             break;
 
         default:

@@ -1,11 +1,11 @@
 
-export class MRegistrarse {
+class MRegistro {
     constructor() {}
-    async mRegistrarse(formData){
+    async MRegistro(datosForm){
         try{
             const response = await fetch('index.php?c=Usuarios&m=registrar', { //ENVÍA LOS DATOS A UN CONTROLADOR USUARIOS QUE TENDRA EL MÉTODO REGISTRAR
                 method: 'POST',
-                body: formData, 
+                body: datosForm, 
             });
             
             if(response.ok){

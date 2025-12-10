@@ -1,14 +1,11 @@
-import {mIniciarSesion} from '../modelos/mIniciarsesion.js';
+class CIniciarsesion {
 
-export class cIniciarSesion {
-    modelo;
-    vista; 
-
-    constructor() {
-        this.modelo = new mIniciarSesion();
+    constructor(modelo, vista) {
+        this.modelo = modelo;
+        this.vista = vista;
     }
 
-    cIniciarSesion(email, password) {
+    iniciarSesion(email, password) {
 
         // Validar el formario con un REGEX básico
         if (!this.validarEmail(email)) {
@@ -17,10 +14,10 @@ export class cIniciarSesion {
         }
 
         //TODO EXPLICADO EN REGISTRO TAMBIÉN 
-        let formData = new FormData(); 
-        formData.append('correo', email); 
-        formData.append('contrasenia', password); 
-        this.modelo.mIniciarSesion(formData);
+        let datosFormulario = new FormData(); 
+        datosFormulario.append('correo', email); 
+        datosFormulario.append('contrasenia', password); 
+        this.modelo.MIniciarSesion(datosFormulario);
     }
 
     validarEmail(email) {
