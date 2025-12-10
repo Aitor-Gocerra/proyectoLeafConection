@@ -50,7 +50,7 @@ class CUsuarios
 
     public function modificarEstado()
     {
-        $busqueda = $_POST['busqueda'] ?? ''; 
+        $busqueda = $_POST['busqueda'] ?? '';
 
         $buscar = $_POST['buscar'] ?? '';
         $estado = $_POST['estado'] ?? null;
@@ -60,16 +60,21 @@ class CUsuarios
             return $this->gestionarUsuarios();
         }
 
-        $usuarios = $this->modelo->buscarUsuarios($buscar);
+        try {
+            $usuarios = $this->modelo->buscarUsuarios($buscar);
 
-        if (count($usuarios) == 1) {
-            $id = $usuarios[0]['idUsuario'];
-            $ok = $this->modelo->modificarEstadoUsuario($id, $estado);
-            $this->mensaje = $ok ? "Estado actualizado correctamente." : "Error al actualizar.";
-        } elseif (count($usuarios) > 1) {
-            $this->mensaje = "Error: Múltiples usuarios encontrados con ese criterio. Se más específico.";
-        } else {
-            $this->mensaje = "Error: Usuario no encontrado.";
+            if (count($usuarios) == 1) {
+                $id = $usuarios[0]['idUsuario'];
+                $ok = $this->modelo->modificarEstadoUsuario($id, $estado);
+                $this->mensaje = $ok ? "Estado actualizado correctamente." : "Error al actualizar.";
+            } elseif (count($usuarios) > 1) {
+                $this->mensaje = "Error: Múltiples usuarios encontrados con ese criterio. Se más específico.";
+            } else {
+                $this->mensaje = "Error: Usuario no encontrado.";
+            }
+        } catch (Exception $e) {
+            echo "Excepción capturada: " . $e->getMessage();
+            die();
         }
 
         return $this->gestionarUsuarios();
