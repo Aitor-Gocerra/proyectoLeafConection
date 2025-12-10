@@ -28,6 +28,8 @@ class VNoticia {
             }
         }
 
+        console.log(respuestasUsuario);
+
         // Llamar al controlador
         this.controlador.procesarRespuestas(respuestasUsuario);
     }
