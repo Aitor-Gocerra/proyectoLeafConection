@@ -52,20 +52,30 @@ class CUsuarios{
 
     public function inicio($datos){
 
-        if($this->comprobarDatosInicio($datos)){
-            if($resultado = $this->objMUsuario->inicio($datos)){
+        if ($this->comprobarDatosInicio($datos)){
+            if ($resultado = $this->objMUsuario->inicio($datos)){
                 
-                $this->sessionStart();
+                $estado = $this->objMUsuario->estado($resultado['nombre']);
                 
-                $_SESSION['usuario'] = $resultado['nombre'];
-                
-                if(isset($resultado['idUsuario'])) {
-                    $_SESSION['idUsuario'] = $resultado['idUsuario'];
-                }
+                if (!$estado){ 
+                    
+                    $this->sessionStart();
+                    $_SESSION['usuario'] = $resultado['nombre'];
+                    
+                    if (isset($resultado['idUsuario'])) {
+                        $_SESSION['idUsuario'] = $resultado['idUsuario'];
+                    }
 
-                $this->vista = '';
-                echo 'true';
-                return 'true';
+                    $this->vista = '';
+                    echo 'true';
+                    return 'true';
+                    
+                } else {
+                    $this->vista = '';
+                    echo 'UsuarioDesactivado';
+                    return 'UsuarioDesactivado';
+                }
+                
             } else {
                 $this->vista = '';
                 echo $this->objMUsuario->codError;

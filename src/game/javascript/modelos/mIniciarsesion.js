@@ -23,7 +23,9 @@ class MIniciarsesion {
                         errorDiv.textContent = 'Contraseña incorrecta';
                     } else if (result === 'UsuarioIncorrecto') {
                         errorDiv.textContent = 'El usuario o correo electrónico no está registrado.';
-                    } else if (result === 'DatosIncompletos') {
+                    } else if (result === 'UsuarioDesactivado') {
+                        errorDiv.textContent = 'La cuenta del usuario se encuentra desactivada.';
+                    }else if (result === 'DatosIncompletos') {
                         errorDiv.textContent = 'Faltan datos de inicio de sesión.';
                     } else {
                         errorDiv.textContent = 'Usuario o contraseña incorrecto. Intente de nuevo.';

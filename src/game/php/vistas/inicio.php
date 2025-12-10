@@ -45,7 +45,7 @@
                     <i class="fas fa-recycle"></i>
                     <h2 class="tituloTarjeta">Consejo del día</h2>
                     <p class="descripcionTarjeta">Lee el consejo diario sobre la salud mental y ambiental</p>
-                    <a href="index.php?c=Paginas&m=consejoDia">Comenzar desafío</a>
+                    <a href="index.php?c=Consejo&m=cargaDatosJuego">Comenzar desafío</a>
                 </div>
             </div>
         </main>
