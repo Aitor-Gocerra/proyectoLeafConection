@@ -108,7 +108,7 @@ class CUsuarios{
 
         // Si no hay usuario logueado, no buscamos nada
         if (!isset($_SESSION['idUsuario'])) {
-            return ['solicitudes' => [],'amigos'      => []];
+            return ['solicitudes' => [],'amigos' => []];
         }
 
         $miID = $_SESSION['idUsuario'];

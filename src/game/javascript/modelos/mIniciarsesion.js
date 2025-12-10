@@ -1,6 +1,8 @@
 //////////////////// TODO EXPLICADO EN REGISTRO
 class MIniciarsesion {
-    constructor() {}
+    constructor() {
+        
+    }
     async MIniciarSesion(datosFormulario){
 
         try {

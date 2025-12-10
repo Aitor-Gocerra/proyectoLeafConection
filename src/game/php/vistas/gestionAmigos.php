@@ -4,7 +4,7 @@
 <head>
     <?php
     require_once 'parciales/head.php';
-    encabezado("Gestión de amigos - LeafConnect");
+    encabezado("Amigos - LeafConnect");
     ?>
 </head>
 
@@ -78,20 +78,16 @@
         require_once 'parciales/footer.php';
         ?>
     </footer>
-
-   <div id="confirmModal" class="modal-overlay-simple">
-        <div class="modal-content-simple">
-            <h3>¿Estás seguro?</h3>
-            <p>Esta acción eliminará a tu amigo permanentemente.</p>
-            
-            <div class="modal-actions-simple">
-                <button type="button" id="cancelBtn" class="modal-btn-simple">Cancelar</button>
-                <button type="button" id="confirmDeleteBtn" class="modal-btn-simple modal-btn-delete-simple">Eliminar</button>
-            </div>
-        </div>
-    </div>
     <script type="module" src="javaScript/vistas/amigos.js"></script>
 
+        <?php
+            require_once 'parciales/modalEliminarAmigo.php';
+        ?>
+
+    <script src="javaScript/modelos/mAmigos.js"></script>
+    <script src="javaScript/controladores/cAmigos.js"></script>
+    <script src="javaScript/vistas/vAmigos.js"></script>
+    <script src="javaScript/app.js"></script>
 </body>
 
 </html>

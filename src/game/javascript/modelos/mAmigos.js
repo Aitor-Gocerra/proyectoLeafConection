@@ -1,4 +1,4 @@
-export class mAmigos {
+class MAmigos {
     
     constructor() {
     }
@@ -35,8 +35,8 @@ export class mAmigos {
     }
 
     // 1. ENVIAR SOLICITUD
-    async enviarSolicitud(formData) {
-        const result = await this.peticiones('enviarSolicitud', formData); 
+    async enviarSolicitud(datosForm) {
+        const result = await this.peticiones('enviarSolicitud', datosForm); 
 
         if (!result) return;
 
@@ -58,8 +58,8 @@ export class mAmigos {
     }
 
     // 2. ACEPTAR SOLICITUD
-    async aceptarSolicitud(formData) {
-        const result = await this.peticiones('aceptarSolicitud', formData);
+    async aceptarSolicitud(datosForm) {
+        const result = await this.peticiones('aceptarSolicitud', datosForm);
 
         if (!result) return;
 
@@ -72,9 +72,9 @@ export class mAmigos {
     }
 
     // 3. RECHAZAR SOLICITUD (Faltaba esta)
-    async rechazarEliminar(formData) {
+    async rechazarEliminar(datosForm) {
 
-        const result = await this.peticiones('rechazarEliminar', formData);
+        const result = await this.peticiones('rechazarEliminar', datosForm);
 
         if (!result) {
             return;

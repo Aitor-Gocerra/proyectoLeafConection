@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
         tipoPagina = 'Login';
     }else if (tituloCompleto.includes('Registro')){
         tipoPagina = 'Registro';
+    }else if (tituloCompleto.includes('Amigos')){
+        tipoPagina = 'Amigos';
     }
 
     // Inicializar el MVC correspondiente según el tipo de página
@@ -58,6 +60,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const controladorRegistro = new CRegistro(modeloRegistro, null);
             const vistaRegistro = new VRegistro(controladorRegistro);
             controladorRegistro.vista = vistaRegistro;
+            break;
+
+        case 'Amigos':
+            const modeloAmigos = new MAmigos();
+            const controladorAmigos = new CAmigos(modeloAmigos, null);
+            const vistaAmigos = new VAmigos(controladorAmigos);
+            controladorAmigos.vista = vistaAmigos;
             break;
 
         default:
