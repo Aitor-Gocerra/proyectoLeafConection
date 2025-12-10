@@ -41,11 +41,10 @@
                     <h3>0 días</h3>
                 </div>
             </div>
-            <div id="graficoEstadisticas">
-                <h2>Progreso semanal</h2>
-                <p>Número de partidas jugadas esta semanaX</p>
-                <img src="./imagenes/graficos.jpg" alt="Gráfico de jugadas">
+            <div>
+                <canvas id="myChart"></canvas>
             </div>
+
         </main>
 
         <?php require_once 'parciales/botonVolver.php'; ?>
@@ -62,6 +61,10 @@
         <script src="javaScript/controladores/cEstadisticas.js"></script>
         <script src="javaScript/vistas/vEstadisticas.js"></script>
         <script src="javaScript/app.js"></script>
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     </body>
 
 </html>

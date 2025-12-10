@@ -30,6 +30,7 @@
                 $mayorPuntuacion = $this->objEstadistica->mayorPuntuacion($idUsuario);
                 $tiempoMedio = $this->objEstadistica->tiempoMedioPorPartida($idUsuario);
                 $racha = $this->obtenerRacha($idUsuario);
+                $datosPuntuacion = $this->obtenerPuntajeUltimaSemana($idUsuario);
 
                 echo json_encode([
                     'success' => true,
@@ -37,7 +38,8 @@
                     'puntuacionTotal' => $puntuacionTotal,
                     'mayorPuntuacion' => $mayorPuntuacion,
                     'tiempoMedioPorPartida' => $tiempoMedio,
-                    'racha' => $racha
+                    'racha' => $racha,
+                    'datosPuntuacion' => $datosPuntuacion
                 ]);
             } catch (Exception $e) {
                 echo json_encode([
@@ -47,7 +49,7 @@
             }
         }
 
-        private function obtenerRacha($idUsuario){
+        public function obtenerRacha($idUsuario){
             $fechasJugadas = $this->objEstadistica->fechasJugadas($idUsuario);
             if (empty($fechasJugadas)){
                 return 0;
@@ -57,14 +59,65 @@
             $hoy = date('Y-m-d');
 
             foreach ($fechasJugadas as $fecha) {
-                if ($fecha == $hoy) {
+                if ($fecha['fecha'] == $hoy) {
                     $racha++;
-                    $hoy = date('Y-m-d', strtotime($hoy . ' -1 day'));
-                } else {
-                    return $racha;
+                    $ayer = strtotime('-1 day', strtotime($hoy));
+                    $ayer = date('Y-m-d', $ayer);
+                    $hoy = $ayer;
                 }
             }
+
+            return $racha ?? 0;
         }
 
+        public function obtenerPuntajeUltimaSemana($idUsuario){
+            $fechaInicio = date('Y-m-d', strtotime('-6 day')); // hace 6 días (7 días incluyendo hoy)
+            $fechaFin = date('Y-m-d', strtotime('+1 day')); // como usabas antes (no se usa aquí, lo necesita el modelo)
+
+            $datosPuntuacion = $this->objEstadistica->obtenerPuntajeUltimaSemana($idUsuario, $fechaInicio, $fechaFin);
+
+            $datos = [];
+            $actual = strtotime($fechaInicio);
+
+            for ($i = 0; $i < 7; $i++) {
+                $f = date('Y-m-d', $actual);
+                $sw = false;
+
+                foreach ($datosPuntuacion as $fila) {
+                    if ($fila['fecha'] == $f) {
+                        $datos[] = [
+                            'puntaje' => $fila['puntaje'],
+                            'fecha'   => $fila['fecha']
+                        ];
+                        $sw = true;
+                        break;
+                    }
+                }
+
+                if (!$sw) {
+                    $datos[] = [
+                        'puntaje' => "0",
+                        'fecha'   => $f
+                    ];
+                }
+
+                $actual = strtotime('+1 day', $actual);
+            }
+
+            return $datos;
+        }
+
+
+        // Sector pruebas ELIMINAR DESPUES
+        public function prueba(){
+
+            $idUsuario = $_SESSION['idUsuario'];
+            $fechaInicio = date('Y-m-d', strtotime('-6 day', strtotime(date('Y-m-d'))));
+            $fechaFin = date('Y-m-d', strtotime('+1 day', strtotime(date('Y-m-d'))));
+
+            $datosPuntuacion = $this->objEstadistica->obtenerPuntajeUltimaSemana($idUsuario, $fechaInicio, $fechaFin);
+            
+            var_dump($datosPuntuacion);
+        }
     }
 ?>
