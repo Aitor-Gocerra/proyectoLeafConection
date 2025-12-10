@@ -13,7 +13,7 @@
             <?php require_once 'parciales/nav.php'; ?>
         </header>
         <main>
-            <h2 id="tituloEstadisticas">TUS ESTADÍSTICAS</h2>
+            <h2 id="tituloEstadisticas">Tus estadísticas</h2>
             <div id="tablaEstadisticas">
                 <div class="tarjetaEstadisticas">
                     <p>Partidas jugadas</p>
@@ -36,13 +36,13 @@
                     <h3>0</h3>
                 </div>
                 <div class="tarjetaEstadisticas">
-                    <p>Racha</p>
+                    <p>Días de racha</p>
                     <i class="fa-solid fa-fire"></i>
                     <h3>0 días</h3>
                 </div>
             </div>
             <div>
-                <canvas id="myChart"></canvas>
+                <canvas id="graficoPuntaje"></canvas>
             </div>
 
         </main>

@@ -31,7 +31,6 @@ class VEstadisticas {
         console.log(datos[valores[4]]); // va bien
         console.log(datos[valores[5]]); // va bien correcto
 
-
         this.tarjetas.forEach((tarjeta, i) => {
             if (i != 5){
                 let valor = datos[valores[i]] ?? 'nada';
@@ -48,30 +47,51 @@ class VEstadisticas {
     }
 
     cargarGrafico(datosPuntaje){
-        const canvas = document.getElementById('myChart');
-        const ctx = canvas.getContext('2d');
+        const canvas = document.getElementById('graficoPuntaje');
+        const contexto = canvas.getContext('2d');
 
         let puntajes = this.obtenerPuntajes(datosPuntaje);
-        let fechas = this.obtenerFechas(datosPuntaje);
+        let dias = this.obtenerDias(datosPuntaje);
 
-        new Chart(ctx, {
-            type: 'bar',
+        new Chart(contexto, {
+            type: 'line',
             data: {
-            labels: fechas,
-            datasets: [{
-                label: '# of Votes',
-                data: puntajes,
-                borderWidth: 1
-            }]
+                labels: dias, // Array de días (L, V, ..)
+                datasets: [{
+                    backgroundColor: '#38a169',
+                    borderColor: '#38a169',
+                    hoverBackgroundColor: '#38b2ac',
+                    label: '',
+                    data: puntajes, // Puntajes
+                    borderWidth: 4,
+                    pointRadius: 8,
+                    pointHoverRadius: 12
+                }]
             },
             options: {
-            scales: {
-                y: {
-                beginAtZero: true
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            drawTicks: false,           // quita las marcas
+                            drawOnChartArea: false,     // quita las líneas verticales
+                            color: '#48bb78'  
+                        },
+                        offset: true                    // centra los puntos en la categoría
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            drawTicks: false,
+                            drawOnChartArea: true,      // mantiene solo líneas horizontales
+                            color: '#48bb78'          // color de las líneas horizontales
+                        }
+                    }
                 }
             }
-            }
-        });
+        })
     }
 
     obtenerPuntajes(datosPuntaje){
@@ -82,10 +102,13 @@ class VEstadisticas {
         return datos;
     }
 
-    obtenerFechas(datosPuntaje){
+    obtenerDias(datosPuntaje){
+        const dias = ['D','L','M','X','J','V','S'];
         let datos = [];
         for (let p of datosPuntaje){
-            datos.push(p.fecha);
+            const [y,m,d] = p.fecha.split('-').map(Number);
+            const dt = new Date(y, m-1, d);
+            datos.push(dias[dt.getDay()]);
         }
         return datos;
     }
