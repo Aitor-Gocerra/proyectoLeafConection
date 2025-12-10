@@ -34,6 +34,7 @@ class VPalabra {
     }
 
     mostrarExito(palabraCorrecta) {
+        console.log("Ejecutando mostrarExito en VPalabra");
         // Crear el modal
         const modal = document.createElement('div');
         modal.className = 'modal';
