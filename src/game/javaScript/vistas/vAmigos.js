@@ -3,116 +3,143 @@ class VAmigos {
     constructor(controlador) {
         this.controlador = controlador;
         
-        // Propiedades que se reciben del dom
-        this.errorDiv = document.getElementById('mensaje-error-amigos');
+        // Elementos del DOM
+        this.divError = document.getElementById('mensaje-error-amigos');
         this.btnAmigos = document.getElementById("todosAmigos");
         this.btnSolicitudes = document.getElementById("solicitudesAmigos");
-        this.misAmigos = document.getElementById("misAmigos");
-        this.misSolicitudes = document.getElementById("misSolicitudes");
-        this.modal = document.getElementById('confirmModal');
-        this.contenedorMisAmigos = document.getElementById('misAmigos');
+        this.divMisAmigos = document.getElementById("misAmigos");
+        this.divMisSolicitudes = document.getElementById("misSolicitudes");
+        this.modalConfirmar = document.getElementById('confirmModal');
+        this.divContenedorAmigos = document.getElementById('misAmigos');
         
+        // Almacenamos el botón de eliminar temporalmente al abrir el modal
+        this.botonEliminarActivo = null;
+
         this.vincularEventos(); 
     }
 
-    // --- MÉTODOS DE UTILIDAD (Los que el controlador usará) ---
+    // --- MÉTODOS DE UTILIDAD ---
 
     mostrarExito(mensaje) {
-        if (this.errorDiv) {
-            this.errorDiv.textContent = mensaje;
-            this.errorDiv.style.color = 'green';
-            this.errorDiv.style.display = 'block';
-            this.errorDiv.style.fontSize = '0.8rem';
-            this.errorDiv.style.marginLeft = '1rem';
+        if (this.divError != null) {
+            this.divError.textContent = mensaje;
+            this.divError.style.color = 'green';
+            this.divError.style.display = 'block';
+            this.divError.style.fontSize = '0.8rem';
+            this.divError.style.marginLeft = '1rem';
         }
     }
 
     mostrarError(mensaje) {
-        if (this.errorDiv) {
-            this.errorDiv.textContent = mensaje;
-            this.errorDiv.style.color = 'red';
-            this.errorDiv.style.display = 'block';
-            this.errorDiv.style.fontSize = '0.8rem';
-            this.errorDiv.style.marginLeft = '1rem';
+        if (this.divError != null) {
+            this.divError.textContent = mensaje;
+            this.divError.style.color = 'red';
+            this.divError.style.display = 'block';
+            this.divError.style.fontSize = '0.8rem';
+            this.divError.style.marginLeft = '1rem';
         }
     }
 
     limpiarMensajes() {
-        if (this.errorDiv) {
-            this.errorDiv.textContent = '';
-            this.errorDiv.style.display = 'none';
+        if (this.divError != null) {
+            this.divError.textContent = '';
+            this.divError.style.display = 'none';
         }
     }
 
     navegarATab() {
-        let newUrl = window.location.pathname + '?c=Usuarios&m=amigos';
-        window.location.href = newUrl;
+        let urlNueva = window.location.pathname + '?c=Usuarios&m=amigos';
+        window.location.href = urlNueva;
     }
 
-    // --- LÓGICA DE EVENTOS INTERNA ---
+    // --- MANEJO DE EVENTOS ---
 
     vincularEventos() {
-        if (this.btnAmigos) this.btnAmigos.addEventListener("click", this.cambiarATabAmigos.bind(this));
-        if (this.btnSolicitudes) this.btnSolicitudes.addEventListener("click", this.cambiarATabSolicitudes.bind(this));
+        if (this.btnAmigos != null) {
+            this.btnAmigos.addEventListener("click", this.cambiarATabAmigos.bind(this));
+        }
+        if (this.btnSolicitudes != null) {
+            this.btnSolicitudes.addEventListener("click", this.cambiarATabSolicitudes.bind(this));
+        }
 
-        const btnEncontrarAmigo = document.getElementById('encontrarAmigo');
-        if (btnEncontrarAmigo) btnEncontrarAmigo.addEventListener('click', this.enviarSolicitudHandler.bind(this));
+        const btnEnviarSolicitud = document.getElementById('encontrarAmigo');
+        if (btnEnviarSolicitud != null) {
+            btnEnviarSolicitud.addEventListener('click', this.enviarSolicitudHandler.bind(this));
+        }
 
         this.vincularAceptarRechazar();
         this.vincularModalEliminar();
     }
     
     cambiarATabAmigos() {
-        this.misAmigos.style.display = "block";
-        this.misSolicitudes.style.display = "none";
-        this.btnAmigos.classList.add("botonActivo");
-        this.btnAmigos.classList.remove("botonNoActivo");
-        this.btnSolicitudes.classList.add("botonNoActivo");
-        this.btnSolicitudes.classList.remove("botonActivo");
+        if (this.divMisAmigos != null) {
+            this.divMisAmigos.style.display = "block";
+        }
+        if (this.divMisSolicitudes != null) {
+            this.divMisSolicitudes.style.display = "none";
+        }
+        
+        if (this.btnAmigos != null) {
+            this.btnAmigos.classList.add("botonActivo");
+            this.btnAmigos.classList.remove("botonNoActivo");
+        }
+        if (this.btnSolicitudes != null) {
+            this.btnSolicitudes.classList.add("botonNoActivo");
+            this.btnSolicitudes.classList.remove("botonActivo");
+        }
         this.navegarATab();
     }
 
     cambiarATabSolicitudes() {
-        this.misAmigos.style.display = "none";
-        this.misSolicitudes.style.display = "block";
-        this.btnSolicitudes.classList.add("botonActivo");
-        this.btnSolicitudes.classList.remove("botonNoActivo");
-        this.btnAmigos.classList.add("botonNoActivo");
-        this.btnAmigos.classList.remove("botonActivo");
+        if (this.divMisAmigos != null) {
+            this.divMisAmigos.style.display = "none";
+        }
+        if (this.divMisSolicitudes != null) {
+            this.divMisSolicitudes.style.display = "block";
+        }
+        
+        if (this.btnSolicitudes != null) {
+            this.btnSolicitudes.classList.add("botonActivo");
+            this.btnSolicitudes.classList.remove("botonNoActivo");
+        }
+        if (this.btnAmigos != null) {
+            this.btnAmigos.classList.add("botonNoActivo");
+            this.btnAmigos.classList.remove("botonActivo");
+        }
     }
     
-    enviarSolicitudHandler(event) { 
-        event.preventDefault();
+    enviarSolicitudHandler(evento) { 
+        evento.preventDefault();
         this.limpiarMensajes();
 
-        let idAmigo = document.getElementById('introducirAmigo').value.trim();
+        let idUsuarioAmigo = document.getElementById('introducirAmigo').value.trim();
         
-        if (idAmigo === '') {
+        if (idUsuarioAmigo === '') {
             this.mostrarError('El usuario no está completo.');
             return;
         }
 
-        this.controlador.enviarSolicitud(idAmigo); 
+        this.controlador.enviarSolicitud(idUsuarioAmigo); 
     }
 
     vincularAceptarRechazar() {
-        const botonAceptar = document.querySelectorAll('.aceptarSolicitud');
-        const botnRechazar = document.querySelectorAll('.rechazarSolicitud');
+        const botonesAceptar = document.querySelectorAll('.aceptarSolicitud');
+        const botonesRechazar = document.querySelectorAll('.rechazarSolicitud');
 
-        botonAceptar.forEach(boton => {
+        botonesAceptar.forEach(boton => {
             boton.addEventListener('click', this.manejarAceptar.bind(this));
         });
 
-        botnRechazar.forEach(boton => {
+        botonesRechazar.forEach(boton => {
             boton.addEventListener('click', this.manejarRechazar.bind(this));
         });
     }
 
-    manejarAceptar(event) {
-        event.preventDefault();
+    manejarAceptar(evento) {
+        evento.preventDefault();
         this.limpiarMensajes();
 
-        const boton = event.currentTarget;
+        const boton = evento.currentTarget;
         const idUsuario = boton.getAttribute('value');
 
         boton.style.display = 'none';
@@ -121,11 +148,11 @@ class VAmigos {
         this.controlador.aceptarSolicitud(idUsuario);
     }
 
-    manejarRechazar(event) {
-        event.preventDefault();
+    manejarRechazar(evento) {
+        evento.preventDefault();
         this.limpiarMensajes();
 
-        const boton = event.currentTarget;
+        const boton = evento.currentTarget;
         const idUsuario = boton.getAttribute('value');
 
         boton.style.display = 'none';
@@ -134,21 +161,26 @@ class VAmigos {
         this.controlador.rechazarEliminar(idUsuario);
     }
 
-    // --- LÓGICA DEL MODAL ---
+    // --- LÓGICA DEL MODAL DE ELIMINACIÓN ---
 
     vincularModalEliminar() {
         const btnCancelar = document.getElementById('cancelBtn');
         const btnConfirmar = document.getElementById('confirmDeleteBtn');
 
-        if (this.contenedorMisAmigos) {
-            this.contenedorMisAmigos.addEventListener('click', this.manejarAbrirModal.bind(this));
+        if (this.divContenedorAmigos != null) {
+            this.divContenedorAmigos.addEventListener('click', this.manejarAbrirModal.bind(this));
         }
 
-        if (btnCancelar) {
-            btnCancelar.addEventListener('click', () => this.modal.classList.remove('active'));
+        if (btnCancelar != null) {
+            btnCancelar.addEventListener('click', () => {
+                if (this.modalConfirmar != null) {
+                    this.modalConfirmar.classList.remove('active');
+                }
+            });
         }
 
-        if (btnConfirmar) {
+        if (btnConfirmar != null) {
+            this.botonEliminarActivo = null; // Resetear
             btnConfirmar.addEventListener('click', this.manejarConfirmarEliminar.bind(this));
         }
     }
@@ -156,19 +188,37 @@ class VAmigos {
     manejarAbrirModal(e) {
         const botonEliminar = e.target.closest('.eliminarAmigo');
 
-        if (botonEliminar && this.modal) {
+        if (botonEliminar != null && this.modalConfirmar != null) {
             e.preventDefault();
-            document.getElementById('confirmDeleteBtn').dataset.idAmigo = botonEliminar.getAttribute('value');
-            this.modal.classList.add('active'); 
+            
+            // Guardamos el botón que fue clicado para ocultarlo después
+            this.botonEliminarActivo = botonEliminar; 
+
+            // Guardamos el ID del amigo en el botón de confirmación del modal
+            document.getElementById('confirmDeleteBtn').setAttribute('data-id-amigo', botonEliminar.getAttribute('value'));
+            
+            this.modalConfirmar.classList.add('active'); 
         }
     }
     
     manejarConfirmarEliminar() {
-        const idAmigo = document.getElementById('confirmDeleteBtn').dataset.idAmigo;
+        const botonConfirmar = document.getElementById('confirmDeleteBtn');
         
-        if (this.modal) this.modal.classList.remove('active');
+        const idAmigo = botonConfirmar.getAttribute('data-id-amigo');
         
-        if (idAmigo) {
+        if (this.modalConfirmar != null) {
+            this.modalConfirmar.classList.remove('active');
+        }
+        
+        if (idAmigo != null) {
+            // OCULTAR EL BOTÓN QUE INICIÓ LA ACCIÓN
+            if (this.botonEliminarActivo != null) {
+                this.botonEliminarActivo.style.display = 'none';
+                
+                // Ocultar todo el contenedor del amigo si fuera necesario
+                // this.botonEliminarActivo.closest('#contenedorAmigo').style.display = 'none';
+            }
+            
             this.controlador.rechazarEliminar(idAmigo);
         }
     }

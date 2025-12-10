@@ -106,16 +106,11 @@ class CUsuarios{
         // Definir la vista
         $this->vista = 'gestionAmigos';
 
-        // Si no hay usuario logueado, no buscamos nada
-        if (!isset($_SESSION['idUsuario'])) {
-            return ['solicitudes' => [],'amigos' => []];
-        }
-
         $miID = $_SESSION['idUsuario'];
 
         // 4. Llamamos al Modelo para obtener LAS DOS listas
         $listaSolicitudes = $this->objMUsuario->listarSolicitudes($miID);
-        $listaAmigos      = $this->objMUsuario->listarAmigos($miID); 
+        $listaAmigos = $this->objMUsuario->listarAmigos($miID); 
 
         // 5. Devolvemos un array con DOS claves
         return ['solicitudes' => $listaSolicitudes,'amigos'=> $listaAmigos  

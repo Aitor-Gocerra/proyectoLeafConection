@@ -141,13 +141,14 @@ class MUsuarios extends Conexion{
     {
         
         $sql = "
-            SELECT 
-                Amigos.idUsuario1 AS idEmisor,
-                Usuario.nombre AS nombreAmigo
-            FROM Amigos
-            INNER JOIN Usuario ON Amigos.idUsuario1 = Usuario.idUsuario
-            WHERE Amigos.idUsuario2 = :idUsuario 
-            AND (Amigos.estado = 0 OR Amigos.estado = b'0');
+        SELECT 
+            Amigos.idUsuario1 AS idEmisor,
+            Usuario.nombre AS nombreAmigo
+        FROM Amigos
+        -- Unimos con el EMISOR (idUsuario1) para obtener su nombre
+        INNER JOIN Usuario ON Amigos.idUsuario1 = Usuario.idUsuario
+        WHERE Amigos.idUsuario2 = :idUsuario -- Soy el RECEPTOR (idUsuario2)
+        AND Amigos.estado = 0; -- Solicitud Pendiente
         ";
 
         try {
@@ -163,32 +164,50 @@ class MUsuarios extends Conexion{
         }
     }
 
-    public function listarAmigos($idUsuario) {
-        try {
-            /////FALLO AQUI CORREGIR MAÑANA
-            $sql = "SELECT 
-                        Usuario.idUsuario as idAmigo,  
-                        Usuario.nombre as nombreAmigo
-                    FROM Amigos
-                    INNER JOIN Usuario ON (
-                        CASE 
-                            WHEN Amigos.idUsuario1 = :miID THEN Usuario.idUsuario = Amigos.idUsuario2
-                            WHEN Amigos.idUsuario2 = :miID THEN Usuario.idUsuario = Amigos.idUsuario1
-                        END
-                    )
-                    WHERE (Amigos.idUsuario1 = :miID OR Amigos.idUsuario2 = :miID) 
-                    AND Amigos.estado = 1"; 
+public function listarAmigos($idUsuario) {
+    $sql = "
+        -- 1. Cuando TÚ eres idUsuario1, el amigo es idUsuario2
+        SELECT
+            Amigos.idUsuario2 AS idAmigo,
+            Usuario.nombre AS nombreAmigo
+        FROM Amigos
+        INNER JOIN Usuario
+            ON Usuario.idUsuario = Amigos.idUsuario2
+        WHERE 
+            Amigos.idUsuario1 = :idA  -- Primer marcador
+            AND Amigos.estado = 1
+        
+        UNION ALL
+        
+        -- 2. Cuando TÚ eres idUsuario2, el amigo es idUsuario1
+        SELECT
+            Amigos.idUsuario1 AS idAmigo,
+            Usuario.nombre AS nombreAmigo
+        FROM Amigos
+        INNER JOIN Usuario
+            ON Usuario.idUsuario = Amigos.idUsuario1
+        WHERE 
+            Amigos.idUsuario2 = :idB  -- Segundo marcador
+            AND Amigos.estado = 1
+    ";
+                
+    try {
+        $stmt = $this->conexion->prepare($sql);
+        
+        // ¡LA CORRECCIÓN! Enlazamos el mismo valor ($idUsuario) a AMBOS marcadores únicos.
+        $stmt->bindValue(':idA', $idUsuario, PDO::PARAM_INT);
+        $stmt->bindValue(':idB', $idUsuario, PDO::PARAM_INT);
+        
+        $stmt->execute();
 
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->bindValue(':miID', $idUsuario, PDO::PARAM_INT);
-            $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        } catch (PDOException $e) {
-            return [];
-        }
+    } catch (PDOException $e) {
+        // En caso de error, devuelve el mensaje de error SQL para facilitar la depuración
+        error_log("Error SQL en listarAmigos: " . $e->getMessage()); 
+        return [];
     }
+}
 
     public function rechazarEliminar($idUsuario, $idAmigo){
         

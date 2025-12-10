@@ -35,21 +35,20 @@
             <h2>Lista de Amigos</h2>
 
             <?php echo empty($amigos) ? '<p>No tienes amigos agregados.</p>' : ''; ?>
-
             <?php foreach ($amigos as $amigo) { ?>
-                <div id="contenedorAmigo">
-                    <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
-                    
-                    <p class="nombreAmigo"><?php echo isset($amigo['nombreAmigo']) ? $amigo['nombreAmigo'] : 'Desconocido'; ?></p>
-                    
-                    <div class="simboloAmigo">
-                        <button type="button" class="eliminarAmigo" value="<?php echo isset($amigo['idEmisor']) ? $amigo['idEmisor'] : ''; ?>">
-                            <i class="fa-solid fa-user-minus"></i>
-                        </button>
+                    <div id="contenedorAmigo">
+                        <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
+                        
+                        <p class="nombreAmigo"><?php echo isset($amigo['nombreAmigo']) ? htmlspecialchars($amigo['nombreAmigo']) : 'Desconocido'; ?></p>
+                        
+                        <div class="simboloAmigo">
+                            <button type="button" class="eliminarAmigo" value="<?php echo $amigo['idAmigo'] ?? ''; ?>">
+                                <i class="fa-solid fa-user-minus"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
-        </div>
+                <?php } ?>
+            </div>
         <div id="misSolicitudes">
             <h2>Solicitudes de Amistad</h2>
 
