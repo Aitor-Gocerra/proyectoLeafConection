@@ -53,31 +53,9 @@ class CNoticias
         $respuestasCorrectas = [];
 
         if (is_array($filasRespuestas)) {
-            foreach ($filasRespuestas as $fila) {
-                // Mapear nOpcion a la respuesta correcta de esa pregunta (si es que la estructura es esa)
-                // Ojo: obtenerRespuestas devuelve nOpcion. El índice del array no necesariamente es nPregunta si no se selecciona así.
-                // Asumiremos que el frontend o la lógica sabe mapearlos. Vamos a devolver tal cual.
-                // Si necesitamos asociarlo a nPregunta:
-                // SELECT nPregunta, nOpcion FROM RespuestaCorrecta WHERE idNoticia = :id
-                // Voy a asumir que mNoticia->obtenerRespuestas debería devolver nPregunta también.
-            }
-        }
-
-        // Revisando mNoticia->obtenerRespuestas, solo selecciona nOpcion. Eso es peligroso si hay varias preguntas.
-        // Deberíamos modificar mNoticia para traer nPregunta también.
-        // Por ahora, para no romper, asumimos que vienen en orden.
-
-        // ERROR DETECTADO: mNoticia->obtenerRespuestas solo devuelve nOpcion. 
-        // Necesitamos saber a qué pregunta corresponde.
-        // Voy a usar obtenerPreguntas y para cada una buscar su respuesta, o mejor, modificaré mNoticia luego si es necesario.
-        // Para mantener consistencia con lo que había en PHP: 
-        // foreach ($filasRespuestas as $indice => $fila) { $nPregunta = $indice + 1; ... }
-
-        $respuestasMapeadas = [];
-        if (is_array($filasRespuestas)) {
             foreach ($filasRespuestas as $indice => $fila) {
-                $nPregunta = $indice + 1; // Asumiendo orden secuencial 1-based
-                $respuestasMapeadas[$nPregunta] = (int) $fila['nOpcion'];
+                // Asumiendo que las respuestas vienen en orden
+                $respuestasMapeadas[$indice + 1] = (int) $fila['nOpcion'];
             }
         }
 

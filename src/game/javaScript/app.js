@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         tipoPagina = 'Palabra';
     } else if (tituloCompleto.includes('Frase')) {
         tipoPagina = 'Frase';
-    } else if (tituloCompleto.includes('Noticia')){
+    } else {
         tipoPagina = 'Noticia';
     }else if (tituloCompleto.includes('Login')){
         tipoPagina = 'Login';
@@ -41,11 +41,18 @@ document.addEventListener('DOMContentLoaded', function () {
             controladorFrase.vista = vistaFrase;
             break;
             
-        case 'Noticia':
+        /*case 'Noticia':
             const modeloNoticia = new MNoticia();
             const controladorNoticia = new CNoticia(modeloNoticia, null);
             const vistaNoticia = new VNoticia(controladorNoticia);
             controladorNoticia.vista = vistaNoticia;
+            break;*/
+
+        case 'Estadisticas':
+            const modeloEstadisticas = new MEstadisticas();
+            const controladorEstadisticas = new CEstadisticas(modeloEstadisticas, null);
+            const vistaEstadisticas = new VEstadisticas(controladorEstadisticas);
+            controladorEstadisticas.vista = vistaEstadisticas;
             break;
 
         case 'Login':

@@ -12,7 +12,6 @@ class CNoticia {
     }
 
     async iniciar() {
-        // Pedimos los datos al modelo (las respuestas correctas)
         // Usamos await para esperar a que el servidor responda
         let datos = await this.modelo.obtenerDatosPartida();
 
