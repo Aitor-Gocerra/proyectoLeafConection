@@ -41,6 +41,7 @@ class CPalabras
             $this->pista = null;
             $this->mensaje = "No hay palabra programada para la fecha de hoy.";
         }
+
         return [
             'palabra' => $this->palabra,
             'pista' => $this->pista,

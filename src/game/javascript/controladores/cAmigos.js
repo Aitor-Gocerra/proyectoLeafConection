@@ -1,39 +1,36 @@
 
-import { mAmigos } from '../modelos/mAmigos.js'; 
+class CAmigos {
 
-export class cAmigos {
-    modelo;
-    vista; // Referencia a los métodos de la vista (mostrarError, limpiarMensajes, navegarATab, etc.)
+    constructor(modelo, vista) {
 
-    constructor() {
-        // Inicializa el Modelo JS (que se encargará de las peticiones AJAX al servidor)
-        this.modelo = new mAmigos();
+        this.modelo = modelo;
+        this.vista = vista;
     }
 
     //GESTIÓN DE ENVÍO DE SOLICITUD (Botón 'encontrarAmigo')
 
     enviarSolicitud(idAmigo) {
 
-        let formData = new FormData(); 
-        formData.append('idAmigo', idAmigo); 
+        let datosForm = new FormData(); 
+        datosForm.append('idAmigo', idAmigo); 
+        console.log("Entra");
 
-        this.modelo.enviarSolicitud(formData);
+        this.modelo.enviarSolicitud(datosForm);
     }
 
     //GESTIÓN DE ELIMINACIÓN DE AMIGO DEL MODAL
 
-    eliminarAmigo() {
+    rechazarEliminar(idAmigo) {
 
+        let datosForm = new FormData(); 
+        datosForm.append('idAmigo', idAmigo); 
+        this.modelo.rechazarEliminar(datosForm);
     }
 
-    // GESTIÓN DE SOLICITUDES (Botones Aceptar/Rechazar)
-    
-    aceptarSolicitud() {
-        this.vista.limpiarMensajes();
-    }
+    aceptarSolicitud(idAmigo){
 
-    rechazarSolicitud() {
-        this.vista.limpiarMensajes();
-        
+        let datosForm = new FormData(); 
+        datosForm.append('idAmigo', idAmigo); 
+        this.modelo.aceptarSolicitud(datosForm);
     }
 }

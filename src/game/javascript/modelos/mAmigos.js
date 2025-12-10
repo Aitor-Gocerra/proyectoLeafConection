@@ -1,4 +1,4 @@
-export class mAmigos {
+class MAmigos {
     
     constructor() {
     }
@@ -35,8 +35,8 @@ export class mAmigos {
     }
 
     // 1. ENVIAR SOLICITUD
-    async enviarSolicitud(formData) {
-        const result = await this.peticiones('enviarSolicitud', formData); 
+    async enviarSolicitud(datosForm) {
+        const result = await this.peticiones('enviarSolicitud', datosForm); 
 
         if (!result) return;
 
@@ -53,49 +53,34 @@ export class mAmigos {
             else if (result === 'SolicitudExistente') this.mostrarMensaje('Ya existe una solicitud pendiente.', 'red');
             
             // Aquí es donde estás cayendo ahora:
-            else this.mostrarMensaje('Error al enviar solicitud.', 'red');
+            else this.mostrarMensaje('Error al enviar solicitud. (Revisa consola)', 'red');
         }
     }
 
     // 2. ACEPTAR SOLICITUD
-    async aceptarSolicitud(formData) {
-        const result = await this.peticiones('aceptarSolicitud', formData);
+    async aceptarSolicitud(datosForm) {
+        const result = await this.peticiones('aceptarSolicitud', datosForm);
 
         if (!result) return;
 
-        if (result === 'true') {
-            this.mostrarMensaje('Solicitud aceptada. Actualizando...', 'green');
-            setTimeout(() => location.reload(), 1000); 
-        } else {
-            this.mostrarMensaje('Error al aceptar solicitud.', 'red');
+        if (!result) {
+            return;
+        }
+        if (result !== 'true') {
+            this.mostrarMensaje('Error del servidor: ' + result, 'red');
         }
     }
 
     // 3. RECHAZAR SOLICITUD (Faltaba esta)
-    async rechazarSolicitud(formData) {
-        const result = await this.peticiones('rechazarSolicitud', formData);
+    async rechazarEliminar(datosForm) {
 
-        if (!result) return;
+        const result = await this.peticiones('rechazarEliminar', datosForm);
 
-        if (result === 'true') {
-            this.mostrarMensaje('Solicitud rechazada.', 'green');
-            setTimeout(() => location.reload(), 1000); 
-        } else {
-            this.mostrarMensaje('Error al rechazar solicitud.', 'red');
+        if (!result) {
+            return;
         }
-    }
-
-    // 4. ELIMINAR AMIGO
-    async eliminarAmigo(formData) {
-        const result = await this.peticiones('eliminarAmigo', formData);
-
-        if (!result) return;
-
-        if (result === 'true') {
-            this.mostrarMensaje('Amigo eliminado.', 'green');
-            setTimeout(() => location.reload(), 1000); 
-        } else {
-            this.mostrarMensaje('Error al eliminar amigo.', 'red');
+        if (result !== 'true') {
+            this.mostrarMensaje('Error del servidor: ' + result, 'red');
         }
     }
 }

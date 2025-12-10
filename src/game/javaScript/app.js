@@ -1,4 +1,5 @@
 
+
 // Esperar a que el DOM (la página HTML) esté completamente cargada
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -15,8 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
         tipoPagina = 'Frase';
     } else if (tituloCompleto.includes('Estadisticas')) {
         tipoPagina = 'Estadisticas';
-    } else {
+    } else if(tituloCompleto.includes('Noticia')){
         tipoPagina = 'Noticia';
+    }else if (tituloCompleto.includes('Login')){
+        tipoPagina = 'Login';
+    }else if (tituloCompleto.includes('Registro')){
+        tipoPagina = 'Registro';
+    }else if (tituloCompleto.includes('Amigos')){
+        tipoPagina = 'Amigos';
     }
 
     // Inicializar el MVC correspondiente según el tipo de página
@@ -48,6 +55,27 @@ document.addEventListener('DOMContentLoaded', function () {
             const controladorEstadisticas = new CEstadisticas(modeloEstadisticas, null);
             const vistaEstadisticas = new VEstadisticas(controladorEstadisticas);
             controladorEstadisticas.vista = vistaEstadisticas;
+            break;
+
+        case 'Login':
+            const modeloLogin = new MIniciarsesion();
+            const controladorLogin = new CIniciarsesion(modeloLogin, null);
+            const vistaLogin = new VIniciarsesion(controladorLogin);
+            controladorLogin.vista = vistaLogin;
+            break;
+        
+        case 'Registro':
+            const modeloRegistro = new MRegistro();
+            const controladorRegistro = new CRegistro(modeloRegistro, null);
+            const vistaRegistro = new VRegistro(controladorRegistro);
+            controladorRegistro.vista = vistaRegistro;
+            break;
+
+        case 'Amigos':
+            const modeloAmigos = new MAmigos();
+            const controladorAmigos = new CAmigos(modeloAmigos, null);
+            const vistaAmigos = new VAmigos(controladorAmigos);
+            controladorAmigos.vista = vistaAmigos;
             break;
 
         default:

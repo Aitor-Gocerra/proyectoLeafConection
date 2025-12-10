@@ -1380,43 +1380,91 @@ footer {
 
 .modal-contenido {
     background-color: var(--color-fondo);
-    margin: 15% auto; /* 15% desde arriba y centrado */
-    padding: 2rem;
-    border: 1px solid var(--color-secundario);
-    border-radius: var(--borde-radius);
-    width: 80%; 
-    max-width: 500px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    margin: 10% auto; /* Ajustado para que quede más centrado visualmente */
+    padding: 2.5rem;
+    border: none;
+    border-radius: 20px; /* Bordes más redondeados */
+    width: 90%; 
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25); /* Sombra más suave y difusa */
     position: relative;
-    animation: animatetop 0.4s;
+    animation: animatetop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 /* Animación de entrada */
 @keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
+    from {top: -300px; opacity: 0; transform: scale(0.8);}
+    to {top: 0; opacity: 1; transform: scale(1);}
 }
 
 .modal-contenido h3 {
-    color: var(--color-acento-b);
-    margin-bottom: 1rem;
+    color: var(--color-primario);
+    margin: 1rem 0;
+    font-size: 1.5rem;
     font-family: var(--fuente);
 }
 
+/* Estilos específicos para el éxito */
+.icono-resultado {
+    font-size: 4.5rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.mensaje-resultado {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-texto-oscuro);
+    margin-bottom: 0.5rem;
+}
+
+.texto-solucion {
+    background-color: #f0fff4;
+    color: var(--color-secundario);
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    margin: 1rem 0;
+    border: 2px dashed var(--color-primario);
+}
+
+.submensaje {
+    color: var(--color-texto-gris);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+
 /* Botón de cerrar (X) */
 .cerrar-modal {
-    color: var(--color-texto-gris);
-    float: right;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #a0aec0;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    line-height: 20px;
+    transition: color 0.3s, transform 0.3s;
+    line-height: 1;
 }
 
 .cerrar-modal:hover,
 .cerrar-modal:focus {
     color: var(--color-primario);
     text-decoration: none;
+    transform: rotate(90deg);
 }
 
 /* Medidas adaptativas para diferentes pantallas */

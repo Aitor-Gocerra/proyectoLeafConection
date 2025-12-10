@@ -4,7 +4,7 @@
 <head>
     <?php
     require_once 'parciales/head.php';
-    encabezado("Gestión de amigos - LeafConnect");
+    encabezado("Amigos - LeafConnect");
     ?>
 </head>
 
@@ -33,24 +33,41 @@
         </div>
         <div id="misAmigos">
             <h2>Lista de Amigos</h2>
-            <div id="contenedorAmigo"><!-- Aquí se verian los amigos agregados se debe de hacer las dos de maner dinámica-->
-                <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
-                <p class="nombreAmigo">Aitor Gomez</p>
-                <div class="simboloAmigo">
-                    <button type="submit" class="eliminarAmigo" id="eliminarAmigoBtn"><i class="fa-solid fa-user-minus"></i>
-                </div>
+
+            <?php echo empty($amigos) ? '<p>No tienes amigos agregados.</p>' : ''; ?>
+            <?php foreach ($amigos as $amigo) { ?>
+                    <div id="contenedorAmigo">
+                        <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
+                        
+                        <p class="nombreAmigo"><?php echo isset($amigo['nombreAmigo']) ? htmlspecialchars($amigo['nombreAmigo']) : 'Desconocido'; ?></p>
+                        
+                        <div class="simboloAmigo">
+                            <button type="button" class="eliminarAmigo" value="<?php echo $amigo['idAmigo'] ?? ''; ?>">
+                                <i class="fa-solid fa-user-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
-        </div>
         <div id="misSolicitudes">
             <h2>Solicitudes de Amistad</h2>
-            <div id="contenedorSolicitudes">
-                <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
-                <p class="nombreAmigo">Aitor Gomez</p>
-                <button type="submit" class="aceptarSolicitud" id="btnAceptarSolicitud">Aceptar <i
-                        class="fa-solid fa-user-check"></i></button></i>
-                <button type="submit" class="rechazarSolicitud" id="btnRechazarSolicitud">Rechazar <i class="fa-solid fa-user-xmark"></i></button>
-            </div>
+
+            <?php if (isset($solicitudes) && !empty($solicitudes)) { ?>
+                <?php foreach ($solicitudes as $soli) { ?>
+                    <div id="contenedorSolicitudes">
+                        <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
+                        <p class="nombreAmigo"><?php echo $soli['nombreAmigo']; ?></p>
+                        <button type="submit" class="aceptarSolicitud" value="<?php echo $soli['idEmisor']; ?>">Aceptar <i class="fa-solid fa-user-check"></i></button>
+                        <button type="submit" class="rechazarSolicitud" value="<?php echo $soli['idEmisor']; ?>">Rechazar <i class="fa-solid fa-user-xmark"></i></button>
+                    </div>
+                    <?php } ?>
+
+                <?php } else { ?>
+                <p>No tienes solicitudes nuevas.</p>
+            <?php } ?>
         </div>
+
+        
     </main>
         <?php
             require_once 'parciales/botonVolver.php';
@@ -60,19 +77,16 @@
         require_once 'parciales/footer.php';
         ?>
     </footer>
-
-   <div id="confirmModal" class="modal-overlay-simple">
-        <div class="modal-content-simple">
-            <h3>¿Estás seguro?</h3>
-            <p>Esta acción eliminará a tu amigo permanentemente.</p>
-            
-            <div class="modal-actions-simple">
-                <button type="button" id="cancelBtn" class="modal-btn-simple">Cancelar</button>
-                <button type="button" id="confirmDeleteBtn" class="modal-btn-simple modal-btn-delete-simple">Eliminar</button>
-            </div>
-        </div>
-    </div>
     <script type="module" src="javaScript/vistas/amigos.js"></script>
+
+        <?php
+            require_once 'parciales/modalEliminarAmigo.php';
+        ?>
+
+    <script src="javaScript/modelos/mAmigos.js"></script>
+    <script src="javaScript/controladores/cAmigos.js"></script>
+    <script src="javaScript/vistas/vAmigos.js"></script>
+    <script src="javaScript/app.js"></script>
 </body>
 
 </html>

@@ -2,11 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
+        <?php
+            require_once 'parciales/head.php';
+            encabezado("Login - LeafConnect");
+        ?>
 </head>
 
 <body>
@@ -44,7 +43,10 @@
         require_once 'parciales/footer.php';
         ?>
     </footer>
-    <script type="module" src="javaScript/vistas/iniciarsesion.js"></script>
+    <script src="javaScript/modelos/mIniciarsesion.js"></script>
+    <script src="javaScript/controladores/cIniciarsesion.js"></script>
+    <script src="javaScript/vistas/vIniciarsesion.js"></script>
+    <script src="javaScript/app.js"></script>
 </body>
 
 </html>

@@ -11,14 +11,13 @@ class CFrase {
     }
 
     async inicializar() {
-        try {
-            const datos = await this.modelo.obtenerFraseCorrecta();
-            this.palabraCorrecta = datos.palabra; // La palabra que falta en la frase
+        const datos = await this.modelo.obtenerFraseCorrecta();
+        if (datos) {
+            this.palabraCorrecta = datos.palabra;
             this.idFrase = datos.idFrase;
-            console.log('Frase cargada correctamente');
-        } catch (error) {
-            console.error('Controlador: Error al inicializar:', error);
-            this.vista.mostrarError('No se pudo cargar la frase del día');
+            console.log('Frase cargada: ' + this.palabraCorrecta);
+        } else {
+            console.error('No se pudo cargar la frase');
         }
     }
 
@@ -56,8 +55,8 @@ class CFrase {
         if (!this.idFrase) return;
 
         // Obtener datos del temporizador
-        const tiempoTranscurrido = typeof obtenerTiempoTranscurrido === 'function' ? obtenerTiempoTranscurrido() : 0;
-        const tiempoRestante = typeof obtenerTiempoRestante === 'function' ? obtenerTiempoRestante() : 0;
+        const tiempoTranscurrido = obtenerTiempoTranscurrido();
+        const tiempoRestante = obtenerTiempoRestante();
 
         // Puntuación sencilla: 1 punto por segundo restante
         const puntuacion = tiempoRestante;

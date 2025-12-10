@@ -1,11 +1,7 @@
-import {MRegistrarse} from '../modelos/mRegistrarse.js'; 
-
-export class cRegistrarse {
-    modelo;
-    vista;
-
-    constructor() {
-        this.modelo = new MRegistrarse();
+class CRegistro {
+    constructor(modelo, vista) {
+        this.modelo = modelo;
+        this.vista = vista;
     }
 
     iniciarRegistro(usuario, email, password) {
@@ -26,14 +22,12 @@ export class cRegistrarse {
         }
         
         ////////// SI LAS VALIDACIONES SON CORRECTAS CONVERTIMOS LOS DATOS A UN formData Y SE PASAN AL MODELO
-        let formData = new FormData(); 
-        formData.append('usuario', usuario); 
-        formData.append('correo', email); 
-        formData.append('contrasenia', password); 
+        let datosForm = new FormData(); 
+        datosForm.append('usuario', usuario); 
+        datosForm.append('correo', email); 
+        datosForm.append('contrasenia', password); 
         
-        console.log("Datos de registro:", formData.get('usuario'), formData.get('correo'));
-        
-        this.modelo.mRegistrarse(formData);
+        this.modelo.MRegistro(datosForm);
     }
       
     ////////// METODOS DE VALIDACION SIMPLES PARA EL FORMATO DEL EMAIL, LO FUERTE QUE ES LA CONTRASEÑA Y SI EL NOMBRE DE USUSARIO CONTIENE CARACTERES PERMITIDOS //////////

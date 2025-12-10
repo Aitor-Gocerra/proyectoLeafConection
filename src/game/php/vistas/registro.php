@@ -57,7 +57,9 @@
     </footer>
 
 </body>
-
-<script type="module" src="javaScript/vistas/registrarse.js"></script>
+    <script src="javaScript/modelos/mRegistro.js"></script>
+    <script src="javaScript/controladores/cRegistro.js"></script>
+    <script src="javaScript/vistas/vRegistro.js"></script>
+    <script src="javaScript/app.js"></script>
 
 </html>

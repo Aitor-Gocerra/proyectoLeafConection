@@ -17,13 +17,7 @@ class CUsuarios{
     }
 
     public function mostrarInicio(){
-        $this->sessionStart();
         $this->vista = 'inicio';
-    }
-
-    public function amigos(){
-        $this->sessionStart();
-        $this->vista = 'gestionAmigos';
     }
 
     public function registrar($datos){
@@ -85,7 +79,6 @@ class CUsuarios{
     }
 
     public function enviarSolicitud($datos){
-        // 1. Iniciamos sesión para saber QUIÉN envía la solicitud
         $this->sessionStart();
 
         if(empty($datos["idAmigo"])){ 
@@ -94,19 +87,83 @@ class CUsuarios{
             return 'DatosIncompletos';
         }
 
-        // 4. Preparamos los datos para el Modelo
-        $idEmisor = $_SESSION['idUsuario']; // Lo sacamos de la sesión (Seguro)
-        $nombreDestino = $datos["idAmigo"]; // Lo sacamos del formulario (Input usuario)
+        // Preparamos los datos para el Modelo
+        $idEmisor = $_SESSION['idUsuario']; // Lo sacamos de la sesión 
+        $nombreDestino = $datos["idAmigo"]; // Lo sacamos del formulario 
 
-        // 5. Llamamos al Modelo
-        // El modelo debe devolver strings exactos: 'true', 'UsuarioNoExiste', etc.
         $resultado = $this->objMUsuario->procesarSolicitud($idEmisor, $nombreDestino);
 
-        // 6. Devolvemos la respuesta al JS
+        // Devolvemos la respuesta al JS
         $this->vista = '';
         echo $resultado;
         return $resultado;
     }
+
+    public function amigos(){
+        // Iniciar sesión para saber quién es el usuario
+        $this->sessionStart();
+
+        // Definir la vista
+        $this->vista = 'gestionAmigos';
+
+        $miID = $_SESSION['idUsuario'];
+
+        // 4. Llamamos al Modelo para obtener LAS DOS listas
+        $listaSolicitudes = $this->objMUsuario->listarSolicitudes($miID);
+        $listaAmigos = $this->objMUsuario->listarAmigos($miID); 
+
+        // 5. Devolvemos un array con DOS claves
+        return ['solicitudes' => $listaSolicitudes,'amigos'=> $listaAmigos  
+        ];
+    }
+
+    public function rechazarEliminar() {
+ 
+        $this->sessionStart();
+
+        // Recogemos los ids necesarios validamos que no este vacío en los dos
+        $miID = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : null;
+        
+        // EL ID DEL AMIGO
+        $idAmigo = isset($_POST['idAmigo']) ? $_POST['idAmigo'] : null;
+
+        // Verificamos que tenemos los dos
+        if ($miID && $idAmigo) {
+            // Pasamos los DOS argumentos al modelo
+            $resultado = $this->objMUsuario->rechazarEliminar($miID, $idAmigo); 
+
+            // Devolvemos lo que diga el modelo
+            echo $resultado; 
+        } else {
+            // Si falta alguno de los dos IDs, fallamos
+            echo 'Error:FaltanDatos';
+        }
+    }
+
+    public function aceptarSolicitud($datos)
+    {
+        $this->sessionStart();
+
+        // Recogemos los ids necesarios validamos que no este vacío en los dos
+        $miID = isset($_SESSION['idUsuario']) ? $_SESSION['idUsuario'] : null;
+        
+        // EL ID DEL AMIGO
+        $idAmigo = isset($_POST['idAmigo']) ? $_POST['idAmigo'] : null;
+
+        // Verificamos que tenemos los dos
+        if ($miID && $idAmigo) {
+            // Pasamos los DOS argumentos al modelo
+            $resultado = $this->objMUsuario->aceptarSolicitud($miID, $idAmigo); 
+
+            // Devolvemos lo que diga el modelo
+            echo $resultado; 
+        } else {
+            // Si falta alguno de los dos IDs, fallamos
+            echo 'Error:FaltanDatos';
+        }
+    }
+
+
 
     private function comprobarDatosInicio($datos){
         if(empty($datos) || empty($datos["correo"]) || empty($datos["contrasenia"]))
