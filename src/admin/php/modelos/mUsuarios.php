@@ -43,8 +43,9 @@ class Usuarios extends Conexion
             WHERE idUsuario = :idUsuario
             ";
         $stmt = $this->conexion->prepare($sql);
-        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
-        $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+        $stmt->bindValue(':estado', (int) $estado, PDO::PARAM_INT);
+        $stmt->bindValue(':idUsuario', (int) $idUsuario, PDO::PARAM_INT);
+
         return $stmt->execute();
     }
     public function buscarUsuarios($buscar)
