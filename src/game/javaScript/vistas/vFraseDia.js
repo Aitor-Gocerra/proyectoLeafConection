@@ -34,11 +34,22 @@ class VFrase {
     }
 
     mostrarExito(palabraCorrecta) {
-        this.limpiarContenedor();
+        console.log("Ejecutando mostrarExito en VFrase");
+        // Crear el modal
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.display = 'block'; // Mostrar inmediatamente
 
-        const divRespuesta = document.createElement('div');
-        divRespuesta.className = 'zonaRespuesta exito';
-        divRespuesta.innerHTML = `
+        const modalContenido = document.createElement('div');
+        modalContenido.className = 'modal-contenido';
+
+        // Botón de cerrar
+        const cerrarSpan = document.createElement('span');
+        cerrarSpan.className = 'cerrar-modal';
+        cerrarSpan.textContent = 'x';
+
+        // Contenido del éxito
+        const contenidoExito = `
             <div class="icono-resultado">
                 <i class="fas fa-check-circle"></i>
             </div>
@@ -47,7 +58,31 @@ class VFrase {
             <p class="submensaje">¡Has completado la frase del día!</p>
         `;
 
-        this.contenedorAcierto.appendChild(divRespuesta);
+        const divMensaje = document.createElement('div');
+        divMensaje.innerHTML = contenidoExito;
+
+        // Armar el modal
+        modalContenido.appendChild(cerrarSpan);
+        modalContenido.appendChild(divMensaje);
+        modal.appendChild(modalContenido);
+
+        // Añadir al DOM
+        document.body.appendChild(modal);
+
+        // Eventos para cerrar
+        const cerrarModal = () => {
+            modal.style.display = 'none';
+            modal.remove(); // Limpiar del DOM al cerrar
+        };
+
+        cerrarSpan.onclick = cerrarModal;
+
+        // Cerrar si se hace clic fuera del contenido
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        };
     }
 
     mostrarFallo(palabraUsuario) {
