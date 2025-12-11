@@ -1,101 +1,108 @@
 <?php
-    require_once __DIR__ . '/../Modelos/ModConexion.php';
+require_once __DIR__ . '/mConexion.php';
 
-    class Frase extends Conexion{ 
-        
-        public function crearFraseYpista($frase, $palabraFaltante, $pista) {
-            // Inicia una transacción para asegurar que ambas inserciones se completen
-            $this->conexion->beginTransaction();
+class Frase extends Conexion
+{
 
-            try {
-                // 1. Insertar la frase
-                $sqlFrase = "
-                    INSERT INTO Frases (frase, palabraFaltante) 
-                    VALUES (:frase, :palabra);
+    public function mostrarFrase()
+    {
+        $fecha = date('Y-m-d');
+
+        $sql = "
+                    SELECT *
+                    FROM Frases
+                    WHERE DATE(fechaProgramada) = :fecha
+                    LIMIT 1;
                 ";
 
-                $stmtFrase = $this->conexion->prepare($sqlFrase);
-                $stmtFrase->bindParam(':frase', $frase);
-                $stmtFrase->bindParam(':palabra', $palabraFaltante);
-                $stmtFrase->execute();
-                
-                $idFrase = $this->conexion->lastInsertId();
+        $stmt = $this->conexion->prepare($sql);
 
-                if ($idFrase) {
-                    // 2. Insertar la pista relacionada
-                    $sqlPista = "
-                        INSERT INTO PistasFrase (idFrase, pista) 
-                        VALUES (:idFrase, :pista);
-                    ";
+        $stmt->bindParam(':fecha', $fecha);
+        $stmt->execute();
 
-                    $stmtPista = $this->conexion->prepare($sqlPista);
-                    $stmtPista->bindParam(':idFrase', $idFrase);
-                    $stmtPista->bindParam(':pista', $pista);
-                    $stmtPista->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-                    $this->conexion->commit();
-                    return (int)$idFrase;
-                }
+    public function mostrarPista($idFrase)
+    {
 
-            } catch (PDOException $e) {
-                $this->conexion->rollBack();
-                // Aquí puedes loggear el error
-                return false;
-            }
+        $sql = "
+                    SELECT pista
+                    FROM PistasFrase
+                    WHERE idFrase = :id;
+                ";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $stmt->bindParam(':id', $idFrase, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function palabraFaltante($idFrase)
+    {
+        $sql = "
+                    SELECT palabraFaltante
+                    FROM Frases
+                    WHERE idFrase = :id;
+                ";
+
+        $stmt = $this->conexion->prepare($sql);
+
+        $stmt->bindParam(':id', $idFrase, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function guardarPartida($idFrase, $temporizador, $puntuacion, $intentos, $idUsuario)
+    {
+
+        $sql1 = "INSERT INTO Partida (temporizador, puntuacion, intentos, idUsuario) 
+                VALUES (:temporizador, :puntuacion, :intentos, :idUsuario);";
+
+        $sql2 = "INSERT INTO FraseDia (idPartida, idFrase) VALUES (:idPartida, :idFrase);";
+
+        try {
+            $this->conexion->beginTransaction();
+            $sth = $this->conexion->prepare($sql1);
+            $sth->execute(['temporizador' => $temporizador, 'puntuacion' => $puntuacion, 'intentos' => $intentos, 'idUsuario' => $idUsuario]);
+
+            $idPartida = $this->conexion->lastInsertId();
+
+            $sth = $this->conexion->prepare($sql2);
+            $sth->execute(['idPartida' => $idPartida, 'idFrase' => $idFrase]);
+
+            $this->conexion->commit();
+
+            return ['success' => true];
+
+        } catch (PDOException $e) {
+            $this->conexion->rollBack();
+            return ['success' => false, 'error' => $e->getMessage()];
+        }
+    }
+
+    public function haJugadoHoy($idUsuario)
+    {
+        $sql = "SELECT * FROM FraseDia 
+                INNER JOIN Partida ON FraseDia.idPartida = Partida.idPartida 
+                INNER JOIN Frases ON FraseDia.idFrase = Frases.idFrase 
+                WHERE Partida.idUsuario = :idUsuario && DATE(Frases.fechaProgramada) = :fechaActual;";
+
+        $fechaActual = date("Y-m-d");
+
+        try {
+            $sth = $this->conexion->prepare($sql);
+            $sth->execute(['idUsuario' => $idUsuario, 'fechaActual' => $fechaActual]);
+            return $sth->rowCount() > 0 ? true : false;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
             return false;
         }
-
-        public function listarFrases() {
-            $sql = "
-                SELECT * 
-                FROM Frases 
-                ORDER BY fechaProgramada DESC;
-            ";
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->execute();
-
-            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return !empty($resultado) ? $resultado : null;
-        }
-
-        public function actualizarFrase($idFrase, $frase, $palabraFaltante) {
-            $sql = "
-                UPDATE Frases 
-                SET frase = :frase, palabraFaltante = :palabra 
-                WHERE idFrase = :id
-            ";
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->bindParam(':frase', $frase);
-            $stmt->bindParam(':palabra', $palabraFaltante);
-            $stmt->bindParam(':id', $idFrase, PDO::PARAM_INT);
-            
-            return $stmt->execute();
-        }
-        
-        public function anadirPista($idFrase, $pista) {
-            $sql = "
-                INSERT INTO PistasFrase (idFrase, pista) 
-                VALUES (:idFrase, :pista);
-                ";
-
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->bindParam(':idFrase', $idFrase, PDO::PARAM_INT);
-            $stmt->bindParam(':pista', $pista);
-            
-            return $stmt->execute();
-        }
-
-        public function eliminarFrase($idFrase) {
-            $sql = "
-                DELETE FROM Frases 
-                WHERE idFrase = :id;
-                ";
-                
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->bindParam(':id', $idFrase, PDO::PARAM_INT);
-            
-            return $stmt->execute();
-        }
-
     }
+}
+?>

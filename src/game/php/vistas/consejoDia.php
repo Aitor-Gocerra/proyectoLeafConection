@@ -19,9 +19,10 @@
             <div id="cajaConsejo">
                 <i class="fa-solid fa-lightbulb" id="bomb"></i>
                 <h2 id="tituloConsejo">Consejo del día</h2>
-                <p id="fraseConsejo">Separa correctamente tus residuos (orgánico, papel, plástico…).
-                Si no separas bien, parte de los residuos reciclables se pierden, lo que implica que más
-                basura va a vertederos o al tratamiento común, generando más emisiones</p>
+                
+                <p id="fraseConsejo">
+                    <?php echo $consejo ?? 'Cargando consejo...'; ?>
+                </p>
             </div>
 
         </main>
