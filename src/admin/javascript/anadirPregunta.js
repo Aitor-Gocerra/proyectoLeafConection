@@ -1,19 +1,31 @@
-let btnAñadirPregunta = document.getElementById("añadirPregunta");
-let plantilla = document.querySelector(".cuestionarioPregunta"); // primera pregunta
-let contenedor = document.getElementById("cuestionarioContainer");
+document.addEventListener('DOMContentLoaded', function() {
+    let btnAñadirPregunta = document.getElementById("btnAnadirPregunta");
+    let plantilla = document.querySelector(".cuestionarioPregunta");
+    let contenedor = document.getElementById("cuestionarioContainer");
 
-btnAñadirPregunta.addEventListener("click", function(e) {
-    e.preventDefault();
+    if (!btnAñadirPregunta) {
+        console.error("No se encontró el botón btnAnadirPregunta");
+        return;
+    }
 
-    // Clonar la plantilla
-    let nuevaPregunta = document.createElement("div");
-    nuevaPregunta.classList.add("cuestionarioPregunta");
-    nuevaPregunta.innerHTML = plantilla.innerHTML;
+    btnAñadirPregunta.addEventListener("click", function (e) {
+        e.preventDefault();
 
-    // Limpiar valores de los inputs
-    let inputs = nuevaPregunta.querySelectorAll('input');
-    inputs.forEach(input => input.value = '');
+        let totalPreguntas = contenedor.querySelectorAll(".cuestionarioPregunta").length;
 
-    // Añadir al contenedor de preguntas
-    contenedor.appendChild(nuevaPregunta);
+        if (totalPreguntas >= 3) {
+            alert("Solo puedes añadir un máximo de 3 pistas.");
+            btnAñadirPregunta.disabled = true;
+            return;
+        }
+        
+        let nuevaPregunta = document.createElement("div");
+        nuevaPregunta.classList.add("cuestionarioPregunta");
+        nuevaPregunta.innerHTML = plantilla.innerHTML;
+
+        let inputs = nuevaPregunta.querySelectorAll('input');
+        inputs.forEach(input => input.value = '');
+
+        contenedor.appendChild(nuevaPregunta);
+    });
 });

@@ -25,7 +25,7 @@
 
             <div id="contenedorAdmin">
                 <h1>Gestión de noticias</h1>
-                <form action="" method="post" id="noticia_formulario">
+                <form action="procesarNoticia.php" method="POST" id="noticia_formulario">
                     <label for="nombre">Nombre</label>
                     <input type="text" name="nombre" id="nombre" placeholder="Ej: Greta Thunberg">
 
