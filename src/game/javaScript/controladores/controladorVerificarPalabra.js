@@ -1,5 +1,5 @@
 
-class contVerifPalabra{
+class ContVerifPalabra{
     constructor(modelo, palabra){
         this.modelo= modelo;
         this.palabra=palabra;

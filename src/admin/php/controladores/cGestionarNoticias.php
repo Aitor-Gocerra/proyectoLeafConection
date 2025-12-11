@@ -2,11 +2,7 @@
     // Usamos el modelo de administración de noticias (mNoticias.php), no el de juego
     require_once __DIR__ .'/../modelos/mNoticias.php';
 
-<<<<<<< Updated upstream
     class CGestionarNoticias{
-=======
-    class cNoticias{
->>>>>>> Stashed changes
         public $objNoticia;
         public $vista;
         public $mensaje;
@@ -74,11 +70,7 @@
 
         public function eliminar(){
             if ($this->objNoticia->eliminarNoticia($this->idNoticia)){
-<<<<<<< Updated upstream
                 header("Location: ./index.php?c=GestionarNoticias&m=gestionarNoticias");
-=======
-                header("Location: ./index.php?c=Noticias&m=gestionarNoticias");
->>>>>>> Stashed changes
             }
         }
 
@@ -168,11 +160,7 @@
             $url, $preguntas, $arrOpciones, $respuestas);
 
             if ($resultado) {
-<<<<<<< Updated upstream
                 header("Location: ./index.php?c=GestionarNoticias&m=gestionarNoticias");
-=======
-                header("Location: ./index.php?c=Noticias&m=gestionarNoticias");
->>>>>>> Stashed changes
                 exit;
             } else {
                 $this->mensaje = "Error en la modificación.";
@@ -181,12 +169,3 @@
         }
 
     }
-<<<<<<< Updated upstream
-
-
-
-=======
-?>
->>>>>>> Stashed changes
-
-
