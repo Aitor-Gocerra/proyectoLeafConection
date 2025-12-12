@@ -2030,6 +2030,13 @@ footer {
     border: 1px solid #dbdbdb;
 }
 
+#tituloPw, #iconoPw {
+    display: inline-block;
+}
+
+#iconoPw {
+    cursor: pointer;
+}
 /* Responsivo para Autenticación */
 @media (min-width: 768px) {
     .formulario-autenticacion {
