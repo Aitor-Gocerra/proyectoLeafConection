@@ -17,9 +17,9 @@ class Noticia extends Conexion
         $fechaActual = date("Y-m-d");
 
         try {
-            $sth = $this->conexion->prepare($sql);
-            $sth->execute(['fechaActual' => $fechaActual]);
-            $noticia = $sth->fetch(PDO::FETCH_ASSOC);
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->execute(['fechaActual' => $fechaActual]);
+            $noticia = $stmt->fetch(PDO::FETCH_ASSOC);
             return $noticia;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -32,9 +32,9 @@ class Noticia extends Conexion
         $sql = "SELECT * FROM Preguntas WHERE idNoticia = :idNoticia;";
 
         try {
-            $sth = $this->conexion->prepare($sql);
-            $sth->execute(['idNoticia' => $idNoticia]);
-            $noticia = $sth->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->execute(['idNoticia' => $idNoticia]);
+            $noticia = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $noticia;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -47,9 +47,9 @@ class Noticia extends Conexion
         $sql = "SELECT * FROM Opciones WHERE idNoticia = :idNoticia;";
 
         try {
-            $sth = $this->conexion->prepare($sql);
-            $sth->execute(['idNoticia' => $idNoticia]);
-            $noticia = $sth->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->execute(['idNoticia' => $idNoticia]);
+            $noticia = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $noticia;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -61,9 +61,9 @@ class Noticia extends Conexion
     {
         $sql = "SELECT nPregunta, nOpcion FROM RespuestaCorrecta WHERE idNoticia = :idNoticia;";
         try {
-            $sth = $this->conexion->prepare($sql);
-            $sth->execute(['idNoticia' => $idNoticia]);
-            $respuestas = $sth->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->execute(['idNoticia' => $idNoticia]);
+            $respuestas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $respuestas;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -81,13 +81,29 @@ class Noticia extends Conexion
 
         try {
             $this->conexion->beginTransaction();
-            $sth = $this->conexion->prepare($sql1);
-            $sth->execute(['temporizador' => $temporizador, 'puntuacion' => $puntuacion, 'intentos' => $intentos, 'idUsuario' => $idUsuario]);
+
+            $stmt = $this->conexion->prepare($sql1);
+
+            $stmt->execute([
+                'temporizador' => $temporizador, 
+                'puntuacion' => $puntuacion, 
+                'intentos' => $intentos, 
+                'idUsuario' => $idUsuario
+            ]);
+
             $idPartida = $this->conexion->lastInsertId();
-            $sth = $this->conexion->prepare($sql2);
-            $sth->execute(['idPartida' => $idPartida, 'idNoticia' => $idNoticia]);
+
+            $stmt = $this->conexion->prepare($sql2);
+
+            $stmt->execute([
+                'idPartida' => $idPartida, 
+                'idNoticia' => $idNoticia
+            ]);
+
             $this->conexion->commit();
+
             return ['success' => true];
+
         } catch (PDOException $e) {
             $this->conexion->rollBack();
             return ['success' => false, 'error' => $e->getMessage()];
@@ -96,17 +112,23 @@ class Noticia extends Conexion
 
     public function haJugadoHoy($idUsuario)
     {
-        $sql = "SELECT * FROM NoticiaDia 
-                    INNER JOIN Partida ON NoticiaDia.idPartida = Partida.idPartida 
-                    INNER JOIN Noticias ON NoticiaDia.idNoticia = Noticias.idNoticia 
-                    WHERE Partida.idUsuario = :idUsuario AND DATE(Noticias.fechaProgramada) = :fechaActual;";
+        $sql = "
+            SELECT * FROM NoticiaDia 
+            INNER JOIN Partida ON NoticiaDia.idPartida = Partida.idPartida 
+            INNER JOIN Noticias ON NoticiaDia.idNoticia = Noticias.idNoticia 
+            WHERE Partida.idUsuario = :idUsuario AND DATE(Noticias.fechaProgramada) = :fechaActual;";
 
         $fechaActual = date("Y-m-d");
 
         try {
-            $sth = $this->conexion->prepare($sql);
-            $sth->execute(['idUsuario' => $idUsuario, 'fechaActual' => $fechaActual]);
-            return $sth->rowCount() > 0 ? true : false;
+            $stmt = $this->conexion->prepare($sql);
+
+            $stmt->execute([
+                'idUsuario' => $idUsuario, 
+                'fechaActual' => $fechaActual
+            ]);
+            
+            return $stmt->rowCount() > 0 ? true : false;
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
             return false;
