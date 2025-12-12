@@ -12,7 +12,7 @@
         public function __construct(){
             $this->objNoticia = new Noticia();
             $this->vista = '';
-            $this->idNoticia = $_GET['idNoticia'] ?? NULL; // Obtener el idNoticia desde el constructor
+            $this->idNoticia = $_GET['idNoticia'] ?? NULL;
         }
 
         public function gestionarNoticias(){
@@ -33,7 +33,7 @@
 
             $arrOpciones = [];
             foreach ($opciones as $i => $opcion) {
-                $elementos = explode('/', $opcion); // separar por '/'
+                $elementos = explode('/', $opcion);
             
                 foreach ($elementos as $j => $elemento) {
                     $texto = trim($elemento);
@@ -125,7 +125,7 @@
                 if (!isset($respuestas[$i])) $respuestas[$i] = '';
             }
         
-            // devolver los datos para la vista (los usaremos en JS)
+            // devolver los datos para la vista para usarse en js
             $this->vista = 'gestionarNoticias';
             return [
                 'noticia' => $noticia,

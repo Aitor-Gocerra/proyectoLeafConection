@@ -60,7 +60,22 @@
             } 
 
             $racha = 0;
-            $hoy = date('Y-m-d');
+            
+            /**
+             * Compruebo si el jugador ha jugado hoy, porque si no detecta la fecha al principio del bucle
+             * la racha quedará en 0.
+             */
+
+            if ($fechasJugadas[0]['fecha'] == date('Y-m-d')){
+                $racha++;
+            }
+
+            /**
+             * Hoy es el día de ayer, y ayer es antes de ayer, esta corrección es para que se cargue
+             * la racha sin necesidad de jugar una partida ese día.
+             */
+
+            $hoy = date('Y-m-d', strtotime('-1 day'));
 
             foreach ($fechasJugadas as $fecha) {
                 if ($fecha['fecha'] == $hoy) {
@@ -83,6 +98,11 @@
             $datos = [];
             $actual = strtotime($fechaInicio);
 
+            /**
+             * Bucle que sirve para rellenar con 0 los días de la semana que no se registran partidas
+             * del usuario. 
+             */
+
             for ($i = 0; $i < 7; $i++) {
                 $f = date('Y-m-d', $actual);
                 $sw = false;
@@ -98,6 +118,7 @@
                     }
                 }
 
+                // Rellenar con 0 y con la fecha actual (osea la del puntero)
                 if (!$sw) {
                     $datos[] = [
                         'puntaje' => "0",
@@ -116,12 +137,9 @@
         public function prueba(){
 
             $idUsuario = $_SESSION['idUsuario'];
-            $fechaInicio = date('Y-m-d', strtotime('-6 day', strtotime(date('Y-m-d'))));
-            $fechaFin = date('Y-m-d', strtotime('+1 day', strtotime(date('Y-m-d'))));
+            $fechasJugadas = $this->objEstadistica->fechasJugadas($idUsuario);
+            var_dump($fechasJugadas);
 
-            $datosPuntuacion = $this->objEstadistica->obtenerPuntajeUltimaSemana($idUsuario, $fechaInicio, $fechaFin);
-            
-            var_dump($datosPuntuacion);
         }
     }
 ?>
