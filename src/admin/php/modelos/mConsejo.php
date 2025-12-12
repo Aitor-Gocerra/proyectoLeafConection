@@ -106,8 +106,9 @@ class Consejo extends Conexion
     public function actualizarFechas()
     {
         $sql = "
-            UPDATE Consejos
-            SET fechaProgramada = NULL;
+            UPDATE Palabras
+            SET fechaProgramada = NULL
+            WHERE fechaProgramada < NOW();
         ";
         $stmt = $this->conexion->prepare($sql);
         return $stmt->execute();
