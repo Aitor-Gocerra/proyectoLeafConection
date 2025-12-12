@@ -48,9 +48,9 @@
                             echo "<td>" . $frase['palabraFaltante'] . "</td>";
                             echo "<td>" . ($frase['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
-                            echo "<a href='index.php?c=Frase&m=editarFrase&idFrase=" . $frase['idFrase'] . "&modal=1' onclick=\"return confirm('¿Editar esta frase?')\" style='color:orange'>Editar</a>";
+                            echo "<a href='index.php?c=cGestionarFrases&m=editarFrase&idFrase=" . $frase['idFrase'] . "&modal=1' onclick=\"return confirm('¿Editar esta frase?')\" style='color:orange'>Editar</a>";
                             echo "<br>";
-                            echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\">Eliminar</a>";
+                            echo "<a href='index.php?c=GestionarFrases&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\">Eliminar</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -71,7 +71,7 @@
                         class="fa-solid fa-arrow-down"></i></a>
             </div>
             <form
-                action="<?php echo (isset($fraseEditar) && !$usarModal) ? 'index.php?c=Frase&m=actualizarFrase' : 'index.php?c=Frase&m=guardarNuevaFrase'; ?>"
+                action="<?php echo (isset($fraseEditar) && !$usarModal) ? 'index.php?c=cGestionarFrases&m=actualizarFrase' : 'index.php?c=Frase&m=guardarNuevaFrase'; ?>"
                 method="post">
 
                 <?php if (isset($fraseEditar) && !$usarModal) { ?>
@@ -112,7 +112,7 @@
 
                     <?php if (isset($fraseEditar) && !$usarModal) { ?>
                         <button type="button" class="btn-secundario"
-                            onclick="window.location.href='index.php?c=Frase&m=gestionarFrases'">
+                            onclick="window.location.href='index.php?c=cGestionarFrases&m=gestionarFrases'">
                             <i class="fa-solid fa-times"></i>&nbsp;Cancelar
                         </button>
                     <?php } else { ?>
@@ -156,9 +156,9 @@
                             echo "<td>" . $frase['palabraFaltante'] . "</td>";
                             echo "<td>" . ($frase['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
-                            echo "<a href='index.php?c=Frase&m=editarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Editar esta frase?')\" style='color:orange'>Editar</a>";
+                            echo "<a href='index.php?c=cGestionarFrases&m=editarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Editar esta frase?')\" style='color:orange'>Editar</a>";
                             echo "<br>";
-                            echo "<a href='index.php?c=Frase&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\" style='color:red'>Eliminar</a>";
+                            echo "<a href='index.php?c=cGestionarFrases&m=eliminarFrase&idFrase=" . $frase['idFrase'] . "' onclick=\"return confirm('¿Eliminar esta frase?')\" style='color:red'>Eliminar</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -172,7 +172,7 @@
 
         <?php
         if (isset($usarModal) && $usarModal) {
-            require_once 'parciales/modalEditarFrase.php';
+            require_once 'parciales/editarFrase.php';
         }
         ?>
 
@@ -195,7 +195,7 @@
             e.preventDefault();
             const buscar = document.getElementById('inputBuscar').value;
             if (buscar.trim() !== '') {
-                window.location.href = 'index.php?c=Frase&m=buscarFrases&buscar=' + buscar;
+                window.location.href = 'index.php?c=cGestionarFrases&m=buscarFrases&buscar=' + buscar;
             }
         });
 
@@ -207,12 +207,12 @@
         if (successMessage) {
             alert(successMessage);
             // Limpiar el parámetro de la URL sin recargar la página
-            window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+            window.history.replaceState({}, document.title, 'index.php?c=GestionarFrases&m=gestionarFrases');
         }
 
         if (errorMessage) {
             alert('Error: ' + errorMessage);
-            window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+            window.history.replaceState({}, document.title, 'index.php?c=cGestionarFrases&m=gestionarFrases');
         }
 
         /* El formulario NO se envía automáticamente, sino que usa JavaScript para construir la URL
@@ -233,14 +233,14 @@
             span.onclick = function () {
                 modal.style.display = "none";
                 // Limpiar la URL para quitar los parámetros de edición
-                window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+                window.history.replaceState({}, document.title, 'index.php?c=cGestionarFrases&m=gestionarFrases');
             }
 
             // Cuando el usuario hace clic fuera del modal, también se cierra
             window.onclick = function (event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
-                    window.history.replaceState({}, document.title, 'index.php?c=Frase&m=gestionarFrases');
+                    window.history.replaceState({}, document.title, 'index.php?c=cGestionarFrases&m=gestionarFrases');
                 }
             }
         }

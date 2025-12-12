@@ -44,9 +44,9 @@
                             echo "<td>" . ($c['nombreTematica'] ?? '—') . "</td>";
                             echo "<td>" . ($c['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
-                            echo "<a href='index.php?c=Consejo&m=editarConsejo&idConsejo=" . $c['idConsejo'] . "&modal=1' onclick=\"return confirm('¿Editar este consejo?')\" style='color:orange'>Editar</a>";
+                            echo "<a href='index.php?c=mConsejo&m=editarConsejo&idConsejo=" . $c['idConsejo'] . "&modal=1' onclick=\"return confirm('¿Editar este consejo?')\" style='color:orange'>Editar</a>";
                             echo "<br>";
-                            echo "<a href='index.php?c=Consejo&m=eliminarConsejo&idConsejo=" . $c['idConsejo'] . "' onclick=\"return confirm('¿Eliminar este consejo?')\" style='color:red'>Eliminar</a>";
+                            echo "<a href='index.php?c=mConsejo&m=eliminarConsejo&idConsejo=" . $c['idConsejo'] . "' onclick=\"return confirm('¿Eliminar este consejo?')\" style='color:red'>Eliminar</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -66,7 +66,7 @@
                 <a href="#ultimosDiezConsejos" class="enlace-listado">Ir al listado de consejos <i class="fa-solid fa-arrow-down"></i></a>
             </div>
 
-            <form action="<?php echo (isset($consejoEditar) && !$usarModal) ? 'index.php?c=Consejo&m=actualizarConsejo' : 'index.php?c=Consejo&m=guardarNuevaConsejo'; ?>" method="post">
+            <form action="<?php echo (isset($consejoEditar) && !$usarModal) ? 'index.php?c=cGestionarConsejo&m=actualizarConsejo' : 'index.php?c=Consejo&m=guardarNuevaConsejo'; ?>" method="post">
                 <?php if (isset($consejoEditar) && !$usarModal) { ?>
                     <input type="hidden" name="idConsejoEdicion" value="<?php echo $consejoEditar['idConsejo']; ?>">
                 <?php } ?>
@@ -161,7 +161,7 @@
 
         <?php
         if (isset($usarModal) && $usarModal) {
-            require_once 'parciales/modalEditarConsejo.php';
+            require_once 'parciales/editarConsejo.php';
         }
 
         require_once 'parciales/notificacion.php';
@@ -181,7 +181,7 @@
                 e.preventDefault();
                 const buscarInput = document.getElementById('inputBuscar');
                 if (buscarInput && buscarInput.value.trim() !== '') {
-                    window.location.href = 'index.php?c=Consejo&m=buscarConsejos&buscar=' + encodeURIComponent(buscarInput.value.trim());
+                    window.location.href = 'index.php?c=mConsejo&m=buscarConsejos&buscar=' + encodeURIComponent(buscarInput.value.trim());
                 }
             });
         }
@@ -193,12 +193,12 @@
         if (modal && span) {
             span.onclick = function () {
                 modal.style.display = "none";
-                window.history.replaceState({}, document.title, 'index.php?c=Consejo&m=gestionarConsejo');
+                window.history.replaceState({}, document.title, 'index.php?c=mConsejo&m=gestionarConsejo');
             }
             window.onclick = function (event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
-                    window.history.replaceState({}, document.title, 'index.php?c=Consejo&m=gestionarConsejo');
+                    window.history.replaceState({}, document.title, 'index.php?c=mConsejo&m=gestionarConsejo');
                 }
             }
         }

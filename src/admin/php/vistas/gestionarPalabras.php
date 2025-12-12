@@ -47,9 +47,9 @@
                             echo "<td>" . $palabra['definicion'] . "</td>";
                             echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
-                            echo "<a href='index.php?c=Palabra&m=editarPalabra&idPalabra=" . $palabra['idPalabra'] . "&modal=1' onclick=\"return confirm('¿Editar esta palabra?')\" style='color:orange'>Editar</a>";
+                            echo "<a href='index.php?c=cGestionarPalabras&m=editarPalabra&idPalabra=" . $palabra['idPalabra'] . "&modal=1' onclick=\"return confirm('¿Editar esta palabra?')\" style='color:orange'>Editar</a>";
                             echo "<br>";
-                            echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
+                            echo "<a href='index.php?c=cGestionarPalabras&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -70,7 +70,7 @@
                         class="fa-solid fa-arrow-down"></i></a>
             </div>
             <form
-                action="<?php echo (isset($palabraEditar) && !$usarModal) ? 'index.php?c=Palabra&m=actualizarPalabra' : 'index.php?c=Palabra&m=guardarNuevaPalabra'; ?>"
+                action="<?php echo (isset($palabraEditar) && !$usarModal) ? 'index.php?c=cGestionarPalabra&m=actualizarPalabra' : 'index.php?c=Palabra&m=guardarNuevaPalabra'; ?>"
                 method="post">
 
                 <?php if (isset($palabraEditar) && !$usarModal) { ?>
@@ -151,9 +151,9 @@
                             echo "<td>" . $palabra['definicion'] . "</td>";
                             echo "<td>" . ($palabra['fechaProgramada'] ?? 'No programada') . "</td>";
                             echo "<td>";
-                            echo "<a href='index.php?c=Palabra&m=editarPalabra&idPalabra=" . $palabra['idPalabra'] . "' style='color:orange'>Editar</a>";
+                            echo "<a href='index.php?c=cGestionarPalabras&m=editarPalabra&idPalabra=" . $palabra['idPalabra'] . "' style='color:orange'>Editar</a>";
                             echo "<br>";
-                            echo "<a href='index.php?c=Palabra&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
+                            echo "<a href='index.php?c=GestionarPalabras&m=eliminarPalabra&idPalabra=" . $palabra['idPalabra'] . "' onclick=\"return confirm('¿Eliminar esta palabra?')\">Eliminar</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -167,7 +167,7 @@
 
         <?php
         if (isset($usarModal) && $usarModal) {
-            require_once 'parciales/modalEditarPalabra.php';
+            require_once 'parciales/editarPalabra.php';
         }
         ?>
 
@@ -202,12 +202,12 @@
         if (successMessage) {
             alert(successMessage);
             // Limpiar el parámetro de la URL sin recargar la página
-            window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+            window.history.replaceState({}, document.title, 'index.php?c=cGestionarPalabras&m=gestionarPalabras');
         }
 
         if (errorMessage) {
             alert('Error: ' + errorMessage);
-            window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+            window.history.replaceState({}, document.title, 'index.php?c=cGestionarPalabras&m=gestionarPalabras');
         }
 
         /* El formulario NO se envía automáticamente, sino que usa JavaScript para construir la URL
@@ -228,14 +228,14 @@
             span.onclick = function () {
                 modal.style.display = "none";
                 // Limpiar la URL para quitar los parámetros de edición
-                window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+                window.history.replaceState({}, document.title, 'index.php?c=cGestionarPalabras&m=gestionarPalabras');
             }
 
             // Cuando el usuario hace clic fuera del modal, también se cierra
             window.onclick = function (event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
-                    window.history.replaceState({}, document.title, 'index.php?c=Palabra&m=gestionarPalabras');
+                    window.history.replaceState({}, document.title, 'index.php?c=cGestionarPalabras&m=gestionarPalabras');
                 }
             }
         }
