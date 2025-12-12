@@ -11,7 +11,6 @@ echo '
 
             <div id="menuDesplegable">';
 
-
     if (isset($_SESSION['usuario'])) {
         echo '
                 <a href="index.php?c=Usuarios&m=amigos"><i class="fas fa-users"></i> Mis Amigos</a>
