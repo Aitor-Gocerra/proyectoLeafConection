@@ -249,29 +249,6 @@ footer {
             margin-bottom: 1.2rem;
         }
 
-            /* Estilos específicos para cada icono */
-        i.fa-fire {
-            background: linear-gradient(to bottom, #ff0000, #ff6600, #ffcc00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        i.fa-clock {
-            color: #ffffff;
-        }
-
-        i.fa-chart-line {
-            color: #ff8c00;
-        }
-
-        i.fa-flag-checkered {
-            color: #2c2c2c;
-        }
-
-        i.fa-gamepad {
-            color: #0066cc;
-        }
         a {
             color: var(--color-primario);
             text-decoration: none;
@@ -476,7 +453,29 @@ footer {
 .tarjetaEstadisticas i {
     grid-area: 1 / 2 / 3 / 3; /* ocupa toda la columna derecha */
     font-size: 3.5rem;
-    color: var(--color-primario);
+}
+
+.tarjetaEstadisticas i.fa-fire {
+    background: linear-gradient(to bottom, #ff0000, #ff6600, #ffcc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tarjetaEstadisticas i.fa-clock {
+    color: #ffffff;
+}
+
+.tarjetaEstadisticas i.fa-chart-line {
+    color: #ff8c00;
+}
+
+.tarjetaEstadisticas i.fa-flag-checkered {
+    color: #2c2c2c;
+}
+
+.tarjetaEstadisticas i.fa-gamepad {
+    color: #0066cc;
 }
 
 .tarjetaEstadisticas h3 {
