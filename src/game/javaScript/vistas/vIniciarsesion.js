@@ -3,7 +3,8 @@ class VIniciarsesion {
 
     constructor(controlador){
         this.controlador = controlador;
-        this.errorDiv = document.getElementById('mensaje-error'); 
+        this.errorDiv = document.getElementById('mensaje-error');
+        this.iconoPw = document.getElementById('iconoPw');
         this.vincularEventos(); // Llamamos a los eventos desde el constructor
     }
 
@@ -49,5 +50,17 @@ class VIniciarsesion {
         
         // Llamamos al método del controlador (asumiendo que se llama iniciarSesion)
         this.controlador.iniciarSesion(email, password); 
+    }
+
+    verContraseña(){
+        this.iconoPw.addEventListener("click", () => {
+            if (inputPassword.type === "password") {
+                inputPassword.type = "text";
+                botonVer.textContent = "🔓"; 
+            } else {
+                inputPassword.type = "password";
+                botonVer.textContent = "🔒";
+            }
+        });
     }
 }

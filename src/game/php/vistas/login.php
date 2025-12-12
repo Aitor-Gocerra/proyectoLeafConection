@@ -27,7 +27,8 @@
             <input type="text" id="input-email" placeholder="Introduce correo"> 
             
             <label for="input-password">Contraseña</label>
-            <input type="password" id="input-password" placeholder="Introduce contraseña"> 
+            <input type="password" id="input-password" placeholder="Introduce contraseña">
+            <span id="iconoPw">🔒</span> 
 
             <div id="mensaje-error"></div>
             
