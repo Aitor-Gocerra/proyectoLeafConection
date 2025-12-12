@@ -2048,6 +2048,7 @@ footer {
 #iconoPw {
     font-size: 1.2rem; /* Ajusta el tamaño si es necesario */
     line-height: 1;
+    cursor: pointer;
 }
 
 /* Responsivo para Autenticación */
