@@ -3,7 +3,10 @@ class VRegistro {
     constructor(controlador){
         this.controlador = controlador;
         this.errorDiv = document.getElementById('mensaje-error'); 
+        this.iconoPw = document.getElementById('iconoPw');
+        this.inputPassword = document.getElementById('input-password');
         this.vincularEventos();
+        this.verContraseña();
     }
 
     mostrarError(mensaje) {
@@ -54,5 +57,24 @@ class VRegistro {
             return;
         }
         this.controlador.iniciarRegistro(usuario, email, password); 
+    }
+
+    verContraseña(){
+        // Verificamos que el icono y el input existan
+        if (!this.iconoPw || !this.inputPassword) {
+            console.error("No se encontró el icono o el campo de contraseña.");
+            return;
+        }
+        
+        this.iconoPw.addEventListener("click", () => {
+            // Usamos 'this.inputPassword' y 'this.iconoPw' que están definidos en el constructor
+            if (this.inputPassword.type === "password") {
+                this.inputPassword.type = "text";
+                this.iconoPw.textContent = "🔓"; // Cambia a candado abierto
+            } else {
+                this.inputPassword.type = "password";
+                this.iconoPw.textContent = "🔒"; // Vuelve a candado cerrado
+            }
+        });
     }
 }

@@ -32,7 +32,10 @@
             <label for="input-correo">Correo electrónico</label>
             <input type="text" placeholder="Introduce correo" id="input-correo">
 
-            <label for="input-contrasenia">Contraseña</label>
+            <div class="info-password-label">
+                <label for="input-password" id="tituloPw">Contraseña</label>
+                <span id="iconoPw">🔒</span> 
+            </div>
             <input type="password" placeholder="Introduce tu contraseña" id="input-contrasenia">
 
             <label for="input-contrasenia2">Confirmar contraseña</label>
