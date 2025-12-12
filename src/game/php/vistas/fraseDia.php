@@ -20,12 +20,11 @@
                 
                 <p class="descripcionPalabra">Rellena el espacio en blanco para completar la cita ecologica.</p>
                 
-                 <div class="contenedorTiempoPista">
-                <p id="temporizador">
-                <i class="fas fa-clock"></i> 
-                <span id="tiempoRestante">5:00</span></p>
-                
-            <i class="fas fa-lightbulb fa-2x" id="iconoPista"></i> 
+                <div class="contenedor-timer-pista">
+                <p class="temporizador"><i class="fas fa-clock"></i> 5:00</p>
+                <button id="btnPista" class="boton-bombilla" title="Ver pista extra">
+                    <i class="fas fa-lightbulb"></i>
+                </button>
             </div>
             <div id="popupPista" class="popup">
             <div class="popup-contenido">
