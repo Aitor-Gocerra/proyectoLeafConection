@@ -28,9 +28,6 @@ class VEstadisticas {
             'datosPuntuacion'
         ];
 
-        console.log(datos[valores[4]]); // va bien
-        console.log(datos[valores[5]]); // va bien correcto
-
         this.tarjetas.forEach((tarjeta, i) => {
             if (i != 5){
                 let valor = datos[valores[i]] ?? 'nada';
@@ -48,6 +45,10 @@ class VEstadisticas {
 
     cargarGrafico(datosPuntaje){
         const canvas = document.getElementById('graficoPuntaje');
+
+        /**
+         * El contexto es la API real que permite la manipulación gráfica
+         */
         const contexto = canvas.getContext('2d');
 
         let puntajes = this.obtenerPuntajes(datosPuntaje);
@@ -106,8 +107,8 @@ class VEstadisticas {
         const dias = ['D','L','M','X','J','V','S'];
         let datos = [];
         for (let p of datosPuntaje){
-            const [y,m,d] = p.fecha.split('-').map(Number);
-            const dt = new Date(y, m-1, d);
+            let [y,m,d] = p.fecha.split('-').map(Number);
+            let dt = new Date(y, m-1, d);
             datos.push(dias[dt.getDay()]);
         }
         return datos;
