@@ -2033,7 +2033,7 @@ footer {
 .info-password-label {
     display: flex;       /* Activa la alineación horizontal */
     align-items: center; /* Centra verticalmente el candado con el texto */
-    gap: 22.5rem;         /* Espacio entre el candado y la palabra */
+    gap: 0.5rem;         /* Espacio entre el candado y la palabra */
     margin-top: 10px;    /* Mantiene la separación con el input anterior */
     width: 100%;
 }
