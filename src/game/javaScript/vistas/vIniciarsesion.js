@@ -5,7 +5,9 @@ class VIniciarsesion {
         this.controlador = controlador;
         this.errorDiv = document.getElementById('mensaje-error');
         this.iconoPw = document.getElementById('iconoPw');
+        this.inputPassword = document.getElementById('input-password');
         this.vincularEventos(); // Llamamos a los eventos desde el constructor
+        this.verContraseña();
     }
 
     mostrarError(mensaje) {
@@ -53,14 +55,21 @@ class VIniciarsesion {
     }
 
     verContraseña(){
+        // Verificamos que el icono y el input existan
+        if (!this.iconoPw || !this.inputPassword) {
+            console.error("No se encontró el icono o el campo de contraseña.");
+            return;
+        }
+        
         this.iconoPw.addEventListener("click", () => {
-            if (inputPassword.type === "password") {
-                inputPassword.type = "text";
-                botonVer.textContent = "🔓"; 
+            // Usamos 'this.inputPassword' y 'this.iconoPw' que están definidos en el constructor
+            if (this.inputPassword.type === "password") {
+                this.inputPassword.type = "text";
+                this.iconoPw.textContent = "🔓"; // Cambia a candado abierto
             } else {
-                inputPassword.type = "password";
-                botonVer.textContent = "🔒";
-            }
+                this.inputPassword.type = "password";
+                this.iconoPw.textContent = "🔒"; // Vuelve a candado cerrado
+            }
         });
     }
 }
