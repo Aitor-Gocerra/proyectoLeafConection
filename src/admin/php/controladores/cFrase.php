@@ -134,6 +134,10 @@ class CFrase
 
     public function actualizarFrase()
     {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header("Location: index.php?c=Frase&m=gestionarFrases");
+            exit;
+        }
 
         if (empty($_POST['idFrase']) || empty($_POST['frase']) || empty($_POST['palabraFaltante'])) {
             $this->mensaje = "Error: rellena todos los campos.";

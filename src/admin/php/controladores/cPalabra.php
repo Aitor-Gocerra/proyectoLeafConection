@@ -92,6 +92,11 @@ class CPalabra
 
     public function actualizarPalabra()
     {
+        // Si no es POST, redirigir
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header("Location: index.php?c=Palabra&m=gestionarPalabras");
+            exit;
+        }
 
         if (empty($_POST['idPalabra']) || empty($_POST['palabra']) || empty($_POST['definicion'])) {
             $this->mensaje = "Error: rellena todos los campos.";
