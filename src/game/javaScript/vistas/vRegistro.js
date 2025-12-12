@@ -5,6 +5,7 @@ class VRegistro {
         this.errorDiv = document.getElementById('mensaje-error'); 
         this.iconoPw = document.getElementById('iconoPw');
         this.inputPassword = document.getElementById('input-contrasenia');
+        this.inputPassword2 = document.getElementById('input-contrasenia2');
         this.vincularEventos();
         this.verContraseña();
     }
@@ -68,11 +69,12 @@ class VRegistro {
         
         this.iconoPw.addEventListener("click", () => {
             // Usamos 'this.inputPassword' y 'this.iconoPw' que están definidos en el constructor
-            if (this.inputPassword.type === "password") {
+            if (this.inputPassword.type === "password" && this.inputPassword2.type === "password") {
                 this.inputPassword.type = "text";
                 this.iconoPw.textContent = "🔓"; // Cambia a candado abierto
             } else {
                 this.inputPassword.type = "password";
+                this.inputPassword2.type = "password";
                 this.iconoPw.textContent = "🔒"; // Vuelve a candado cerrado
             }
         });
