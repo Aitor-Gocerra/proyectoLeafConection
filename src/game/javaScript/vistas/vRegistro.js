@@ -4,7 +4,7 @@ class VRegistro {
         this.controlador = controlador;
         this.errorDiv = document.getElementById('mensaje-error'); 
         this.iconoPw = document.getElementById('iconoPw');
-        this.inputPassword = document.getElementById('input-password');
+        this.inputPassword = document.getElementById('input-contrasenia');
         this.vincularEventos();
         this.verContraseña();
     }
