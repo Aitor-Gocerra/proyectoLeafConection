@@ -31,8 +31,6 @@
         <p>Esta pista te ayudará a descubrir la eco-frase del día.</p>
             </div>
             </div>
-            
-        
                 
                 <div class="frase">
                     <p>El proceso de reciclaje de materia orgánica, como hojas y restos de comida, en una enmienda rica para el suelo.</p>
@@ -65,9 +63,9 @@
 });
 
         
-        window.addEventListener('click', function(ventana) {
+        window.addEventListener('click', function(e) {
         let popup = document.getElementById('popupPista');
-        if (ventana.target === popup) {
+        if (e.target === popup) {
         popup.style.display = 'none';
     }
 });

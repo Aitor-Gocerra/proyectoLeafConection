@@ -79,7 +79,10 @@
 });
 
         </script>
-        <script src="./javaScript/palabraYFraseDia.js"></script>
         <script src="./javaScript/temporizador.js"></script>
+        <script src="javaScript/modelos/mPalabra.js"></script>
+        <script src="javaScript/controladores/cPalabra.js"></script>
+        <script src="javaScript/vistas/vPalabraDia.js"></script>
+        <script src="javaScript/app.js"></script>
     </body>
 </html>

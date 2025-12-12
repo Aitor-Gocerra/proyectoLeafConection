@@ -1,7 +1,7 @@
 let tiempoTotal = 5 * 60; /* 60 segundos = 1 minuto */
 let intervalo;
 
-const temporizadorDisplay = document.getElementById('tiempoRestante');
+const temporizadorDisplay = document.querySelector('#temporizador');
 
 function actualizarTemporizador(segundos) {
     const minutos = Math.floor(segundos / 60);
