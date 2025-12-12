@@ -73,8 +73,6 @@ class MUsuarios extends Conexion{
             return $stmt->fetchColumn() > 0;
 
             } catch (PDOException $e) {
-            // En caso de error de base de datos, debes decidir si es más seguro permitir o bloquear el inicio de sesión.
-            // Por defecto, asumimos que no hay baneo si la verificación falla, pero se registra el error.
             error_log("Error SQL al verificar baneo: " . $e->getMessage());
             return false;
             }
@@ -216,7 +214,6 @@ public function listarAmigos($idUsuario) {
     try {
         $stmt = $this->conexion->prepare($sql);
         
-        // ¡LA CORRECCIÓN! Enlazamos el mismo valor ($idUsuario) a AMBOS marcadores únicos.
         $stmt->bindValue(':idA', $idUsuario, PDO::PARAM_INT);
         $stmt->bindValue(':idB', $idUsuario, PDO::PARAM_INT);
         
