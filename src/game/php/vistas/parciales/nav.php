@@ -18,7 +18,7 @@ echo '
                 <a href="index.php?c=Usuarios&m=cerrarSesionUsuario"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>';
     } else {
         echo '
-                <a href="index.php?c=Usuarios&m=login"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>';
+                <a href="index.php?c=Usuarios&m=cerrarSesionUsuario"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>';
     }
 echo '
 

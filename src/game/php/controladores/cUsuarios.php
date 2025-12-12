@@ -206,10 +206,10 @@ class CUsuarios{
         $this->vista = 'login';
     }
 
-        private function sessionStart() {
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
+    private function sessionStart() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
+    }
 }
 ?>

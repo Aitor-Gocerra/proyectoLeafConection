@@ -211,7 +211,7 @@ footer {
     text-align: center;
     padding: 2rem;
     color: var(--color-texto-gris);
-    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -538,7 +538,6 @@ footer {
 #anadirAmigo {
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    ;
     padding: 1.7rem 1rem;
     width: 100%;
     margin-bottom: 2rem;
@@ -548,6 +547,10 @@ footer {
         font-family: var(--fuente);
         font-size: 1.4rem;
         color: var(--color-texto-principal);
+    }
+
+    p{
+        margin: 0.8rem 0.2rem;
     }
 
     .contenedorBuscarAmigo {
