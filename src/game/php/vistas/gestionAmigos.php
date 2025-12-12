@@ -23,7 +23,7 @@
             <p class="descripcion">Busca a tus amigos por nombre de usuario o correo electrónico</p>
             <div class="contenedorBuscarAmigo">
                 <input type="text" name="buscarAmigo" class="introducirAmigo" placeholder="nombredelusuario#1234" id="introducirAmigo">
-                <button type="submit" class="enviarAmigo" id="encontrarAmigo"><i class="fa-solid fa-user-plus"></i> Enviar Solicitud</button>
+                <button type="submit" class="enviarAmigo" id="encontrarAmigo"><i class="fa-solid fa-user-plus"></i>  Enviar Solicitud </button>
             </div>
             <div id="mensaje-error-amigos"></div>
         </div>
@@ -39,10 +39,10 @@
                     <div id="contenedorAmigo">
                         <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
                         
-                        <p class="nombreAmigo"><?php echo isset($amigo['nombreAmigo']) ? htmlspecialchars($amigo['nombreAmigo']) : 'Desconocido'; ?></p>
+                        <p class="nombreAmigo"><?php echo $amigo['nombreAmigo']  ?></p>
                         
                         <div class="simboloAmigo">
-                            <button type="button" class="eliminarAmigo" value="<?php echo $amigo['idAmigo'] ?? ''; ?>">
+                            <button type="button" class="eliminarAmigo" value="<?php echo $amigo['idAmigo'] ?>">
                                 <i class="fa-solid fa-user-minus"></i>
                             </button>
                         </div>

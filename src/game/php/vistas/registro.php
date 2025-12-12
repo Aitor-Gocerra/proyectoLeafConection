@@ -20,7 +20,7 @@
     <main>
         <div id="texto" style="text-align: center; margin-bottom: 2rem;">
             <h1>Crear cuenta</h1>
-            <p>¡Únete a Recquiz y aprende nuevos conocimentos!</p>
+            <p>¡Únete a LeafConnect y aprende nuevos conocimentos!</p>
         </div>
 
         <form action="POST" class="formulario-autenticacion" action="./controlador/recogerDatos.js">
