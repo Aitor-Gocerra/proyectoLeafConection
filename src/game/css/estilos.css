@@ -2029,14 +2029,27 @@ footer {
     background-color: var(--color-fondo);
     border: 1px solid #dbdbdb;
 }
-
-#tituloPw, #iconoPw {
-    display: inline-block;
+/* Nuevo contenedor para alinear candado y texto */
+.info-password-label {
+    display: flex;       /* Activa la alineación horizontal */
+    align-items: center; /* Centra verticalmente el candado con el texto */
+    gap: 0.5rem;         /* Espacio entre el candado y la palabra */
+    margin-top: 10px;    /* Mantiene la separación con el input anterior */
+    width: 100%;
 }
 
+/* Ajuste para eliminar el margen superior que el label tenía por defecto */
+.info-password-label label {
+    margin-top: 0;
+    cursor: pointer; /* Opcional: mejora la UX al pasar el mouse */
+}
+
+/* Asegurar que el candado se vea bien */
 #iconoPw {
-    cursor: pointer;
+    font-size: 1.2rem; /* Ajusta el tamaño si es necesario */
+    line-height: 1;
 }
+
 /* Responsivo para Autenticación */
 @media (min-width: 768px) {
     .formulario-autenticacion {
