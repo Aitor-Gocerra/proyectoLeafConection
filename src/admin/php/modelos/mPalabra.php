@@ -126,7 +126,7 @@ class Palabra extends Conexion
         $sql = "
             UPDATE Palabras
             SET fechaProgramada = NULL
-            WHERE fechaProgramada < NOW();
+            WHERE fechaProgramada < CURDATE();
         ";
 
         $stmt = $this->conexion->prepare($sql);

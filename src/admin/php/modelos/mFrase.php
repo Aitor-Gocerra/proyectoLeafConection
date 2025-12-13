@@ -123,7 +123,7 @@ class Frase extends Conexion
         $sql = "
             UPDATE Frases
             SET fechaProgramada = NULL
-            WHERE fechaProgramada < NOW();
+            WHERE fechaProgramada < CURDATE();
         ";
 
         $stmt = $this->conexion->prepare($sql);

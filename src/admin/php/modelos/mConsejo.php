@@ -107,7 +107,8 @@ class Consejo extends Conexion
     {
         $sql = "
             UPDATE Consejos
-            SET fechaProgramada = NULL;
+            SET fechaProgramada = NULL
+            WHERE fechaProgramada < CURDATE();
         ";
         $stmt = $this->conexion->prepare($sql);
         return $stmt->execute();
