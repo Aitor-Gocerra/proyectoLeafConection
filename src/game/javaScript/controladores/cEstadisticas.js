@@ -5,6 +5,6 @@ class CEstadisticas {
     }
 
     async obtenerEstadisticas() {
-        return await this.modelo.obtenerEstadisticas(); // Pedir datos al modelo
+        return await this.modelo.obtenerEstadisticas(ID_USUARIO); // Pedir datos al modelo
     }
 }
