@@ -9,7 +9,7 @@ class CIniciarsesion {
 
         // Validar el formario con un REGEX básico
         if (!this.validarEmail(email)) {
-             this.vista.mostrarError('El formato del correo electrónico no es válido.');
+            this.vista.mostrarError('El formato del correo electrónico no es válido.');
             return;
         }
 
@@ -17,7 +17,7 @@ class CIniciarsesion {
         let datosFormulario = new FormData(); 
         datosFormulario.append('correo', email); 
         datosFormulario.append('contrasenia', password); 
-        this.modelo.MIniciarSesion(datosFormulario);
+        this.modelo.MIniciarsesion(datosFormulario);
     }
 
     validarEmail(email) {

@@ -3,7 +3,7 @@ class MIniciarsesion {
     constructor() {
         
     }
-    async MIniciarSesion(datosFormulario){
+    async MIniciarsesion(datosFormulario){
 
         try {
             const response = await fetch('index.php?c=Usuarios&m=inicio', {
