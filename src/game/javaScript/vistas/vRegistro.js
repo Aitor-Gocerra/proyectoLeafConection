@@ -71,6 +71,7 @@ class VRegistro {
             // Usamos 'this.inputPassword' y 'this.iconoPw' que están definidos en el constructor
             if (this.inputPassword.type === "password" && this.inputPassword2.type === "password") {
                 this.inputPassword.type = "text";
+                this.inputPassword2.type = "text";
                 this.iconoPw.textContent = "🔓"; // Cambia a candado abierto
             } else {
                 this.inputPassword.type = "password";
