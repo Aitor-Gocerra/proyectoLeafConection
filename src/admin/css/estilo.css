@@ -195,7 +195,7 @@ main {
     }
 
     /* ESTILOS DEL BUSCADOR */
-    #buscadorFrasesPalabra {
+    #buscadorFrasesPalabra, #buscadorNoticias {
         margin-bottom: 2rem;
         padding: 1.5rem;
         background-color: #e6fffa;
@@ -205,7 +205,7 @@ main {
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
-    #buscadorFrasesPalabra h2 {
+    #buscadorFrasesPalabra h2, #buscadorNoticias h2 {
         font-size: 1.2rem;
         color: #2c7a7b;
         /* Color de texto similar al navegador */
@@ -214,12 +214,12 @@ main {
         padding-bottom: 0.5rem;
     }
 
-    #buscadorFrasesPalabra form {
+    #buscadorFrasesPalabra form, #buscadorNoticias form {
         display: flex;
         gap: 0.5rem;
     }
 
-    #inputBuscar {
+    #inputBuscar, #inputBuscarNoticia {
         flex-grow: 1;
         padding: 0.75rem 1rem;
         border: 2px solid var(--color-azul-1);
@@ -228,14 +228,14 @@ main {
         transition: 0.2s;
     }
 
-    #inputBuscar:focus {
+    #inputBuscar:focus, #inputBuscarNoticia:focus {
         border-color: #38b2ac;
         /* Color de acento A */
         box-shadow: 0 0 6px rgba(56, 178, 172, 0.4);
         outline: none;
     }
 
-    #buscadorFrasesPalabra button[type="submit"] {
+    #buscadorFrasesPalabra button[type="submit"], #buscadorNoticias button[type="submit"]{
         background-color: #38b2ac;
         /* Color de acento A */
         color: white;
@@ -250,12 +250,12 @@ main {
         gap: 0.4rem;
     }
 
-    #buscadorFrasesPalabra button[type="submit"]:hover {
+    #buscadorFrasesPalabra button[type="submit"]:hover, #buscadorNoticias button[type="submit"]:hover {
         background-color: #319795;
         transform: translateY(-1px);
     }
 
-    #buscadorFrasesPalabra button i {
+    #buscadorFrasesPalabra button i, #buscadorNoticias button i {
         color: white;
         margin: 0;
         font-size: 1rem;
@@ -529,9 +529,11 @@ main {
             color: var(--color-texto-gris);
         }
 
-        td>a {
+        td > button {
             display: block;
-            text-align: center;
+            margin: auto;
+            border: 0px;
+            background-color: transparent;
         }
 
         tr:last-child td {
@@ -551,9 +553,11 @@ main {
 }
 
 #ultimasDiezNoticias {
-    td>a {
+    td > button {
         display: block;
-        text-align: center;
+        margin: auto;
+        border: 0px;
+        background-color: transparent;
     }
 
     .fa-pen-to-square {

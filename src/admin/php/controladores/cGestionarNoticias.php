@@ -59,7 +59,6 @@
             // Buscar noticias
             $resultados = $this->objNoticia->buscarNoticia($buscar);
     
-            // También cargar las 10 últimas noticias para que no desaparezcan
             $noticias = $this->objNoticia->listarNoticias();
     
             return [
@@ -69,47 +68,35 @@
         }
 
         public function eliminar(){
-            if ($this->objNoticia->eliminarNoticia($this->idNoticia)){
-                header("Location: ./index.php?c=GestionarNoticias&m=gestionarNoticias");
+            header('Content-Type: application/json');
+            $exito = $this->objNoticia->eliminarNoticia($this->idNoticia);
+            if ($exito) {
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['error' => 'No se pudo eliminar']);
             }
         }
-
-        public function modificar(){
-            $this->idNoticia = $_GET['idNoticia'] ?? null;
-            if (!$this->idNoticia) {
-                $this->vista = 'gestionarNoticias';
-                $this->mensaje = 'No se indicó idNoticia';
-                return ['mensaje' => $this->mensaje];
-            }
         
-            $noticia = $this->objNoticia->obtenerNoticia($this->idNoticia);
-            $preguntas = $this->objNoticia->obtenerPreguntas($this->idNoticia);
-            $opciones = $this->objNoticia->obtenerOpciones($this->idNoticia);
-            $opcionesCorrectas = $this->objNoticia->obtenerRespuestas($this->idNoticia);
-            $fechasUsadas = $this->objNoticia->obtenerFechasNoticiasExcepto($this->idNoticia);
+        public function modificarJSON() {
+            $idNoticia = $_GET['idNoticia'] ?? null;
+            if (!$idNoticia) {
+                echo json_encode(['mensaje' => 'No se indicó idNoticia']);
+                return;
+            }
 
-            /**
-             * Agrupar opciones por pregunta. $nPregunta => [op1, op2]
-             */
+            $noticia = $this->objNoticia->obtenerNoticia($idNoticia);
+            $preguntas = $this->objNoticia->obtenerPreguntas($idNoticia);
+            $opciones = $this->objNoticia->obtenerOpciones($idNoticia);
+            $opcionesCorrectas = $this->objNoticia->obtenerRespuestas($idNoticia);
+
             $opcionesPorPregunta = [];
-            foreach ($opciones as $op) {
-                $nPregunta = $op['nPregunta'];
-                $opcionesPorPregunta[$nPregunta][] = $op['opcion'];
-            }
-        
-            /**
-             * Crear un array con el N° de la pregunta y las opciones separadas por '/'
-             */
+            foreach ($opciones as $op) $opcionesPorPregunta[$op['nPregunta']][] = $op['opcion'];
+
             $opcionesImplode = [];
             foreach ($preguntas as $i => $p) {
-                $n = $i + 1; // nPregunta real
-                if (isset($opcionesPorPregunta[$n])) {
-                    $opcionesImplode[$i] = implode('/', $opcionesPorPregunta[$n]);
-                } else {
-                    $opcionesImplode[$i] = '';
-                }
+                $n = $i + 1;
+                $opcionesImplode[$i] = isset($opcionesPorPregunta[$n]) ? implode('/', $opcionesPorPregunta[$n]) : '';
             }
-        
 
             $respuestas = [];
             foreach ($opcionesCorrectas as $r) {
@@ -117,25 +104,19 @@
                     $respuestas[$r['nPregunta'] - 1] = $r['nOpcion'];
                 }
             }
-        
-            /**
-             * Validar que $respuestas tenga la misma longitud que $preguntas
-             */
             for ($i = 0; $i < count($preguntas); $i++) {
                 if (!isset($respuestas[$i])) $respuestas[$i] = '';
             }
-        
-            // devolver los datos para la vista para usarse en js
-            $this->vista = 'gestionarNoticias';
-            return [
+
+            header('Content-Type: application/json');
+            echo json_encode([
                 'noticia' => $noticia,
                 'preguntas' => $preguntas,
                 'opciones_implode' => $opcionesImplode,
-                'respuestas' => $respuestas,
-                'fechasUsadas' => $fechasUsadas
-            ];
+                'respuestas' => $respuestas
+            ]);
         }
-        
+
 
         public function guardarModificacion(){
             $titulo = $_POST['titulo'];
@@ -168,4 +149,19 @@
             }
         }
 
+        public function fechasOcupadasJSON() {
+            $fechas = $this->objNoticia->obtenerFechasNoticias();
+            echo json_encode(['fechas' => $fechas]);
+        }
+
+        public function fechasOcupadasModificarJSON() {
+            $idNoticia = $_GET['idNoticia'] ?? null;
+            if (!$idNoticia) {
+                echo json_encode(['error' => 'No se indicó idNoticia']);
+                return;
+            }
+            $fechas = $this->objNoticia->obtenerFechasNoticiasExcepto($idNoticia);
+            echo json_encode(['fechas' => $fechas]);
+        }
     }
+?>

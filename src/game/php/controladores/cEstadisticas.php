@@ -40,9 +40,9 @@
                 $racha = $this->obtenerRacha($idUsuario);
                 $datosPuntuacion = $this->obtenerPuntajeUltimaSemana($idUsuario);
 
-                $s = $tiempoMedio;
-                $m = $s / 60;
-                $tiempoMedioXPartida = number_format($m, 2);
+                $m = floor($tiempoMedio / 60);
+                $s = $tiempoMedio % 60;
+                $tiempoMedioXPartida = $m . ":" . $s;
 
                 echo json_encode([
                     'success' => true,
