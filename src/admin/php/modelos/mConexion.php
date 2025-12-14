@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . '/../config/configDB.php';
+    require_once __DIR__ . '/../config/configdb.php';
 
     class Conexion {
         
