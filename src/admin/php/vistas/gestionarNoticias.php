@@ -19,7 +19,7 @@
             ?>
         
         <section id='buscadorNoticias'>
-            <h2>Buscar NoticiaAAA</h2>
+            <h2>Buscar noticias</h2>
             <form id='formBuscarNoticia'>
                 <input type='search' id='inputBuscarNoticia' name='buscar' placeholder='Introduce una palabra clave...' aria-label='Buscar $titulo'>
                 <button type='submit'>
