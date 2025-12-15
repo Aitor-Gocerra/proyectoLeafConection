@@ -8,7 +8,7 @@ class CNoticia {
         try {
             let datos = await this.modelo.cargarDatosModificar(idNoticia);
             if (datos.noticia) {
-                this.vista.cargarDatosNoticia(datos.noticia, datos.preguntas, datos.opciones_implode, datos.resultadouestas);
+                this.vista.cargarDatosNoticia(datos.noticia, datos.preguntas, datos.opciones_implode, datos.respuestas);
             } else {
                 alert(datos.mensaje ?? 'No se pudo cargar la noticia!');
             }
