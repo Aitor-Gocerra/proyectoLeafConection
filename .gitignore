@@ -1,0 +1,5 @@
+# Configuración del juego
+src/game/php/config/
+
+# Configuración del panel admin
+src/admin/php/config/
