@@ -2224,3 +2224,160 @@ footer {
         font-size: 1rem;
     }
 }
+
+
+/****************************** PÁGINA -> INDEX PRINCIPAL ******************************/
+
+/* Estilos específicos para la página principal */
+body.pagina-principal {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e6f7e8 0%, #ffffff 100%);
+}
+
+.contenedor-principal {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+}
+
+.tarjeta-principal {
+    background-color: var(--color-fondo);
+    border-radius: var(--borde-radius);
+    padding: 3rem 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+#tituloJuego {
+    color: var(--color-primario);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#tituloJuego::before {
+    content: '🌿';
+    font-size: 3rem;
+}
+
+.subtitulo {
+    color: var(--color-texto-gris);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+.botones-inicio {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.boton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 1.5rem;
+    background-color: var(--color-fondo);
+    border: 2px solid var(--color-primario);
+    border-radius: var(--borde-radius);
+    color: var(--color-primario);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all var(--transicion-base);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.boton i {
+    font-size: 3rem;
+}
+
+.boton:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(56, 161, 105, 0.3);
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+}
+
+.boton:active {
+    transform: translateY(-4px);
+}
+
+/* Estilos específicos por botón */
+.boton-admin i {
+    color: var(--color-acento-a);
+}
+
+.boton-admin:hover i {
+    color: var(--color-fondo);
+}
+
+.boton-game i {
+    color: var(--color-secundario);
+}
+
+.boton-game:hover i {
+    color: var(--color-fondo);
+}
+
+/* Responsive para página principal */
+@media (max-width: 767px) {
+    .contenedor-principal {
+        padding: 1rem;
+    }
+
+    .tarjeta-principal {
+        padding: 2rem 1.5rem;
+    }
+
+    #tituloJuego {
+        font-size: 2rem;
+    }
+
+    #tituloJuego::before {
+        font-size: 2rem;
+    }
+
+    .subtitulo {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .botones-inicio {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .boton {
+        padding: 1.5rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    .boton i {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 479px) {
+    #tituloJuego {
+        font-size: 1.7rem;
+    }
+
+    .boton {
+        padding: 1.2rem 1rem;
+        font-size: 1rem;
+    }
+
+    .boton i {
+        font-size: 2rem;
+    }
+}
