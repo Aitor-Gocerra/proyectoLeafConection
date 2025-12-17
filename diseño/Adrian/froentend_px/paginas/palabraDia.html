@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <link rel="stylesheet" href="../style.css"> 
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="pagina_anterior.html" class="botonVolver"><i class="fas fa-arrow-left"></i></a>
+                <i class="fas fa-leaf"></i>
+                <h3>LeafConnect</h3>
+                <img src="../imagenes/icono.png" alt="Foto de perfil" id="fotoPerfil">
+                <div id="menuDesplegable">
+                    <a href="#amigos"><i class="fas fa-users"></i> Mis Amigos</a>
+                    <a href="#estadisticas"><i class="fas fa-chart-bar"></i> Mis Estadísticas</a>
+                    <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div id="cajaPalabra">
+                <h2 class="tituloPalabra">Palabra del día</h2>
+                <p class="descripcionPalabra">Usa la siguiente definición para adivinar la eco-palabra.</p>
+                <p class="temporizador"><i class="fas fa-clock"></i> </i>5:00</p>
+                <div class="pista">
+                    <p>El proceso de reciclaje de materia orgánica, como hojas y restos de comida, en una enmienda rica para el suelo.</p>
+                </div>
+                    <div class="contenedorAcierto">
+                        <input type="text" name="acertarPalabra" class="introducirPalabra" placeholder="Tu suposición...">
+                        <button type="submit" class="enviarPalabra">Acierta</button>
+                    </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025-2026 ReciQuiz. Todos los derechos reservados.</p>
+        </footer>
+
+        <script src="../../javascript/menuDesplegable.js"></script>
+    </body>
+</html>

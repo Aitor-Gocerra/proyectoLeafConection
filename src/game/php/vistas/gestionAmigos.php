@@ -37,9 +37,10 @@
             <?php echo empty($amigos) ? '<p>No tienes amigos agregados.</p>' : ''; ?>
             <?php foreach ($amigos as $amigo) { ?>
                     <div id="contenedorAmigo">
-                        <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
-                        
-                        <p class="nombreAmigo"><?php echo $amigo['nombreAmigo']  ?></p>
+                        <a href="./index.php?c=Paginas&m=estadisticas&idAmigo=<?php echo $amigo['idAmigo'] ?>&nombre=<?php echo $amigo['nombreAmigo'] ?>">
+                            <img src="./imagenes/fotoPerfil.jpg" class="fotoAmigo">
+                            <p class="nombreAmigo"><?php echo $amigo['nombreAmigo']  ?></p>
+                        </a>
                         
                         <div class="simboloAmigo">
                             <button type="button" class="eliminarAmigo" value="<?php echo $amigo['idAmigo'] ?>">

@@ -11,10 +11,18 @@
             $this->vista = '';
         }
 
+        /**
+         * Obtiene las estadísticas del usuario en formato JSON.
+         * Si se pasa 'idAmigo' por GET, obtiene las estadísticas de ese usuario,
+         * si no, obtiene las del usuario de sesión.
+         *
+         * @return void
+         */
         public function obtenerEstadisticasJSON(){
             $this->vista = '';
             header('Content-Type: application/json');
-            $idUsuario = $_SESSION['idUsuario'];
+            
+            $idUsuario = $_GET['idUsuario'] ?? $_SESSION['idUsuario'];
 
             if (!$idUsuario) {
                 echo json_encode([
@@ -32,9 +40,9 @@
                 $racha = $this->obtenerRacha($idUsuario);
                 $datosPuntuacion = $this->obtenerPuntajeUltimaSemana($idUsuario);
 
-                $s = $tiempoMedio;
-                $m = $s / 60;
-                $tiempoMedioXPartida = number_format($m, 2);
+                $m = floor($tiempoMedio / 60);
+                $s = $tiempoMedio % 60;
+                $tiempoMedioXPartida = $m . ":" . $s;
 
                 echo json_encode([
                     'success' => true,
@@ -52,6 +60,13 @@
                 ]);
             }
         }
+
+        /**
+         * Calcula la racha de días consecutivos que ha jugado el usuario.
+         *
+         * @param int $idUsuario ID del usuario.
+         * @return int Número de días consecutivos jugados.
+         */
 
         public function obtenerRacha($idUsuario){
             $fechasJugadas = $this->objEstadistica->fechasJugadas($idUsuario);
@@ -88,6 +103,14 @@
 
             return $racha ?? 0;
         }
+
+        /**
+         * Obtiene el puntaje del usuario en la última semana.
+         * Rellena con 0 los días en los que no se registraron partidas.
+         *
+         * @param int $idUsuario ID del usuario.
+         * @return array Array de puntajes con fecha para el gráfico
+         */
 
         public function obtenerPuntajeUltimaSemana($idUsuario){
             $fechaInicio = date('Y-m-d', strtotime('-6 day')); // hace 6 días (7 días incluyendo hoy)
@@ -130,16 +153,6 @@
             }
 
             return $datos;
-        }
-
-
-        // Sector pruebas ELIMINAR DESPUES
-        public function prueba(){
-
-            $idUsuario = $_SESSION['idUsuario'];
-            $fechasJugadas = $this->objEstadistica->fechasJugadas($idUsuario);
-            var_dump($fechasJugadas);
-
         }
     }
 ?>

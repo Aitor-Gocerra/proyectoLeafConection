@@ -53,8 +53,10 @@
             <?php require_once 'parciales/footer.php'; ?>
         </footer>
 
+
         <script>
-            window.ID_USUARIO = <?php echo $_SESSION['idUsuario'] ?? 'null'; ?>;
+            window.ID_USUARIO = <?= $_GET['idAmigo'] ?? $_SESSION['idUsuario'] ?>;
+            window.NOMBRE_AMIGO = <?= isset($_GET['nombre']) ? json_encode($_GET['nombre']) : 'null' ?>;
         </script>
 
         <script src="javaScript/modelos/mEstadisticas.js"></script>
@@ -62,7 +64,6 @@
         <script src="javaScript/vistas/vEstadisticas.js"></script>
         <script src="javaScript/app.js"></script>
 
-        
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     </body>

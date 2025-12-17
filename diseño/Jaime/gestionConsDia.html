@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión Consejo Dia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styleGestion.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <i class="fas fa-leaf"></i>
+            <h3>LeafConnect</h3>
+            <img src="doraemon.png" alt="Foto de perfil" id="fotoPerfil">
+            <div id="menuDesplegable">
+                <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a>
+            </div>
+        </nav>
+
+    </header>
+
+    <main>
+        <div id="navegador">
+            <a href="">GESTIONAR PALABRAS</a>
+            <a href="">GESTIONAR FRASES</a>
+            <a href="">GESTIONAR NOTICIAS</a>
+            <a href="">GESTIONAR CONSEJOS</a>
+            <a href="">GESTIONAR USUARIOS</a>
+
+        </div>
+        <div id="contenedor">
+            <h1>Editar/Eliminar consejos del día</h1>
+            <form action="">
+                <label for="">Consejo del día</label>
+                <textarea name="" id="textoArea"></textarea>
+
+                <label for="">Temática</label>
+                <select name="">
+                    <option value=""></option>
+                    <option value="Salud mental">Salud mental</option>
+                    <option value="Sostenibilidad">Desarrollo sostenible</option>
+                </select>
+                <label for="">Fecha:</label>
+                <input type="date" placeholder="dd/mm/yy" id="fecha">
+                <input id="botonSubmit" type="submit" value="Guardar consejo">
+            </form>
+
+        </div>
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025-2026 LeafConnect. Todos los derechos reservados. </p>
+    </footer>
+
+
+    <script src="menuDesplegable.js"></script>
+
+</body>
+
+</html>

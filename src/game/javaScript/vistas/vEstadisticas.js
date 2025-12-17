@@ -3,6 +3,7 @@ class VEstadisticas {
         this.controlador = controlador;
         this.tarjetas = document.querySelectorAll('#tablaEstadisticas .tarjetaEstadisticas');
         this.cargarEstadisticas();
+        this.cambiarNombre();
     }
 
     async cargarEstadisticas() {
@@ -112,5 +113,14 @@ class VEstadisticas {
             datos.push(dias[dt.getDay()]);
         }
         return datos;
+    }
+
+    cambiarNombre(){
+        if (NOMBRE_AMIGO) {
+            let titulo = document.getElementById("tituloEstadisticas");
+            if (titulo) {
+                titulo.innerHTML = `Estadísticas de ${NOMBRE_AMIGO}`;
+            }
+        }
     }
 }

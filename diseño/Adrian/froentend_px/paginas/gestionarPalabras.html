@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard - ReciQuiz</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="../estilo.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <i class="fas fa-leaf"></i>
+                <h3>ReciQuiz</h3>
+                <img src="../imagenes/icono.png" alt="Foto de perfil" id="fotoPerfil">
+                <div id="menuDesplegable">
+                    <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div id="navegador">
+                <a href="gestionarPalabras.html">GESTIONAR PALABRAS</a>
+                <a href="gestionarFrases.html">GESTIONAR FRASES</a>
+                <a href="gestionarNoticias.html">GESTIONAR NOTICIAS</a>
+                <a href="gestionarConsejos.html">GESTIONAR CONSEJOS</a>
+                <a href="gestionarUsuarios.html">GESTIONAR USUARIOS</a>
+            </div>
+            <div id="contenedorModificarFrase">
+                <h1>Añadir/Editar Palabra del Dia</h1>
+                <form action="" method="get">
+                    <label for="palabra">Palabra</label>
+                    <input type="text" name="palabra" id="palabra" placeholder="Ej: Arból...">
+                    <p>Añade una palabra para que sea adivinada.</p>
+
+                    <label for="definicion">Definición</label>
+                    <input type="text" name="" id="definicion" placeholder="Ej: Planta de tallo leñoso y elevado, que se ramifica a cierta altura del suelo.">
+
+                    <label for="fecha">Fecha programada</label>
+                    <input type="date" name="fecha" id="fecha">
+
+                    <input type="submit" value="Guardar Palabra">
+                </form>
+            </div>
+            <div id="ultimasDiezPalabras">
+                Aqui mostraremos con JS, las 10 ultimas palabras que se han introducido
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025-2026 ReciQuiz. Todos los derechos reservados.</p>
+        </footer>
+
+        <script src="../../javascript/menuDesplegable.js"></script>
+    </body>
+</html>
