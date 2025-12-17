@@ -4,7 +4,7 @@
 <head>
         <?php
             require_once 'parciales/head.php';
-            encabezado("Login - LeafConnect");
+            encabezado("Admin Login - LeafConnect");
         ?>
 </head>
 
@@ -45,10 +45,10 @@
         require_once 'parciales/footer.php';
         ?>
     </footer>
-    <script src="javaScript/modelos/mIniciarsesion.js"></script>
-    <script src="javaScript/controladores/cIniciarsesion.js"></script>
-    <script src="javaScript/vistas/vIniciarsesion.js"></script>
-    <script src="javaScript/app.js"></script>
+    <script src="javascript/modelos/mIniciarsesion.js"></script>
+    <script src="javascript/controladores/cIniciarsesion.js"></script>
+    <script src="javascript/vistas/vIniciarsesion.js"></script>
+    <script src="javascript/app.js"></script>
 </body>
 
 </html>

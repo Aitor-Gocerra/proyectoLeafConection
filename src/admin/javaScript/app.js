@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Determinar el tipo de página según el título
     if(tituloCompleto.includes('Noticia')){
         tipoPagina = 'Noticia';
+    }else{
+        tipoPagina = 'Login';
     }
 
     // Inicializar el MVC correspondiente según el tipo de página
@@ -19,6 +21,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const controladorNoticia = new CNoticia(modeloNoticia, null);
             const vistaNoticia = new VNoticia(controladorNoticia);
             controladorNoticia.vista = vistaNoticia;
+            break;
+
+        case 'Login':
+            const modeloLIniciosesion = new MIniciosesion();
+            const controladotInicio = new CIniciosesion(modeloLIniciosesion, null);
+            const vistaInicio = new VIniciosesion(controladorNoticia);
+            controladotInicio.vista = vistaInicio;
             break;
 
         default:
