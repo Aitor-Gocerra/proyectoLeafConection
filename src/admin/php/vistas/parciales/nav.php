@@ -10,7 +10,7 @@ echo '
                 <img src="./imagenes/fotoPerfil.jpg" alt="Foto de perfil" id="fotoPerfil">
 
                 <div id="menuDesplegable">
-                    <a href="#cerrar-sesion"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                    <a href="index.php?c=Iniciarsesion&m=cerrarSesionUsuario"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                 </div>
             </div>
         </nav>

@@ -1,5 +1,6 @@
 <?php
 require_once 'php/config/config.php';
+session_start();
 
 if (!isset($_GET['c']))
     $_GET['c'] = DEF_CONTROLLER; // Controlador por defecto
@@ -16,7 +17,7 @@ $objControlador = new $controlador();
 $datos = []; // Guardar los datos que se obtienen del método
 
 if (method_exists($objControlador, $_GET['m'])) {
-    $datos = $objControlador->{$_GET['m']}();
+    $datos = $objControlador->{$_GET['m']}($_POST);
 }
 
 if ($objControlador->vista != '') {

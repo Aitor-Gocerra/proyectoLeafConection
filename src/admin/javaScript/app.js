@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
             break;
 
         case 'Login':
-            const modeloLIniciosesion = new MIniciosesion();
-            const controladotInicio = new CIniciosesion(modeloLIniciosesion, null);
-            const vistaInicio = new VIniciosesion(controladorNoticia);
-            controladotInicio.vista = vistaInicio;
+            const modeloIniciosesion = new MIniciarsesion();
+            const controladorInicio = new CIniciarsesion(modeloIniciosesion, null);
+            const vistaIniciarsesion = new VIniciarsesion(controladorInicio);
+            controladorInicio.vista = vistaIniciarsesion;
             break;
 
         default:

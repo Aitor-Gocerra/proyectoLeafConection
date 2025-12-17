@@ -1,11 +1,11 @@
 <?php
-class CIniciosesion{
+class CIniciarsesion{
     private $objMUsuario;
     public $vista;
 
     function __construct(){
-        require_once RUTA_MODELOS.'Iniciosesion.php';
-        $this->objMUsuario = new MIniciosesion();
+        require_once RUTA_MODELOS.'Iniciarsesion.php';
+        $this->objMUsuario = new MIniciarsesion();
     }
 
     public function login(){
@@ -13,7 +13,7 @@ class CIniciosesion{
     }
 
     public function mostrarInicio(){
-        $this->vista = 'inicio';
+        $this->vista = 'gestionarPalabras';
     }
 
     public function inicio($datos){

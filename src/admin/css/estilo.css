@@ -665,7 +665,127 @@ main {
     text-decoration: underline;
 }
 
+/************* ESTILOS LOGIN **********7
 
+/* Navegación específica para autenticación (centrada) */
+.formulario-autenticacion {
+    text-align: left;
+    margin: 2rem auto;
+    box-shadow: var(--box-shadow-base);
+    background-color: var(--color-fondo);
+    border-radius: var(--borde-radius);
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.formulario-autenticacion h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--color-texto-oscuro);
+    margin-bottom: 1rem;
+}
+
+.formulario-autenticacion p {
+    text-align: center;
+    color: var(--color-texto-gris);
+}
+
+.formulario-autenticacion label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: var(--color-texto-oscuro);
+}
+
+.formulario-autenticacion input:not([type="submit"]) {
+    padding: 10px;
+    border: 1px solid var(--color-texto-gris);
+    border-radius: 5px;
+    background-color: #dbdbdb;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.boton-autenticacion-primario {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.boton-autenticacion-primario:hover {
+    background-color: var(--color-secundario);
+}
+
+.boton-autenticacion-secundario {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    color: var(--color-texto-oscuro);
+    background-color: #dbdbdb;
+    /* --fondo3 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s;
+    display: block;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.boton-autenticacion-secundario:hover {
+    background-color: var(--color-fondo);
+    border: 1px solid #dbdbdb;
+}
+
+.info-password-label {
+    display: flex;       /* Activa la alineación horizontal */
+    align-items: center; /* Centra verticalmente el candado con el texto */
+    justify-content: space-between;        /* Espacio entre el candado y la palabra */
+    margin-top: 10px;    /* Mantiene la separación con el input anterior */
+    width: 100%;
+}
+
+/* Ajuste para eliminar el margen superior que el label tenía por defecto */
+.info-password-label label {
+    margin-top: 0;
+    cursor: pointer; /* Opcional: mejora la UX al pasar el mouse */
+}
+
+/* Asegurar que el candado se vea bien */
+#iconoPw {
+    font-size: 1.2rem; /* Ajusta el tamaño si es necesario */
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Responsivo para Autenticación */
+@media (min-width: 768px) {
+    .formulario-autenticacion {
+        width: 600px;
+        padding: 32px;
+    }
+}
+
+/* Navegación específica para autenticación (centrada) */
+.navegacion-autenticacion {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
 /****************************** FOOTER                      ******************************/
 

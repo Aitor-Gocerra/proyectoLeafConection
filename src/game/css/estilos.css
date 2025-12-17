@@ -753,7 +753,7 @@ footer {
 
 #misSolicitudes {
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 1rem 2rem; 
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.27);
     border-radius: 8px;
     display: none;
@@ -1969,6 +1969,7 @@ footer {
     flex-direction: column;
     gap: 10px;
     padding: 20px;
+    color: black;
 }
 
 .formulario-autenticacion h1 {
